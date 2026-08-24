@@ -1617,3 +1617,48 @@ R4 가 입력창 면을 회색(bg-bg-mute)으로 칠한 것을 되돌림. 배경
 - 쿨그레이 rgb 245 247 248(#F5F7F8) = 존재(bg-mute/section)
 - .container-page { max-width: 1400px } 적용됨
 - 즉 어떤 요소 배경도 웜 계열 아님, 컨테이너 max-width 1400 적용
+
+---
+
+# R7 카피 명사형 + 패스 관광상품화 + 마이페이지 + 굿즈/장바구니 (2026-08-24)
+
+## 단계 0. 아이브로우 파랑 겹침
+
+- StaysPage 강원특별자치도 동해시 아이브로우 bg-primary-soft text-primary(파랑 on 파랑) → bg-bg-mute text-text-meta 회색 badge. grep bg-primary-soft text-primary in StaysPage = 0
+
+## 단계 1. 카피 명사형
+
+- packages 코스/프로그램 short_description 8건 이다/코스다/여행이다 → 명사형(차 없이 즐기는 도심형 감성 여행 등). packages 다-ending 0
+- stays 는 서술형 0(바다 명사 오탐만)
+
+## 단계 2. 나열식/긴 요금
+
+- StaysPage 먹거리 숙박 체험 볼거리 네 갈래... → 네 갈래로 묶은 동해 로컬 자원
+- shortPrice 헬퍼: 카드 긴 요금(일반 3,000원, 청소년...)→대표 한 줄(일반 3,000원 부터). 천 단위 콤마 유지. 전체는 상세 표에만. StayCard 적용. 단위 테스트 5/5
+
+## 단계 3. 패스 관광상품화
+
+- MembershipPage 히어로 요금제식(일회성 NFC 패스다/하루 단가 내려간다) → 스탬프를 모아 하룻밤을 완성하는 여행 패스
+- membership_plans.json 3개 note 요금제식(단가 내려간다/본전 회수/추가된다) → 명사형 관광 혜택
+- TAGS/FLOW 서술형(한다/받는다) → 명사형(패스 활성화/스탬프 적립/1박 기록 등)
+- 섹션 여백 py-12/18/24 → py-10/14/16 밀도 상승
+
+## 단계 4. 스탬프 정렬
+
+- PassPage 스탬프 원 aspect-square w-full(셀 채움 불균등) → w-11/12 mx-auto 고정+중앙. li flex-col items-center 로 라벨 원 중심 정렬. 라벨 font-light → font-normal
+
+## 단계 5. 굿즈/마이페이지/장바구니
+
+- GoodsCard: 빈 images 폴백(톤 블록+카테고리), category 직접 렌더(GOODS_CATEGORY_LABEL 오매핑 제거), 가격 0이면 shortPrice/문의
+- GoodsPage: 카테고리 목록을 데이터에서 도출(키 불일치 필터 버그 수정). 8건 렌더
+- MyPage 신설(/mypage, RequireAuth 로그인 전용): 프로필/내 패스/저장한 장소(bookmark)/예약 내역. 헤더 사람 아이콘 드롭다운에서 진입
+- IconGroup 장바구니(ShoppingBag) 아이콘 삭제. 마이 패스 링크 /pass 로
+
+## 배포 실측
+
+배포 번들(index 최신):
+- 명사형 코스 카피 존재, 관광상품 패스 카피 존재
+- 하루 단가 등 요금제식 잔재 0
+- 마이페이지 존재
+- StaysPage 아이브로우 파랑겹침 0, 헤더 장바구니 0
+- vite build 통과
