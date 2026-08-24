@@ -942,3 +942,68 @@ DB 재마이그레이션
 - 변경된 파일 목록
 - 발견된 이슈 (있을 경우)
 - 다음 세션에서 이어서 할 작업
+---
+
+# 카름스테이 구조 미러링 (SETUP_KAREUM_V2)
+
+작업 일자 2026-08-24. 담당 Claude Code. 기준 문서 KAREUM_MIRROR.md.
+
+## 단계별 진행
+
+- [x] 단계 0 기반 확정. shadow-card 토큰 추가와 공용 컴포넌트 5종 생성. 빌드 통과
+- [x] 단계 1 프로그램 컬러블록. ColorBlockCarousel 생성, PackagesPage 프로그램 탭 교체
+- [x] 단계 2 권역 블롭 카드. BlobCard와 RegionBlobSection 생성, HomePage 교체
+- [x] 단계 3 코스 패키지 캐러셀. PackageCarousel 생성, PackagesPage 코스 탭 교체
+- [x] 단계 4 히어로 투입. PackagesPage와 StoryListPage 상단 HeroSlider, 이야기 카드 RevealOnScroll
+- [~] 단계 5 검증과 배포 (grep 검증 완료, 폭별 육안 검증과 배포 미실행)
+
+## 신규 파일
+
+- client/src/components/kareum/KareumHeader.jsx
+- client/src/components/kareum/Carousel.jsx
+- client/src/components/kareum/RevealOnScroll.jsx
+- client/src/components/kareum/CurvedCaption.jsx
+- client/src/components/kareum/ScatterIllust.jsx
+- client/src/components/kareum/BlobCard.jsx
+- client/src/components/kareum/RegionBlobSection.jsx
+- client/src/components/kareum/ColorBlockCarousel.jsx
+- client/src/components/kareum/PackageCarousel.jsx
+- client/src/components/kareum/heroSlides.js
+
+## 수정 파일
+
+- client/tailwind.config.js (shadow-card 토큰 추가)
+- client/src/components/RegionSection.jsx (REGIONS export 추가. 컴포넌트 자체는 보존)
+- client/src/pages/HomePage.jsx (RegionSection 을 RegionBlobSection 으로 교체)
+- client/src/pages/PackagesPage.jsx (히어로 투입, 탭별 캐러셀 교체)
+- client/src/pages/StoryListPage.jsx (히어로 투입, 카드 RevealOnScroll)
+- client/src/components/nav/IconGroup.jsx (임의 그림자를 shadow-card 로 교체)
+- client/src/pages/StayDetailPage.jsx (이미지 zoom 1.02 를 1.04 로 통일)
+- client/src/pages/PackageDetailPage.jsx, CheckoutPage.jsx, StoryDetailPage.jsx (줄표와 가운데점 제거)
+
+## grep 검증 결과 (client/src 전역)
+
+- 임의 box-shadow 0건. 정의된 그림자 토큰은 shadow-card 하나
+- hex 직접 입력 0건 (HomePage 의 theme-color 메타는 기존 프라이머리 토큰 값이라 유지)
+- 이모지 0건, 가운데점과 줄표 0건
+- 그라데이션 0건, backdrop-blur 0건, WebGL parallax 0건
+- 카드 자체 scale 0건. 이미지 zoom scale 1.04 만 존재
+- prefers-reduced-motion 대응 6개소
+- 문어 외 콘텐츠 페이지 일러스트 0건
+- vite build 통과
+
+## 발견된 이슈와 판단
+
+- 블롭 카드에 shadow-card 를 적용하지 않았다. clipPath 로 잘린 도형은 그림자가 함께 잘려 보이지 않는다. drop-shadow 를 쓰려면 두 번째 그림자 토큰이 필요해 KAREUM_MIRROR 1-1 의 토큰 하나 원칙에 어긋난다. 대신 블롭 내부에 black 28퍼센트 오버레이를 얹어 곡선 카피 대비를 확보했다
+- 곡선 카피는 SVG textPath 특성상 path 길이를 넘는 글자가 렌더되지 않는다. fontSize 18 과 15자 안팎 카피로 맞췄다. 카피를 늘릴 때 이 제한을 확인해야 한다
+- packages 18건의 price_label 이 전부 확인 안 됨이다. 코스 카드 가격 자리는 항상 가격 자료 대기로 떨어진다. 원가와 할인가 구분 필드도 없다
+- KareumHeader 에 전체보기 링크를 넣지 않았다. 코스 탭 자체가 전체 목록이라 링크가 갈 곳이 없다
+- RegionSection.jsx 는 삭제하지 않았다. REGIONS 데이터를 RegionBlobSection 과 heroSlides 가 공유한다
+
+## 남은 항목
+
+- [ ] 320 390 768 1024 1280 1536 1920 2560 폭별 육안 검증. 이 환경에 브라우저 자동화 도구가 없어 실행하지 못했다
+- [ ] 배포와 배포 URL 육안 검증. vercel CLI 가 설치돼 있지 않다
+- [ ] 문어 애셋 도착 시 images/character 에 넣고 RegionBlobSection 에서 BlobCard 의 illust prop 을 채운다
+- [ ] 브랜드 색 확정 시 tailwind.config.js 의 primary 계열 토큰 값만 교체한다
+- [ ] 히어로 카피의 호스트 실명은 자료 대기 상태다. 확정되면 heroSlides.js 의 subtitle 을 형식대로 채운다

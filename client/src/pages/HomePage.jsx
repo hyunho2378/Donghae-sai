@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import SovereignHero from '../components/SovereignHero'
-import RegionSection from '../components/RegionSection'
+import RegionBlobSection from '../components/kareum/RegionBlobSection'
 import SectionHeader from '../components/SectionHeader'
 import PackageCard from '../components/card/PackageCard'
 import JournalCard from '../components/card/JournalCard'
@@ -25,7 +25,7 @@ export default function HomePage() {
         <meta name="theme-color" content="#60A5FA" />
       </Helmet>
       <SovereignHero key={location.key} />
-      <RegionSection />
+      <RegionBlobSection />
 
       <section className="bg-bg-mute">
         <div className="mx-auto w-full

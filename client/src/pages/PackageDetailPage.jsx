@@ -42,7 +42,7 @@ export default function PackageDetailPage() {
         <meta name="theme-color" content="#60A5FA" />
       </Helmet>
 
-      {/* Hero — full-width */}
+      {/* Hero 풀와이드 */}
       <div className="relative w-full h-[50vw] min-h-[280px] max-h-[560px] overflow-hidden bg-bg-card">
         {heroImage && (
           <img src={heroImage} alt={pkg.name}

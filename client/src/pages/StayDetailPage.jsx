@@ -201,7 +201,7 @@ export default function StayDetailPage() {
                     <button key={i} onClick={() => openLightbox(i + 1)}
                             className="aspect-[4/3] overflow-hidden rounded-xl bg-bg-card block">
                       <img src={src} alt={`${stay.name} 갤러리 ${i + 2}`}
-                           className="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.02]" />
+                           className="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.04]" />
                     </button>
                   ))}
                 </div>

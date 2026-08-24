@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 // 카피는 CONTENT_GUIDE.md 초안이다. 팀 검수 전이며 천곡과 망상은 확인된 자원 자료가 적다
 // 이미지는 client/public/images/regions에 넣는다. 파일이 없으면 회색 플레이스홀더로 떨어진다
-const REGIONS = [
+export const REGIONS = [
   { name: '추암', image: '/images/regions/chuam.jpg', text: '촛대바위 일출로 하루를 시작하는 곳. 해파랑길 33코스가 여기서 출발한다' },
   { name: '무릉', image: '/images/regions/muleung.jpg', text: '폐채석장이 라벤더 정원과 에메랄드빛 호수로 다시 태어난 곳. 밤 10시까지 열린다' },
   { name: '천곡', image: '/images/regions/cheongok.jpg', text: '도심 속 동굴과 시장이 있는 동해의 한가운데' },

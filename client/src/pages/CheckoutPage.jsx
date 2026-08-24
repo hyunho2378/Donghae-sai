@@ -14,7 +14,7 @@ const PAYMENT_METHODS = [
 
 const AGREEMENTS = [
   { key: 'terms', label: '이용약관 동의 (필수)' },
-  { key: 'privacy', label: '개인정보 수집·이용 동의 (필수)' },
+  { key: 'privacy', label: '개인정보 수집 이용 동의 (필수)' },
   { key: 'refund', label: '환불 규정 확인 (필수)' }
 ]
 
@@ -82,7 +82,7 @@ export default function CheckoutPage() {
 
       <div className="lg:grid lg:grid-cols-[1fr_380px] lg:gap-10">
 
-        {/* Left — order summary */}
+        {/* 좌측 주문 요약 */}
         <div className="space-y-6">
           <section className="border border-border-sub rounded-xl p-5 lg:p-6">
             <h2 className="font-pretendard font-bold text-[16px] text-text-pri mb-4">예약 정보</h2>
@@ -158,7 +158,7 @@ export default function CheckoutPage() {
           </section>
         </div>
 
-        {/* Right — price + pay button */}
+        {/* 우측 가격과 결제 버튼 */}
         <div className="mt-6 lg:mt-0">
           <div className="lg:sticky lg:top-24 border border-border-sub rounded-xl p-5 lg:p-6 space-y-4">
             <h2 className="font-pretendard font-bold text-[16px] text-text-pri">결제 금액</h2>

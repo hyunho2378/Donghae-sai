@@ -170,7 +170,7 @@ export default function StoryDetailPage() {
                 </div>
               </div>
 
-              {/* Spot image — break out of max-w-720 */}
+              {/* 스팟 사진. max-w-720 밖으로 빼낸다 */}
               <div className="-mx-5 md:-mx-8 lg:-mx-12 xl:-mx-16 3xl:-mx-24
                               aspect-[16/9] overflow-hidden rounded-none md:rounded-xl
                               bg-bg-card mb-1">
