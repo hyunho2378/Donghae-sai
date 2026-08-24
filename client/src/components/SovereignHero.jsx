@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowUp, CornerDownRight, SquarePen } from 'lucide-react'
+import { ArrowUp, ArrowDown, CornerDownRight, SquarePen } from 'lucide-react'
 import useSovereignChat, { stripMarkdown, resolveSources } from '../hooks/useSovereignChat'
 import { useAuthStore } from '../store/useAuthStore'
 import { useChatUi } from '../store/useChatUi'
@@ -22,8 +22,6 @@ const reduceMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 const WRAP = 'mx-auto w-full max-w-[900px] px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24'
-// 대화 좌측 컬럼 안쪽 폭. 우측 출처 패널과 나란히 놓을 때 읽기 좋은 폭으로 좁힌다
-const COL = 'mx-auto w-full max-w-[760px] px-5 md:px-8'
 
 export default function SovereignHero() {
   const [input, setInput] = useState('')
@@ -34,6 +32,8 @@ export default function SovereignHero() {
   const scrollRef = useRef(null)
   const taRef = useRef(null)
   const timer = useRef(null)
+  const atBottomRef = useRef(true) // 사용자가 맨 아래 근처에 있는지. 자동 따라가기 판단용
+  const [showScrollDown, setShowScrollDown] = useState(false)
 
   const opened = phase === 'chat'
   const leaving = phase === 'leaving'
@@ -44,14 +44,30 @@ export default function SovereignHero() {
     return () => setPanelOpen(false)
   }, [opened, setPanelOpen])
 
-  // 최신 어시스턴트 답변의 출처를 우측 카드로 푼다. 답변이 바뀌면 패널도 그 근거로 갱신된다
-  const lastWithSources = [...messages].reverse().find((m) => m.role === 'assistant' && m.sources?.length)
-  const panelSources = lastWithSources ? resolveSources(lastWithSources.sources, lastWithSources.links) : []
+  // 스크롤 위치 추적. 맨 아래에서 멀어지면 아래로 가기 버튼을 띄운다
+  function handleScroll() {
+    const el = scrollRef.current
+    if (!el) return
+    const dist = el.scrollHeight - el.scrollTop - el.clientHeight
+    atBottomRef.current = dist < 120
+    setShowScrollDown(dist > 160)
+  }
 
+  function scrollToBottom() {
+    const el = scrollRef.current
+    if (el) el.scrollTo({ top: el.scrollHeight, behavior: reduceMotion() ? 'auto' : 'smooth' })
+  }
+
+  // 새 토큰/메시지에 맨 아래에 있을 때만 따라 내려간다. 위로 올려 읽는 사용자를 끌어내리지 않는다
   useEffect(() => {
     const el = scrollRef.current
-    if (el) el.scrollTop = el.scrollHeight
+    if (el && atBottomRef.current) el.scrollTop = el.scrollHeight
   }, [messages, opened])
+
+  // 대화 모드에서 답변이 끝나면(또는 방금 열렸으면) 입력창 포커스를 유지한다
+  useEffect(() => {
+    if (opened && !streaming) taRef.current?.focus()
+  }, [opened, streaming])
 
   // 입력이 길어지면 textarea 높이를 내용에 맞춰 늘린다. 최소와 최대는 CSS 가 잡는다
   useEffect(() => {
@@ -70,8 +86,10 @@ export default function SovereignHero() {
       setPhase('leaving')
       timer.current = setTimeout(() => setPhase('chat'), reduceMotion() ? 0 : LEAVE_MS)
     }
+    atBottomRef.current = true // 새 질문은 항상 맨 아래로 따라간다
     send(text)
     setInput('')
+    setTimeout(() => taRef.current?.focus(), 0) // 전송 직후 재포커스
   }
 
   function newChat() {
@@ -95,7 +113,7 @@ export default function SovereignHero() {
 
   // 입력창은 idle 과 chat 에서 위치만 다르고 구성은 같다. 한 곳에서만 렌더된다
   const inputBox = (
-    <div className="flex items-end gap-3 p-3 pl-4
+    <div className="flex items-center gap-3 p-3 pl-4
                     rounded-2xl bg-white border border-border-def
                     focus-within:border-primary focus-within:ring-2 focus-within:ring-primary
                     transition-colors duration-150">
@@ -107,7 +125,7 @@ export default function SovereignHero() {
         onKeyDown={onKeyDown}
         aria-label="동해사이 도우미에게 질문하기"
         placeholder={opened ? '무엇이든 이어서 물어보세요' : '무엇이든 물어보세요'}
-        className="flex-1 min-w-0 self-stretch resize-none bg-transparent outline-none
+        className="flex-1 min-w-0 resize-none bg-transparent outline-none
                    py-2 min-h-[56px] lg:min-h-[64px] max-h-[200px] overflow-y-auto
                    font-pretendard font-normal text-text-pri
                    text-[16px] lg:text-[17px] tracking-[-0.01em] leading-relaxed
@@ -121,7 +139,7 @@ export default function SovereignHero() {
                     transition-colors duration-150
                     ${input.trim() && !streaming
             ? 'bg-primary text-white hover:bg-primary-hover'
-            : 'bg-bg-card text-text-ter cursor-not-allowed'}`}>
+            : 'bg-primary-soft text-primary cursor-not-allowed'}`}>
         <ArrowUp size={20} />
       </button>
     </div>
@@ -207,7 +225,7 @@ export default function SovereignHero() {
           </div>
         </div>
       ) : (
-        /* ===== 대화 화면. 얇은 사이드바 + 좌 대화 + 우 출처 패널 ===== */
+        /* ===== 대화 화면. 얇은 사이드바 + 답변마다 [본문 | 근거] 2단 행 ===== */
         <div className="flex-1 min-h-0 flex">
 
           {/* 얇은 세로 사이드바. 아이콘 위주. 새 대화만 둔다(히스토리 기능 없어 생략) */}
@@ -224,63 +242,90 @@ export default function SovereignHero() {
             </button>
           </nav>
 
-          {/* 대화. 스크롤 영역 + 하단 입력 */}
+          {/* 대화 컬럼 */}
           <div className="flex-1 min-w-0 flex flex-col">
-            <div ref={scrollRef} className="flex-1 min-h-0 overflow-y-auto py-6 animate-flow-down-late">
-              <div className={`${COL} space-y-4`}>
-                {messages.map((m, i) => (
-                  m.role === 'user' ? (
-                    <div key={i} className="flex justify-end animate-flow-down">
-                      <p className="max-w-[85%] px-4 py-3 rounded-2xl
-                                    bg-primary-soft text-text-pri
-                                    font-pretendard font-medium
-                                    text-[15px] lg:text-[16px] tracking-[-0.01em]
-                                    leading-relaxed whitespace-pre-wrap">
-                        {m.content}
-                      </p>
-                    </div>
-                  ) : (
-                    <div key={i} className="animate-flow-down">
-                      {m.content === '' ? (
-                        <AnswerSkeleton />
-                      ) : (
-                        <AnswerText
-                          text={stripMarkdown(m.content)}
-                          sources={m.sources}
-                          links={m.links}
-                          showSources={false}
-                          showActions={!(streaming && i === messages.length - 1)} />
-                      )}
-                    </div>
-                  )
-                ))}
 
-                {/* 모바일. 우측 패널 자리가 없으므로 출처 카드를 대화 아래에 쌓는다 */}
-                {panelSources.length > 0 && (
-                  <div className="lg:hidden pt-4 mt-2 border-t border-border-sub">
-                    <SourcePanel sources={panelSources} />
-                  </div>
-                )}
+            {/* 스크롤 영역. 상대 위치라 아래로 가기 버튼을 이 영역 하단에 띄운다 */}
+            <div className="relative flex-1 min-h-0">
+              <div ref={scrollRef} onScroll={handleScroll}
+                   className="absolute inset-0 overflow-y-auto py-6 animate-flow-down-late">
+                {/* 본문 열과 근거 열의 폭을 한 번 정한다. 근거가 나중에 생겨도 폭이 안 바뀌어 점프가 없다 */}
+                <div className="mx-auto w-full max-w-[1140px] px-5 md:px-8 space-y-6">
+                  {messages.map((m, i) => {
+                    if (m.role === 'user') {
+                      return (
+                        <div key={i} className="lg:grid lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-8 animate-flow-down">
+                          <div className="flex justify-end">
+                            <p className="max-w-[85%] px-4 py-3 rounded-2xl
+                                          bg-primary-soft text-text-pri
+                                          font-pretendard font-medium
+                                          text-[15px] lg:text-[16px] tracking-[-0.01em]
+                                          leading-relaxed whitespace-pre-wrap">
+                              {m.content}
+                            </p>
+                          </div>
+                          <div className="hidden lg:block" aria-hidden="true" />
+                        </div>
+                      )
+                    }
+                    // 답변마다 자기 근거를 자기 옆에 가진다. 근거 없어도 우측 340 트랙은 유지된다
+                    const cards = m.sources?.length ? resolveSources(m.sources, m.links) : []
+                    return (
+                      <div key={i} className="lg:grid lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-8 animate-flow-down">
+                        <div className="min-w-0">
+                          {m.content === '' ? (
+                            <AnswerSkeleton />
+                          ) : (
+                            <AnswerText
+                              text={stripMarkdown(m.content)}
+                              sources={m.sources}
+                              links={m.links}
+                              showSources={false}
+                              showActions={!(streaming && i === messages.length - 1)} />
+                          )}
+                          {/* 모바일. 우측 열이 접히므로 근거 카드를 본문 아래에 둔다 */}
+                          {cards.length > 0 && (
+                            <div className="lg:hidden mt-4 pt-4 border-t border-border-sub">
+                              <SourcePanel sources={cards} />
+                            </div>
+                          )}
+                        </div>
+                        {/* 데스크톱. 이 답변의 근거를 같은 높이 우측 열에 붙인다 */}
+                        <div className="hidden lg:block min-w-0">
+                          {cards.length > 0 && <SourcePanel sources={cards} />}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
+
+              {/* 아래로 가기 버튼. 맨 아래에서 멀어지면 뜬다. box-shadow 없이 테두리로만 구분 */}
+              {showScrollDown && (
+                <button onClick={scrollToBottom} aria-label="맨 아래로" title="맨 아래로"
+                  className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10
+                             w-10 h-10 inline-flex items-center justify-center rounded-full
+                             bg-white border border-border-def text-text-sec
+                             hover:text-primary hover:border-primary
+                             transition-colors duration-150 motion-reduce:transition-none">
+                  <ArrowDown size={18} />
+                </button>
+              )}
             </div>
 
+            {/* 하단 입력. 본문 열과 같은 폭/좌표에 맞춘다 */}
             <div className="shrink-0 border-t border-border-sub py-4">
-              <div className={COL}>
-                {inputBox}
-                <div className="mt-3">{disclaimer}</div>
+              <div className="mx-auto w-full max-w-[1140px] px-5 md:px-8">
+                <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-8">
+                  <div>
+                    {inputBox}
+                    <div className="mt-3">{disclaimer}</div>
+                  </div>
+                  <div className="hidden lg:block" aria-hidden="true" />
+                </div>
               </div>
             </div>
           </div>
-
-          {/* 우측. 출처 카드 패널. 근거 카드가 있을 때만 뜬다. 없으면 빈 공간(안내 문구 없음) */}
-          {panelSources.length > 0 && (
-            <aside className="hidden lg:block w-[340px] xl:w-[380px] shrink-0
-                              border-l border-border-sub overflow-y-auto bg-page">
-              <div className="p-5">
-                <SourcePanel sources={panelSources} />
-              </div>
-            </aside>
-          )}
         </div>
       )}
     </section>
