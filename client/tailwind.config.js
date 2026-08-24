@@ -20,12 +20,12 @@ export default {
         pretendard: ['"Pretendard Variable"', '"Pretendard"']
       },
       colors: {
-        // 페이지 배경 순백. 웜 베이지 실험을 되돌린다
+        // 배경 순백. 섹션 구분은 파란기 도는 쿨그레이. 웜 계열 전면 금지
         page: '#FFFFFF',       // 페이지 배경. 순백
-        section: '#EDE9E2',    // 섹션 구분. 한 단 더 눌러
+        section: '#F5F7F8',    // 섹션 구분. 쿨그레이
         bg: {
-          card: '#FFFFFF',     // 카드 표면. 순백이라 배경 위에 뜬다
-          mute: '#EDE9E2'      // 눌린 톤. 섹션과 동일
+          card: '#FFFFFF',     // 카드 표면. 순백
+          mute: '#F5F7F8'      // 눌린 톤. 쿨그레이. 섹션과 동일
         },
         text: {
           pri: '#101010',
