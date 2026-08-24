@@ -25,7 +25,7 @@ export default function StoryListPage() {
         <h1 className="font-pretendard font-bold
                        text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
                        text-text-pri tracking-[-0.02em] leading-tight">
-          이야기
+          동해 스토리
         </h1>
         <p className="mt-2 font-pretendard font-normal text-[15px] md:text-[16px] text-text-meta">
           권역과 사람과 음식으로 읽는 동해
@@ -51,7 +51,7 @@ export default function StoryListPage() {
           ))}
         </div>
 
-        <div className="mt-8 grid gap-6 md:gap-8
+        <div className="mt-8 grid gap-x-6 gap-y-10 md:gap-x-8 md:gap-y-12
                         grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {items.map((s) => (
             <RevealOnScroll key={s.id}>

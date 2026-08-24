@@ -10,7 +10,6 @@ import Counter from '../components/Counter'
 import DateRangePicker from '../components/DateRangePicker'
 import Carousel from '../components/kareum/Carousel'
 import RevealOnScroll from '../components/kareum/RevealOnScroll'
-import ScatterIllust from '../components/kareum/ScatterIllust'
 import { formatPrice, STAY_TYPE_LABEL, calcNights } from '../lib/format'
 import { useAuthStore } from '../store/useAuthStore'
 import { useBookmark } from '../hooks/useBookmark'
@@ -19,6 +18,13 @@ const DISCOUNT_RATE = 0.10
 
 // 미상 값 sentinel 은 화면에 내보내지 않는다
 const clean = (v) => (v && v !== '확인 안 됨' ? v : null)
+
+// 데이터 원문이 마침표 없이 잘린 경우 문장을 자연스럽게 맺는다
+const endSentence = (s) => {
+  if (!s) return s
+  const t = s.trimEnd()
+  return /[.。!?…”"’)]$/.test(t) ? t : `${t}.`
+}
 
 // hours 자유 문자열을 영업시간과 휴무 행으로 나눈다. 에서 표기는 물결로 바꾼다
 function buildInfoRows(stay) {
@@ -107,8 +113,8 @@ export default function StayDetailPage() {
         <meta name="theme-color" content="#4AB8CD" />
       </Helmet>
 
-      {/* Hero 풀블리드. 한 장. 사진이 없으면 브랜드 폴백으로 채운다 */}
-      <div className={`relative w-full h-[50vw] min-h-[280px] max-h-[560px] overflow-hidden ${main ? 'bg-bg-card' : 'bg-primary'}`}>
+      {/* Hero 풀블리드. 한 장. 화면을 다 먹지 않게 높이를 낮춘다 */}
+      <div className={`relative w-full h-[38vw] min-h-[220px] max-h-[400px] overflow-hidden ${main ? 'bg-bg-card' : 'bg-primary'}`}>
         {main ? (
           <>
             <button onClick={() => openLightbox(0)} className="block w-full h-full">
@@ -137,18 +143,12 @@ export default function StayDetailPage() {
         </div>
       </div>
 
-      {/* 이름 타이포 포인트. 공유와 저장은 제목 아래 좌측 */}
-      <section className="relative mx-auto w-full
+      {/* 공유와 저장. 이름은 히어로 안에만 둔다. 중복 제거 */}
+      <section className="mx-auto w-full
                           px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
                           max-w-[1400px] 2xl:max-w-[1600px]
-                          pt-10 lg:pt-14">
-        <ScatterIllust items={[]} />
-        <h2 className="font-pretendard font-bold
-                       text-[32px] md:text-[44px] lg:text-[56px]
-                       text-text-pri tracking-[-0.03em] leading-[1.05]">
-          {stay.name}
-        </h2>
-        <div className="mt-4 flex items-center gap-2">
+                          pt-5 lg:pt-6">
+        <div className="flex items-center gap-2">
           <button onClick={onShare}
                   className="inline-flex items-center gap-1.5 h-10 px-4 rounded-full
                              bg-bg-card hover:bg-bg-mute
@@ -174,7 +174,7 @@ export default function StayDetailPage() {
       <section className="mx-auto w-full
                           px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
                           max-w-[1400px] 2xl:max-w-[1600px]
-                          mt-10 lg:mt-12 pb-16 lg:pb-24
+                          mt-6 lg:mt-8 pb-16 lg:pb-24
                           lg:grid lg:grid-cols-[1fr_380px] lg:gap-12">
         <div className="space-y-12 lg:space-y-16">
 
@@ -184,7 +184,7 @@ export default function StayDetailPage() {
               {stay.tagline}
             </h3>
             <p className="mt-4 font-pretendard font-normal text-[15px] md:text-[16px] text-text-sec leading-relaxed tracking-[-0.01em]">
-              {stay.long_description}
+              {endSentence(stay.long_description)}
             </p>
 
             {gallery.length > 1 && (

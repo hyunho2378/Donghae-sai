@@ -64,11 +64,11 @@ export default function AnswerText({ text, sources = [], links = {}, showSources
   const size = compact ? 'text-[14px]' : 'text-[15px] lg:text-[16px]'
 
   return (
-    <div className={compact ? 'space-y-3' : 'space-y-4'}>
+    <div className={compact ? 'space-y-2' : 'space-y-2.5'}>
       {paragraphs.map((para, i) => (
         <div key={i}>
           <p className={`font-pretendard font-normal ${size} text-text-pri
-                         tracking-[-0.01em] leading-relaxed whitespace-pre-wrap text-pretty`}>
+                         tracking-[-0.01em] leading-normal whitespace-pre-wrap text-pretty`}>
             {renderInline(para)}
           </p>
           {slots[i].length > 0 && (

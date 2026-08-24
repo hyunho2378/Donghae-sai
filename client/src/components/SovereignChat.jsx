@@ -7,6 +7,7 @@ import AnswerText from './AnswerText'
 export default function SovereignChat() {
   const [open, setOpen] = useState(false)
   const [input, setInput] = useState('')
+  const [mukoErr, setMukoErr] = useState(false)
   const { messages, streaming, send } = useSovereignChat([
     { role: 'assistant', content: '동해 여행에 대해 물어보세요.' }
   ])
@@ -103,10 +104,16 @@ export default function SovereignChat() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="동해사이 도우미 열기"
-        className="fixed bottom-6 right-5 z-50 w-14 h-14 rounded-full
+        className="fixed bottom-6 right-5 z-50 w-14 h-14 rounded-full overflow-hidden
                    bg-primary text-white flex items-center justify-center
                    hover:bg-primary-hover transition-colors duration-150">
-        {open ? <X size={22} /> : <MessageCircle size={22} />}
+        {open ? <X size={22} /> : (
+          !mukoErr ? (
+            <img src="/images/character/muko-main.png" alt="무코 도우미"
+                 onError={() => setMukoErr(true)}
+                 className="w-full h-full object-cover" />
+          ) : <MessageCircle size={22} />
+        )}
       </button>
     </>
   )

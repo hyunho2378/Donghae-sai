@@ -83,34 +83,19 @@ export default function SovereignHero() {
 
       {/* 위쪽. 초기에는 헤드라인, 대화 중에는 스크롤되는 대화 영역 */}
       <div ref={scrollRef}
-           className={opened ? 'flex-1 min-h-0 overflow-y-auto pt-8 lg:pt-12 pb-6' : ''}>
+           className={opened ? 'flex-1 min-h-0 overflow-y-auto pt-6 lg:pt-8 pb-3' : ''}>
         <div className={WRAP}>
           {!opened && (
-            <div className={introMotion}>
-              {/* 무코 캐릭터 자리. 애셋 부재 시 아이콘 폴백 */}
-              <div className="flex justify-center mb-5">
-                {!mukoErr ? (
-                  <img src="/images/character/muko-main.png" alt="동해사이 무코" loading="lazy"
-                       onError={() => setMukoErr(true)}
-                       className="w-20 h-20 lg:w-24 lg:h-24 object-contain" />
-                ) : (
-                  <span className="w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-primary-soft
-                                   inline-flex items-center justify-center">
-                    <Sparkles size={28} className="text-primary" />
-                  </span>
-                )}
-              </div>
-              <h1 className="text-center font-pretendard font-bold
-                             text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
-                             tracking-[-0.02em] leading-tight text-balance">
-                <span className="text-primary-hover">오늘 밤 동해</span>
-                <span className="text-text-pri">, 어디로 갈까요</span>
-              </h1>
-            </div>
+            <h1 className={`text-center font-pretendard font-bold
+                            text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
+                            tracking-[-0.02em] leading-tight text-balance ${introMotion}`}>
+              <span className="text-primary-hover">오늘 밤 동해</span>
+              <span className="text-text-pri">, 어디로 갈까요</span>
+            </h1>
           )}
 
           {opened && (
-            <div className="space-y-6 lg:space-y-8">
+            <div className="space-y-4">
               {messages.map((m, i) => (
                 m.role === 'user' ? (
                   <div key={i} className="flex justify-end animate-flow-down">
@@ -142,12 +127,27 @@ export default function SovereignHero() {
       </div>
 
       {/* 아래쪽. 입력창은 초기에 헤드라인 밑, 대화 중에는 화면 하단 */}
-      <div className={`shrink-0 ${opened ? 'pb-8 lg:pb-10 pt-2 animate-flow-down-late' : ''}`}>
+      <div className={`shrink-0 ${opened ? 'pb-4 lg:pb-6 pt-1 animate-flow-down-late' : ''}`}>
         <div className={WRAP}>
           <div className={`${opened ? '' : 'mt-8 lg:mt-10'}
-                          flex items-end gap-3 p-3 pl-5
-                          rounded-2xl border border-border-def
-                          focus-within:border-primary transition-colors duration-150`}>
+                          flex items-end gap-3 p-3 pl-4
+                          rounded-2xl bg-white shadow-card
+                          focus-within:ring-2 focus-within:ring-primary
+                          transition-shadow duration-150`}>
+            {/* 무코는 대화가 열린 상태에서만 입력창 옆에 뜬다. fab 성격 */}
+            {opened && (
+              <div className="shrink-0 self-end mb-0.5">
+                {!mukoErr ? (
+                  <img src="/images/character/muko-main.png" alt="무코" loading="lazy"
+                       onError={() => setMukoErr(true)}
+                       className="w-9 h-9 lg:w-10 lg:h-10 object-contain" />
+                ) : (
+                  <span className="w-9 h-9 rounded-full bg-primary-soft inline-flex items-center justify-center">
+                    <Sparkles size={18} className="text-primary" />
+                  </span>
+                )}
+              </div>
+            )}
             <textarea
               ref={taRef}
               rows={2}

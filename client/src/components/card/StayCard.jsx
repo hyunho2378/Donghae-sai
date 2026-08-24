@@ -19,7 +19,7 @@ export default function StayCard({
                             group-hover:scale-[1.04]" />
           )}
           <div className="absolute top-3 left-3 flex gap-2">
-            <Badge variant="soft">{STAY_TYPE_LABEL[type]}</Badge>
+            <Badge variant="primary" className="font-semibold">{STAY_TYPE_LABEL[type]}</Badge>
           </div>
           <div className="absolute top-3 right-3">
             <BookmarkButton onImage itemId={id} itemType="stays" />

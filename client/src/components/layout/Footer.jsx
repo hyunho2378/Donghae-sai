@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 
+// 프로그램은 동해 사이 안으로 합쳐졌다. 독립 항목이 아니라 동해 사이 하위 링크로 둔다
 const MENU = [
   { to: '/story', label: '동해 스토리' },
-  { to: '/stays', label: '동해 사이' },
-  { to: '/packages', label: '프로그램' },
+  { to: '/stays', label: '동해 사이', sub: { to: '/packages', label: '프로그램' } },
   { to: '/goods', label: '굿즈' },
   { to: '/membership', label: '패스' }
 ]
@@ -21,20 +21,27 @@ export default function Footer() {
         {/* 상단. 로고와 태그라인, 메뉴 한 줄 */}
         <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
           <div>
-            <p className="font-pretendard font-bold text-[18px] tracking-[-0.02em]">
-              <span className="text-accent">동해</span><span className="text-primary">사이</span>
-            </p>
-            <p className="mt-2 font-pretendard font-light text-[13px] text-white/70">
+            <img src="/images/logo/logo-wordmark.svg" alt="동해사이" className="h-6 w-auto" />
+            <p className="mt-3 font-pretendard font-light text-[13px] text-white/70">
               머무는 여행, 이어지는 동해
             </p>
           </div>
-          <nav className="flex flex-wrap gap-x-6 gap-y-2">
+          <nav className="flex flex-wrap gap-x-8 gap-y-3">
             {MENU.map((m) => (
-              <Link key={m.to} to={m.to}
-                    className="font-pretendard font-medium text-[14px] text-white/80
-                               hover:text-white transition-colors duration-100">
-                {m.label}
-              </Link>
+              <div key={m.to} className="flex flex-col gap-1">
+                <Link to={m.to}
+                      className="font-pretendard font-semibold text-[14px] text-white/90
+                                 hover:text-white transition-colors duration-100">
+                  {m.label}
+                </Link>
+                {m.sub && (
+                  <Link to={m.sub.to}
+                        className="font-pretendard font-normal text-[13px] text-white/55
+                                   hover:text-white/80 transition-colors duration-100">
+                    {m.sub.label}
+                  </Link>
+                )}
+              </div>
             ))}
           </nav>
         </div>

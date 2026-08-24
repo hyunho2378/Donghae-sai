@@ -35,7 +35,7 @@ function PayLogo({ pkey, label }) {
   return (
     <img src={`/images/pay/${pkey}.svg`} alt={label}
          onError={() => setErr(true)}
-         className="max-h-7 max-w-full object-contain" />
+         className="max-h-11 max-w-full object-contain" />
   )
 }
 
@@ -170,7 +170,7 @@ export default function CheckoutPage() {
                 <button key={m.key} type="button"
                         onClick={() => setPayMethod(m.key)}
                         aria-pressed={payMethod === m.key}
-                        className={`h-14 rounded-lg bg-white flex items-center justify-center px-2 shadow-card transition-shadow duration-150
+                        className={`h-20 md:h-[88px] rounded-xl bg-white flex items-center justify-center px-4 shadow-card transition-shadow duration-150
                                     ${payMethod === m.key ? 'ring-2 ring-primary' : 'hover:ring-1 hover:ring-border-def'}`}>
                   <PayLogo pkey={m.key} label={m.label} />
                 </button>
