@@ -8,9 +8,7 @@ export default function PackageCarousel({ title, items = [] }) {
   if (items.length === 0) return null
 
   return (
-    <section className="mx-auto w-full
-                        px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                        max-w-[1400px] 2xl:max-w-[1600px]
+    <section className="container-page
                         py-8">
       <KareumHeader title={title} count={items.length} countLabel="개 코스" />
 

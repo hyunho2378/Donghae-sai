@@ -306,8 +306,7 @@ export default function StoryDetailPage() {
       {/* 12. Related stories */}
       {related.length > 0 && (
         <div className="mt-16 bg-bg-mute py-12 lg:py-16">
-          <div className="mx-auto w-full px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                          max-w-[1400px] 2xl:max-w-[1600px]">
+          <div className="container-page">
             <h2 className="font-pretendard font-bold
                            text-[20px] md:text-[22px] lg:text-[24px]
                            text-text-pri tracking-[-0.02em] mb-6">

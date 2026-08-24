@@ -144,9 +144,7 @@ export default function StayDetailPage() {
       </div>
 
       {/* 공유와 저장. 이름은 히어로 안에만 둔다. 중복 제거 */}
-      <section className="mx-auto w-full
-                          px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                          max-w-[1400px] 2xl:max-w-[1600px]
+      <section className="container-page
                           pt-5 lg:pt-6">
         <div className="flex items-center gap-2">
           <button onClick={onShare}
@@ -171,9 +169,7 @@ export default function StayDetailPage() {
       </section>
 
       {/* Body grid. 소개와 위치를 세로 하나로 잇는다. 탭 없음 */}
-      <section className="mx-auto w-full
-                          px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                          max-w-[1400px] 2xl:max-w-[1600px]
+      <section className="container-page
                           mt-6 lg:mt-8 pb-16 lg:pb-24
                           lg:grid lg:grid-cols-[1fr_380px] lg:gap-12">
         <div className="space-y-12 lg:space-y-16">

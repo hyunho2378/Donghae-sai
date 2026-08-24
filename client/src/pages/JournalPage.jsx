@@ -15,9 +15,7 @@ export default function JournalPage() {
   const items = tab === 'all' ? journalData : journalData.filter((j) => j.category === tab)
 
   return (
-    <div className="page-enter mx-auto w-full
-                    px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                    max-w-[1400px] 2xl:max-w-[1600px]
+    <div className="page-enter container-page
                     py-8 lg:py-12">
       <h1 className="font-pretendard font-bold
                      text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]

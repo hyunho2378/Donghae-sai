@@ -10,9 +10,7 @@ export default function TopNav() {
   return (
     <>
       <header className="sticky top-0 z-40 bg-white border-b border-border-sub">
-        <div className="mx-auto w-full
-                        px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                        max-w-[1400px] 2xl:max-w-[1600px]
+        <div className="container-page
                         h-[60px] lg:h-[80px]
                         flex items-center justify-between gap-6">
           <div className="flex items-center gap-6 lg:gap-10 shrink-0">

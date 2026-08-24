@@ -9,9 +9,7 @@ export default function ColorBlockCarousel({ items = [] }) {
 
   return (
     <section className="w-full bg-primary-soft">
-      <div className="mx-auto w-full
-                      px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                      max-w-[1400px] 2xl:max-w-[1600px]
+      <div className="container-page
                       pt-8 pb-12 md:pb-18 lg:pb-24 4xl:pb-32">
         <Carousel controls="bottom" itemClassName="w-full" gapClassName="gap-0" label="프로그램">
           {items.map((p, i) => {

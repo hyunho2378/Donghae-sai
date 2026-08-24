@@ -12,9 +12,7 @@ export const REGIONS = [
 
 export default function RegionSection() {
   return (
-    <section className="mx-auto w-full
-                        px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                        max-w-[1400px] 2xl:max-w-[1600px]
+    <section className="container-page
                         py-12 md:py-18 lg:py-24 4xl:py-32">
       <h2 className="font-pretendard font-bold
                      text-[20px] md:text-[22px] lg:text-[24px] 4xl:text-[28px]

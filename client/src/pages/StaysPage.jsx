@@ -68,9 +68,7 @@ export default function StaysPage() {
       </Helmet>
 
       <div className="page-enter">
-        <div className="mx-auto w-full
-                        px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                        max-w-[1400px] 2xl:max-w-[1600px]
+        <div className="container-page
                         pt-8 lg:pt-12">
 
           <RevealOnScroll className="mb-10 lg:mb-14">
@@ -161,9 +159,7 @@ export default function StaysPage() {
           ? <ColorBlockCarousel items={pkgList} />
           : <PackageCarousel title="1박 2일 코스" items={pkgList} />}
 
-        <div className="mx-auto w-full
-                        px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                        max-w-[1400px] 2xl:max-w-[1600px]
+        <div className="container-page
                         pt-8 lg:pt-12 pb-12 lg:pb-16">
 
           <h2 className="font-pretendard font-bold

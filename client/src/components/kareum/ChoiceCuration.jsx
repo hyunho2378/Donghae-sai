@@ -26,9 +26,7 @@ const THEMES = [
 
 export default function ChoiceCuration() {
   return (
-    <section className="mx-auto w-full
-                        px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                        max-w-[1400px] 2xl:max-w-[1600px]
+    <section className="container-page
                         py-12 md:py-16 lg:py-20">
       <RevealOnScroll>
         <KareumHeader title="동해사이 초이스" count={THEMES.length} countLabel="개 테마" />

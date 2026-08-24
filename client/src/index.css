@@ -31,6 +31,16 @@
   }
 }
 
+@layer components {
+  /* 전역 공용 페이지 컨테이너. DESIGN.md 규격. 모든 페이지가 이 한 규칙을 쓴다 */
+  /* 본문 max 1400, 초대형 화면 1600. 좌우 padding xs20 md32 lg48 xl64 3xl96 */
+  .container-page {
+    @apply mx-auto w-full
+           px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
+           max-w-[1400px] 2xl:max-w-[1600px];
+  }
+}
+
 @layer utilities {
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

@@ -91,9 +91,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="page-enter mx-auto w-full
-                    px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                    max-w-[1400px] 2xl:max-w-[1600px]
+    <div className="page-enter container-page
                     py-8 lg:py-12">
       <Helmet>
         <title>결제하기 | 동해사이</title>

@@ -82,9 +82,7 @@ export default function PackageDetailPage() {
       </div>
 
       {/* 대상명 타이포 포인트. 카름 마을 상세 손글씨 로고 자리. 문어 슬롯은 애셋 도착 전까지 빈다 */}
-      <section className="relative mx-auto w-full
-                          px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                          max-w-[1400px] 2xl:max-w-[1600px]
+      <section className="relative container-page
                           pt-10 lg:pt-14">
         <ScatterIllust items={[]} />
         <p className="font-pretendard font-medium text-[13px] tracking-[0.06em] text-primary">
@@ -98,9 +96,7 @@ export default function PackageDetailPage() {
       </section>
 
       {/* Body */}
-      <div className="mx-auto w-full
-                      px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                      max-w-[1400px] 2xl:max-w-[1600px]
+      <div className="container-page
                       mt-8 lg:mt-10 pb-16 lg:pb-24
                       lg:grid lg:grid-cols-[1fr_380px] lg:gap-12">
 

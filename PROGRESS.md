@@ -1487,3 +1487,38 @@ R1 위에서 위계 외 개별 문제만. R1 이 잡은 굵기/크기는 재손�
 
 - [ ] muko-main.png 3.2MB 경량본(FAB/입력창 아바타는 소형이라 특히)
 - [ ] 소개 본문 절단 원문은 데이터 정제로 근본 해결 권장(현재 렌더 시 마침표 보정)
+
+---
+
+# R3 전역 컨테이너 정렬 통일 (2026-08-24)
+
+페이지마다 인라인으로 반복되던 컨테이너 조합을 단일 소스로 통일.
+
+## 실태
+
+- 공용 컨테이너 컴포넌트 없음. 22개 파일이 동일 문자열(mx-auto w-full px-... max-w-[1400px] 2xl:max-w-[1600px])을 인라인 반복
+- max-width none 그리드는 실제로는 없었음(스토리 그리드도 1400 컨테이너 안에 있음). max-w-full 은 결제 로고 img 제약뿐
+
+## 단계 0. 공용 컨테이너 하나로
+
+- index.css @layer components 에 .container-page 유틸 신설. @apply mx-auto w-full px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 max-w-[1400px] 2xl:max-w-[1600px]
+- components/layout/Container.jsx 컴포넌트 신설(.container-page 래퍼, as/className 지원)
+- 전역 인라인 컨테이너 3줄 블록을 container-page 로 치환(22개 파일). perl 정규식으로 주변 클래스(page-enter, py-8 등) 보존
+- 컴파일 CSS 확인: .container-page = max-width 1400(2xl 1600), padding 20/32/48/64/96
+
+## 유지(의도된 콘텐츠 폭)
+
+- 아티클 폭 720(StoryDetail/JournalDetail/Privacy) = DESIGN text 폭 규격
+- 폼 폭 440(Auth), 완료 폭 600(CheckoutComplete), 심볼 블록 240(About), 챗봇 900(SovereignHero WRAP)
+- 히어로 캡션 정렬용 nested mx-auto max-w(패딩 없는 정렬 div)는 부모가 padding 을 가지므로 유지
+
+## 검증
+
+- 인라인 표준 컨테이너 잔여 0(히어로 캡션 정렬 div 2곳 제외, 이건 컨테이너 아님)
+- max-width none 그리드 0. 스토리 그리드 container-page 로 1400/1600 제한
+- vite build 통과
+
+## 남은 항목
+
+- [ ] 아티클 720 을 max-w-text 토큰으로 통일할지(현재 max-w-[720px] 리터럴) 별도 판단
+- [ ] 1440 1920 2560 폭 정렬 육안 검증

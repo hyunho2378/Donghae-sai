@@ -37,7 +37,7 @@ function passCta(isAuthenticated, planId) {
   return isAuthenticated ? target : `/auth?redirect=${target}`
 }
 
-const SECTION = 'mx-auto w-full px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 max-w-[1400px] 2xl:max-w-[1600px]'
+const SECTION = 'container-page'
 const H2 = 'font-pretendard font-bold text-[20px] md:text-[24px] lg:text-[28px] text-text-pri tracking-[-0.02em]'
 
 export default function MembershipPage() {

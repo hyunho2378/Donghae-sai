@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import RevealOnScroll from '../components/kareum/RevealOnScroll'
 
-const SECTION = 'mx-auto w-full px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 max-w-[1400px] 2xl:max-w-[1600px]'
+const SECTION = 'container-page'
 const H2 = 'font-pretendard font-bold text-[22px] md:text-[26px] lg:text-[30px] tracking-[-0.02em]'
 
 // 브랜드 색. 동해 블루와 무코 레드

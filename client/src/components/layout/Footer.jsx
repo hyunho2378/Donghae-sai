@@ -14,9 +14,7 @@ const PARTNERS = ['동해시청 관광과', '동해문화관광재단']
 export default function Footer() {
   return (
     <footer className="bg-black text-white">
-      <div className="mx-auto w-full
-                      px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                      max-w-[1400px] 2xl:max-w-[1600px]
+      <div className="container-page
                       py-10 lg:py-12">
         {/* 상단. 로고와 태그라인, 메뉴 한 줄 */}
         <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
