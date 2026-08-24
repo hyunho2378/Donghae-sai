@@ -1,11 +1,10 @@
 import { NavLink } from 'react-router-dom'
 
 const ITEMS = [
-  { to: '/story', label: '이야기' },
-  { to: '/stays', label: '사이 찾기' },
-  { to: '/packages', label: '프로그램' },
-  { to: '/community', label: '커뮤니티' },
-  { to: '/membership', label: '패스' }
+  { to: '/story', label: '동해 스토리' },
+  { to: '/stays', label: '동해 사이' },
+  { to: '/membership', label: '패스' },
+  { to: '/goods', label: '굿즈' }
 ]
 
 export default function NavMenu({ vertical = false, onClick }) {

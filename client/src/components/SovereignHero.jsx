@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { ArrowDown, CornerDownRight, Plus } from 'lucide-react'
 import useSovereignChat, { stripMarkdown } from '../hooks/useSovereignChat'
 import AnswerSkeleton from './AnswerSkeleton'
@@ -190,11 +191,11 @@ export default function SovereignHero() {
             </p>
             <span aria-hidden="true" className="hidden sm:inline-block w-px h-3 bg-border-def" />
             <span className="flex items-center gap-3">
-              <button type="button"
-                      className="font-pretendard font-medium text-[12px] text-text-sec
-                                 hover:text-text-pri transition-colors duration-150">
+              <Link to="/privacy"
+                    className="font-pretendard font-medium text-[12px] text-text-sec
+                               hover:text-text-pri transition-colors duration-150">
                 개인정보처리안내
-              </button>
+              </Link>
               <button type="button"
                       className="font-pretendard font-medium text-[12px] text-text-sec
                                  hover:text-text-pri transition-colors duration-150">

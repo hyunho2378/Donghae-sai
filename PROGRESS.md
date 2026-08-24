@@ -1199,3 +1199,55 @@ DB 재마이그레이션
 - [ ] CommunityPage 카테고리 배지 팔레트 hex(#FEF3C7 등)는 기존 다색 카테고리 색이라 이번 파랑 교체 범위 밖. 브랜드 확장 시 별도 판단
 - [ ] accent 무코 레드를 필수 배지(예 주력 필수 표시)에 넓게 적용할지 별도 판단. 현재 로고에만 사용
 - [ ] 320~1536 폭별 브랜드 색과 그림자 카드 육안 검증
+
+---
+
+# P2 정보구조와 네비게이션 재편 (2026-08-24)
+
+메뉴 구조와 라벨과 필터와 푸터를 재편. 브랜드는 P1 위에서 진행.
+
+## 단계 0. 메뉴 재편
+
+- 커뮤니티 삭제: NavMenu 항목, App.jsx import과 route(/community, /community/:id), CommunityPage/CommunityPostPage 파일 제거(community.json 데이터는 미사용으로 잔존)
+- 사이 찾기 → 동해 사이, 이야기 → 동해 스토리
+- 프로그램을 독립 메뉴에서 빼고 동해 사이 안의 한 갈래로 병합. /packages 라우트는 유지(푸터 링크용)
+- 상단 메뉴 최종: 동해 스토리, 동해 사이, 패스, 굿즈. 로그인 우측 유지(IconGroup)
+
+## 단계 1. EAT STAY PLAY SEE 한국어화
+
+- STAY_TYPE_LABEL eat/stay/play/see → 먹거리/숙박/체험/볼거리. 카드 배지, 필터, 갈래 진입, 상세 아이브로우 전부 이 값으로 자동 반영
+- EAT STAY PLAY SEE 영문 리터럴 제거(StaysPage meta/부제, AboutPage). 전역 grep 0
+
+## 연계 후보 전역 제거
+
+- 화면 리터럴: StaysPage h1/부제/문구, PackagesPage 하단, PackageDetailPage 안내, StayDetailPage 근거 표기, AboutPage POINTS와 섹션 제목 → 공공 협력 사업 표현으로 리워드
+- 데이터: stays.json badges 148건 "연계 후보" → 빈 배열, stories.json intro 5건 리워드. JSON 파싱 검증 통과
+- StayCard 는 badges 빈 배열이라 자동으로 배지 미노출. 전역 grep 0
+
+## 단계 2. 동해 사이 필터 정리 + 병합
+
+- 동해사이 연계 후보 섹션 제목과 총 N곳 연계 후보 문구 제거
+- 유형 필터와 유형 칩 삭제. 지역 칩만 유지. 네 갈래 카드는 정보용 개요 카드로 전환(클릭 필터 제거, shadow-card)
+- 코스(PackageCarousel)와 프로그램(ColorBlockCarousel)을 탭으로 동해 사이 안에 병합. 컬러블록 풀블리드 유지 위해 컨테이너 밖에서 렌더
+
+## 단계 3. 코스 프로그램 하단 문구 제거
+
+- PackagesPage 하단 연계 후보 문구 삭제
+
+## 단계 4. 푸터 재구성 + 개인정보처리방침
+
+- 바로가기와 운영 섹션 제거. 메뉴 5개(동해 스토리/동해 사이/프로그램/굿즈/패스) 한 줄
+- 협력 기관 동해시청 관광과, 동해문화관광재단 명시. 대표 확인 안 됨 등 개인 사업 표기 제거, 공공 협력 사업으로 전환
+- PrivacyPage 신규 + /privacy 라우트. 개인정보처리방침 링크 연결(푸터 + 챗봇 히어로 개인정보처리안내도 /privacy 로 연결)
+- 로고 동해=accent/사이=primary 조합 푸터에도 적용. 세로로 짧게 가로 압축. 회색 테두리 없음(white/10 헤어라인만)
+
+## 검증
+
+- 연계 후보 0, EAT STAY PLAY SEE 영문 0, community 코드 참조 0, 가운데점/줄표 0
+- vite build 통과(모듈 1954→1952, 커뮤니티 제거)
+
+## 남은 항목
+
+- [ ] data/community.json 미사용 데이터 파일 정리 여부 판단
+- [ ] 고객센터 페이지 생기면 챗봇 히어로 고객센터 no-op 버튼 연결
+- [ ] 320~1536 폭별 동해 사이 병합 섹션과 푸터 육안 검증

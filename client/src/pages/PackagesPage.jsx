@@ -50,14 +50,7 @@ export default function PackagesPage() {
         ? <ColorBlockCarousel items={list} />
         : <PackageCarousel title="1박 2일 코스" items={list} />}
 
-      <div className="mx-auto w-full
-                      px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                      max-w-[1400px] 2xl:max-w-[1600px]
-                      py-10">
-        <p className="font-pretendard font-light text-[12px] md:text-[13px] text-text-meta">
-          코스와 프로그램에 등장하는 식당과 숙소는 확정 제휴처가 아니라 연계 후보다
-        </p>
-      </div>
+      <div className="pb-12 lg:pb-16" />
     </div>
   )
 }

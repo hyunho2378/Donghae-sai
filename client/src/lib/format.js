@@ -48,10 +48,10 @@ export const ROLE_LABEL = {
 }
 
 export const STAY_TYPE_LABEL = {
-  eat: 'EAT',
-  stay: 'STAY',
-  play: 'PLAY',
-  see: 'SEE'
+  eat: '먹거리',
+  stay: '숙박',
+  play: '체험',
+  see: '볼거리'
 }
 
 export const PERSONA_LABEL = {

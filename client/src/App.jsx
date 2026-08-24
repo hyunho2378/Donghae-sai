@@ -16,8 +16,7 @@ import StoryDetailPage from './pages/StoryDetailPage'
 import MembershipPage from './pages/MembershipPage'
 import PassPage from './pages/PassPage'
 import GoodsPage from './pages/GoodsPage'
-import CommunityPage from './pages/CommunityPage'
-import CommunityPostPage from './pages/CommunityPostPage'
+import PrivacyPage from './pages/PrivacyPage'
 import AuthPage from './pages/AuthPage'
 import AdminPage from './pages/AdminPage'
 import CheckoutPage from './pages/CheckoutPage'
@@ -66,8 +65,7 @@ export default function App() {
             <Route path="/membership" element={<MembershipPage />} />
             <Route path="/pass" element={<PassPage />} />
             <Route path="/goods" element={<GoodsPage />} />
-            <Route path="/community" element={<CommunityPage />} />
-            <Route path="/community/:id" element={<CommunityPostPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/checkout" element={<RequireAuth><CheckoutPage /></RequireAuth>} />
             <Route path="/checkout/complete" element={<RequireAuth><CheckoutCompletePage /></RequireAuth>} />
             <Route path="/bookmarks" element={<BookmarksPage />} />

@@ -17,7 +17,7 @@ const POINTS = [
   },
   {
     title: '네 갈래 제휴',
-    desc: 'EAT STAY PLAY SEE 네 갈래로 로컬 자원을 묶는다. 화면에 보이는 곳은 모두 확정 제휴처가 아니라 연계 후보다.'
+    desc: '먹거리 숙박 체험 볼거리 네 갈래로 로컬 자원을 묶는다. 동해시청 관광과와 동해문화관광재단이 함께하는 공공 협력 사업이다.'
   },
   {
     title: '일회성 NFC 패스',
@@ -151,11 +151,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 연계 후보 */}
+      {/* 함께하는 로컬 */}
       <section className={`${SECTION} py-12 md:py-18 lg:py-24`}>
-        <h2 className={`${H2} text-text-pri`}>연계 후보</h2>
+        <h2 className={`${H2} text-text-pri`}>함께하는 로컬</h2>
         <p className="mt-2 font-pretendard font-normal text-[15px] text-text-sec">
-          확정 제휴처가 아니다. 방문 전 영업일과 휴무를 확인해라.
+          방문 전 영업일과 휴무를 확인한다.
         </p>
         <div className="mt-8 grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {featured.map((s) => <StayCard key={s.id} {...s} />)}

@@ -148,10 +148,10 @@ export default function StayDetailPage() {
                           mt-10 lg:mt-12 pb-16 lg:pb-24
                           lg:grid lg:grid-cols-[1fr_380px] lg:gap-12">
         <div>
-          {/* 근거 표기. 확정 제휴처가 아니라 연계 후보임을 명시한다 */}
+          {/* 근거 표기. 방문 전 확인 안내 */}
           <div className="pb-6 border-b border-border-sub">
             <p className="font-pretendard font-medium text-[14px] text-text-pri">
-              확정 제휴처가 아니라 연계 후보다
+              동해시청 관광과와 동해문화관광재단이 함께하는 공공 협력 사업이다
             </p>
             <p className="mt-1 font-pretendard font-light text-[13px] text-text-meta">
               방문 전 영업일과 휴무를 확인해라. 자료 출처 {stay.source || '확인 안 됨'}

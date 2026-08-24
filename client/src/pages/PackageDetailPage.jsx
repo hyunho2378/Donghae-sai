@@ -301,7 +301,7 @@ export default function PackageDetailPage() {
             패스 보기
           </Link>
           <p className="mt-3 font-pretendard font-light text-[12px] text-text-meta">
-            {kindLabel}에 등장하는 장소는 확정 제휴처가 아니라 연계 후보다
+            {kindLabel}에 등장하는 장소는 방문 전 영업일과 휴무를 확인한다
           </p>
         </aside>
       </div>
