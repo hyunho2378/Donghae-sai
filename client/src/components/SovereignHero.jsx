@@ -131,9 +131,9 @@ export default function SovereignHero() {
         <div className={WRAP}>
           <div className={`${opened ? '' : 'mt-8 lg:mt-10'}
                           flex items-end gap-3 p-3 pl-4
-                          rounded-2xl bg-white shadow-card
-                          focus-within:ring-2 focus-within:ring-primary
-                          transition-shadow duration-150`}>
+                          rounded-2xl bg-bg-mute border border-border-def
+                          focus-within:border-primary focus-within:ring-2 focus-within:ring-primary
+                          transition-colors duration-150`}>
             {/* 무코는 대화가 열린 상태에서만 입력창 옆에 뜬다. fab 성격 */}
             {opened && (
               <div className="shrink-0 self-end mb-0.5">
