@@ -32,11 +32,17 @@ export default function SovereignHero() {
   const scrollRef = useRef(null)
   const taRef = useRef(null)
   const timer = useRef(null)
-  const atBottomRef = useRef(true) // 사용자가 맨 아래 근처에 있는지. 자동 따라가기 판단용
+  const lastQRef = useRef(null) // 가장 최근 질문 말풍선. 새 질문을 상단으로 앵커할 때 쓴다
+  const lastMsgRef = useRef(null) // 마지막 메시지. 하단 스페이서를 무시하고 이 요소 기준으로 위치를 잡는다
   const [showScrollDown, setShowScrollDown] = useState(false)
 
   const opened = phase === 'chat'
   const leaving = phase === 'leaving'
+
+  // 질문 개수와 마지막 질문 위치. 새 질문이 늘면 그 질문을 상단으로 앵커한다
+  const userCount = messages.reduce((n, m) => n + (m.role === 'user' ? 1 : 0), 0)
+  let lastUserIndex = -1
+  for (let k = 0; k < messages.length; k++) if (messages[k].role === 'user') lastUserIndex = k
 
   // 대화 모드 여부를 전역에 알린다. TopNav 가 헤더를 좌측으로 옮기는 신호. 언마운트 시 원복
   useEffect(() => {
@@ -44,30 +50,41 @@ export default function SovereignHero() {
     return () => setPanelOpen(false)
   }, [opened, setPanelOpen])
 
-  // 스크롤 위치 추적. 맨 아래에서 멀어지면 아래로 가기 버튼을 띄운다
+  // 마지막 답변 바닥이 뷰포트 바닥에 오도록 하는 스크롤 위치. 하단 스페이서는 계산에서 뺀다
+  function bottomTarget() {
+    const el = scrollRef.current
+    const last = lastMsgRef.current
+    if (!el) return 0
+    const lastBottom = last ? last.offsetTop + last.offsetHeight : el.scrollHeight
+    return Math.max(0, lastBottom - el.clientHeight + 24) // 24는 하단 여백
+  }
+
+  // 스크롤 위치 추적. 마지막 답변이 화면 밖으로 넘어가면 아래로 가기 버튼을 띄운다
   function handleScroll() {
     const el = scrollRef.current
+    const last = lastMsgRef.current
     if (!el) return
-    const dist = el.scrollHeight - el.scrollTop - el.clientHeight
-    atBottomRef.current = dist < 120
-    setShowScrollDown(dist > 160)
+    const lastBottom = last ? last.offsetTop + last.offsetHeight : el.scrollHeight
+    const dist = lastBottom - (el.scrollTop + el.clientHeight)
+    setShowScrollDown(dist > 120)
   }
 
   function scrollToBottom() {
     const el = scrollRef.current
-    if (el) el.scrollTo({ top: el.scrollHeight, behavior: reduceMotion() ? 'auto' : 'smooth' })
+    if (el) el.scrollTo({ top: bottomTarget(), behavior: reduceMotion() ? 'auto' : 'smooth' })
   }
-
-  // 새 토큰/메시지에 맨 아래에 있을 때만 따라 내려간다. 위로 올려 읽는 사용자를 끌어내리지 않는다
-  useEffect(() => {
-    const el = scrollRef.current
-    if (el && atBottomRef.current) el.scrollTop = el.scrollHeight
-  }, [messages, opened])
 
   // 대화 모드에서 답변이 끝나면(또는 방금 열렸으면) 입력창 포커스를 유지한다
   useEffect(() => {
     if (opened && !streaming) taRef.current?.focus()
   }, [opened, streaming])
+
+  // 새 질문을 보내면 그 질문 말풍선을 대화 영역 최상단으로 올린다(챗지피티식 앵커).
+  // 이전 질문과 답변은 위로 밀려 뷰포트를 벗어난다. 스트리밍 중에도 질문이 상단에 고정된다
+  useEffect(() => {
+    if (!opened) return
+    lastQRef.current?.scrollIntoView({ block: 'start', behavior: reduceMotion() ? 'auto' : 'smooth' })
+  }, [userCount, opened])
 
   // 입력이 길어지면 textarea 높이를 내용에 맞춰 늘린다. 최소와 최대는 CSS 가 잡는다
   useEffect(() => {
@@ -86,7 +103,6 @@ export default function SovereignHero() {
       setPhase('leaving')
       timer.current = setTimeout(() => setPhase('chat'), reduceMotion() ? 0 : LEAVE_MS)
     }
-    atBottomRef.current = true // 새 질문은 항상 맨 아래로 따라간다
     send(text)
     setInput('')
     setTimeout(() => taRef.current?.focus(), 0) // 전송 직후 재포커스
@@ -254,7 +270,9 @@ export default function SovereignHero() {
                   {messages.map((m, i) => {
                     if (m.role === 'user') {
                       return (
-                        <div key={i} className="lg:grid lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-8 animate-flow-down">
+                        <div key={i}
+                             ref={(el) => { if (i === lastUserIndex) lastQRef.current = el; if (i === messages.length - 1) lastMsgRef.current = el }}
+                             className="scroll-mt-6 lg:grid lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-8 lg:items-start animate-flow-down">
                           <div className="flex justify-end">
                             <p className="max-w-[85%] px-4 py-3 rounded-2xl
                                           bg-primary-soft text-text-pri
@@ -271,7 +289,9 @@ export default function SovereignHero() {
                     // 답변마다 자기 근거를 자기 옆에 가진다. 근거 없어도 우측 340 트랙은 유지된다
                     const cards = m.sources?.length ? resolveSources(m.sources, m.links) : []
                     return (
-                      <div key={i} className="lg:grid lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-8 animate-flow-down">
+                      <div key={i}
+                           ref={(el) => { if (i === messages.length - 1) lastMsgRef.current = el }}
+                           className="lg:grid lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-8 lg:items-start animate-flow-down">
                         <div className="min-w-0">
                           {m.content === '' ? (
                             <AnswerSkeleton />
@@ -297,6 +317,11 @@ export default function SovereignHero() {
                       </div>
                     )
                   })}
+
+                  {/* 하단 여유 공간. 답변이 스켈레톤뿐인 순간에도 새 질문을 화면 최상단까지 올릴 수 있게
+                      뷰포트에 준하는 높이를 준다. 감지는 마지막 메시지 기준이라 이 빈 공간이
+                      아래로 가기 버튼을 잘못 띄우지 않고, 아래로 가기도 마지막 답변까지만 간다 */}
+                  <div aria-hidden="true" className="min-h-[85vh]" />
                 </div>
               </div>
 
