@@ -1391,3 +1391,41 @@ DB 재마이그레이션
 
 - [ ] 무코 흩뿌림용 소형 애셋 도착 시 상세 ScatterIllust 채움
 - [ ] muko-main.png 3.2MB 최적화(홈 아바타용 경량본 권장)
+
+---
+
+# R1 배경과 타이포 위계 근본 재설계 (2026-08-24)
+
+순백 배경 + 얇은 타이포를 시스템째 재설계. GTS 처럼 면 톤으로 카드를 가른다.
+
+## 단계 0. 배경 시스템
+
+- tailwind.config: page #F4F1EC(웜그레이 베이지), section #EDE9E2 신설. bg.card #FAFAFA→#FFFFFF(순백 카드), bg.mute #F5F5F5→#EDE9E2(눌린 톤). text.pri #000000→#101010(브랜드 검정)
+- shadow-card 옅게 0 1px 2px rgba(16,16,16,0.04). 배경이 톤을 가지니 그림자는 거들 뿐
+- index.css body bg-white→bg-page. SovereignHero 홈 배경 bg-white→bg-page. PackageDetail 스티키 탭 bg-white→bg-page
+- 결과: 페이지 웜 뉴트럴, 흰 카드(bg-white/bg-bg-card)가 면 톤 차이로 뜸, 섹션(bg-bg-mute)은 눌린 베이지. 컴파일 CSS body = rgb(244 241 236) 확인
+
+## 단계 1. 타이포 위계 (HIG)
+
+- 탭/필터 라벨: font-medium 14 → font-semibold 15. 선택 탭 밑줄 5개 페이지(Stays/Packages/PackageDetail/StoryList/Journal)
+- Chip: font-medium 14 → font-semibold 15, h-9→h-10
+- 스토리 카드 카테고리 배지: font-medium 11 → font-semibold 12
+- StayCard 권역: font-light → font-medium. StoryList 탭 카운트: font-light → font-medium
+- H1/H2/H3 는 대부분 이미 bold. 제목 라벨에 title-size font-light 0건(잔여 font-light 는 메타 캡션뿐)
+
+## 단계 2. 코랄 강조
+
+- 선택 탭 밑줄과 텍스트 text-accent border-accent(코랄). 선택 칩 bg-accent. 스토리 카드 배지 bg-accent
+- 통계 숫자 text-accent + 크기 확대(22/26). 민트=주색 링크/기본, 코랄=포인트로 역할 분리
+- 코랄 절제: 화면당 선택 상태와 핵심 수치 정도로 제한
+
+## 검증
+
+- 컴파일 CSS: page rgb(244 241 236), section rgb(237 233 226), accent rgb(252 80 72) 활성. body 웜 배경 확정
+- 페이지 루트 bg-white 0. title-size font-light 0
+- vite build 통과
+
+## 남은 항목
+
+- [ ] 개별 카드 제목 H3 크기 18→20 상향은 페이지별 육안 후 미세 조정
+- [ ] 320~1280 폭별 배경 대비와 위계 육안 검증

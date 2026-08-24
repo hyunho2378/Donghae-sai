@@ -78,7 +78,7 @@ export default function SovereignHero() {
                        ${leaving ? 'opacity-0 -translate-y-2 pointer-events-none' : 'opacity-100 translate-y-0'}`
 
   return (
-    <section className={`bg-white flex flex-col flex-1 min-h-0 overflow-hidden
+    <section className={`bg-page flex flex-col flex-1 min-h-0 overflow-hidden
                          ${opened ? '' : 'justify-center py-10 md:py-14 lg:py-16'}`}>
 
       {/* 위쪽. 초기에는 헤드라인, 대화 중에는 스크롤되는 대화 영역 */}

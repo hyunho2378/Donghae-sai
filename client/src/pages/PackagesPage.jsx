@@ -34,10 +34,10 @@ export default function PackagesPage() {
             return (
               <button key={t.key}
                       onClick={() => setTab(t.key)}
-                      className={`min-h-11 px-4 font-pretendard font-medium text-[14px] tracking-[0.02em]
+                      className={`min-h-11 px-4 font-pretendard font-semibold text-[15px] tracking-[0.02em]
                                   border-b-2 transition-colors duration-150 motion-reduce:transition-none
                                   ${tab === t.key
-                                    ? 'text-text-pri border-text-pri'
+                                    ? 'text-accent border-accent'
                                     : 'text-text-meta border-transparent hover:text-text-pri'}`}>
                 {t.label} {count}
               </button>

@@ -89,8 +89,8 @@ export default function StaysPage() {
             </p>
             <div className="mt-6 grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-3">
               {INTRO_STATS.map((s) => (
-                <div key={s.value} className="shadow-card rounded-xl p-5">
-                  <p className="font-pretendard font-bold text-[18px] md:text-[20px] text-text-pri tracking-[-0.02em]">
+                <div key={s.value} className="bg-bg-card shadow-card rounded-xl p-5">
+                  <p className="font-pretendard font-bold text-[22px] md:text-[26px] text-accent tracking-[-0.02em]">
                     {s.value}
                   </p>
                   <p className="mt-1 font-pretendard font-medium text-[13px] text-text-meta">
@@ -144,10 +144,10 @@ export default function StaysPage() {
                 return (
                   <button key={t.key}
                           onClick={() => setPkgTab(t.key)}
-                          className={`min-h-11 px-4 font-pretendard font-medium text-[14px] tracking-[0.02em]
+                          className={`min-h-11 px-4 font-pretendard font-semibold text-[15px] tracking-[0.02em]
                                       border-b-2 transition-colors duration-150 motion-reduce:transition-none
                                       ${pkgTab === t.key
-                                        ? 'text-text-pri border-text-pri'
+                                        ? 'text-accent border-accent'
                                         : 'text-text-meta border-transparent hover:text-text-pri'}`}>
                     {t.label} {count}
                   </button>

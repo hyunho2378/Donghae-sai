@@ -36,13 +36,13 @@ export default function StoryListPage() {
             <button
               key={t.key}
               onClick={() => setTab(t.key)}
-              className={`px-4 py-3 font-pretendard font-medium text-[14px] tracking-[0.04em]
+              className={`px-4 py-3 font-pretendard font-semibold text-[15px] tracking-[0.04em]
                           border-b-2 transition-colors duration-150 whitespace-nowrap
                           ${tab === t.key
-                            ? 'text-text-pri border-text-pri'
+                            ? 'text-accent border-accent'
                             : 'text-text-meta border-transparent hover:text-text-pri'}`}>
               {t.label}
-              <span className="ml-1.5 font-light text-[12px] text-text-meta">
+              <span className="ml-1.5 font-medium text-[12px] text-text-meta">
                 {t.key === 'ALL'
                   ? storiesData.length
                   : storiesData.filter((s) => s.category === t.key).length}
@@ -65,9 +65,9 @@ export default function StoryListPage() {
                                  transition-transform duration-[600ms] ease-out
                                  group-hover:scale-[1.04]" />
                     <span className="absolute top-3 left-3
-                                     h-[24px] px-2.5
-                                     bg-black/60 text-white
-                                     font-pretendard font-medium text-[11px] tracking-[0.06em]
+                                     h-[26px] px-2.5
+                                     bg-accent text-white
+                                     font-pretendard font-semibold text-[12px] tracking-[0.04em]
                                      rounded-md inline-flex items-center">
                       {s.category}
                     </span>

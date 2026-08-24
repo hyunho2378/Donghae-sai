@@ -146,15 +146,15 @@ export default function PackageDetailPage() {
           )}
 
           {/* 3. Sticky tabs */}
-          <div className="mt-10 sticky top-[80px] bg-white z-10">
+          <div className="mt-10 sticky top-[80px] bg-page z-10">
             <div className="flex gap-1 border-b border-border-sub overflow-x-auto scrollbar-hide -mx-5 px-5">
               {TABS.map((t) => (
                 <button key={t.key}
                         onClick={() => setTab(t.key)}
-                        className={`px-4 py-3 font-pretendard font-medium text-[14px] tracking-[0.02em]
+                        className={`px-4 py-3 font-pretendard font-semibold text-[15px] tracking-[0.02em]
                                     border-b-2 transition-colors duration-150 whitespace-nowrap
                                     ${tab === t.key
-                                      ? 'text-text-pri border-text-pri'
+                                      ? 'text-accent border-accent'
                                       : 'text-text-meta border-transparent hover:text-text-pri'}`}>
                   {t.label}
                 </button>

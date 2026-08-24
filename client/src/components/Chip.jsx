@@ -5,11 +5,11 @@ export default function Chip({ label, isSelected = false, onClick, className }) 
     <button
       onClick={onClick}
       className={clsx(
-        'h-9 px-4 rounded-full whitespace-nowrap',
-        'font-pretendard font-medium text-[14px]',
+        'h-10 px-4 rounded-full whitespace-nowrap',
+        'font-pretendard font-semibold text-[15px]',
         'transition-colors duration-150',
         isSelected
-          ? 'bg-primary text-white border border-primary'
+          ? 'bg-accent text-white border border-accent'
           : 'bg-white text-text-pri border border-border-def hover:border-primary',
         className
       )}>

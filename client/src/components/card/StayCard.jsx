@@ -26,7 +26,7 @@ export default function StayCard({
           </div>
         </div>
         <div className="pt-4">
-          <span className="font-pretendard font-light text-[12px] md:text-[13px] text-text-meta">
+          <span className="font-pretendard font-medium text-[12px] md:text-[13px] text-text-meta">
             {region}
           </span>
           <h3 className="mt-1 font-pretendard font-bold

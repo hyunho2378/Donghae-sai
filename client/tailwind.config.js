@@ -20,12 +20,15 @@ export default {
         pretendard: ['"Pretendard Variable"', '"Pretendard"']
       },
       colors: {
+        // 웜그레이 베이지 배경 시스템. 순백을 버리고 면 톤으로 카드를 가른다
+        page: '#F4F1EC',       // 페이지 배경. 웜 뉴트럴
+        section: '#EDE9E2',    // 섹션 구분. 한 단 더 눌러
         bg: {
-          card: '#FAFAFA',
-          mute: '#F5F5F5'
+          card: '#FFFFFF',     // 카드 표면. 순백이라 배경 위에 뜬다
+          mute: '#EDE9E2'      // 눌린 톤. 섹션과 동일
         },
         text: {
-          pri: '#000000',
+          pri: '#101010',
           strong: '#171719',
           sec: '#333333',
           meta: '#6B6B6E',
@@ -49,8 +52,8 @@ export default {
         }
       },
       boxShadow: {
-        // KAREUM_MIRROR 1-1. 카드 깊이용 옅은 그림자 한 종
-        card: '0 1px 2px rgba(0,0,0,0.04), 0 6px 16px rgba(0,0,0,0.06)'
+        // 배경이 톤을 가지므로 그림자는 거들 뿐. 아주 옅게
+        card: '0 1px 2px rgba(16,16,16,0.04)'
       },
       borderRadius: {
         sm: '6px',
