@@ -1591,3 +1591,29 @@ R4 가 입력창 면을 회색(bg-bg-mute)으로 칠한 것을 되돌림. 배경
 - 배포 JS 번들에 입력창 컨테이너 클래스 `rounded-2xl bg-white border border-border-def` 확인 → 면은 흰색, 회색/베이지 배경 없음
 - 경계는 테두리 선(#DCDCDC)으로만. 포커스 시 primary(#4AB8CD) 테두리+링
 - body/페이지 흰색 rgb(255 255 255) 유지
+
+---
+
+# R6 웜색 토큰 박멸 + 컨테이너 확인 (2026-08-24)
+
+## 웜 토큰 박멸
+
+- 원흉: 웜색 #EDE9E2(rgb 237 233 226)이 tailwind 토큰 bg.mute 와 section 에 살아 있었다. body 만 흰색으로 바꾸고 이 토큰을 안 죽여서 지도 박스 스토리 박스 섹션 등에 계속 떴다
+- 수정: section, bg.mute 를 #EDE9E2 → #F5F7F8(파란기 도는 쿨그레이)
+- 소스 grep 웜 hex(EDE9E2 F4F1EC F5F2ED F0EBE3 F3F1EC FFF8E7 FFFAF0 및 rgb) 전역 0
+- 확인 안 됨/자료 대기 박스: 이미 P2 P3 에서 제거됨. 잔존 0
+
+## 컨테이너
+
+- 실태: 이미 R3 에서 .container-page(max-w 1400, px 20/32/48/64/96)로 통일됨. 소스에 max-w-none 컨테이너 0(max-w-full 은 결제 로고 img 제약뿐)
+- 무릉 상세 세 컨테이너 maxW none 실측은 full-bleed 히어로와 page-enter 루트 래퍼(의도적 전체폭). 실제 본문은 container-page 로 1400 제한
+- 콘텐츠 컨테이너 14개 페이지 container-page 사용. 아티클 720/폼 440 등은 의도된 폭
+
+## 배포 실측 (실제 읽은 값, 추측 아님)
+
+배포 CSS(index 최신) 실측:
+- 웜 rgb 237 233 226(#EDE9E2) = 0건
+- 웜 rgb 244 241 236(#F4F1EC) = 0건
+- 쿨그레이 rgb 245 247 248(#F5F7F8) = 존재(bg-mute/section)
+- .container-page { max-width: 1400px } 적용됨
+- 즉 어떤 요소 배경도 웜 계열 아님, 컨테이너 max-width 1400 적용
