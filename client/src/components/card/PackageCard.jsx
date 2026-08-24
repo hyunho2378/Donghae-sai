@@ -1,0 +1,50 @@
+import { Link } from 'react-router-dom'
+import Badge from '../Badge'
+export default function PackageCard({
+  id, name, badges = [], images, main_image,
+  duration_label, short_description, itinerary = []
+}) {
+  const image = main_image || images?.[0]
+  return (
+    <Link to={`/packages/${id}`} className="group block">
+      <article className="border border-border-sub rounded-2xl overflow-hidden bg-white">
+        <div className="relative aspect-[16/9] bg-bg-card overflow-hidden">
+          {image && (
+            <img src={image} alt={name}
+                 className="w-full h-full object-cover
+                            transition-transform duration-[600ms] ease-out
+                            group-hover:scale-[1.04]" />
+          )}
+          <div className="absolute top-3 left-3">
+            <Badge variant="soft">{badges.slice(0, 2).join(' ')}</Badge>
+          </div>
+        </div>
+        <div className="p-5 lg:p-6">
+          <h3 className="font-pretendard font-bold text-[19px] text-text-strong tracking-[-0.02em] line-clamp-2">
+            {name}
+          </h3>
+          <p className="mt-1 font-pretendard font-medium text-[14px] text-text-meta">
+            {duration_label}
+          </p>
+          {short_description && (
+            <p className="mt-3 font-pretendard font-normal text-[14px] text-text-sec leading-relaxed line-clamp-2">
+              {short_description}
+            </p>
+          )}
+          {itinerary.length > 0 && (
+            <p className="mt-3 font-pretendard font-light text-[13px] text-text-meta line-clamp-1">
+              {itinerary[0].schedule.slice(0, 3).map((s) => s.activity).join(', ')}
+            </p>
+          )}
+          <span className="mt-4 inline-flex items-center justify-center
+                           h-10 px-4
+                           bg-white text-primary border border-primary
+                           font-pretendard font-medium text-[14px] rounded-lg
+                           hover:bg-primary-soft transition-colors duration-150">
+            자세히 보기
+          </span>
+        </div>
+      </article>
+    </Link>
+  )
+}

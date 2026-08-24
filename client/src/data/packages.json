@@ -1,0 +1,2170 @@
+[
+  {
+    "id": "course-2030-walk-mukho",
+    "name": "묵호 사이 파도 사이",
+    "category": "course",
+    "tier": "2030 뚜벅이",
+    "tagline": "골목 감성과 바다와 액티비티를 한 번에 경험하는 대표 뚜벅이 코스다.",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "2030"
+    ],
+    "transport": "뚜벅이",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/mukho-port.jpg",
+    "gallery": [],
+    "badges": [
+      "2030",
+      "뚜벅이"
+    ],
+    "tags": [
+      "2030",
+      "뚜벅이",
+      "1박 2일"
+    ],
+    "short_description": "골목 감성과 바다와 액티비티를 한 번에 경험하는 대표 뚜벅이 코스다.",
+    "long_description": "2030 뚜벅이 코스 묵호 사이 파도 사이. 골목 감성과 바다와 액티비티를 한 번에 경험하는 대표 뚜벅이 코스다. DAY 1은 묵호 도착, 동쪽바다중앙시장, 논골담길, 묵호등대, 도째비골 스카이밸리, 해랑전망대, 어달해변 일몰, 저녁, 숙박이다. DAY 2는 대진해변 서핑 체험, 해변 카페, 망상해변, 귀가다. 차 없이 걸어서 묵호 권역을 잇고 대진까지 연결하면 서핑을 더한다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "묵호 도착"
+          },
+          {
+            "time": "",
+            "activity": "동쪽바다중앙시장"
+          },
+          {
+            "time": "",
+            "activity": "논골담길"
+          },
+          {
+            "time": "",
+            "activity": "묵호등대"
+          },
+          {
+            "time": "",
+            "activity": "도째비골 스카이밸리"
+          },
+          {
+            "time": "",
+            "activity": "해랑전망대"
+          },
+          {
+            "time": "",
+            "activity": "어달해변 일몰"
+          },
+          {
+            "time": "",
+            "activity": "저녁"
+          },
+          {
+            "time": "",
+            "activity": "숙박"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "대진해변 서핑 체험"
+          },
+          {
+            "time": "",
+            "activity": "해변 카페"
+          },
+          {
+            "time": "",
+            "activity": "망상해변"
+          },
+          {
+            "time": "",
+            "activity": "귀가"
+          }
+        ]
+      }
+    ],
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "차 없이 걸어서 묵호 권역을 잇고 대진까지 연결하면 서핑을 더한다.",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "donghae-knowledge.json course 항목",
+    "is_active": true,
+    "region": "확인 안 됨"
+  },
+  {
+    "id": "course-2030-walk-cheonok",
+    "name": "동해 도심 사이 바다 사이",
+    "category": "course",
+    "tier": "2030 뚜벅이",
+    "tagline": "차 없이 가능한 도심형 감성여행이다.",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "2030"
+    ],
+    "transport": "뚜벅이",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/bat-cave.jpg",
+    "gallery": [],
+    "badges": [
+      "2030",
+      "뚜벅이"
+    ],
+    "tags": [
+      "2030",
+      "뚜벅이",
+      "1박 2일"
+    ],
+    "short_description": "차 없이 가능한 도심형 감성여행이다.",
+    "long_description": "2030 뚜벅이 코스 동해 도심 사이 바다 사이. 차 없이 가능한 도심형 감성여행이다. DAY 1은 동해역, 천곡황금박쥐동굴, 자연학습체험공원, 한섬해변, 한섬감성바닷길 산책, 천곡 시내 카페, 숙박이다. DAY 2는 동호지구 바닷가책방마을, 연필뮤지엄, 묵호항, 논골담길, 도째비골, 귀가다. 서핑과 액티비티를 원하지 않는 2030에게 문화와 사진과 산책을 잇는 대안 코스다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "동해역"
+          },
+          {
+            "time": "",
+            "activity": "천곡황금박쥐동굴"
+          },
+          {
+            "time": "",
+            "activity": "자연학습체험공원"
+          },
+          {
+            "time": "",
+            "activity": "한섬해변"
+          },
+          {
+            "time": "",
+            "activity": "한섬감성바닷길 산책"
+          },
+          {
+            "time": "",
+            "activity": "천곡 시내 카페"
+          },
+          {
+            "time": "",
+            "activity": "숙박"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "동호지구 바닷가책방마을"
+          },
+          {
+            "time": "",
+            "activity": "연필뮤지엄"
+          },
+          {
+            "time": "",
+            "activity": "묵호항"
+          },
+          {
+            "time": "",
+            "activity": "논골담길"
+          },
+          {
+            "time": "",
+            "activity": "도째비골"
+          },
+          {
+            "time": "",
+            "activity": "귀가"
+          }
+        ]
+      }
+    ],
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "서핑과 액티비티를 원하지 않는 2030에게 문화와 사진과 산책을 잇는 대안 코스다.",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "donghae-knowledge.json course 항목",
+    "is_active": true,
+    "region": "확인 안 됨"
+  },
+  {
+    "id": "course-2030-car-active",
+    "name": "동해 액티비티 로드",
+    "category": "course",
+    "tier": "2030 자차",
+    "tagline": "차량으로 해안선을 따라 여러 체험을 하는 활동형 여행이다.",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "2030"
+    ],
+    "transport": "자차",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/dokkaebi-skyvalley.jpg",
+    "gallery": [],
+    "badges": [
+      "2030",
+      "자차"
+    ],
+    "tags": [
+      "2030",
+      "자차",
+      "1박 2일"
+    ],
+    "short_description": "차량으로 해안선을 따라 여러 체험을 하는 활동형 여행이다.",
+    "long_description": "2030 자차 코스 동해 액티비티 로드. 차량으로 해안선을 따라 여러 체험을 하는 활동형 여행이다. DAY 1은 묵호항, 논골담길, 도째비골, 어달해변, 대진해변 서핑, 망상해변 일몰, 숙박이다. DAY 2는 추암해변, 촛대바위 일출, 추암출렁다리, 추암조각공원, 스쿠버다이빙 등 해양 체험, 귀가다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "묵호항"
+          },
+          {
+            "time": "",
+            "activity": "논골담길"
+          },
+          {
+            "time": "",
+            "activity": "도째비골"
+          },
+          {
+            "time": "",
+            "activity": "어달해변"
+          },
+          {
+            "time": "",
+            "activity": "대진해변 서핑"
+          },
+          {
+            "time": "",
+            "activity": "망상해변 일몰"
+          },
+          {
+            "time": "",
+            "activity": "숙박"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "추암해변"
+          },
+          {
+            "time": "",
+            "activity": "촛대바위 일출"
+          },
+          {
+            "time": "",
+            "activity": "추암출렁다리"
+          },
+          {
+            "time": "",
+            "activity": "추암조각공원"
+          },
+          {
+            "time": "",
+            "activity": "스쿠버다이빙 등 해양 체험"
+          },
+          {
+            "time": "",
+            "activity": "귀가"
+          }
+        ]
+      }
+    ],
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "확인 안 됨",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "donghae-knowledge.json course 항목",
+    "is_active": true,
+    "region": "확인 안 됨"
+  },
+  {
+    "id": "course-2030-car-muleung",
+    "name": "무릉에서 놀고 추암에서 깨다",
+    "category": "course",
+    "tier": "2030 자차",
+    "tagline": "자연경관을 배경으로 액티비티를 즐기는 자차형 대표 코스다.",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "2030"
+    ],
+    "transport": "자차",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/muleung-byeolyu.jpg",
+    "gallery": [],
+    "badges": [
+      "2030",
+      "자차"
+    ],
+    "tags": [
+      "2030",
+      "자차",
+      "1박 2일"
+    ],
+    "short_description": "자연경관을 배경으로 액티비티를 즐기는 자차형 대표 코스다.",
+    "long_description": "2030 자차 코스 무릉에서 놀고 추암에서 깨다. 자연경관을 배경으로 액티비티를 즐기는 자차형 대표 코스다. DAY 1은 무릉별유천지에서 청옥호 금곡호 경관과 스카이글라이더 알파인코스터 오프로드 루지 짚라인 수상레저 중 2개 선택 체험, 추암 이동, 숙박이다. DAY 2는 촛대바위 일출, 추암해변, 추암출렁다리, 천곡황금박쥐동굴, 한섬해변, 귀가다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "무릉별유천지에서 청옥호 금곡호 경관과 스카이글라이더 알파인코스터 오프로드 루지 짚라인 수상레저 중 2개 선택 체험"
+          },
+          {
+            "time": "",
+            "activity": "추암 이동"
+          },
+          {
+            "time": "",
+            "activity": "숙박"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "촛대바위 일출"
+          },
+          {
+            "time": "",
+            "activity": "추암해변"
+          },
+          {
+            "time": "",
+            "activity": "추암출렁다리"
+          },
+          {
+            "time": "",
+            "activity": "천곡황금박쥐동굴"
+          },
+          {
+            "time": "",
+            "activity": "한섬해변"
+          },
+          {
+            "time": "",
+            "activity": "귀가"
+          }
+        ]
+      }
+    ],
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "확인 안 됨",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "donghae-knowledge.json course 항목",
+    "is_active": true,
+    "region": "확인 안 됨"
+  },
+  {
+    "id": "course-4050-walk-slow",
+    "name": "천천히 걷는 동해",
+    "category": "course",
+    "tier": "4050 뚜벅이",
+    "tagline": "긴 이동과 과도한 체험을 줄이고 대표 관광지를 여유 있게 경험한다.",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "4050"
+    ],
+    "transport": "뚜벅이",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/hanseom-beach.jpg",
+    "gallery": [],
+    "badges": [
+      "4050",
+      "뚜벅이"
+    ],
+    "tags": [
+      "4050",
+      "뚜벅이",
+      "1박 2일"
+    ],
+    "short_description": "긴 이동과 과도한 체험을 줄이고 대표 관광지를 여유 있게 경험한다.",
+    "long_description": "4050 뚜벅이 코스 천천히 걷는 동해. 긴 이동과 과도한 체험을 줄이고 대표 관광지를 여유 있게 경험한다. DAY 1은 동해역, 천곡황금박쥐동굴, 자연학습체험공원, 한섬감성바닷길, 카페 휴식, 숙박이다. DAY 2는 묵호항, 동쪽바다중앙시장, 논골담길 문화관광해설, 묵호등대, 해랑전망대, 귀가다. 이동 피로를 최소화한 저강도 코스다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "동해역"
+          },
+          {
+            "time": "",
+            "activity": "천곡황금박쥐동굴"
+          },
+          {
+            "time": "",
+            "activity": "자연학습체험공원"
+          },
+          {
+            "time": "",
+            "activity": "한섬감성바닷길"
+          },
+          {
+            "time": "",
+            "activity": "카페 휴식"
+          },
+          {
+            "time": "",
+            "activity": "숙박"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "묵호항"
+          },
+          {
+            "time": "",
+            "activity": "동쪽바다중앙시장"
+          },
+          {
+            "time": "",
+            "activity": "논골담길 문화관광해설"
+          },
+          {
+            "time": "",
+            "activity": "묵호등대"
+          },
+          {
+            "time": "",
+            "activity": "해랑전망대"
+          },
+          {
+            "time": "",
+            "activity": "귀가"
+          }
+        ]
+      }
+    ],
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "이동 피로를 최소화한 저강도 코스다.",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "donghae-knowledge.json course 항목",
+    "is_active": true,
+    "region": "확인 안 됨"
+  },
+  {
+    "id": "course-4050-walk-beach",
+    "name": "바다 따라 쉬어가는 동해",
+    "category": "course",
+    "tier": "4050 뚜벅이",
+    "tagline": "망상에서 충분히 쉬고 묵호에서 지역문화를 즐기는 저강도 관광이다.",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "4050"
+    ],
+    "transport": "뚜벅이",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/mangsang-beach.jpg",
+    "gallery": [],
+    "badges": [
+      "4050",
+      "뚜벅이"
+    ],
+    "tags": [
+      "4050",
+      "뚜벅이",
+      "1박 2일"
+    ],
+    "short_description": "망상에서 충분히 쉬고 묵호에서 지역문화를 즐기는 저강도 관광이다.",
+    "long_description": "4050 뚜벅이 코스 바다 따라 쉬어가는 동해. 망상에서 충분히 쉬고 묵호에서 지역문화를 즐기는 저강도 관광이다. DAY 1은 망상해변, 해변 산책, 망상사구생태관, 카페 휴식, 일몰, 숙박이다. DAY 2는 묵호항, 동쪽바다중앙시장, 논골담길, 묵호등대, 해랑전망대, 귀가다. 장거리 도보를 줄이고 망상과 묵호 사이는 버스 중심으로 이동한다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "망상해변"
+          },
+          {
+            "time": "",
+            "activity": "해변 산책"
+          },
+          {
+            "time": "",
+            "activity": "망상사구생태관"
+          },
+          {
+            "time": "",
+            "activity": "카페 휴식"
+          },
+          {
+            "time": "",
+            "activity": "일몰"
+          },
+          {
+            "time": "",
+            "activity": "숙박"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "묵호항"
+          },
+          {
+            "time": "",
+            "activity": "동쪽바다중앙시장"
+          },
+          {
+            "time": "",
+            "activity": "논골담길"
+          },
+          {
+            "time": "",
+            "activity": "묵호등대"
+          },
+          {
+            "time": "",
+            "activity": "해랑전망대"
+          },
+          {
+            "time": "",
+            "activity": "귀가"
+          }
+        ]
+      }
+    ],
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "장거리 도보를 줄이고 망상과 묵호 사이는 버스 중심으로 이동한다.",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "donghae-knowledge.json course 항목",
+    "is_active": true,
+    "region": "확인 안 됨"
+  },
+  {
+    "id": "course-4050-car-heal",
+    "name": "무릉에서 쉬어가는 하루",
+    "category": "course",
+    "tier": "4050 자차",
+    "tagline": "자연 속 트레킹과 휴식을 중심으로 한 힐링형 코스다.",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "4050"
+    ],
+    "transport": "자차",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/muleung-byeolyu.jpg",
+    "gallery": [],
+    "badges": [
+      "4050",
+      "자차"
+    ],
+    "tags": [
+      "4050",
+      "자차",
+      "1박 2일"
+    ],
+    "short_description": "자연 속 트레킹과 휴식을 중심으로 한 힐링형 코스다.",
+    "long_description": "4050 자차 코스 무릉에서 쉬어가는 하루. 자연 속 트레킹과 휴식을 중심으로 한 힐링형 코스다. DAY 1은 무릉계곡, 무릉반석, 삼화사, 체력에 따라 계곡 산책 또는 쌍폭포 용추폭포 트레킹, 무릉건강숲, 숙박이다. DAY 2는 무릉별유천지 호수와 석회석 절벽 경관, 추암해변, 촛대바위, 귀가다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "무릉계곡"
+          },
+          {
+            "time": "",
+            "activity": "무릉반석"
+          },
+          {
+            "time": "",
+            "activity": "삼화사"
+          },
+          {
+            "time": "",
+            "activity": "체력에 따라 계곡 산책 또는 쌍폭포 용추폭포 트레킹"
+          },
+          {
+            "time": "",
+            "activity": "무릉건강숲"
+          },
+          {
+            "time": "",
+            "activity": "숙박"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "무릉별유천지 호수와 석회석 절벽 경관"
+          },
+          {
+            "time": "",
+            "activity": "추암해변"
+          },
+          {
+            "time": "",
+            "activity": "촛대바위"
+          },
+          {
+            "time": "",
+            "activity": "귀가"
+          }
+        ]
+      }
+    ],
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "확인 안 됨",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "donghae-knowledge.json course 항목",
+    "is_active": true,
+    "region": "확인 안 됨"
+  },
+  {
+    "id": "course-4050-car-round",
+    "name": "동해 절경 한 바퀴",
+    "category": "course",
+    "tier": "4050 자차",
+    "tagline": "추암의 일출과 천곡의 동굴과 무릉의 산을 연결하는 대표 자연관광 코스다.",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "4050"
+    ],
+    "transport": "자차",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/chuam-candle-rock.jpg",
+    "gallery": [],
+    "badges": [
+      "4050",
+      "자차"
+    ],
+    "tags": [
+      "4050",
+      "자차",
+      "1박 2일"
+    ],
+    "short_description": "추암의 일출과 천곡의 동굴과 무릉의 산을 연결하는 대표 자연관광 코스다.",
+    "long_description": "4050 자차 코스 동해 절경 한 바퀴. 추암의 일출과 천곡의 동굴과 무릉의 산을 연결하는 대표 자연관광 코스다. DAY 1은 추암해변, 촛대바위, 추암출렁다리, 해암정과 조각공원, 천곡황금박쥐동굴, 한섬감성바닷길, 숙박이다. DAY 2는 무릉별유천지, 무릉계곡, 삼화사, 체력에 따라 무릉반석 산책 또는 쌍폭포 트레킹, 귀가다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "추암해변"
+          },
+          {
+            "time": "",
+            "activity": "촛대바위"
+          },
+          {
+            "time": "",
+            "activity": "추암출렁다리"
+          },
+          {
+            "time": "",
+            "activity": "해암정과 조각공원"
+          },
+          {
+            "time": "",
+            "activity": "천곡황금박쥐동굴"
+          },
+          {
+            "time": "",
+            "activity": "한섬감성바닷길"
+          },
+          {
+            "time": "",
+            "activity": "숙박"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "무릉별유천지"
+          },
+          {
+            "time": "",
+            "activity": "무릉계곡"
+          },
+          {
+            "time": "",
+            "activity": "삼화사"
+          },
+          {
+            "time": "",
+            "activity": "체력에 따라 무릉반석 산책 또는 쌍폭포 트레킹"
+          },
+          {
+            "time": "",
+            "activity": "귀가"
+          }
+        ]
+      }
+    ],
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "확인 안 됨",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "donghae-knowledge.json course 항목",
+    "is_active": true,
+    "region": "확인 안 됨"
+  },
+  {
+    "id": "program-01-mukho-night-stay",
+    "name": "01 묵호 로컬 나이트 스테이",
+    "category": "program",
+    "tier": "2030 커플 친구 혼행",
+    "tagline": "낮 관광 후 떠나지 않고 밤의 묵호까지 경험하는 로컬 체류형 프로그램",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "2030"
+    ],
+    "transport": null,
+    "region": "묵호",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/dokkaebi-skyvalley.jpg",
+    "gallery": [
+      "/images/places/haerang-observatory.jpg",
+      "/images/places/mukho-lighthouse.jpg",
+      "/images/places/nongol-damgil.jpg",
+      "/images/places/east-sea-market.jpg",
+      "/images/places/book-village.jpg"
+    ],
+    "badges": [
+      "2030",
+      "프로그램"
+    ],
+    "tags": [
+      "2030",
+      "묵호",
+      "1박 2일"
+    ],
+    "short_description": "낮 관광 후 떠나지 않고 밤의 묵호까지 경험하는 로컬 체류형 프로그램",
+    "long_description": "묵호의 골목 시장 해안 관광을 식사와 야간 프로그램, 게스트하우스와 감성숙소까지 연결해 저녁 이후 체류를 만든다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "12:00",
+            "activity": "묵호권 도착 및 점심 선택"
+          },
+          {
+            "time": "13:30에서 17:00",
+            "activity": "논골담길, 묵호등대, 도째비골 스카이밸리와 해랑전망대"
+          },
+          {
+            "time": "17:00에서 18:00",
+            "activity": "자유시간 및 로컬 포토미션"
+          },
+          {
+            "time": "18:00",
+            "activity": "저녁식사 선택"
+          },
+          {
+            "time": "20:00에서 21:30",
+            "activity": "묵호 Night Walk + 로컬 스토리와 야경"
+          },
+          {
+            "time": "22:00",
+            "activity": "숙소 체크인 및 게스트하우스 소셜 선택"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "08:30",
+            "activity": "아침식사"
+          },
+          {
+            "time": "",
+            "activity": "동쪽바다중앙시장"
+          },
+          {
+            "time": "",
+            "activity": "바닷가책방마을"
+          },
+          {
+            "time": "",
+            "activity": "종료"
+          }
+        ]
+      }
+    ],
+    "meal_options": [
+      {
+        "name": "거동탕수육",
+        "note": "친구끼리 나눠 먹기 좋은 메뉴, 묵호 로컬 식당 선택지"
+      },
+      {
+        "name": "부흥횟집",
+        "note": "물회 회 생선구이 등 바다 지역성을 보여주는 식사"
+      },
+      {
+        "name": "동북횟집",
+        "note": "물회 중심의 묵호권 로컬 식사"
+      }
+    ],
+    "breakfast_options": [
+      {
+        "name": "오뚜기칼국수",
+        "note": "장칼국수 등 따뜻한 아침과 점심 식사"
+      },
+      {
+        "name": "동쪽바다중앙시장 자유식",
+        "note": "시장 내 식사와 간식을 직접 고르는 로컬 경험"
+      },
+      {
+        "name": "가마솥용순대 본점",
+        "note": "국밥류를 선호하는 여행객용 선택지"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "103LAB 게스트하우스",
+        "note": "혼행 친구 여행자의 교류형 숙박 후보. 운영과 객실형태 재확인 필요"
+      },
+      {
+        "name": "어달권 감성펜션",
+        "note": "커플 친구가 바다와 가까이 머무는 선택지"
+      },
+      {
+        "name": "일마레펜션",
+        "note": "대진 묵호 해안권 연계형 숙박 후보"
+      }
+    ],
+    "signature_experience": "묵호 로컬 포토미션. 골목 바다 간판 시장 등 체크포인트를 사진으로 수집하고, 밤에는 참여자별 베스트 컷을 공유한다.",
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "야간 산책과 소셜 프로그램을 저녁 이후에 배치해 당일치기로는 완주할 수 없게 설계한다.",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "프로그램기획안_0824.md",
+    "is_active": true
+  },
+  {
+    "id": "program-02-daejin-surf-chill",
+    "name": "02 대진 SURF & CHILL",
+    "category": "program",
+    "tier": "2030 커플 친구",
+    "tagline": "서핑을 중심으로 해변 식사 숙박 다음 날 묵호까지 이어지는 1박 2일",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "2030"
+    ],
+    "transport": null,
+    "region": "망상",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/daejin-beach.jpg",
+    "gallery": [],
+    "badges": [
+      "2030",
+      "프로그램"
+    ],
+    "tags": [
+      "2030",
+      "망상",
+      "1박 2일"
+    ],
+    "short_description": "서핑을 중심으로 해변 식사 숙박 다음 날 묵호까지 이어지는 1박 2일",
+    "long_description": "대진해변의 서핑 수요를 단일 체험으로 끝내지 않고, 해변 휴식과 오션뷰 숙박을 결합해 체류시간을 늘린다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "11:30",
+            "activity": "묵호 대진권 점심 선택"
+          },
+          {
+            "time": "13:00에서 16:00",
+            "activity": "대진해변 서핑 체험"
+          },
+          {
+            "time": "16:00에서 17:30",
+            "activity": "샤워 해변 자유시간 선셋 포토미션"
+          },
+          {
+            "time": "18:30",
+            "activity": "저녁식사 선택"
+          },
+          {
+            "time": "20:30",
+            "activity": "오션뷰 숙소 체크인 자유시간"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "09:30",
+            "activity": "어달해변 산책"
+          },
+          {
+            "time": "",
+            "activity": "브런치와 점심"
+          },
+          {
+            "time": "",
+            "activity": "묵호권 자유관광"
+          },
+          {
+            "time": "",
+            "activity": "종료"
+          }
+        ]
+      }
+    ],
+    "meal_options": [
+      {
+        "name": "부흥횟집",
+        "note": "서핑 후 바다 지역성을 느낄 수 있는 회 물회류"
+      },
+      {
+        "name": "거동탕수육",
+        "note": "친구끼리 편하게 나눠 먹는 캐주얼 식사"
+      },
+      {
+        "name": "따울라",
+        "note": "양식 해산물 메뉴를 원하는 2030 선택지"
+      }
+    ],
+    "breakfast_options": [
+      {
+        "name": "동해제빵소",
+        "note": "늦은 아침을 선호하는 2030을 위한 베이커리형"
+      },
+      {
+        "name": "소복소복",
+        "note": "일식 계열의 가벼운 식사 선택지"
+      },
+      {
+        "name": "묵호권 자유 브런치",
+        "note": "체크아웃 시간에 맞춰 자율 선택"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "일마레펜션",
+        "note": "대진 묵호 해안권 펜션 후보"
+      },
+      {
+        "name": "어달펜션",
+        "note": "어달해변 접근성을 살린 숙박 후보"
+      },
+      {
+        "name": "오션뷰 펜션 독채",
+        "note": "커플 친구가 선호하는 감성형 선택군"
+      }
+    ],
+    "signature_experience": "SUNSET KIT. 피크닉매트, 동해 로컬 간식, 포토카드, 친구와 커플 미션을 제공해 서핑 이후 해질 때까지 해변에 머물게 한다.",
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "서핑 이후 선셋 프로그램과 다음 날 어달 묵호 일정까지 묶어 서핑하고 귀가 패턴을 1박으로 전환한다.",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "프로그램기획안_0824.md",
+    "is_active": true
+  },
+  {
+    "id": "program-03-mangsang-camp-social",
+    "name": "03 망상 CAMP SOCIAL CLUB",
+    "category": "program",
+    "tier": "2030 혼행 친구 커플",
+    "tagline": "카라반 글램핑 캠핑을 여행자 교류 공간으로 활용하는 소셜 스테이",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "2030"
+    ],
+    "transport": null,
+    "region": "망상",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/mangsang-beach.jpg",
+    "gallery": [],
+    "badges": [
+      "2030",
+      "프로그램"
+    ],
+    "tags": [
+      "2030",
+      "망상",
+      "1박 2일"
+    ],
+    "short_description": "카라반 글램핑 캠핑을 여행자 교류 공간으로 활용하는 소셜 스테이",
+    "long_description": "망상의 숙박 인프라를 객실 제공에 그치지 않고, 야간 교류 불멍 로컬푸드 경험이 일어나는 체류 거점으로 전환한다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "12:00",
+            "activity": "망상권 점심 선택"
+          },
+          {
+            "time": "14:00에서 16:00",
+            "activity": "망상해변 자유시간 + 해변 미션"
+          },
+          {
+            "time": "16:00",
+            "activity": "숙소 체크인"
+          },
+          {
+            "time": "18:00",
+            "activity": "저녁식사 또는 LOCAL BBQ KIT"
+          },
+          {
+            "time": "20:00에서 22:00",
+            "activity": "CAMP SOCIAL 불멍 보드게임 사진공유 혼행객 랜덤테이블"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "08:30",
+            "activity": "해변 아침산책"
+          },
+          {
+            "time": "",
+            "activity": "가벼운 식사"
+          },
+          {
+            "time": "",
+            "activity": "대진과 묵호 연계 또는 종료"
+          }
+        ]
+      }
+    ],
+    "meal_options": [
+      {
+        "name": "광천막국수",
+        "note": "캠핑 전후 부담 없이 먹기 좋은 면류 선택지"
+      },
+      {
+        "name": "냉면권가",
+        "note": "평양냉면과 치킨 등 독특한 조합의 선택지"
+      },
+      {
+        "name": "일품복국",
+        "note": "따뜻한 지역식 선호 여행객 선택지"
+      }
+    ],
+    "breakfast_options": [
+      {
+        "name": "동해제빵소",
+        "note": "빵과 커피 중심의 간단식"
+      },
+      {
+        "name": "24시전주명가콩나물국밥 동해천곡점",
+        "note": "해장과 든든한 아침형 선택지"
+      },
+      {
+        "name": "숙소 간단 조식과 자율식",
+        "note": "캠핑형 숙소에 맞춘 유연한 운영"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "망상오토캠핑리조트",
+        "note": "카라반 캠핑 등 다양한 숙박 형태를 선택할 수 있는 핵심 후보"
+      },
+      {
+        "name": "동해 봉봉카라반",
+        "note": "소규모 감성 카라반형 선택지"
+      },
+      {
+        "name": "망상권 펜션",
+        "note": "캠핑이 부담스러운 참가자용 대안"
+      }
+    ],
+    "signature_experience": "CAMP SOCIAL. 숙소별 참가자를 하나의 야간 커뮤니티로 연결하고, 여행사진 공유 추천장소 스티커맵 보드게임을 운영한다.",
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "프로그램의 핵심인 소셜 세션을 20시 이후 운영해 숙박이 경험의 필수 조건이 되게 한다.",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "프로그램기획안_0824.md",
+    "is_active": true
+  },
+  {
+    "id": "program-04-hanseom-slow-date",
+    "name": "04 한섬 SLOW DATE",
+    "category": "program",
+    "tier": "2030 커플 친구",
+    "tagline": "먹고 걷고 쉬는 저강도 감성 여행",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "2030"
+    ],
+    "transport": null,
+    "region": "천곡",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/hanseom-beach.jpg",
+    "gallery": [
+      "/images/food/donghae-bakery.png",
+      "/images/places/bat-cave.jpg"
+    ],
+    "badges": [
+      "2030",
+      "프로그램"
+    ],
+    "tags": [
+      "2030",
+      "천곡",
+      "1박 2일"
+    ],
+    "short_description": "먹고 걷고 쉬는 저강도 감성 여행",
+    "long_description": "액티비티를 선호하지 않는 2030에게 한섬 천곡의 식음과 산책을 중심으로 아무것도 많이 하지 않아도 되는 체류 경험을 제공한다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "12:00",
+            "activity": "한섬 천곡권 점심 선택"
+          },
+          {
+            "time": "14:00",
+            "activity": "한섬감성바닷길 산책"
+          },
+          {
+            "time": "15:30",
+            "activity": "동해제빵소 등 간식 픽업"
+          },
+          {
+            "time": "16:00에서 18:00",
+            "activity": "SLOW PICNIC + 사진과 엽서 미션 + 일몰"
+          },
+          {
+            "time": "18:30",
+            "activity": "저녁식사 선택"
+          },
+          {
+            "time": "20:30",
+            "activity": "호텔 한옥 레지던스 숙박"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "09:00",
+            "activity": "아침 선택"
+          },
+          {
+            "time": "",
+            "activity": "천곡황금박쥐동굴 또는 감추해변"
+          },
+          {
+            "time": "",
+            "activity": "종료"
+          }
+        ]
+      }
+    ],
+    "meal_options": [
+      {
+        "name": "피오레",
+        "note": "수제버거 돈까스 등 캐주얼 양식"
+      },
+      {
+        "name": "샤인",
+        "note": "돈까스 등 한섬권 편안한 식사"
+      },
+      {
+        "name": "따울라",
+        "note": "스페인식 해산물 메뉴로 특별한 저녁 선택지"
+      }
+    ],
+    "breakfast_options": [
+      {
+        "name": "동해제빵소",
+        "note": "베이커리형 아침"
+      },
+      {
+        "name": "24시전주명가콩나물국밥 동해천곡점",
+        "note": "든든한 국밥형 아침"
+      },
+      {
+        "name": "호텔 조식",
+        "note": "이동 최소화 편안함을 선호하는 선택지"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "아이체크호텔",
+        "note": "도심 접근성과 가성비를 중시하는 선택지"
+      },
+      {
+        "name": "현진관광호텔",
+        "note": "천곡권 관광 거점형 선택지"
+      },
+      {
+        "name": "동해한옥동안재",
+        "note": "숙박 자체를 감성 문화경험으로 만드는 선택지"
+      }
+    ],
+    "signature_experience": "SLOW PICNIC KIT. 돗자리 로컬 간식 포토카드 동해 엽서를 묶어 한섬에서 1에서 2시간 천천히 머무르게 한다.",
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "일몰 이후 저녁식사와 숙박, 다음 날 동굴과 해변을 연결해 반나절 산책 코스를 1박으로 확장한다.",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "프로그램기획안_0824.md",
+    "is_active": true
+  },
+  {
+    "id": "program-05-muleung-adventure-night",
+    "name": "05 무릉 ADVENTURE NIGHT",
+    "category": "program",
+    "tier": "2030 활동형 여행객",
+    "tagline": "낮에는 액티비티, 밤에는 경관과 야간 체류를 즐기는 자연 어드벤처",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "2030"
+    ],
+    "transport": null,
+    "region": "무릉",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/muleung-byeolyu.jpg",
+    "gallery": [],
+    "badges": [
+      "2030",
+      "프로그램"
+    ],
+    "tags": [
+      "2030",
+      "무릉",
+      "1박 2일"
+    ],
+    "short_description": "낮에는 액티비티, 밤에는 경관과 야간 체류를 즐기는 자연 어드벤처",
+    "long_description": "무릉별유천지의 액티비티와 시즌 야간개장을 연결해 저녁까지 무릉권에 머물게 하고, 다음 날 무릉계곡으로 체류를 연장한다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "11:30",
+            "activity": "무릉 천곡권 점심 선택"
+          },
+          {
+            "time": "13:00에서 17:00",
+            "activity": "무릉별유천지 액티비티 선택 체험"
+          },
+          {
+            "time": "17:30",
+            "activity": "휴식 및 저녁식사"
+          },
+          {
+            "time": "19:00에서 21:30",
+            "activity": "야간 경관 감상과 포토미션 야간개장 시즌"
+          },
+          {
+            "time": "22:00",
+            "activity": "캠핑과 호텔 숙박"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "09:00",
+            "activity": "무릉계곡 가벼운 트레킹"
+          },
+          {
+            "time": "",
+            "activity": "점심"
+          },
+          {
+            "time": "",
+            "activity": "종료"
+          }
+        ]
+      }
+    ],
+    "meal_options": [
+      {
+        "name": "순, 두부",
+        "note": "두부 중심의 로컬 건강식 선택지"
+      },
+      {
+        "name": "광천막국수",
+        "note": "활동 전후 부담이 적은 면류"
+      },
+      {
+        "name": "미성해물찜",
+        "note": "여럿이 공유하는 저녁 식사 선택지"
+      }
+    ],
+    "breakfast_options": [
+      {
+        "name": "유정청국장",
+        "note": "한식형 든든한 식사"
+      },
+      {
+        "name": "24시전주명가콩나물국밥 동해천곡점",
+        "note": "이른 이동 전 아침식사"
+      },
+      {
+        "name": "숙소 조식",
+        "note": "호텔 이용객의 편의형 선택지"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "무릉계곡힐링캠프장",
+        "note": "자연 체류형 숙박 후보"
+      },
+      {
+        "name": "현진관광호텔",
+        "note": "천곡권 편의형 숙박 후보"
+      },
+      {
+        "name": "아이체크호텔",
+        "note": "가성비 도심형 선택지"
+      }
+    ],
+    "signature_experience": "ADVENTURE PASS. 액티비티 1에서 2종 + 야간 포토미션 + 다음 날 무릉계곡 미션을 하나의 패스로 묶는다.",
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "2026년 야간개장 기간에는 22시까지 경관 이용이 가능해 밤 일정이 숙박을 유도한다. 체험시설 탑승은 17시 마감이므로 낮 체험과 밤 경관으로 분리한다.",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "프로그램기획안_0824.md",
+    "is_active": true
+  },
+  {
+    "id": "program-06-mangsang-family-beach",
+    "name": "06 망상 FAMILY BEACH CLUB",
+    "category": "program",
+    "tier": "4050 자녀동반 가족",
+    "tagline": "숙소를 선택하고 가족 모두가 바다에서 함께 노는 대표 휴양형 프로그램",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "4050"
+    ],
+    "transport": null,
+    "region": "망상",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/mangsang-beach.jpg",
+    "gallery": [
+      "/images/places/mangsang-dune.jpg"
+    ],
+    "badges": [
+      "4050",
+      "프로그램"
+    ],
+    "tags": [
+      "4050",
+      "망상",
+      "1박 2일"
+    ],
+    "short_description": "숙소를 선택하고 가족 모두가 바다에서 함께 노는 대표 휴양형 프로그램",
+    "long_description": "해변 캠핑 한옥 호텔 등 망상권 숙박 선택폭을 활용해 가족의 여행 스타일에 맞춘 체류형 바다휴가를 만든다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "11:30",
+            "activity": "망상 천곡권 점심 선택"
+          },
+          {
+            "time": "13:00에서 16:00",
+            "activity": "망상해변 + 가족 바다탐험 미션"
+          },
+          {
+            "time": "16:00",
+            "activity": "숙소 체크인 및 휴식"
+          },
+          {
+            "time": "18:00",
+            "activity": "가족 저녁 선택과 BBQ"
+          },
+          {
+            "time": "20:00",
+            "activity": "숙소 자유시간 가족 미션 정리"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "08:00",
+            "activity": "해변 아침산책"
+          },
+          {
+            "time": "",
+            "activity": "망상사구생태관"
+          },
+          {
+            "time": "",
+            "activity": "체크아웃"
+          }
+        ]
+      }
+    ],
+    "meal_options": [
+      {
+        "name": "광천막국수",
+        "note": "주차 면류 중심의 가족 식사 후보"
+      },
+      {
+        "name": "일품복국",
+        "note": "부모와 자녀가 함께 먹기 좋은 따뜻한 한식"
+      },
+      {
+        "name": "냉면권가",
+        "note": "냉면과 치킨 등 가족 내 취향 선택폭 확보"
+      }
+    ],
+    "breakfast_options": [
+      {
+        "name": "호텔과 리조트 조식",
+        "note": "아이 동반 이동을 줄이는 편의형"
+      },
+      {
+        "name": "동해제빵소",
+        "note": "아이와 함께 고르는 베이커리형"
+      },
+      {
+        "name": "24시전주명가콩나물국밥 동해천곡점",
+        "note": "든든한 아침 식사"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "동해보양온천컨벤션호텔",
+        "note": "편의시설 휴식을 중시하는 가족"
+      },
+      {
+        "name": "망상오토캠핑리조트",
+        "note": "카라반 캠핑 등 체험형 가족"
+      },
+      {
+        "name": "망상해변한옥마을",
+        "note": "한옥이라는 특별한 숙박 경험을 원하는 가족"
+      }
+    ],
+    "signature_experience": "우리 가족 바다탐험 미션북. 모래성 만들기, 바닷가 색 찾기, 가족사진, 자연관찰 등 부모와 아이가 함께 수행한다.",
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "숙박 다음 날 아침 해변 사구 생태 프로그램을 배치해 1일 해수욕을 1박 2일 가족휴가로 확장한다.",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "프로그램기획안_0824.md",
+    "is_active": true
+  },
+  {
+    "id": "program-07-chuam-sunrise-family",
+    "name": "07 추암 SUNRISE FAMILY",
+    "category": "program",
+    "tier": "4050 자녀동반 가족",
+    "tagline": "일출을 가족 공동의 기억으로 만드는 1박 2일",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "4050"
+    ],
+    "transport": null,
+    "region": "추암",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/chuam-sculpture-park.jpg",
+    "gallery": [
+      "/images/places/chuam-candle-rock.jpg",
+      "/images/places/chuam-bridge.jpg"
+    ],
+    "badges": [
+      "4050",
+      "프로그램"
+    ],
+    "tags": [
+      "4050",
+      "추암",
+      "1박 2일"
+    ],
+    "short_description": "일출을 가족 공동의 기억으로 만드는 1박 2일",
+    "long_description": "추암의 대표 자원인 촛대바위 일출을 중심에 두고, 일출을 보기 위해 전날 숙박해야 하는 명확한 체류 이유를 만든다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "12:00",
+            "activity": "천곡 추암권 점심 선택"
+          },
+          {
+            "time": "14:00에서 17:00",
+            "activity": "추암조각공원, 출렁다리, 촛대바위"
+          },
+          {
+            "time": "17:00",
+            "activity": "가족 일출 엽서 사전 꾸미기"
+          },
+          {
+            "time": "18:00",
+            "activity": "저녁식사 선택"
+          },
+          {
+            "time": "20:00",
+            "activity": "숙소 체크인 가족사진 정리"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "",
+            "activity": "일출 40분 전 촛대바위 이동"
+          },
+          {
+            "time": "",
+            "activity": "일출 촬영"
+          },
+          {
+            "time": "",
+            "activity": "가족 엽서 완성"
+          },
+          {
+            "time": "08:30",
+            "activity": "아침식사"
+          },
+          {
+            "time": "",
+            "activity": "종료"
+          }
+        ]
+      }
+    ],
+    "meal_options": [
+      {
+        "name": "일품복국",
+        "note": "따뜻하고 비교적 편안한 가족 한식"
+      },
+      {
+        "name": "광천막국수",
+        "note": "면류 중심의 가족 선택지"
+      },
+      {
+        "name": "숟가락젓가락",
+        "note": "한상 쌈밥형 식사로 가족 구성원 선택폭 확보"
+      }
+    ],
+    "breakfast_options": [
+      {
+        "name": "24시전주명가콩나물국밥 동해천곡점",
+        "note": "일출 후 따뜻한 아침식사"
+      },
+      {
+        "name": "동해제빵소",
+        "note": "가벼운 아침과 간식"
+      },
+      {
+        "name": "호텔 조식",
+        "note": "숙소에서 바로 해결하는 편의형"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "동해추암오토캠핑장",
+        "note": "일출 접근성이 높은 체험형 숙박"
+      },
+      {
+        "name": "현진관광호텔",
+        "note": "천곡권 편의형 숙박"
+      },
+      {
+        "name": "뉴동해관광호텔",
+        "note": "가족이 선택하기 쉬운 호텔형 후보"
+      }
+    ],
+    "signature_experience": "우리 가족 일출 엽서. DAY 1에 엽서를 꾸미고 DAY 2에 직접 찍은 일출사진을 붙여 완성한다.",
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "일출이 아침 시간대에 발생하므로 전날 숙박이 프로그램 참여의 자연스러운 전제가 된다.",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "프로그램기획안_0824.md",
+    "is_active": true
+  },
+  {
+    "id": "program-08-muleung-little-explorer",
+    "name": "08 무릉 LITTLE EXPLORER",
+    "category": "program",
+    "tier": "4050 부모와 초중등 자녀",
+    "tagline": "부모에게는 자연여행, 아이에게는 게임형 탐험",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "4050"
+    ],
+    "transport": null,
+    "region": "무릉",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/muleung-byeolyu.jpg",
+    "gallery": [],
+    "badges": [
+      "4050",
+      "프로그램"
+    ],
+    "tags": [
+      "4050",
+      "무릉",
+      "1박 2일"
+    ],
+    "short_description": "부모에게는 자연여행, 아이에게는 게임형 탐험",
+    "long_description": "무릉별유천지와 무릉계곡을 단순 관람이 아닌 미션형 자연교육 콘텐츠로 재구성해 가족이 함께 머무는 이유를 만든다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "11:30",
+            "activity": "무릉 천곡권 점심 선택"
+          },
+          {
+            "time": "13:00에서 17:00",
+            "activity": "무릉별유천지 가족 체험 + LITTLE EXPLORER BOOK"
+          },
+          {
+            "time": "18:00",
+            "activity": "저녁식사 선택"
+          },
+          {
+            "time": "20:00",
+            "activity": "숙소에서 미션 스티커 정리 가족 대화"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "09:00",
+            "activity": "무릉계곡 자연미션"
+          },
+          {
+            "time": "",
+            "activity": "탐험가 인증"
+          },
+          {
+            "time": "",
+            "activity": "점심"
+          },
+          {
+            "time": "",
+            "activity": "종료"
+          }
+        ]
+      }
+    ],
+    "meal_options": [
+      {
+        "name": "순, 두부",
+        "note": "자극적이지 않은 두부 중심의 가족식 후보"
+      },
+      {
+        "name": "유정청국장",
+        "note": "한식 집밥형 선택지"
+      },
+      {
+        "name": "광천막국수",
+        "note": "아이와 부모가 함께 먹기 쉬운 면류"
+      }
+    ],
+    "breakfast_options": [
+      {
+        "name": "호텔 조식",
+        "note": "이동을 줄이는 편의형"
+      },
+      {
+        "name": "24시전주명가콩나물국밥 동해천곡점",
+        "note": "국밥형 아침"
+      },
+      {
+        "name": "숙소 간단 조식",
+        "note": "캠핑 이용 가족을 위한 자율형"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "무릉계곡힐링캠프장",
+        "note": "자연 안에서 이어지는 가족 체류"
+      },
+      {
+        "name": "현진관광호텔",
+        "note": "편의성을 우선하는 가족"
+      },
+      {
+        "name": "동해한옥동안재",
+        "note": "특별한 숙박경험을 원하는 가족"
+      }
+    ],
+    "signature_experience": "LITTLE EXPLORER BOOK. 특정 색의 암석 나뭇잎 물소리 가족사진 등 관찰 미션을 수행하고 마지막에 동해 꼬마탐험가 인증서를 제공한다.",
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "DAY 1 별유천지와 DAY 2 무릉계곡을 서로 다른 미션으로 분리해 하루에 끝낼 수 없는 탐험 서사를 만든다.",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "프로그램기획안_0824.md",
+    "is_active": true
+  },
+  {
+    "id": "program-09-cheongok-cave-detective",
+    "name": "09 천곡 CAVE DETECTIVE",
+    "category": "program",
+    "tier": "4050 자녀동반 가족",
+    "tagline": "날씨 영향을 덜 받는 동굴 탐정형 가족 프로그램",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "4050"
+    ],
+    "transport": null,
+    "region": "천곡",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/bat-cave.jpg",
+    "gallery": [
+      "/images/places/hanseom-beach.jpg"
+    ],
+    "badges": [
+      "4050",
+      "프로그램"
+    ],
+    "tags": [
+      "4050",
+      "천곡",
+      "1박 2일"
+    ],
+    "short_description": "날씨 영향을 덜 받는 동굴 탐정형 가족 프로그램",
+    "long_description": "천곡황금박쥐동굴을 협동 미션 콘텐츠로 바꾸고 한섬 도심 식음 숙박과 묶어 전천후 가족 체류 프로그램을 만든다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "11:30",
+            "activity": "천곡권 점심 선택"
+          },
+          {
+            "time": "13:00에서 15:30",
+            "activity": "천곡황금박쥐동굴 + 황금박쥐 탐정단"
+          },
+          {
+            "time": "15:30에서 16:30",
+            "activity": "자연학습체험공원"
+          },
+          {
+            "time": "17:00",
+            "activity": "한섬해변과 감성바닷길 산책"
+          },
+          {
+            "time": "18:00",
+            "activity": "저녁식사 선택"
+          },
+          {
+            "time": "20:00",
+            "activity": "숙소 체크인"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "08:30",
+            "activity": "아침 선택"
+          },
+          {
+            "time": "",
+            "activity": "한섬과 감추해변"
+          },
+          {
+            "time": "",
+            "activity": "종료"
+          }
+        ]
+      }
+    ],
+    "meal_options": [
+      {
+        "name": "일품복국",
+        "note": "한식 중심 가족 식사"
+      },
+      {
+        "name": "참한집",
+        "note": "고기류를 선호하는 가족 선택지"
+      },
+      {
+        "name": "숟가락젓가락",
+        "note": "한상형 식사를 선호하는 가족 선택지"
+      }
+    ],
+    "breakfast_options": [
+      {
+        "name": "24시전주명가콩나물국밥 동해천곡점",
+        "note": "이른 아침에도 활용 가능한 국밥 후보"
+      },
+      {
+        "name": "동해제빵소",
+        "note": "아이와 가볍게 먹는 베이커리형"
+      },
+      {
+        "name": "가마솥용순대 본점",
+        "note": "국밥형 아침과 점심 선택지"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "현진관광호텔",
+        "note": "천곡 도심 접근성 중심"
+      },
+      {
+        "name": "뉴동해관광호텔",
+        "note": "편의형 가족 호텔 후보"
+      },
+      {
+        "name": "동해한옥동안재",
+        "note": "체험형 숙박 선택지"
+      }
+    ],
+    "signature_experience": "황금박쥐 탐정단. 박쥐 서식환경 동굴 생성물 공간 관찰 퀴즈를 부모와 아이가 협동해 해결한다.",
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "동굴 이후 저녁 숙박을 거쳐 다음 날 해변까지 연결하며, 비 오는 날에도 DAY 1 핵심 체험을 운영할 수 있다.",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "프로그램기획안_0824.md",
+    "is_active": true
+  },
+  {
+    "id": "program-10-mukho-family-story",
+    "name": "10 묵호 FAMILY STORY TRIP",
+    "category": "program",
+    "tier": "4050 부모와 자녀",
+    "tagline": "마을 이야기와 시장을 가족이 함께 기록하는 로컬 스토리 여행",
+    "duration_nights": 1,
+    "duration_label": "1박 2일",
+    "base_price": 0,
+    "price_label": "확인 안 됨",
+    "max_participants": null,
+    "min_participants": null,
+    "target_persona": [
+      "4050"
+    ],
+    "transport": null,
+    "region": "묵호",
+    "season": "확인 안 됨",
+    "available_months": [],
+    "main_image": "/images/places/mukho-lighthouse.jpg",
+    "gallery": [
+      "/images/places/nongol-damgil.jpg",
+      "/images/places/east-sea-market.jpg",
+      "/images/places/book-village.jpg"
+    ],
+    "badges": [
+      "4050",
+      "프로그램"
+    ],
+    "tags": [
+      "4050",
+      "묵호",
+      "1박 2일"
+    ],
+    "short_description": "마을 이야기와 시장을 가족이 함께 기록하는 로컬 스토리 여행",
+    "long_description": "2030 묵호 프로그램의 야간과 교류와 달리, 가족에게는 논골담길의 이야기 시장 기록 활동을 중심으로 세대공감형 체류를 제공한다.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "DAY 1",
+        "schedule": [
+          {
+            "time": "11:30",
+            "activity": "묵호권 점심 선택"
+          },
+          {
+            "time": "13:00에서 17:00",
+            "activity": "논골담길 해설, 묵호등대, 도째비골"
+          },
+          {
+            "time": "17:00",
+            "activity": "동쪽바다중앙시장 가족 장보기와 간식 미션"
+          },
+          {
+            "time": "18:30",
+            "activity": "저녁식사 선택"
+          },
+          {
+            "time": "20:30",
+            "activity": "숙소 체크인 + 우리 가족 묵호 지도 완성"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "title": "DAY 2",
+        "schedule": [
+          {
+            "time": "09:00",
+            "activity": "아침식사"
+          },
+          {
+            "time": "",
+            "activity": "바닷가책방마을"
+          },
+          {
+            "time": "",
+            "activity": "서로에게 동해 엽서 작성"
+          },
+          {
+            "time": "",
+            "activity": "종료"
+          }
+        ]
+      }
+    ],
+    "meal_options": [
+      {
+        "name": "부흥횟집",
+        "note": "물회 생선구이 등 바다 지역성"
+      },
+      {
+        "name": "동북횟집",
+        "note": "회 물회류 가족 식사"
+      },
+      {
+        "name": "거동탕수육",
+        "note": "아이와 함께 나눠 먹기 쉬운 캐주얼 선택지"
+      }
+    ],
+    "breakfast_options": [
+      {
+        "name": "오뚜기칼국수",
+        "note": "장칼국수 등 따뜻한 식사"
+      },
+      {
+        "name": "가마솥용순대 본점",
+        "note": "국밥류를 선호하는 가족"
+      },
+      {
+        "name": "동쪽바다중앙시장 자유식",
+        "note": "시장 탐방과 식사를 동시에 진행"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "뉴동해관광호텔",
+        "note": "편의형 가족 숙박"
+      },
+      {
+        "name": "어달권 펜션",
+        "note": "가족끼리 바다 가까이 머무는 선택지"
+      },
+      {
+        "name": "묵호권 소규모 스테이",
+        "note": "큰 자녀 동반 가족 등 대상, 객실형태 재확인 필요"
+      }
+    ],
+    "signature_experience": "우리 가족 묵호 지도. 가장 마음에 든 벽화 바다 전망 음식 시장 간식 가족 포토존을 지도에 직접 표시하고 다음 날 엽서로 마무리한다.",
+    "included": [],
+    "not_included": [],
+    "optional_addons": [],
+    "host_message": "DAY 1의 지도 수집 활동을 숙소에서 정리하고 DAY 2 책방마을 엽서 활동에서 완성하도록 2일 구조로 설계한다.",
+    "what_to_bring": [],
+    "cancellation_policy": "확인 안 됨",
+    "source": "프로그램기획안_0824.md",
+    "is_active": true
+  }
+]

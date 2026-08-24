@@ -1,0 +1,50 @@
+[
+  {
+    "id": "pass-1day",
+    "name": "1일권",
+    "price": 5000,
+    "price_per_day": 5000,
+    "duration_label": "1일",
+    "purpose": "당일치기용",
+    "recommended": false,
+    "included": [
+      "별빛 콘텐츠 이용",
+      "코스 내 상권 할인",
+      "NFC 스탬프",
+      "AI 코스 추천"
+    ],
+    "note": "맛집과 카페 할인만으로 2에서 3곳 이용 시 본전 이상 회수된다"
+  },
+  {
+    "id": "pass-2day",
+    "name": "2일권",
+    "price": 8000,
+    "price_per_day": 4000,
+    "duration_label": "2일",
+    "purpose": "1박용",
+    "recommended": true,
+    "included": [
+      "1일권 혜택 전체",
+      "별빛 타임 프리미엄",
+      "밤 시간대 미식 할인",
+      "다음날 재방문 혜택"
+    ],
+    "note": "1일권 두 장 10,000원보다 2,000원 싸면서 밤 콘텐츠가 추가된다"
+  },
+  {
+    "id": "pass-3day",
+    "name": "3일권",
+    "price": 10000,
+    "price_per_day": 3333,
+    "duration_label": "3일",
+    "purpose": "2박 이상 깊은 체류용",
+    "recommended": false,
+    "included": [
+      "2일권 혜택 전체",
+      "제휴 숙소 할인",
+      "전 권역 무릉과 추암 포함",
+      "3일차 재방문 혜택"
+    ],
+    "note": "하루 단가가 5,000원에서 4,000원에서 3,333원으로 내려간다"
+  }
+]
