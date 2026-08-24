@@ -1572,3 +1572,22 @@ R1C 로 배경이 순백이 되면서 챗봇 히어로 입력창(bg-white + 아�
 - 포커스 시 primary(#4AB8CD) 테두리 + 링
 
 즉 순백 배경 위에서 입력창 면과 테두리가 수치상 명확히 구분됨. 육안 스크린샷은 현호 님 확인 필요.
+
+---
+
+# R5 챗봇 입력창 흰 배경 + 테두리만 (2026-08-24)
+
+R4 가 입력창 면을 회색(bg-bg-mute)으로 칠한 것을 되돌림. 배경은 흰색, 경계는 테두리 선으로만.
+
+## 수정 (SovereignHero 입력창 한 곳)
+
+- `bg-bg-mute` 회색 면 제거 → `bg-white`
+- 경계는 `border border-border-def`(#DCDCDC 얇은 선) 하나로만
+- 포커스 `focus-within:border-primary focus-within:ring-2 focus-within:ring-primary`(민트) 유지
+- 다른 요소 미변경(파일 1개)
+
+## 배포 실측
+
+- 배포 JS 번들에 입력창 컨테이너 클래스 `rounded-2xl bg-white border border-border-def` 확인 → 면은 흰색, 회색/베이지 배경 없음
+- 경계는 테두리 선(#DCDCDC)으로만. 포커스 시 primary(#4AB8CD) 테두리+링
+- body/페이지 흰색 rgb(255 255 255) 유지
