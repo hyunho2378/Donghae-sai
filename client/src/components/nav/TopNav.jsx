@@ -3,16 +3,21 @@ import { Menu, X } from 'lucide-react'
 import Logo from './Logo'
 import NavMenu from './NavMenu'
 import IconGroup from './IconGroup'
+import { useChatUi } from '../../store/useChatUi'
 
 export default function TopNav() {
   const [menuOpen, setMenuOpen] = useState(false)
+  // 홈 챗봇이 대화 모드로 열리면 헤더를 좌측 정렬로 넓혀 로고가 왼쪽으로 이동한다
+  const panelOpen = useChatUi((s) => s.panelOpen)
 
   return (
     <>
       <header className="sticky top-0 z-40 bg-white border-b border-border-sub">
-        <div className="container-page
+        <div className={`mx-auto w-full px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
+                        transition-[max-width] duration-300 ease-out
+                        ${panelOpen ? 'max-w-[2400px]' : 'max-w-[1400px] 2xl:max-w-[1600px]'}
                         h-[60px] lg:h-[80px]
-                        flex items-center justify-between gap-6">
+                        flex items-center justify-between gap-6`}>
           <div className="flex items-center gap-6 lg:gap-10 shrink-0">
             <Logo />
           </div>

@@ -8,8 +8,9 @@ export default function SovereignChat() {
   const [open, setOpen] = useState(false)
   const [input, setInput] = useState('')
   const [mukoErr, setMukoErr] = useState(false)
+  // seed 는 질문 전 안내 말풍선. 실제 답변이 아니므로 액션 버튼을 붙이지 않는다
   const { messages, streaming, send } = useSovereignChat([
-    { role: 'assistant', content: '동해 여행에 대해 물어보세요.' }
+    { role: 'assistant', content: '동해 여행에 대해 물어보세요.', seed: true }
   ])
   const listRef = useRef(null)
 
@@ -70,7 +71,8 @@ export default function SovereignChat() {
                       text={stripMarkdown(m.content)}
                       sources={m.sources}
                       links={m.links}
-                      showSources={!(streaming && i === messages.length - 1)} />
+                      showSources={!(streaming && i === messages.length - 1)}
+                      showActions={!m.seed && !(streaming && i === messages.length - 1)} />
                   )}
                 </div>
               </div>

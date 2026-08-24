@@ -119,29 +119,28 @@ function ActionBar({ plain }) {
     else { navigator.clipboard?.writeText(plain); setCopied(true); setTimeout(() => setCopied(false), 1500) }
   }
 
-  const btn = 'inline-flex items-center gap-1 h-8 px-2.5 rounded-full font-pretendard font-medium text-[12px] transition-colors duration-150 motion-reduce:transition-none'
+  // 아이콘만. 화면 라벨은 지우고 aria-label/title 로만 뜻을 남긴다
+  const btn = 'inline-flex items-center justify-center w-8 h-8 rounded-full transition-colors duration-150 motion-reduce:transition-none'
 
   return (
     <div className="mt-3 flex items-center gap-1">
-      <button type="button" onClick={onCopy} aria-label="복사"
+      <button type="button" onClick={onCopy} aria-label="복사" title="복사"
               className={`${btn} text-text-meta hover:text-text-pri hover:bg-bg-card`}>
-        {copied ? <Check size={14} className="text-primary" /> : <Copy size={14} />}
-        {copied ? '복사됨' : '복사'}
+        {copied ? <Check size={15} className="text-primary" /> : <Copy size={15} />}
       </button>
-      <button type="button" onClick={onShare} aria-label="공유"
+      <button type="button" onClick={onShare} aria-label="공유" title="공유"
               className={`${btn} text-text-meta hover:text-text-pri hover:bg-bg-card`}>
-        <Share2 size={14} />
-        공유
+        <Share2 size={15} />
       </button>
-      <button type="button" onClick={() => setVote((v) => (v === 'up' ? null : 'up'))} aria-label="좋아요"
+      <button type="button" onClick={() => setVote((v) => (v === 'up' ? null : 'up'))} aria-label="좋아요" title="좋아요"
               aria-pressed={vote === 'up'}
               className={`${btn} ${vote === 'up' ? 'text-primary' : 'text-text-meta hover:text-text-pri hover:bg-bg-card'}`}>
-        <ThumbsUp size={14} fill={vote === 'up' ? 'currentColor' : 'none'} />
+        <ThumbsUp size={15} fill={vote === 'up' ? 'currentColor' : 'none'} />
       </button>
-      <button type="button" onClick={() => setVote((v) => (v === 'down' ? null : 'down'))} aria-label="싫어요"
+      <button type="button" onClick={() => setVote((v) => (v === 'down' ? null : 'down'))} aria-label="싫어요" title="싫어요"
               aria-pressed={vote === 'down'}
               className={`${btn} ${vote === 'down' ? 'text-accent' : 'text-text-meta hover:text-text-pri hover:bg-bg-card'}`}>
-        <ThumbsDown size={14} fill={vote === 'down' ? 'currentColor' : 'none'} />
+        <ThumbsDown size={15} fill={vote === 'down' ? 'currentColor' : 'none'} />
       </button>
     </div>
   )
