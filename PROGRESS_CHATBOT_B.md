@@ -75,6 +75,18 @@ git branch -D chat-layout-panel-v2
 - 챗봇 백엔드(로컬 Ollama `gemma4:e4b`)도 없음 → 실제 답변과 sources 스트림이 안 와서, 설령 브라우저가 있어도 카드가 채워진 라이브 화면은 못 만든다.
 - 그래서 (1) 프론트 빌드, (2) 매핑 self-check, (3) 코드 트레이스로 검증했다. 라이브 캡처는 현호 님이 로컬에서 백엔드 켜고 `npm run dev` 로 확인해야 한다.
 
+## 레퍼런스 교정 (네이버 AI탭 구조로 2차 수정)
+
+1. **새 대화 → 얇은 세로 사이드바.** 대화 영역 안 큰 알약 버튼 제거. 좌측 `w-14` 세로 nav 에 새 대화 아이콘(`SquarePen`)만. 히스토리는 실제 기능 없어 아이콘도 생략(가짜 금지). 누르면 초기 화면 복귀.
+2. **헤더 좌측 이동.** 전역 store `useChatUi.panelOpen` 신설. SovereignHero 가 대화 열림을 알리면 TopNav 가 헤더 max-width 를 1400→2400 으로 넓혀(`transition-[max-width] 300ms`) 로고가 왼쪽으로 미끄러진다. 홈 벗어나거나 새 대화 시 원복.
+3. **우측 패널 안내 문구 제거.** `답변에 쓰인 장소와 코스가 여기에 모여요` 삭제. 우측 aside 는 `panelSources.length > 0` 일 때만 렌더. 근거 없으면 빈 공간. 카드 있을 때 `이 답변의 근거 N곳` 헤더만 남김.
+4. **FAB 초기 액션 버튼 제거.** 안내 말풍선에 `seed: true`. AnswerText `showActions={!m.seed && !(streaming && last)}` 로 실제 답변에만 액션. 질문 전엔 안 뜬다.
+5. **액션 버튼 아이콘만.** ActionBar 복사/공유/좋아요/싫어요 한글 라벨 제거, `w-8 h-8` 아이콘 버튼. `aria-label`+`title` 로 접근성 유지. hero·FAB 공용이라 한 곳 수정으로 양쪽 적용.
+
+수정 파일: `store/useChatUi.js`(신규), `nav/TopNav.jsx`, `SovereignHero.jsx`, `SovereignChat.jsx`, `AnswerText.jsx`. 좌우 분할·카드 클릭·스트리밍 로직 안 건드림. 빌드 통과.
+
+백엔드 없이도 확인 가능: 세로 사이드바, 헤더 좌측 이동, 답변 전 우측 빈 공간, FAB 초기 액션 없음, 아이콘만 버튼. 카드/실답변 액션은 백엔드 필요. 확장 미연결로 캡처는 여전히 못 함.
+
 ## 다음 (현호 확인 후)
 
 - 스팟 이미지 공백 113/148 채울지 결정.

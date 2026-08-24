@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowUp, CornerDownRight, Plus } from 'lucide-react'
+import { ArrowUp, CornerDownRight, SquarePen } from 'lucide-react'
 import useSovereignChat, { stripMarkdown, resolveSources } from '../hooks/useSovereignChat'
 import { useAuthStore } from '../store/useAuthStore'
+import { useChatUi } from '../store/useChatUi'
 import AnswerSkeleton from './AnswerSkeleton'
 import AnswerText from './AnswerText'
 import SourcePanel from './SourcePanel'
@@ -29,12 +30,19 @@ export default function SovereignHero() {
   const [phase, setPhase] = useState('idle') // idle 초기, leaving 인트로 소멸, chat 대화
   const { messages, streaming, send, reset } = useSovereignChat()
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
+  const setPanelOpen = useChatUi((s) => s.setPanelOpen)
   const scrollRef = useRef(null)
   const taRef = useRef(null)
   const timer = useRef(null)
 
   const opened = phase === 'chat'
   const leaving = phase === 'leaving'
+
+  // 대화 모드 여부를 전역에 알린다. TopNav 가 헤더를 좌측으로 옮기는 신호. 언마운트 시 원복
+  useEffect(() => {
+    setPanelOpen(opened)
+    return () => setPanelOpen(false)
+  }, [opened, setPanelOpen])
 
   // 최신 어시스턴트 답변의 출처를 우측 카드로 푼다. 답변이 바뀌면 패널도 그 근거로 갱신된다
   const lastWithSources = [...messages].reverse().find((m) => m.role === 'assistant' && m.sources?.length)
@@ -199,26 +207,25 @@ export default function SovereignHero() {
           </div>
         </div>
       ) : (
-        /* ===== 대화 화면. 좌 대화 + 우 출처 패널 ===== */
+        /* ===== 대화 화면. 얇은 사이드바 + 좌 대화 + 우 출처 패널 ===== */
         <div className="flex-1 min-h-0 flex">
 
-          {/* 좌측. 새 대화 진입점 + 대화 + 하단 입력 */}
-          <div className="flex-1 min-w-0 flex flex-col">
-            <div className="shrink-0 border-b border-border-sub">
-              <div className={`${COL} py-3 flex`}>
-                <button
-                  onClick={newChat}
-                  className="inline-flex items-center gap-1.5 h-9 px-3 rounded-full
-                             border border-border-def
-                             font-pretendard font-medium text-[13px] text-text-sec
-                             hover:border-primary hover:text-primary-hover
-                             transition-colors duration-150">
-                  <Plus size={16} />
-                  새 대화
-                </button>
-              </div>
-            </div>
+          {/* 얇은 세로 사이드바. 아이콘 위주. 새 대화만 둔다(히스토리 기능 없어 생략) */}
+          <nav className="w-14 shrink-0 border-r border-border-sub
+                          flex flex-col items-center py-4">
+            <button
+              onClick={newChat}
+              aria-label="새 대화"
+              title="새 대화"
+              className="w-10 h-10 inline-flex items-center justify-center rounded-full
+                         text-text-sec hover:bg-bg-card hover:text-primary-hover
+                         transition-colors duration-150 motion-reduce:transition-none">
+              <SquarePen size={20} />
+            </button>
+          </nav>
 
+          {/* 대화. 스크롤 영역 + 하단 입력 */}
+          <div className="flex-1 min-w-0 flex flex-col">
             <div ref={scrollRef} className="flex-1 min-h-0 overflow-y-auto py-6 animate-flow-down-late">
               <div className={`${COL} space-y-4`}>
                 {messages.map((m, i) => (
@@ -265,19 +272,15 @@ export default function SovereignHero() {
             </div>
           </div>
 
-          {/* 우측. 출처 카드 패널. 데스크톱에서만 별도 컬럼 */}
-          <aside className="hidden lg:block w-[340px] xl:w-[380px] shrink-0
-                            border-l border-border-sub overflow-y-auto bg-page">
-            <div className="p-5">
-              {panelSources.length > 0 ? (
+          {/* 우측. 출처 카드 패널. 근거 카드가 있을 때만 뜬다. 없으면 빈 공간(안내 문구 없음) */}
+          {panelSources.length > 0 && (
+            <aside className="hidden lg:block w-[340px] xl:w-[380px] shrink-0
+                              border-l border-border-sub overflow-y-auto bg-page">
+              <div className="p-5">
                 <SourcePanel sources={panelSources} />
-              ) : (
-                <p className="font-pretendard font-normal text-[13px] text-text-meta leading-relaxed">
-                  답변에 쓰인 장소와 코스가 여기에 모여요
-                </p>
-              )}
-            </div>
-          </aside>
+              </div>
+            </aside>
+          )}
         </div>
       )}
     </section>
