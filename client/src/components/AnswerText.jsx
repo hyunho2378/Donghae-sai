@@ -147,7 +147,9 @@ function ActionBar({ plain }) {
   )
 }
 
-export default function AnswerText({ text, sources = [], links = {}, showSources = true, compact = false }) {
+export default function AnswerText({ text, sources = [], links = {}, showSources = true, showActions, compact = false }) {
+  // showActions 를 안 주면 showSources 와 같은 시점(답변 완료)에 노출한다
+  const actions = showActions === undefined ? showSources : showActions
   const rawBlocks = text.split(/\n{2,}/).map((b) => b.trim()).filter(Boolean)
   if (rawBlocks.length === 0) return null
 
@@ -182,7 +184,7 @@ export default function AnswerText({ text, sources = [], links = {}, showSources
       </div>
 
       {/* 답변이 끝난 뒤에만 액션 바를 보인다. 스트리밍 중에는 감춘다 */}
-      {showSources && <ActionBar plain={plain} />}
+      {actions && <ActionBar plain={plain} />}
     </div>
   )
 }
