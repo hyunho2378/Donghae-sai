@@ -60,7 +60,7 @@ export default function StoryDetailPage() {
         <div className="absolute inset-0 bg-black/45" />
         <div className="absolute bottom-0 left-0 right-0
                         px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 pb-8 lg:pb-12">
-          <div className="mx-auto max-w-[720px]">
+          <div className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px]">
             <p className="font-pretendard font-medium text-[12px] md:text-[13px] tracking-[0.08em] text-white/80">
               {story.category}
             </p>

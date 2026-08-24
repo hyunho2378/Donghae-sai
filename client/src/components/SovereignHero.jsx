@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowUp, CornerDownRight, Plus, Sparkles } from 'lucide-react'
+import { ArrowUp, CornerDownRight, Plus } from 'lucide-react'
 import useSovereignChat, { stripMarkdown } from '../hooks/useSovereignChat'
 import AnswerSkeleton from './AnswerSkeleton'
 import AnswerText from './AnswerText'
@@ -23,7 +23,6 @@ const WRAP = 'mx-auto w-full max-w-[900px] px-5 md:px-8 lg:px-12 xl:px-16 3xl:px
 export default function SovereignHero() {
   const [input, setInput] = useState('')
   const [phase, setPhase] = useState('idle') // idle 초기, leaving 인트로 소멸, chat 대화
-  const [mukoErr, setMukoErr] = useState(false) // 무코 애셋 부재 시 아이콘 폴백
   const { messages, streaming, send, reset } = useSovereignChat()
   const scrollRef = useRef(null)
   const taRef = useRef(null)
@@ -83,7 +82,7 @@ export default function SovereignHero() {
 
       {/* 위쪽. 초기에는 헤드라인, 대화 중에는 스크롤되는 대화 영역 */}
       <div ref={scrollRef}
-           className={opened ? 'flex-1 min-h-0 overflow-y-auto pt-6 lg:pt-8 pb-3' : ''}>
+        className={opened ? 'flex-1 min-h-0 overflow-y-auto pt-6 lg:pt-8 pb-3' : ''}>
         <div className={WRAP}>
           {!opened && (
             <h1 className={`text-center font-pretendard font-bold
@@ -134,20 +133,6 @@ export default function SovereignHero() {
                           rounded-2xl bg-white border border-border-def
                           focus-within:border-primary focus-within:ring-2 focus-within:ring-primary
                           transition-colors duration-150`}>
-            {/* 무코는 대화가 열린 상태에서만 입력창 옆에 뜬다. fab 성격 */}
-            {opened && (
-              <div className="shrink-0 self-end mb-0.5">
-                {!mukoErr ? (
-                  <img src="/images/character/muko-main.png" alt="무코" loading="lazy"
-                       onError={() => setMukoErr(true)}
-                       className="w-9 h-9 lg:w-10 lg:h-10 object-contain" />
-                ) : (
-                  <span className="w-9 h-9 rounded-full bg-primary-soft inline-flex items-center justify-center">
-                    <Sparkles size={18} className="text-primary" />
-                  </span>
-                )}
-              </div>
-            )}
             <textarea
               ref={taRef}
               rows={2}
@@ -169,8 +154,8 @@ export default function SovereignHero() {
                           inline-flex items-center justify-center rounded-full
                           transition-colors duration-150
                           ${input.trim() && !streaming
-                            ? 'bg-primary text-white hover:bg-primary-hover'
-                            : 'bg-bg-card text-text-ter cursor-not-allowed'}`}>
+                  ? 'bg-primary text-white hover:bg-primary-hover'
+                  : 'bg-bg-card text-text-ter cursor-not-allowed'}`}>
               <ArrowUp size={20} />
             </button>
           </div>
@@ -208,12 +193,12 @@ export default function SovereignHero() {
             <span aria-hidden="true" className="hidden sm:inline-block w-px h-3 bg-border-def" />
             <span className="flex items-center gap-3">
               <Link to="/privacy"
-                    className="font-pretendard font-medium text-[12px] text-text-sec
+                className="font-pretendard font-medium text-[12px] text-text-sec
                                hover:text-text-pri transition-colors duration-150">
                 개인정보처리안내
               </Link>
               <button type="button"
-                      className="font-pretendard font-medium text-[12px] text-text-sec
+                className="font-pretendard font-medium text-[12px] text-text-sec
                                  hover:text-text-pri transition-colors duration-150">
                 고객센터
               </button>
