@@ -306,7 +306,8 @@ export default function StoryDetailPage() {
       {/* 12. Related stories */}
       {related.length > 0 && (
         <div className="mt-16 bg-bg-mute py-12 lg:py-16">
-          <div className="container-page">
+          {/* 배경은 전체 폭, 안쪽 콘텐츠는 본문과 같은 720 기준선에 맞춘다 */}
+          <div className="mx-auto w-full px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 max-w-[720px]">
             <h2 className="font-pretendard font-bold
                            text-[20px] md:text-[22px] lg:text-[24px]
                            text-text-pri tracking-[-0.02em] mb-6">
