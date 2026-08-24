@@ -20,8 +20,8 @@ export default {
         pretendard: ['"Pretendard Variable"', '"Pretendard"']
       },
       colors: {
-        // 웜그레이 베이지 배경 시스템. 순백을 버리고 면 톤으로 카드를 가른다
-        page: '#F4F1EC',       // 페이지 배경. 웜 뉴트럴
+        // 페이지 배경 순백. 웜 베이지 실험을 되돌린다
+        page: '#FFFFFF',       // 페이지 배경. 순백
         section: '#EDE9E2',    // 섹션 구분. 한 단 더 눌러
         bg: {
           card: '#FFFFFF',     // 카드 표면. 순백이라 배경 위에 뜬다
