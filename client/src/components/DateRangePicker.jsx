@@ -88,7 +88,7 @@ export default function DateRangePicker({
                    hover:border-primary focus-visible:border-primary
                    transition-colors duration-150 motion-reduce:transition-none">
         <span className={checkIn ? 'text-text-pri' : 'text-text-ter'}>
-          {checkIn ? `${checkIn}${checkOut ? ` ~ ${checkOut}` : ''}` : '날짜를 선택해라'}
+          {checkIn ? `${checkIn}${checkOut ? ` ~ ${checkOut}` : ''}` : '날짜를 선택하세요'}
         </span>
         <Calendar size={20} className="shrink-0 text-text-meta" />
       </button>

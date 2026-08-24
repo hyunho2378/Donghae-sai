@@ -5,7 +5,7 @@ import { STAY_TYPE_LABEL } from '../../lib/format'
 
 export default function StayCard({
   id, name, type, region, main_image, gallery,
-  price_label, short_description, badges = []
+  price_label, short_description
 }) {
   const image = main_image || gallery?.[0]
   return (
@@ -20,7 +20,6 @@ export default function StayCard({
           )}
           <div className="absolute top-3 left-3 flex gap-2">
             <Badge variant="soft">{STAY_TYPE_LABEL[type]}</Badge>
-            {badges.slice(0, 1).map((b) => <Badge key={b}>{b}</Badge>)}
           </div>
           <div className="absolute top-3 right-3">
             <BookmarkButton onImage itemId={id} itemType="stays" />

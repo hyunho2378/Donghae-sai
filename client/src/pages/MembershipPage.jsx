@@ -5,7 +5,7 @@ import { DoorOpen, MapPin, BedDouble, Check, ChevronDown } from 'lucide-react'
 import { useAuthStore } from '../store/useAuthStore'
 import plansData from '../data/membership_plans.json'
 
-// 아래 내용은 전부 자료집 pass 항목 원문 근거다. 원문에 없는 값은 확인 안 됨으로 둔다
+// 아래 내용은 전부 자료집 pass 항목 원문 근거다. 원문에 없는 값은 미정으로 둔다
 const TAGS = [
   { Icon: DoorOpen, title: '관문 태그', desc: '여정의 시작점에서 패스를 활성화한다' },
   { Icon: MapPin, title: '코스 태그', desc: '관광지와 상점에서 혜택과 스탬프를 받는다' },
@@ -29,7 +29,7 @@ const FAQ = [
   { q: '가족은 어떻게 사나요?', a: '묶음권 1매가 아니라 인원수만큼 개별권으로 발급한다. 4인이면 패스 번호 4개를 발급해 각자 NFC 태그로 개인별 여정 데이터를 남긴다. 가족 묶음 시 10에서 15% 추가 할인이 적용된다. 2일권 4인은 32,000원에서 가족팩 27,900원이다.' },
   { q: '패스가 없어도 태그할 수 있나요?', a: '태그하면 코스 소개와 구매 안내가 뜬다. 혜택은 잠기되 익명 방문 기록은 남는다.' },
   { q: '스탬프를 다 모으면 어떻게 되나요?', a: '완주하면 문어 굿즈 등 보상을 준다.' },
-  { q: '환불 규정은 어떻게 되나요?', a: '확인 안 됨. 자료 도착 후 안내한다.' }
+  { q: '환불 규정은 어떻게 되나요?', a: '자료 도착 후 안내한다.' }
 ]
 
 function passCta(isAuthenticated, planId) {

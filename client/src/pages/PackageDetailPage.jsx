@@ -112,10 +112,10 @@ export default function PackageDetailPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {[
               { label: '기간', value: pkg.duration_label },
-              { label: '타깃', value: pkg.target_persona?.[0] || '확인 안 됨' },
+              { label: '타깃', value: pkg.target_persona?.[0] || '미정' },
               isProgram
-                ? { label: '권역', value: pkg.region || '확인 안 됨' }
-                : { label: '이동수단', value: pkg.transport || '확인 안 됨' },
+                ? { label: '권역', value: pkg.region || '미정' }
+                : { label: '이동수단', value: pkg.transport || '미정' },
               { label: '방문지', value: `${pkg.itinerary.reduce((n, d) => n + d.schedule.length, 0)}곳` }
             ].map((item) => (
               <div key={item.label} className="shadow-card rounded-xl p-4 md:p-5">
@@ -220,7 +220,7 @@ export default function PackageDetailPage() {
                               {o.name}
                             </p>
                             <p className="mt-1.5 font-pretendard font-normal text-[13px] text-text-sec leading-relaxed">
-                              {o.note || '확인 안 됨'}
+                              {o.note || '미정'}
                             </p>
                           </li>
                         ))}

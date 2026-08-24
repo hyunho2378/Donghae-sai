@@ -2,7 +2,7 @@ import { useParams, Navigate, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import {
-  Clock, Bookmark, Share2, MapPin, X, ChevronLeft, ChevronRight
+  Bookmark, Share2, MapPin, X, ChevronLeft, ChevronRight
 } from 'lucide-react'
 import staysData from '../data/stays.json'
 import StayCard from '../components/card/StayCard'
@@ -15,19 +15,41 @@ import { formatPrice, STAY_TYPE_LABEL, calcNights } from '../lib/format'
 import { useAuthStore } from '../store/useAuthStore'
 import { useBookmark } from '../hooks/useBookmark'
 
-const TABS = [
-  { key: 'about', label: '소개' },
-  { key: 'location', label: '위치 및 정보' }
-]
-
 const DISCOUNT_RATE = 0.10
+
+// 미상 값 sentinel 은 화면에 내보내지 않는다
+const clean = (v) => (v && v !== '확인 안 됨' ? v : null)
+
+// hours 자유 문자열을 영업시간과 휴무 행으로 나눈다. 에서 표기는 물결로 바꾼다
+function buildInfoRows(stay) {
+  const rows = []
+  if (stay.address) rows.push({ label: '주소', value: stay.address, map: true })
+
+  const hours = clean(stay.hours)
+  if (hours) {
+    // 확인 안 됨과 미기재 같은 미상 조각은 표에 내보내지 않는다
+    const parts = hours.split(',').map((p) => p.trim())
+      .filter(Boolean)
+      .filter((p) => !/확인 안 됨|미기재|미상/.test(p))
+    const closed = parts.filter((p) => p.includes('휴무'))
+    const open = parts.filter((p) => !p.includes('휴무'))
+    if (open.length) rows.push({ label: '영업시간', value: open.join(', ').replace(/에서/g, ' ~ ') })
+    if (closed.length) rows.push({ label: '휴무', value: closed.join(', ').replace(/에서/g, ' ~ ') })
+  }
+
+  const price = clean(stay.price_label)
+  rows.push({ label: '요금', value: price ? price.replace(/에서/g, ' ~ ') : '요금 미정' })
+  return rows
+}
+
+const mapSearchUrl = (addr) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addr)}`
+const mapEmbedUrl = (addr) => `https://maps.google.com/maps?q=${encodeURIComponent(addr)}&z=15&output=embed`
 
 export default function StayDetailPage() {
   const { id } = useParams()
   const navigate = useNavigate()
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
   const { isBookmarked, toggle: toggleBookmark } = useBookmark('stays', id)
-  const [tab, setTab] = useState('about')
   const [guests, setGuests] = useState(1)
   const [checkIn, setCheckIn] = useState('')
   const [checkOut, setCheckOut] = useState('')
@@ -38,7 +60,7 @@ export default function StayDetailPage() {
   const stay = staysData.find((s) => s.id === id)
   if (!stay) return <Navigate to="/stays" replace />
 
-  const similar = staysData.filter((s) => s.id !== stay.id && s.region === stay.region).slice(0, 4)
+  const similar = staysData.filter((s) => s.id !== stay.id && s.region === stay.region).slice(0, 8)
   const nights = calcNights(checkIn, checkOut)
   const basePrice = Number(stay.price_per_night) || 0
   const baseTotal = basePrice * Math.max(1, nights)
@@ -49,6 +71,7 @@ export default function StayDetailPage() {
   const gallery = stay.gallery || []
   const main = stay.main_image || gallery[0]
   const lightboxImages = gallery.length ? gallery : (main ? [main] : [])
+  const infoRows = buildInfoRows(stay)
 
   const onReserveClick = () => {
     if (!isAuthenticated) {
@@ -56,11 +79,15 @@ export default function StayDetailPage() {
       return
     }
     if (!checkIn || !checkOut || nights <= 0) {
-      setError('체크인과 체크아웃 날짜를 선택해라')
+      setError('체크인과 체크아웃 날짜를 선택하세요')
       return
     }
     setError('')
     setModal(true)
+  }
+
+  const onShare = () => {
+    navigator.clipboard?.writeText(window.location.href)
   }
 
   const openLightbox = (idx) => setLightbox(idx)
@@ -77,15 +104,24 @@ export default function StayDetailPage() {
         <meta property="og:image" content={stay.main_image} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="theme-color" content="#4AB8CD" />
       </Helmet>
-      {/* Hero 풀블리드. 한 장. 슬라이더 아님. 하단에 카피와 이름 */}
-      <div className="relative w-full h-[50vw] min-h-[280px] max-h-[560px] overflow-hidden bg-bg-card">
-        {main && (
-          <button onClick={() => openLightbox(0)} className="block w-full h-full">
-            <img src={main} alt={stay.name} className="w-full h-full object-cover" />
-          </button>
+
+      {/* Hero 풀블리드. 한 장. 사진이 없으면 브랜드 폴백으로 채운다 */}
+      <div className={`relative w-full h-[50vw] min-h-[280px] max-h-[560px] overflow-hidden ${main ? 'bg-bg-card' : 'bg-primary'}`}>
+        {main ? (
+          <>
+            <button onClick={() => openLightbox(0)} className="block w-full h-full">
+              <img src={main} alt={stay.name} className="w-full h-full object-cover" />
+            </button>
+            <div className="absolute inset-0 bg-black/45 pointer-events-none" />
+          </>
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <img src="/images/logo/logo-wordmark.svg" alt=""
+                 className="w-40 md:w-56 opacity-30 brightness-0 invert" />
+          </div>
         )}
-        <div className="absolute inset-0 bg-black/45 pointer-events-none" />
         <div className="absolute bottom-0 left-0 right-0 pointer-events-none
                         px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 pb-8 lg:pb-12">
           <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
@@ -101,188 +137,168 @@ export default function StayDetailPage() {
         </div>
       </div>
 
-      {/* 이름 타이포 포인트. 카름 마을 상세 손글씨 로고 자리. 문어 슬롯은 애셋 도착 전까지 빈다 */}
+      {/* 이름 타이포 포인트. 공유와 저장은 제목 아래 좌측 */}
       <section className="relative mx-auto w-full
                           px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
                           max-w-[1400px] 2xl:max-w-[1600px]
                           pt-10 lg:pt-14">
         <ScatterIllust items={[]} />
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <h2 className="font-pretendard font-bold
-                           text-[32px] md:text-[44px] lg:text-[56px]
-                           text-text-pri tracking-[-0.03em] leading-[1.05]">
-              {stay.name}
-            </h2>
-            <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-pretendard text-[13px] md:text-[14px] text-text-sec">
-              {stay.hours && stay.hours !== '확인 안 됨' && (
-                <span className="inline-flex items-center gap-1 font-medium">
-                  <Clock size={14} className="text-text-meta" />
-                  {stay.hours}
-                </span>
-              )}
-              <span className="inline-flex items-center gap-1 font-medium">
-                <MapPin size={14} className="text-text-meta" />
-                {stay.address}
-              </span>
-            </div>
-          </div>
-          <div className="hidden md:flex items-center gap-2 shrink-0">
-            <button aria-label="공유"
-                    className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-bg-card hover:bg-bg-mute">
-              <Share2 size={18} className="text-text-pri" />
-            </button>
-            <button aria-label={isBookmarked ? '북마크 해제' : '저장'}
-                    onClick={toggleBookmark}
-                    className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-bg-card hover:bg-bg-mute">
-              <Bookmark size={18} className={isBookmarked ? 'text-primary fill-primary' : 'text-text-pri'} fill={isBookmarked ? 'currentColor' : 'none'} />
-            </button>
-          </div>
+        <h2 className="font-pretendard font-bold
+                       text-[32px] md:text-[44px] lg:text-[56px]
+                       text-text-pri tracking-[-0.03em] leading-[1.05]">
+          {stay.name}
+        </h2>
+        <div className="mt-4 flex items-center gap-2">
+          <button onClick={onShare}
+                  className="inline-flex items-center gap-1.5 h-10 px-4 rounded-full
+                             bg-bg-card hover:bg-bg-mute
+                             font-pretendard font-medium text-[14px] text-text-pri
+                             transition-colors duration-150">
+            <Share2 size={16} className="text-text-meta" />
+            공유
+          </button>
+          <button onClick={toggleBookmark}
+                  aria-label={isBookmarked ? '북마크 해제' : '저장'}
+                  className="inline-flex items-center gap-1.5 h-10 px-4 rounded-full
+                             bg-bg-card hover:bg-bg-mute
+                             font-pretendard font-medium text-[14px] text-text-pri
+                             transition-colors duration-150">
+            <Bookmark size={16} className={isBookmarked ? 'text-primary fill-primary' : 'text-text-meta'}
+                      fill={isBookmarked ? 'currentColor' : 'none'} />
+            저장
+          </button>
         </div>
       </section>
 
-      {/* Body grid */}
+      {/* Body grid. 소개와 위치를 세로 하나로 잇는다. 탭 없음 */}
       <section className="mx-auto w-full
                           px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
                           max-w-[1400px] 2xl:max-w-[1600px]
                           mt-10 lg:mt-12 pb-16 lg:pb-24
                           lg:grid lg:grid-cols-[1fr_380px] lg:gap-12">
-        <div>
-          {/* 근거 표기. 방문 전 확인 안내 */}
-          <div className="pb-6 border-b border-border-sub">
-            <p className="font-pretendard font-medium text-[14px] text-text-pri">
-              동해시청 관광과와 동해문화관광재단이 함께하는 공공 협력 사업이다
+        <div className="space-y-12 lg:space-y-16">
+
+          {/* 소개 */}
+          <RevealOnScroll>
+            <h3 className="font-pretendard font-bold text-[22px] md:text-[26px] lg:text-[30px] text-text-pri tracking-[-0.02em] leading-tight">
+              {stay.tagline}
+            </h3>
+            <p className="mt-4 font-pretendard font-normal text-[15px] md:text-[16px] text-text-sec leading-relaxed tracking-[-0.01em]">
+              {stay.long_description}
             </p>
-            <p className="mt-1 font-pretendard font-light text-[13px] text-text-meta">
-              방문 전 영업일과 휴무를 확인해라. 자료 출처 {stay.source || '확인 안 됨'}
-            </p>
-          </div>
 
-          {/* Tabs */}
-          <div className="mt-6 sticky top-[80px] bg-white z-10">
-            <div className="flex gap-1 border-b border-border-sub overflow-x-auto scrollbar-hide -mx-5 px-5">
-              {TABS.map((t) => (
-                <button key={t.key}
-                        onClick={() => setTab(t.key)}
-                        className={`px-4 py-3 font-pretendard font-medium text-[14px] tracking-[0.02em]
-                                    border-b-2 transition-colors duration-150 whitespace-nowrap
-                                    ${tab === t.key
-                                      ? 'text-text-pri border-text-pri'
-                                      : 'text-text-meta border-transparent hover:text-text-pri'}`}>
-                  {t.label}
-                </button>
-              ))}
-            </div>
-          </div>
+            {gallery.length > 1 && (
+              <div className="mt-8 grid gap-3 md:gap-4 grid-cols-2">
+                {gallery.slice(1, 5).map((src, i) => (
+                  <button key={i} onClick={() => openLightbox(i + 1)}
+                          className="aspect-[4/3] overflow-hidden rounded-xl shadow-card bg-bg-card block">
+                    <img src={src} alt={`${stay.name} 갤러리 ${i + 2}`}
+                         className="w-full h-full object-cover
+                                    transition-transform duration-[600ms] ease-out
+                                    motion-reduce:transition-none hover:scale-[1.04]" />
+                  </button>
+                ))}
+              </div>
+            )}
+          </RevealOnScroll>
 
-          {/* About */}
-          {tab === 'about' && (
-            <div className="mt-8 space-y-10">
-              <RevealOnScroll>
-                <h2 className="font-pretendard font-bold text-[22px] md:text-[26px] lg:text-[30px] text-text-pri tracking-[-0.02em] leading-tight">
-                  {stay.tagline}
-                </h2>
-                <p className="mt-4 font-pretendard font-normal text-[15px] md:text-[16px] text-text-sec leading-relaxed tracking-[-0.01em]">
-                  {stay.long_description}
-                </p>
-              </RevealOnScroll>
-
-              {gallery.length > 1 && (
-                <div className="grid gap-3 md:gap-4 grid-cols-2">
-                  {gallery.slice(1, 5).map((src, i) => (
-                    <button key={i} onClick={() => openLightbox(i + 1)}
-                            className="aspect-[4/3] overflow-hidden rounded-xl bg-bg-card block">
-                      <img src={src} alt={`${stay.name} 갤러리 ${i + 2}`}
-                           className="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.04]" />
-                    </button>
-                  ))}
-                </div>
-              )}
-
-              {stay.highlights?.length > 0 && (
-                <RevealOnScroll>
-                  <h3 className="font-pretendard font-bold text-[18px] md:text-[20px] text-text-pri tracking-[-0.02em] mb-4">
-                    주요 특징
-                  </h3>
-                  <div className="grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-3">
-                    {stay.highlights.map((h, i) => (
-                      <div key={i} className="shadow-card rounded-2xl p-5">
-                        <p className="font-pretendard font-bold text-[15px] text-text-pri tracking-[-0.02em]">
-                          {h.title}
-                        </p>
-                        <p className="mt-2 font-pretendard font-normal text-[13px] text-text-sec leading-relaxed">
-                          {h.description}
-                        </p>
-                      </div>
-                    ))}
+          {/* 주요 특징 */}
+          {stay.highlights?.length > 0 && (
+            <RevealOnScroll>
+              <h3 className="font-pretendard font-bold text-[18px] md:text-[20px] text-text-pri tracking-[-0.02em] mb-4">
+                주요 특징
+              </h3>
+              <div className="grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-3">
+                {stay.highlights.map((h, i) => (
+                  <div key={i} className="shadow-card rounded-2xl p-5">
+                    <p className="font-pretendard font-bold text-[15px] text-text-pri tracking-[-0.02em]">
+                      {h.title}
+                    </p>
+                    <p className="mt-2 font-pretendard font-normal text-[13px] text-text-sec leading-relaxed line-clamp-4">
+                      {h.description}
+                    </p>
                   </div>
-                </RevealOnScroll>
-              )}
-            </div>
-          )}
-
-          {/* Amenities */}
-
-          {/* Reviews */}
-
-          {/* Location */}
-          {tab === 'location' && (
-            <RevealOnScroll className="mt-8 space-y-6">
-              <div>
-                <h3 className="font-pretendard font-bold text-[18px] md:text-[20px] text-text-pri tracking-[-0.02em] mb-3">
-                  위치
-                </h3>
-                <p className="font-pretendard font-medium text-[14px] text-text-sec">{stay.address}</p>
+                ))}
               </div>
-              <div className="aspect-[16/9] w-full rounded-2xl bg-bg-mute overflow-hidden
-                              flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin size={32} className="mx-auto text-text-meta" />
-                  <p className="mt-3 font-pretendard font-medium text-[14px] text-text-meta">
-                    지도 영역 (네이버 지도 연동 예정)
-                  </p>
-                  <p className="mt-1 font-pretendard font-light text-[12px] text-text-meta">
-                    {stay.address}
-                  </p>
-                </div>
-              </div>
-              {stay.nearby?.length > 0 && (
-                <div>
-                  <h4 className="font-pretendard font-bold text-[16px] text-text-pri mb-3">주변 명소</h4>
-                  <Carousel label="주변 명소"
-                            className="-mx-5 px-5 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 pb-2"
-                            itemClassName="w-[60%] sm:w-[42%] md:w-[30%]">
-                    {stay.nearby.map((n, i) => (
-                      <div key={i} className="shadow-card rounded-xl p-4 h-full">
-                        <p className="font-pretendard font-bold text-[14px] text-text-pri">{n.name}</p>
-                        <p className="mt-1 font-pretendard font-medium text-[13px] text-text-meta">{n.distance}</p>
-                      </div>
-                    ))}
-                  </Carousel>
-                </div>
-              )}
             </RevealOnScroll>
           )}
 
-          {/* Similar */}
+          {/* 위치 및 정보 */}
+          <RevealOnScroll>
+            <h3 className="font-pretendard font-bold text-[18px] md:text-[20px] text-text-pri tracking-[-0.02em] mb-4">
+              위치 및 정보
+            </h3>
+
+            {/* 정보 표. 회색 테두리 없이 배경 톤과 행 구분선 */}
+            <dl className="rounded-2xl bg-bg-card overflow-hidden">
+              {infoRows.map((r, i) => (
+                <div key={r.label}
+                     className={`flex gap-4 px-5 py-4 ${i > 0 ? 'border-t border-border-sub' : ''}`}>
+                  <dt className="w-16 md:w-20 shrink-0 font-pretendard font-medium text-[13px] md:text-[14px] text-text-meta">
+                    {r.label}
+                  </dt>
+                  <dd className="flex-1 font-pretendard font-normal text-[13px] md:text-[14px] text-text-pri leading-relaxed">
+                    {r.map ? (
+                      <a href={mapSearchUrl(r.value)} target="_blank" rel="noopener noreferrer"
+                         className="inline-flex items-center gap-1 hover:text-primary transition-colors duration-150">
+                        <MapPin size={14} className="shrink-0 text-text-meta" />
+                        {r.value}
+                      </a>
+                    ) : r.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            {/* 구글맵. 주소 기반 임베드. 클릭 시 구글맵으로 연결 */}
+            <div className="mt-4 aspect-[16/9] w-full rounded-2xl overflow-hidden shadow-card bg-bg-card">
+              <iframe
+                title={`${stay.name} 지도`}
+                src={mapEmbedUrl(stay.address)}
+                loading="lazy"
+                className="w-full h-full border-0"
+                referrerPolicy="no-referrer-when-downgrade" />
+            </div>
+            <a href={mapSearchUrl(stay.address)} target="_blank" rel="noopener noreferrer"
+               className="mt-2 inline-flex items-center gap-1 font-pretendard font-medium text-[13px] text-primary hover:text-primary-hover transition-colors duration-150">
+              <MapPin size={14} />
+              구글맵에서 열기
+            </a>
+
+            {stay.nearby?.length > 0 && (
+              <div className="mt-8">
+                <h4 className="font-pretendard font-bold text-[16px] text-text-pri mb-3">주변 명소</h4>
+                <Carousel label="주변 명소"
+                          className="-mx-5 px-5 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 pb-2"
+                          itemClassName="w-[60%] sm:w-[42%] md:w-[30%]">
+                  {stay.nearby.map((n, i) => (
+                    <div key={i} className="shadow-card rounded-xl p-4 h-full">
+                      <p className="font-pretendard font-bold text-[14px] text-text-pri line-clamp-1">{n.name}</p>
+                      <p className="mt-1 font-pretendard font-medium text-[13px] text-text-meta">{n.distance}</p>
+                    </div>
+                  ))}
+                </Carousel>
+              </div>
+            )}
+          </RevealOnScroll>
+
+          {/* 추천 장소 */}
           {similar.length > 0 && (
             <RevealOnScroll>
-            <section className="mt-16">
-              <h2 className="font-pretendard font-bold text-[20px] md:text-[22px] lg:text-[24px] text-text-pri tracking-[-0.02em] mb-4">
-                비슷한 곳
-              </h2>
-              <Carousel label="비슷한 곳"
+              <h3 className="font-pretendard font-bold text-[20px] md:text-[22px] lg:text-[24px] text-text-pri tracking-[-0.02em] mb-4">
+                추천 장소
+              </h3>
+              <Carousel label="추천 장소"
                         className="-mx-5 px-5 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 pb-2"
                         itemClassName="w-[80%] sm:w-[60%] md:w-[46%] lg:w-[38%]">
                 {similar.map((s) => <StayCard key={s.id} {...s} />)}
               </Carousel>
-            </section>
             </RevealOnScroll>
           )}
         </div>
 
         {/* Reservation card */}
-        <aside className="mt-8 lg:mt-0 lg:sticky lg:top-24 h-fit
+        <aside className="mt-10 lg:mt-0 lg:sticky lg:top-24 h-fit
                           shadow-card rounded-2xl p-5 lg:p-6 bg-white">
           {!isFree ? (
             <>
@@ -307,7 +323,7 @@ export default function StayDetailPage() {
                 이용 요금
               </p>
               <p className="mt-1 font-pretendard font-bold text-[24px] text-text-pri">
-                {stay.price_label && stay.price_label !== '확인 안 됨' ? stay.price_label : '확인 안 됨'}
+                {clean(stay.price_label) || '요금 미정'}
               </p>
             </>
           )}
@@ -344,7 +360,7 @@ export default function StayDetailPage() {
           )}
 
           {error && (
-            <p className="mt-3 font-pretendard font-medium text-[13px] text-[#DC2626]">
+            <p className="mt-3 font-pretendard font-medium text-[13px] text-accent">
               {error}
             </p>
           )}
@@ -359,7 +375,7 @@ export default function StayDetailPage() {
                        hover:bg-black
                        transition-colors duration-150 motion-reduce:transition-none
                        disabled:opacity-40 disabled:cursor-not-allowed">
-            예약하기
+            {nights > 0 ? '예약하기' : '날짜를 선택하세요'}
           </button>
         </aside>
       </section>
@@ -433,7 +449,7 @@ export default function StayDetailPage() {
             </dl>
 
             {error && (
-              <p className="mt-4 font-pretendard font-medium text-[13px] text-[#DC2626]">
+              <p className="mt-4 font-pretendard font-medium text-[13px] text-accent">
                 {error}
               </p>
             )}

@@ -92,12 +92,11 @@ export default function StoryDetailPage() {
           스토리
         </Link>
 
-        {/* 2. Subtitle */}
+        {/* 2. Subtitle. 수동 줄바꿈을 없애고 자동 줄바꿈에 맡긴다 */}
         <p className="mt-3 font-pretendard font-normal
                       text-[16px] md:text-[18px]
-                      text-text-sec leading-relaxed"
-           style={{ whiteSpace: 'pre-line' }}>
-          {story.subtitle}
+                      text-text-sec leading-relaxed">
+          {story.subtitle?.replace(/\n/g, ' ')}
         </p>
 
         {/* 3. Date + Author */}
@@ -319,13 +318,13 @@ export default function StoryDetailPage() {
                       itemClassName="w-[72%] sm:w-[52%] md:w-[40%] lg:w-[31%]">
               {related.map((s) => (
                 <Link key={s.id} to={`/story/${s.slug}`} className="group block">
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-bg-card">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-card bg-bg-card">
                     <img
                       src={s.cover_image}
                       alt={s.title}
                       className="w-full h-full object-cover
                                  transition-transform duration-[600ms] ease-out
-                                 group-hover:scale-[1.04]" />
+                                 motion-reduce:transition-none group-hover:scale-[1.04]" />
                   </div>
                   <h3 className="mt-3 font-pretendard font-bold
                                  text-[16px] md:text-[17px]
