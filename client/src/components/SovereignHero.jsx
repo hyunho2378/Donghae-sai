@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowUp, ArrowUpRight, MapPin, Ticket, Plus } from 'lucide-react'
 import useSovereignChat, { stripMarkdown, sourceLabel } from '../hooks/useSovereignChat'
+import AnswerSkeleton from './AnswerSkeleton'
 
 // 동해시 공식 권역 구분 5개와 패스. 네이버 검색창 아래 바로가기 줄과 같은 자리
 const SHORTCUTS = [
@@ -78,13 +79,13 @@ export default function SovereignHero() {
                        ${leaving ? 'opacity-0 -translate-y-2 pointer-events-none' : 'opacity-100 translate-y-0'}`
 
   return (
-    <section className={`bg-white flex flex-col
-                         min-h-[calc(100vh-60px)] lg:min-h-[calc(100vh-80px)]
-                         ${opened ? '' : 'justify-center py-16 md:py-20 lg:py-24 4xl:py-32'}`}>
+    <section className={`bg-white flex flex-col ${opened
+                         ? 'h-[calc(100dvh-60px)] lg:h-[calc(100dvh-80px)]'
+                         : 'min-h-[calc(100vh-60px)] lg:min-h-[calc(100vh-80px)] justify-center py-16 md:py-20 lg:py-24 4xl:py-32'}`}>
 
       {/* 위쪽. 초기에는 헤드라인, 대화 중에는 스크롤되는 대화 영역 */}
       <div ref={scrollRef}
-           className={opened ? 'flex-1 min-h-0 overflow-y-auto pt-8 lg:pt-12 pb-4' : ''}>
+           className={opened ? 'flex-1 min-h-0 overflow-y-auto pt-8 lg:pt-12 pb-6' : ''}>
         <div className={WRAP}>
           {!opened && (
             <h1 className={`text-center font-pretendard font-bold
@@ -111,11 +112,7 @@ export default function SovereignHero() {
                 ) : (
                   <div key={i} className="animate-flow-down">
                     {m.content === '' ? (
-                      <span className="inline-flex items-center gap-1.5 h-6" aria-label="답변 생성 중">
-                        <span className="w-1.5 h-1.5 rounded-full bg-text-ter animate-loading-dot-1" />
-                        <span className="w-1.5 h-1.5 rounded-full bg-text-ter animate-loading-dot-2" />
-                        <span className="w-1.5 h-1.5 rounded-full bg-text-ter animate-loading-dot-3" />
-                      </span>
+                      <AnswerSkeleton />
                     ) : (
                       <p className="font-pretendard font-normal
                                     text-[15px] lg:text-[16px] text-text-pri
@@ -129,17 +126,17 @@ export default function SovereignHero() {
                         {m.sources.slice(0, SOURCE_LIMIT).map((s) => (
                           <span key={s}
                                 className="inline-flex items-center h-7 px-2.5 rounded-full
-                                           bg-primary-soft
+                                           border border-primary
                                            font-pretendard font-medium text-[12px]
-                                           tracking-[-0.01em] text-primary">
+                                           tracking-[-0.01em] text-primary-hover">
                             근거 {sourceLabel(s)}
                           </span>
                         ))}
                         {m.sources.length > SOURCE_LIMIT && (
                           <span className="inline-flex items-center h-7 px-2.5 rounded-full
-                                           bg-primary-soft
+                                           border border-primary
                                            font-pretendard font-medium text-[12px]
-                                           tracking-[-0.01em] text-primary">
+                                           tracking-[-0.01em] text-primary-hover">
                             외 {m.sources.length - SOURCE_LIMIT}개
                           </span>
                         )}
@@ -164,14 +161,12 @@ export default function SovereignHero() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={onKeyDown}
-              disabled={streaming}
               aria-label="동해사이 도우미에게 질문하기"
               placeholder={opened ? '이어서 물어보세요' : '무엇이든 물어보세요'}
               className="flex-1 min-w-0 bg-transparent outline-none
                          font-pretendard font-normal text-text-pri
                          text-[16px] lg:text-[17px] tracking-[-0.01em]
-                         placeholder:text-text-ter
-                         disabled:opacity-40 disabled:cursor-not-allowed" />
+                         placeholder:text-text-ter" />
             <button
               onClick={() => submit(input)}
               disabled={streaming}

@@ -2,4 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /checkout
 Disallow: /admin
-Sitemap: https://g-local-station.vercel.app/sitemap.xml
+Disallow: /auth
+Disallow: /pass
+Disallow: /bookmarks
+Sitemap: https://donghae-sai.vercel.app/sitemap.xml

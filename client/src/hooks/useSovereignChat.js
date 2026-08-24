@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import staysData from '../data/stays.json'
+import packagesData from '../data/packages.json'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000'
 
@@ -29,8 +31,13 @@ const SOURCE_LABELS = {
   'food-muleung': '무릉 맛집 후보'
 }
 
+// 자료집이 156건으로 늘면서 라벨을 손으로 유지할 수 없다. 화면 데이터에서 직접 뽑는다
+const DATA_LABELS = { 'night-guide': '밤에 갈 만한 곳' }
+for (const s of staysData) DATA_LABELS[s.id] = s.name
+for (const p of packagesData) DATA_LABELS[p.id] = p.name
+
 export function sourceLabel(id) {
-  return SOURCE_LABELS[id] || id
+  return SOURCE_LABELS[id] || DATA_LABELS[id] || id
 }
 
 // 모델이 남긴 마크다운 기호를 지운다. 스트리밍 중 잘린 기호도 같이 처리된다

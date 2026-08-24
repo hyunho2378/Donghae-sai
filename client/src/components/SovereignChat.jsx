@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from 'react'
 import { MessageCircle, X, Send } from 'lucide-react'
 import useSovereignChat, { stripMarkdown, sourceLabel } from '../hooks/useSovereignChat'
+import AnswerSkeleton from './AnswerSkeleton'
 
 export default function SovereignChat() {
   const [open, setOpen] = useState(false)
   const [input, setInput] = useState('')
-  const { messages, loading, streaming, send } = useSovereignChat([
+  const { messages, streaming, send } = useSovereignChat([
     { role: 'assistant', content: '동해 여행에 대해 물어보세요.' }
   ])
   const listRef = useRef(null)
@@ -56,16 +57,18 @@ export default function SovereignChat() {
                                    ${m.role === 'user'
                                      ? 'bg-primary text-white'
                                      : 'bg-white text-text-pri border border-border-sub'}`}>
-                    {m.role === 'assistant' ? stripMarkdown(m.content) : m.content}
+                    {m.role === 'assistant'
+                      ? (m.content === '' ? <AnswerSkeleton compact /> : stripMarkdown(m.content))
+                      : m.content}
                   </div>
                   {m.role === 'assistant' && m.sources?.length > 0 && (
                     <div className="mt-2 flex flex-wrap gap-1.5">
                       {m.sources.map((s) => (
                         <span key={s}
                               className="inline-flex items-center h-7 px-2.5 rounded-full
-                                         border border-border-def
+                                         border border-primary
                                          font-pretendard font-medium text-[11px]
-                                         tracking-[0.06em] text-text-meta">
+                                         tracking-[0.06em] text-primary-hover">
                           근거 {sourceLabel(s)}
                         </span>
                       ))}
@@ -74,14 +77,6 @@ export default function SovereignChat() {
                 </div>
               </div>
             ))}
-            {loading && (
-              <div className="flex justify-start">
-                <div className="px-3.5 py-2.5 rounded-xl bg-white border border-border-sub
-                               font-pretendard font-light text-[13px] text-text-meta">
-                  답변 생성 중
-                </div>
-              </div>
-            )}
           </div>
 
           <div className="h-16 px-3 flex items-center gap-2 border-t border-border-sub bg-white">
@@ -89,12 +84,11 @@ export default function SovereignChat() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={onKeyDown}
-              disabled={streaming}
               placeholder="동해 여행에 대해 물어보세요"
               className="flex-1 h-10 px-3 rounded-lg border border-border-def
                          font-pretendard font-normal text-[14px] text-text-pri
                          placeholder:text-text-ter focus:border-primary outline-none
-                         transition-colors duration-150 disabled:opacity-40 disabled:cursor-not-allowed" />
+                         transition-colors duration-150" />
             <button
               onClick={sendMessage}
               disabled={streaming}

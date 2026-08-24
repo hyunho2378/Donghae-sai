@@ -60,7 +60,21 @@
 .animate-flow-down { animation: flowDown 240ms ease-out; }
 .animate-flow-down-late { animation: flowDown 240ms ease-out 80ms backwards; }
 
+/* 답변 대기 스켈레톤. 회색 막대가 은은하게 지나간다 */
+@keyframes skeletonShimmer {
+  0%   { opacity: 0.45; }
+  50%  { opacity: 0.9; }
+  100% { opacity: 0.45; }
+}
+.skeleton-bar {
+  background-color: #F5F5F5;
+  animation: skeletonShimmer 1.6s ease-in-out infinite;
+}
+.skeleton-bar-2 { animation-delay: 0.18s; }
+.skeleton-bar-3 { animation-delay: 0.36s; }
+
 @media (prefers-reduced-motion: reduce) {
   .animate-flow-down,
-  .animate-flow-down-late { animation: none; }
+  .animate-flow-down-late,
+  .skeleton-bar { animation: none; }
 }
