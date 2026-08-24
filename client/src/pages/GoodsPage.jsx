@@ -2,19 +2,13 @@ import { useState } from 'react'
 import GoodsCard from '../components/card/GoodsCard'
 import Chip from '../components/Chip'
 import goodsData from '../data/goods.json'
-import { GOODS_CATEGORY_LABEL } from '../lib/format'
 
-const CATEGORIES = [
-  { key: 'all', label: '전체' },
-  { key: 'nfc_album', label: GOODS_CATEGORY_LABEL.nfc_album },
-  { key: 'curation_box', label: GOODS_CATEGORY_LABEL.curation_box },
-  { key: 'produce', label: GOODS_CATEGORY_LABEL.produce },
-  { key: 'processed', label: GOODS_CATEGORY_LABEL.processed }
-]
+// goods.json 의 category 는 이미 한글 라벨이라 데이터에서 직접 목록을 뽑는다
+const CATEGORIES = ['전체', ...Array.from(new Set(goodsData.map((g) => g.category)))]
 
 export default function GoodsPage() {
-  const [cat, setCat] = useState('all')
-  const items = cat === 'all' ? goodsData : goodsData.filter((g) => g.category === cat)
+  const [cat, setCat] = useState('전체')
+  const items = cat === '전체' ? goodsData : goodsData.filter((g) => g.category === cat)
 
   return (
     <div className="page-enter container-page
@@ -34,7 +28,7 @@ export default function GoodsPage() {
       <p className="mt-6 font-pretendard font-medium text-[13px] text-text-pri mb-2">카테고리</p>
       <div className="flex gap-2 overflow-x-auto scrollbar-hide -mx-5 px-5">
         {CATEGORIES.map((c) => (
-          <Chip key={c.key} label={c.label} isSelected={cat === c.key} onClick={() => setCat(c.key)} />
+          <Chip key={c} label={c} isSelected={cat === c} onClick={() => setCat(c)} />
         ))}
       </div>
 

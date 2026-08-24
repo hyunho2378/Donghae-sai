@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Badge from '../Badge'
 import BookmarkButton from '../button/BookmarkButton'
-import { STAY_TYPE_LABEL } from '../../lib/format'
+import { STAY_TYPE_LABEL, shortPrice } from '../../lib/format'
 
 export default function StayCard({
   id, name, type, region, main_image, gallery,
@@ -39,9 +39,9 @@ export default function StayCard({
               {short_description}
             </p>
           )}
-          {price_label && price_label !== '확인 안 됨' && (
+          {shortPrice(price_label) && (
             <p className="mt-2 font-pretendard font-medium text-[14px] text-text-meta">
-              {price_label}
+              {shortPrice(price_label)}
             </p>
           )}
         </div>

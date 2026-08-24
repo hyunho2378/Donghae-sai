@@ -7,18 +7,18 @@ import plansData from '../data/membership_plans.json'
 
 // 아래 내용은 전부 자료집 pass 항목 원문 근거다. 원문에 없는 값은 미정으로 둔다
 const TAGS = [
-  { Icon: DoorOpen, title: '관문 태그', desc: '여정의 시작점에서 패스를 활성화한다' },
-  { Icon: MapPin, title: '코스 태그', desc: '관광지와 상점에서 혜택과 스탬프를 받는다' },
-  { Icon: BedDouble, title: '체류 태그', desc: '숙소에서 1박을 기록한다' }
+  { Icon: DoorOpen, title: '관문 태그', desc: '여정 시작점에서 패스 활성화' },
+  { Icon: MapPin, title: '코스 태그', desc: '관광지와 상점에서 스탬프 적립' },
+  { Icon: BedDouble, title: '체류 태그', desc: '숙소에서 1박 기록' }
 ]
 
 const FLOW = [
-  '사이트에서 선불로 1회 결제한다',
-  '익명 패스 번호를 발급받는다',
-  '현장에서 NFC로 태그한다',
-  '할인과 스탬프가 처리된다',
-  '다음 장소를 추천받는다',
-  '여정이 끝날 때까지 반복한다'
+  '사이트에서 선불 1회 결제',
+  '익명 패스 번호 발급',
+  '현장에서 NFC 태그',
+  '할인과 스탬프 적립',
+  '다음 장소 추천',
+  '여정이 끝날 때까지 반복'
 ]
 
 const STAMPS = ['저녁', '별', '밤 활동', '오늘의 동해 접수', '숙소', '일출', '오늘의 동해 수령']
@@ -54,7 +54,7 @@ export default function MembershipPage() {
       </Helmet>
 
       {/* 히어로 */}
-      <section className={`${SECTION} py-12 md:py-18 lg:py-24`}>
+      <section className={`${SECTION} py-10 md:py-14 lg:py-16`}>
         <p className="font-pretendard font-medium text-[12px] tracking-[0.06em] text-primary-hover">
           donghae sai pass
         </p>
@@ -65,13 +65,13 @@ export default function MembershipPage() {
         </h1>
         <p className="mt-4 max-w-[640px] font-pretendard font-normal
                       text-[15px] md:text-[16px] text-text-sec tracking-[-0.01em] leading-relaxed">
-          일회성 NFC 패스다. 여행 기간만큼만 산다. 오래 머물수록 하루 단가가 내려간다.
+          동해의 밤을 걷고 스탬프를 모아 하룻밤을 완성하는 여행 패스
         </p>
       </section>
 
       {/* 패스 상품 */}
       <section className="bg-bg-card">
-        <div className={`${SECTION} py-12 md:py-18 lg:py-24`}>
+        <div className={`${SECTION} py-10 md:py-14 lg:py-16`}>
           <h2 className={H2}>패스 상품</h2>
           <div className="mt-8 grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-3">
             {plansData.map((plan) => {
@@ -128,7 +128,7 @@ export default function MembershipPage() {
       </section>
 
       {/* NFC 태그 3종 */}
-      <section className={`${SECTION} py-12 md:py-18 lg:py-24`}>
+      <section className={`${SECTION} py-10 md:py-14 lg:py-16`}>
         <h2 className={H2}>NFC 태그 세 가지</h2>
         <div className="mt-8 grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-3">
           {TAGS.map(({ Icon, title, desc }) => (
@@ -149,7 +149,7 @@ export default function MembershipPage() {
 
       {/* 사용 흐름 */}
       <section className="bg-bg-card">
-        <div className={`${SECTION} py-12 md:py-18 lg:py-24`}>
+        <div className={`${SECTION} py-10 md:py-14 lg:py-16`}>
           <h2 className={H2}>사용 흐름</h2>
           <ol className="mt-8 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {FLOW.map((step, i) => (
@@ -167,7 +167,7 @@ export default function MembershipPage() {
       </section>
 
       {/* 스탬프 7단계 */}
-      <section className={`${SECTION} py-12 md:py-18 lg:py-24`}>
+      <section className={`${SECTION} py-10 md:py-14 lg:py-16`}>
         <h2 className={H2}>스탬프 일곱 단계</h2>
         <p className="mt-2 font-pretendard font-normal text-[15px] text-text-sec">
           저녁에서 시작해 다음 날 아침에 끝난다. 일곱 개를 다 모으면 하룻밤이 완성된다.
@@ -191,7 +191,7 @@ export default function MembershipPage() {
 
       {/* FAQ */}
       <section className="bg-bg-card">
-        <div className={`${SECTION} py-12 md:py-18 lg:py-24`}>
+        <div className={`${SECTION} py-10 md:py-14 lg:py-16`}>
           <h2 className={H2}>자주 묻는 질문</h2>
           <div className="mt-8 shadow-card rounded-2xl bg-white overflow-hidden">
             {FAQ.map((item, i) => (
@@ -218,10 +218,10 @@ export default function MembershipPage() {
       </section>
 
       {/* CTA */}
-      <section className={`${SECTION} py-12 md:py-18 lg:py-24 text-center`}>
+      <section className={`${SECTION} py-10 md:py-14 lg:py-16 text-center`}>
         <h2 className={H2}>오늘 밤, 하루 더 머문다</h2>
         <p className="mt-3 font-pretendard font-normal text-[15px] md:text-[16px] text-text-meta">
-          일회성 NFC 패스. 1일권 5,000원, 2일권 8,000원, 3일권 10,000원
+          1일권 5,000원 2일권 8,000원 3일권 10,000원
         </p>
         <div className="mt-6 inline-flex flex-wrap justify-center gap-3">
           <Link to={passCta(isAuthenticated, 'pass-2day')}

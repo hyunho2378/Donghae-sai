@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { User, ShoppingBag } from 'lucide-react'
+import { User } from 'lucide-react'
 import { useAuthStore } from '../../store/useAuthStore'
 
 const MEMBERSHIP_LABEL = { basic: '베이직', premium: '프리미엄', family: '패밀리' }
@@ -42,7 +42,6 @@ export default function IconGroup() {
     )
   }
 
-  const cartCount = user?.cart?.length || 0
   const membershipLabel = user?.membership ? (MEMBERSHIP_LABEL[user.membership] || user.membership) : '미구독'
 
   const onLogout = () => {
@@ -54,24 +53,6 @@ export default function IconGroup() {
 
   return (
     <div className="flex items-center gap-1">
-      {/* Cart icon */}
-      <Link
-        to="/cart"
-        aria-label="장바구니"
-        className="relative w-10 h-10 inline-flex items-center justify-center
-                   rounded-full hover:bg-bg-card transition-colors duration-150">
-        <ShoppingBag size={20} className="text-text-pri" />
-        {cartCount > 0 && (
-          <span className="absolute top-1 right-1
-                           min-w-[16px] h-[16px] px-0.5
-                           bg-accent text-white
-                           font-pretendard font-bold text-[10px]
-                           rounded-full flex items-center justify-center leading-none">
-            {cartCount}
-          </span>
-        )}
-      </Link>
-
       {/* User dropdown */}
       <div ref={ref} className="relative">
         <button
@@ -99,7 +80,7 @@ export default function IconGroup() {
               마이페이지
             </Link>
             <Link
-              to="/mypage/membership"
+              to="/pass"
               onClick={() => setOpen(false)}
               className="block px-4 py-2.5 font-pretendard font-medium text-[14px] text-text-pri hover:bg-bg-card">
               마이 패스

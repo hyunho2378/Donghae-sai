@@ -107,18 +107,18 @@ export default function PassPage() {
                 const Icon = ICON[s.kind]
                 const filled = done.has(s.id)
                 return (
-                  <li key={s.id} className="text-center">
+                  <li key={s.id} className="flex flex-col items-center text-center">
                     <div
                       title={s.note}
-                      className={`aspect-square w-full min-w-11 rounded-full border-2
-                                  inline-flex items-center justify-center
+                      className={`w-11 h-11 md:w-12 md:h-12 rounded-full border-2
+                                  flex items-center justify-center
                                   ${filled
                                     ? 'border-primary bg-primary-soft text-primary-hover'
                                     : 'border-border-def bg-white text-text-ter'}`}>
                       <Icon size={20} strokeWidth={filled ? 2 : 1.5} />
                     </div>
-                    <p className={`mt-2 font-pretendard text-[13px]
-                                   ${filled ? 'font-medium text-text-pri' : 'font-light text-text-meta'}`}>
+                    <p className={`mt-2 font-pretendard text-[12px] md:text-[13px] leading-tight
+                                   ${filled ? 'font-medium text-text-pri' : 'font-normal text-text-meta'}`}>
                       {s.label}
                     </p>
                   </li>

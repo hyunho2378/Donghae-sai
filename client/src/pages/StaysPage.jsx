@@ -73,8 +73,8 @@ export default function StaysPage() {
 
           <RevealOnScroll className="mb-10 lg:mb-14">
             <span className="inline-flex items-center h-[26px] px-2.5
-                             bg-primary-soft text-primary
-                             font-pretendard font-medium text-[12px] tracking-[0.04em] rounded-md">
+                             bg-bg-mute text-text-meta
+                             font-pretendard font-semibold text-[12px] tracking-[0.04em] rounded-md">
               강원특별자치도 동해시
             </span>
             <h1 className="mt-4 font-pretendard font-bold
@@ -168,7 +168,7 @@ export default function StaysPage() {
             동해 로컬 자원
           </h2>
           <p className="mt-2 font-pretendard font-normal text-[15px] md:text-[16px] text-text-meta">
-            {q ? `검색어 ${q} 에 대한 결과 ${items.length}곳` : '먹거리 숙박 체험 볼거리 네 갈래로 묶은 동해 로컬 자원'}
+            {q ? `검색어 ${q} 에 대한 결과 ${items.length}곳` : '네 갈래로 묶은 동해 로컬 자원'}
           </p>
 
           <div className="mt-6 lg:mt-8">

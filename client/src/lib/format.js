@@ -2,6 +2,16 @@ import { format as dateFormat, parseISO, differenceInCalendarDays } from 'date-f
 
 export const formatPrice = (won) => `${Number(won).toLocaleString()}원`
 
+// 카드용 대표 요금 한 줄. 여러 항목이면 첫 요금 + 부터. 전체는 상세 표에만 노출
+// 천 단위 콤마(3,000)는 유지하고 항목 구분자(콤마+공백, 마침표+공백, 별도)로만 자른다
+export const shortPrice = (label) => {
+  if (!label || label === '확인 안 됨') return null
+  const t = label.trim()
+  const parts = t.split(/,\s|\.\s|\s*별도/).map((s) => s.trim()).filter(Boolean)
+  if (parts.length <= 1) return t.replace(/\.$/, '')
+  return `${parts[0]} 부터`
+}
+
 export const formatPricePerNight = (won) => {
   const n = Number(won)
   if (!n || n <= 0) return '패키지 포함'

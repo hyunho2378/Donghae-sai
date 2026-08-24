@@ -16,6 +16,7 @@ import StoryDetailPage from './pages/StoryDetailPage'
 import MembershipPage from './pages/MembershipPage'
 import PassPage from './pages/PassPage'
 import GoodsPage from './pages/GoodsPage'
+import MyPage from './pages/MyPage'
 import PrivacyPage from './pages/PrivacyPage'
 import AuthPage from './pages/AuthPage'
 import AdminPage from './pages/AdminPage'
@@ -68,6 +69,7 @@ export default function App() {
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/checkout" element={<RequireAuth><CheckoutPage /></RequireAuth>} />
             <Route path="/checkout/complete" element={<RequireAuth><CheckoutCompletePage /></RequireAuth>} />
+            <Route path="/mypage" element={<RequireAuth><MyPage /></RequireAuth>} />
             <Route path="/bookmarks" element={<BookmarksPage />} />
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/admin" element={<RequireOperator><AdminPage /></RequireOperator>} />
