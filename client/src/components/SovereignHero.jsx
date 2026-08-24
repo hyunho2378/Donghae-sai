@@ -203,7 +203,7 @@ export default function SovereignHero() {
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
             <p className="font-pretendard font-light text-[12px] 4xl:text-[13px] text-text-meta">
-              동해 로컬 데이터로만 답해요. 동해 밖 정보는 모를 수 있어요
+              동해 로컬 데이터만 사용해 답하며, 최신 정보와 다를 수 있어요
             </p>
             <span aria-hidden="true" className="hidden sm:inline-block w-px h-3 bg-border-def" />
             <span className="flex items-center gap-3">

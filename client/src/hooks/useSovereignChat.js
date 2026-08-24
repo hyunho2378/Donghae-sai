@@ -42,6 +42,39 @@ export function sourceLabel(id) {
   return SOURCE_LABELS[id] || DATA_LABELS[id] || id
 }
 
+// 한글 마지막 글자의 받침 유무. 0xAC00 기준 (코드-0xAC00)%28 이 0이면 받침 없음
+// 반환: null(한글 아님), 0(받침 없음), 8(ㄹ받침), 그 외 양수(받침 있음)
+function lastBatchim(word) {
+  const ch = (word || '').trimEnd().slice(-1)
+  if (!ch) return null
+  const code = ch.charCodeAt(0)
+  if (code < 0xac00 || code > 0xd7a3) return null // 한글 음절 아님
+  return (code - 0xac00) % 28
+}
+
+// 받침 유무로 조사를 고른다. 한글이 아니면 원래 조사를 그대로 둔다
+function correctJosa(word, josa) {
+  const jong = lastBatchim(word)
+  if (jong === null) return josa
+  const hasBatchim = jong !== 0
+  switch (josa) {
+    case '은': case '는': return hasBatchim ? '은' : '는'
+    case '이': case '가': return hasBatchim ? '이' : '가'
+    case '을': case '를': return hasBatchim ? '을' : '를'
+    case '과': case '와': return hasBatchim ? '과' : '와'
+    // 받침 없거나 ㄹ받침(종성 8)이면 로, 그 외 받침이면 으로
+    case '으로': case '로': return (!hasBatchim || jong === 8) ? '로' : '으로'
+    default: return josa
+  }
+}
+
+// LLM 조사 오류 안전망. 볼드로 감싼 장소명 뒤에 붙은 조사만 받침에 맞게 고친다
+// 볼드 뒤로 한정해 멀쩡한 문장을 깨뜨릴 위험을 줄인다. 스트리밍 미완성 볼드는 매칭 안 됨
+export function fixJosa(text) {
+  return text.replace(/(\*\*[^*\n]+\*\*)(으로|로|은|는|이|가|을|를|과|와)/g,
+    (_, bold, josa) => bold + correctJosa(bold.slice(2, -2), josa))
+}
+
 // 모델이 남긴 마크다운 기호를 지운다. 스트리밍 중 잘린 기호도 같이 처리된다
 export function stripMarkdown(text) {
   let out = text
@@ -58,7 +91,8 @@ export function stripMarkdown(text) {
   // 스트리밍 도중 짝이 안 맞는 마지막 별표는 감춘다
   const marks = out.match(/\*\*/g)
   if (marks && marks.length % 2 === 1) out = out.replace(/\*\*(?=[^*]*$)/, '')
-  return out
+  // 볼드 장소명 뒤 조사를 받침에 맞게 교정한다
+  return fixJosa(out)
 }
 
 export default function useSovereignChat(initialMessages = []) {
