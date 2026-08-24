@@ -1057,4 +1057,50 @@ DB 재마이그레이션
 
 - [ ] 320 390 768 1024 1280 1536 1920 2560 폭별 사이 찾기 갈래 카드 육안 검증. 갈래 카드는 grid-cols-2 lg grid-cols-4 표준 반응형 그리드라 가로 스크롤 위험 없음
 - [ ] 배포 URL 육안 검증
-- [ ] 뒷절반 V3b 로 진행
+- [x] 뒷절반 V3b 로 진행
+
+---
+
+# V3b 뒷절반 (2026-08-24)
+
+무거운 작업 둘. 상세 페이지 카름화, 초이스 큐레이션. 홈 챗봇 히어로는 건드리지 않았다.
+
+## 단계 0. 상세 페이지 카름화
+
+공통 패턴. 한 장 풀블리드 히어로(main_image, 하단 카피와 이름), 히어로 아래 대상명 타이포 포인트 섹션에 ScatterIllust 문어 슬롯(애셋 없어 items 빈 배열이라 렌더 안 됨), 본문 섹션 RevealOnScroll 순차 등장, 관련 항목 Carousel. 갤러리 캐러셀은 만들지 않음. 신규 컴포넌트 안 만들고 Carousel RevealOnScroll ScatterIllust 재사용.
+
+- PackageDetailPage: 히어로 유지. 대상명 타이포 포인트 섹션 추가. 개요 그리드와 호스트 메시지와 일정 각 DAY 를 RevealOnScroll 로 감쌈. similar 를 세로 그리드에서 Carousel 로 교체. 일정 탭과 패스 안내는 그대로
+- StayDetailPage: 상단 갤러리 그리드(대표+썸네일)를 한 장 풀블리드 히어로로 교체. 클릭 시 lightbox. 기존 헤더 로우를 이름 타이포 포인트 섹션으로 재편(큰 이름, 영업시간 주소, 공유 저장 버튼, ScatterIllust 슬롯). About Location Similar 를 RevealOnScroll 로 감쌈. 주변 명소와 Similar 를 Carousel 로 교체. 예약 카드 DateRangePicker Counter 모달 지도 자리 그대로. 미사용 thumbs 변수 제거
+- StoryDetailPage: 커버 이미지를 중간에서 상단 풀블리드 히어로로 올리고 하단에 카테고리와 제목 얹음. 컬럼 중복 카테고리 제목 제거. 스팟을 RevealOnScroll 로 순차 등장. 첫 스팟만 BlobCard 방식 SVG clipPath 블롭 마스킹 포인트(+ScatterIllust 슬롯). 관련 스토리를 Carousel 로 교체. FAQ 공유 스팟 예약 CTA 그대로
+
+## 단계 1. 초이스 큐레이션
+
+- client/src/components/kareum/ChoiceCuration.jsx 신규(초이스 예외 1개)
+- 테마 3개. 뚜벅이 혼행 / 아이와 하루 더 / 밤이 목적지. CONTENT_GUIDE 테마 카피 그대로
+- 카드는 대표 사진 한 장에 해시태그 제목(#뚜벅이혼행 형식)과 한 줄 설명 오버레이. 하단에 실제 장소명 표기
+- 사진은 테마 실제 장소만. 뚜벅이 혼행=book-village(무릉 책방), 아이와 하루 더=dokkaebi-skyvalley(도째비골), 밤이 목적지=nongol-damgil(논골담길). 임의로 안 섞음
+- 이야기 페이지 하단에 배치. KareumHeader 와 RevealOnScroll 사용. shadow-card 는 초이스 카드 적용 대상이 아니라 안 씀
+
+## 수정 파일
+
+- client/src/pages/PackageDetailPage.jsx
+- client/src/pages/StayDetailPage.jsx
+- client/src/pages/StoryDetailPage.jsx
+- client/src/pages/StoryListPage.jsx (ChoiceCuration 하단 배치)
+- client/src/components/kareum/ChoiceCuration.jsx (신규)
+
+## grep 검증 결과 (client/src 전역)
+
+- 임의 box-shadow 0건, 그라데이션 0건, backdrop-blur 0건
+- 카드 자체 scale 0건. 이미지 zoom scale 1.04 만 존재
+- 이모지 0건, 가운데점과 줄표 0건
+- 상세 세 곳 모두 한 장 풀블리드 히어로로 시작
+- hex 직접 입력은 V3b 변경분 0건. StayDetailPage 의 text-[#DC2626] 두 곳은 기존 예약 오류 문구 색으로 이번 범위 밖이라 손대지 않음
+- vite build 통과
+
+## 남은 항목
+
+- [ ] 320 390 768 1024 1280 1536 1920 2560 폭별 상세 히어로와 초이스 섹션과 첫 스팟 블롭 육안 검증. 상세 히어로는 h-[50vw] min/max 클램프, 초이스는 md grid-cols-3, 블롭은 max-w-420 aspect-square SVG viewBox 라 가로 스크롤 위험 없음
+- [ ] 배포 URL 육안 검증
+- [ ] 문어 애셋 도착 시 상세 ScatterIllust 슬롯과 첫 스팟 블롭에 illust 채움
+- [ ] 기존 error red hex(text-[#DC2626]) 토큰화는 브랜드 색 확정 시 함께 처리

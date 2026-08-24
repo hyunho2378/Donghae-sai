@@ -4,6 +4,9 @@ import { Helmet } from 'react-helmet-async'
 import { X, Quote, ChevronLeft, ChevronRight } from 'lucide-react'
 import packagesData from '../data/packages.json'
 import PackageCard from '../components/card/PackageCard'
+import Carousel from '../components/kareum/Carousel'
+import RevealOnScroll from '../components/kareum/RevealOnScroll'
+import ScatterIllust from '../components/kareum/ScatterIllust'
 
 const TABS = [
   { key: 'itinerary', label: '일정' }
@@ -78,17 +81,34 @@ export default function PackageDetailPage() {
         </div>
       </div>
 
+      {/* 대상명 타이포 포인트. 카름 마을 상세 손글씨 로고 자리. 문어 슬롯은 애셋 도착 전까지 빈다 */}
+      <section className="relative mx-auto w-full
+                          px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
+                          max-w-[1400px] 2xl:max-w-[1600px]
+                          pt-10 lg:pt-14">
+        <ScatterIllust items={[]} />
+        <p className="font-pretendard font-medium text-[13px] tracking-[0.06em] text-primary">
+          {kindLabel}
+        </p>
+        <h2 className="mt-2 font-pretendard font-bold
+                       text-[32px] md:text-[44px] lg:text-[56px]
+                       text-text-pri tracking-[-0.03em] leading-[1.05]">
+          {pkg.name}
+        </h2>
+      </section>
+
       {/* Body */}
       <div className="mx-auto w-full
                       px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
                       max-w-[1400px] 2xl:max-w-[1600px]
-                      mt-10 lg:mt-12 pb-16 lg:pb-24
+                      mt-8 lg:mt-10 pb-16 lg:pb-24
                       lg:grid lg:grid-cols-[1fr_380px] lg:gap-12">
 
         {/* Left column */}
         <div>
 
           {/* 1. Overview grid */}
+          <RevealOnScroll>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {[
               { label: '기간', value: pkg.duration_label },
@@ -111,15 +131,18 @@ export default function PackageDetailPage() {
               </div>
             ))}
           </div>
+          </RevealOnScroll>
 
           {/* 2. Host message */}
           {pkg.host_message && (
+            <RevealOnScroll>
             <div className="mt-8 bg-bg-card rounded-2xl p-6 lg:p-8">
               <Quote size={24} className="text-primary mb-3" />
               <p className="font-pretendard font-normal text-[15px] md:text-[16px] text-text-sec leading-relaxed tracking-[-0.01em]">
                 {pkg.host_message}
               </p>
             </div>
+            </RevealOnScroll>
           )}
 
           {/* 3. Sticky tabs */}
@@ -143,7 +166,7 @@ export default function PackageDetailPage() {
           {tab === 'itinerary' && (
             <div className="mt-8 space-y-12">
               {pkg.itinerary?.map((day) => (
-                <div key={day.day}>
+                <RevealOnScroll key={day.day}>
                   <div className="flex items-baseline gap-4 mb-6">
                     <span className="font-pretendard font-bold
                                      text-[44px] md:text-[56px]
@@ -174,7 +197,7 @@ export default function PackageDetailPage() {
                       </div>
                     ))}
                   </div>
-                </div>
+                </RevealOnScroll>
               ))}
 
               {/* 프로그램 전용. 원본의 후보군을 그대로 노출한다 */}
@@ -244,20 +267,20 @@ export default function PackageDetailPage() {
 
           {/* 비슷한 코스 */}
           {similar.length > 0 && (
+            <RevealOnScroll>
             <section className="mt-16">
               <h2 className="font-pretendard font-bold
                              text-[20px] md:text-[22px] lg:text-[24px]
                              text-text-pri tracking-[-0.02em] mb-4">
                 비슷한 {kindLabel}
               </h2>
-              <div className="-mx-5 px-5 md:mx-0 md:px-0 overflow-x-auto scrollbar-hide">
-                <div className="grid grid-flow-col auto-cols-[80%] md:auto-cols-[45%]
-                                lg:grid-flow-row lg:auto-cols-auto lg:grid-cols-3
-                                gap-4 md:gap-6">
-                  {similar.map((p) => <PackageCard key={p.id} {...p} />)}
-                </div>
-              </div>
+              <Carousel label={`비슷한 ${kindLabel}`}
+                        className="-mx-5 px-5 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 pb-2"
+                        itemClassName="w-[80%] sm:w-[60%] md:w-[46%] lg:w-[32%]">
+                {similar.map((p) => <PackageCard key={p.id} {...p} />)}
+              </Carousel>
             </section>
+            </RevealOnScroll>
           )}
         </div>
 

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import RevealOnScroll from '../components/kareum/RevealOnScroll'
+import ChoiceCuration from '../components/kareum/ChoiceCuration'
 import storiesData from '../data/stories.json'
 
 const TABS = [
@@ -95,6 +96,8 @@ export default function StoryListPage() {
           ))}
         </div>
       </div>
+
+      <ChoiceCuration />
     </div>
   )
 }

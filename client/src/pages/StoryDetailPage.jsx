@@ -3,6 +3,12 @@ import { useParams, Navigate, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { ArrowLeft, Link2, Check, Users, Pin, Lightbulb } from 'lucide-react'
 import storiesData from '../data/stories.json'
+import Carousel from '../components/kareum/Carousel'
+import RevealOnScroll from '../components/kareum/RevealOnScroll'
+import ScatterIllust from '../components/kareum/ScatterIllust'
+
+// 첫 스팟 블롭 마스킹 포인트용 path 하나. viewBox 0 0 400 400 기준
+const SPOT_BLOB = 'M 365.1 200.0 C 363.2 242.9, 330.6 295.1, 297.0 321.6 C 263.4 348.2, 206.5 366.7, 163.7 359.2 C 120.8 351.8, 59.1 315.7, 40.0 277.1 C 20.9 238.4, 28.5 166.6, 49.1 127.3 C 69.7 88.0, 120.5 51.7, 163.7 41.2 C 207.0 30.6, 274.8 37.6, 308.4 64.1 C 341.9 90.6, 367.0 157.1, 365.1 200.0 Z'
 
 const CATEGORY_LABEL = {
   Culture: '문화',
@@ -47,6 +53,33 @@ export default function StoryDetailPage() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="theme-color" content="#60A5FA" />
       </Helmet>
+
+      {/* Hero 풀블리드. 커버 한 장. 슬라이더 아님. 하단에 카피와 이름 */}
+      <div className="relative w-full aspect-[21/9] min-h-[240px] max-h-[560px] overflow-hidden bg-bg-card">
+        <img src={story.cover_image} alt={story.title} className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-black/45" />
+        <div className="absolute bottom-0 left-0 right-0
+                        px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 pb-8 lg:pb-12">
+          <div className="mx-auto max-w-[720px]">
+            <p className="font-pretendard font-medium text-[12px] md:text-[13px] tracking-[0.08em] text-white/80">
+              {story.category}
+            </p>
+            <h1 className="mt-2 font-pretendard font-bold
+                           text-[26px] md:text-[36px] lg:text-[44px]
+                           text-white tracking-[-0.02em] leading-tight">
+              {story.title}
+            </h1>
+          </div>
+        </div>
+      </div>
+      {story.cover_credit && (
+        <div className="mx-auto w-full px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 max-w-[720px]">
+          <p className="text-right font-pretendard font-light text-[12px] text-text-meta mt-2">
+            {story.cover_credit}
+          </p>
+        </div>
+      )}
+
       <div className="mx-auto w-full
                       px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
                       max-w-[720px]
@@ -58,18 +91,6 @@ export default function StoryDetailPage() {
           <ArrowLeft size={16} />
           스토리
         </Link>
-
-        {/* Category label */}
-        <p className="font-pretendard font-medium text-[12px] tracking-[0.08em] text-primary mb-3">
-          {story.category}
-        </p>
-
-        {/* 1. Title */}
-        <h1 className="font-pretendard font-bold
-                       text-[26px] md:text-[32px] lg:text-[38px]
-                       text-text-pri tracking-[-0.02em] leading-tight">
-          {story.title}
-        </h1>
 
         {/* 2. Subtitle */}
         <p className="mt-3 font-pretendard font-normal
@@ -124,19 +145,8 @@ export default function StoryDetailPage() {
         </div>
       </div>
 
-      {/* 7. Full-width cover image */}
-      <div className="mt-8 w-full aspect-[21/9] min-h-[200px] max-h-[560px] overflow-hidden bg-bg-card">
-        <img
-          src={story.cover_image}
-          alt={story.title}
-          className="w-full h-full object-cover" />
-      </div>
-      <p className="text-center font-pretendard font-light text-[12px] text-text-meta mt-2 mb-8">
-        {story.cover_credit}
-      </p>
-
       {/* 8. Intro paragraphs */}
-      <div className="mx-auto w-full px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 max-w-[720px]">
+      <div className="mx-auto w-full px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 max-w-[720px] mt-10 lg:mt-12">
         <div className="space-y-5">
           {story.intro_paragraphs?.map((p, i) => (
             <p key={i} className="font-pretendard font-normal
@@ -150,7 +160,7 @@ export default function StoryDetailPage() {
         {/* 9. Spots */}
         <div className="mt-12 space-y-16">
           {story.spots?.map((spot, i) => (
-            <div key={i}>
+            <RevealOnScroll key={i}>
               {/* Spot number + name + category */}
               <div className="flex items-baseline gap-3 mb-4">
                 <span className="font-pretendard font-bold text-[32px] md:text-[40px]
@@ -170,17 +180,35 @@ export default function StoryDetailPage() {
                 </div>
               </div>
 
-              {/* 스팟 사진. max-w-720 밖으로 빼낸다 */}
-              <div className="-mx-5 md:-mx-8 lg:-mx-12 xl:-mx-16 3xl:-mx-24
-                              aspect-[16/9] overflow-hidden rounded-none md:rounded-xl
-                              bg-bg-card mb-1">
-                {spot.image && (
-                  <img
-                    src={spot.image}
-                    alt={spot.name}
-                    className="w-full h-full object-cover" />
-                )}
-              </div>
+              {/* 스팟 사진. 첫 스팟만 BlobCard 방식 블롭 마스킹 포인트. 나머지는 풀블리드 16:9 */}
+              {i === 0 && spot.image ? (
+                <div className="relative w-full max-w-[420px] mx-auto aspect-square mb-1">
+                  <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet"
+                       className="absolute inset-0 w-full h-full">
+                    <defs>
+                      <clipPath id={`story-spot-blob-${i}`}>
+                        <path d={SPOT_BLOB} />
+                      </clipPath>
+                    </defs>
+                    <g clipPath={`url(#story-spot-blob-${i})`}>
+                      <image href={spot.image} x="0" y="0" width="400" height="400"
+                             preserveAspectRatio="xMidYMid slice" />
+                    </g>
+                  </svg>
+                  <ScatterIllust items={[]} />
+                </div>
+              ) : (
+                <div className="-mx-5 md:-mx-8 lg:-mx-12 xl:-mx-16 3xl:-mx-24
+                                aspect-[16/9] overflow-hidden rounded-none md:rounded-xl
+                                bg-bg-card mb-1">
+                  {spot.image && (
+                    <img
+                      src={spot.image}
+                      alt={spot.name}
+                      className="w-full h-full object-cover" />
+                  )}
+                </div>
+              )}
               <p className="font-pretendard font-light text-[12px] text-text-meta mb-5 text-right
                              px-0">
                 {spot.credit}
@@ -210,7 +238,7 @@ export default function StoryDetailPage() {
                   </Link>
                 </div>
               )}
-            </div>
+            </RevealOnScroll>
           ))}
         </div>
 
@@ -286,7 +314,9 @@ export default function StoryDetailPage() {
                            text-text-pri tracking-[-0.02em] mb-6">
               비슷한 스토리
             </h2>
-            <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
+            <Carousel label="비슷한 스토리"
+                      className="-mx-5 px-5 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 pb-2"
+                      itemClassName="w-[72%] sm:w-[52%] md:w-[40%] lg:w-[31%]">
               {related.map((s) => (
                 <Link key={s.id} to={`/story/${s.slug}`} className="group block">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-bg-card">
@@ -307,7 +337,7 @@ export default function StoryDetailPage() {
                   </p>
                 </Link>
               ))}
-            </div>
+            </Carousel>
           </div>
         </div>
       )}

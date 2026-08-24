@@ -8,6 +8,9 @@ import staysData from '../data/stays.json'
 import StayCard from '../components/card/StayCard'
 import Counter from '../components/Counter'
 import DateRangePicker from '../components/DateRangePicker'
+import Carousel from '../components/kareum/Carousel'
+import RevealOnScroll from '../components/kareum/RevealOnScroll'
+import ScatterIllust from '../components/kareum/ScatterIllust'
 import { formatPrice, STAY_TYPE_LABEL, calcNights } from '../lib/format'
 import { useAuthStore } from '../store/useAuthStore'
 import { useBookmark } from '../hooks/useBookmark'
@@ -45,7 +48,6 @@ export default function StayDetailPage() {
 
   const gallery = stay.gallery || []
   const main = stay.main_image || gallery[0]
-  const thumbs = gallery.filter((g) => g !== main).slice(0, 4)
   const lightboxImages = gallery.length ? gallery : (main ? [main] : [])
 
   const onReserveClick = () => {
@@ -76,53 +78,43 @@ export default function StayDetailPage() {
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
-      {/* Gallery */}
-      <section className="mx-auto w-full
-                          px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                          max-w-[1400px] 2xl:max-w-[1600px]
-                          pt-6 lg:pt-10">
-        <div className="relative md:grid md:grid-cols-[1.5fr_1fr] md:gap-2 md:rounded-2xl md:overflow-hidden">
-          <button onClick={() => openLightbox(0)}
-                  className="block w-full aspect-[4/3] md:aspect-auto md:h-[480px] bg-bg-card overflow-hidden rounded-2xl md:rounded-none">
-            {main && <img src={main} alt={stay.name} className="w-full h-full object-cover" />}
+      {/* Hero 풀블리드. 한 장. 슬라이더 아님. 하단에 카피와 이름 */}
+      <div className="relative w-full h-[50vw] min-h-[280px] max-h-[560px] overflow-hidden bg-bg-card">
+        {main && (
+          <button onClick={() => openLightbox(0)} className="block w-full h-full">
+            <img src={main} alt={stay.name} className="w-full h-full object-cover" />
           </button>
-          <div className="hidden md:grid grid-cols-2 gap-2">
-            {thumbs.map((src, i) => (
-              <button key={i} onClick={() => openLightbox(i + 1)}
-                      className="block bg-bg-card overflow-hidden">
-                <img src={src} alt={`${stay.name} ${i + 2}`} className="w-full h-full object-cover" />
-              </button>
-            ))}
-          </div>
-          {lightboxImages.length > 0 && (
-            <button
-              onClick={() => openLightbox(0)}
-              className="absolute right-4 bottom-4 inline-flex items-center gap-2 h-10 px-4
-                         bg-white/95 hover:bg-white text-text-pri
-                         font-pretendard font-medium text-[13px] rounded-lg
-                         border border-border-sub transition-colors duration-150">
-              1 / {lightboxImages.length} 더보기
-            </button>
-          )}
-        </div>
-      </section>
-
-      {/* Header row */}
-      <section className="mx-auto w-full
-                          px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                          max-w-[1400px] 2xl:max-w-[1600px]
-                          mt-8">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <p className="font-pretendard font-light text-[12px] md:text-[13px] text-text-meta">
+        )}
+        <div className="absolute inset-0 bg-black/45 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 pointer-events-none
+                        px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 pb-8 lg:pb-12">
+          <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
+            <p className="font-pretendard font-medium text-[13px] md:text-[15px] text-white/80 tracking-[0.04em]">
               {stay.region} {STAY_TYPE_LABEL[stay.type]}
             </p>
-            <h1 className="mt-1 font-pretendard font-bold
-                           text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
-                           text-text-pri tracking-[-0.02em] leading-tight">
+            <h1 className="mt-2 font-pretendard font-bold
+                           text-[24px] md:text-[36px] lg:text-[44px] 4xl:text-[52px]
+                           text-white tracking-[-0.02em] leading-tight">
               {stay.name}
             </h1>
-            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 font-pretendard text-[13px] md:text-[14px] text-text-sec">
+          </div>
+        </div>
+      </div>
+
+      {/* 이름 타이포 포인트. 카름 마을 상세 손글씨 로고 자리. 문어 슬롯은 애셋 도착 전까지 빈다 */}
+      <section className="relative mx-auto w-full
+                          px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
+                          max-w-[1400px] 2xl:max-w-[1600px]
+                          pt-10 lg:pt-14">
+        <ScatterIllust items={[]} />
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h2 className="font-pretendard font-bold
+                           text-[32px] md:text-[44px] lg:text-[56px]
+                           text-text-pri tracking-[-0.03em] leading-[1.05]">
+              {stay.name}
+            </h2>
+            <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-pretendard text-[13px] md:text-[14px] text-text-sec">
               {stay.hours && stay.hours !== '확인 안 됨' && (
                 <span className="inline-flex items-center gap-1 font-medium">
                   <Clock size={14} className="text-text-meta" />
@@ -135,7 +127,7 @@ export default function StayDetailPage() {
               </span>
             </div>
           </div>
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-2 shrink-0">
             <button aria-label="공유"
                     className="w-10 h-10 inline-flex items-center justify-center rounded-full hover:bg-bg-card border border-border-sub">
               <Share2 size={18} className="text-text-pri" />
@@ -186,14 +178,14 @@ export default function StayDetailPage() {
           {/* About */}
           {tab === 'about' && (
             <div className="mt-8 space-y-10">
-              <div>
+              <RevealOnScroll>
                 <h2 className="font-pretendard font-bold text-[22px] md:text-[26px] lg:text-[30px] text-text-pri tracking-[-0.02em] leading-tight">
                   {stay.tagline}
                 </h2>
                 <p className="mt-4 font-pretendard font-normal text-[15px] md:text-[16px] text-text-sec leading-relaxed tracking-[-0.01em]">
                   {stay.long_description}
                 </p>
-              </div>
+              </RevealOnScroll>
 
               {gallery.length > 1 && (
                 <div className="grid gap-3 md:gap-4 grid-cols-2">
@@ -208,7 +200,7 @@ export default function StayDetailPage() {
               )}
 
               {stay.highlights?.length > 0 && (
-                <div>
+                <RevealOnScroll>
                   <h3 className="font-pretendard font-bold text-[18px] md:text-[20px] text-text-pri tracking-[-0.02em] mb-4">
                     주요 특징
                   </h3>
@@ -224,7 +216,7 @@ export default function StayDetailPage() {
                       </div>
                     ))}
                   </div>
-                </div>
+                </RevealOnScroll>
               )}
             </div>
           )}
@@ -235,7 +227,7 @@ export default function StayDetailPage() {
 
           {/* Location */}
           {tab === 'location' && (
-            <div className="mt-8 space-y-6">
+            <RevealOnScroll className="mt-8 space-y-6">
               <div>
                 <h3 className="font-pretendard font-bold text-[18px] md:text-[20px] text-text-pri tracking-[-0.02em] mb-3">
                   위치
@@ -257,31 +249,35 @@ export default function StayDetailPage() {
               {stay.nearby?.length > 0 && (
                 <div>
                   <h4 className="font-pretendard font-bold text-[16px] text-text-pri mb-3">주변 명소</h4>
-                  <div className="grid gap-3 grid-cols-1 md:grid-cols-3">
+                  <Carousel label="주변 명소"
+                            className="-mx-5 px-5 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 pb-2"
+                            itemClassName="w-[60%] sm:w-[42%] md:w-[30%]">
                     {stay.nearby.map((n, i) => (
-                      <div key={i} className="border border-border-sub rounded-xl p-4">
+                      <div key={i} className="border border-border-sub rounded-xl p-4 h-full">
                         <p className="font-pretendard font-bold text-[14px] text-text-pri">{n.name}</p>
                         <p className="mt-1 font-pretendard font-medium text-[13px] text-text-meta">{n.distance}</p>
                       </div>
                     ))}
-                  </div>
+                  </Carousel>
                 </div>
               )}
-            </div>
+            </RevealOnScroll>
           )}
 
           {/* Similar */}
           {similar.length > 0 && (
+            <RevealOnScroll>
             <section className="mt-16">
               <h2 className="font-pretendard font-bold text-[20px] md:text-[22px] lg:text-[24px] text-text-pri tracking-[-0.02em] mb-4">
                 비슷한 곳
               </h2>
-              <div className="-mx-5 px-5 md:mx-0 md:px-0 overflow-x-auto scrollbar-hide">
-                <div className="grid grid-flow-col auto-cols-[80%] md:auto-cols-[45%] lg:grid-flow-row lg:auto-cols-auto lg:grid-cols-2 gap-4 md:gap-6">
-                  {similar.map((s) => <StayCard key={s.id} {...s} />)}
-                </div>
-              </div>
+              <Carousel label="비슷한 곳"
+                        className="-mx-5 px-5 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 pb-2"
+                        itemClassName="w-[80%] sm:w-[60%] md:w-[46%] lg:w-[38%]">
+                {similar.map((s) => <StayCard key={s.id} {...s} />)}
+              </Carousel>
             </section>
+            </RevealOnScroll>
           )}
         </div>
 
