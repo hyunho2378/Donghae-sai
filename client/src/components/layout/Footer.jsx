@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 
 const QUICK = [
-  { to: '/stays', label: '사이 찾기' },
-  { to: '/packages', label: '코스' },
   { to: '/story', label: '이야기' },
+  { to: '/stays', label: '사이 찾기' },
+  { to: '/packages', label: '프로그램' },
   { to: '/goods', label: '굿즈' },
   { to: '/membership', label: '패스' }
 ]

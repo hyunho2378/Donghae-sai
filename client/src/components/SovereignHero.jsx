@@ -1,19 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { ArrowUp, ArrowUpRight, MapPin, Ticket, Plus } from 'lucide-react'
+import { ArrowUp, ArrowUpRight, Plus } from 'lucide-react'
 import useSovereignChat, { stripMarkdown } from '../hooks/useSovereignChat'
 import AnswerSkeleton from './AnswerSkeleton'
 import AnswerText from './AnswerText'
-
-// 동해시 공식 권역 구분 5개와 패스. 네이버 검색창 아래 바로가기 줄과 같은 자리
-const SHORTCUTS = [
-  { label: '추암', to: '/stays?region=추암', Icon: MapPin },
-  { label: '무릉', to: '/stays?region=무릉', Icon: MapPin },
-  { label: '천곡', to: '/stays?region=천곡', Icon: MapPin },
-  { label: '묵호', to: '/stays?region=묵호', Icon: MapPin },
-  { label: '망상', to: '/stays?region=망상', Icon: MapPin },
-  { label: '패스', to: '/membership', Icon: Ticket }
-]
 
 const SUGGESTIONS = [
   { label: '코스 추천', question: '2030 뚜벅이인데 1박 코스 짜줘' },
@@ -78,9 +67,8 @@ export default function SovereignHero() {
                        ${leaving ? 'opacity-0 -translate-y-2 pointer-events-none' : 'opacity-100 translate-y-0'}`
 
   return (
-    <section className={`bg-white flex flex-col ${opened
-                         ? 'h-[calc(100dvh-60px)] lg:h-[calc(100dvh-80px)]'
-                         : 'min-h-[calc(100vh-60px)] lg:min-h-[calc(100vh-80px)] justify-center py-16 md:py-20 lg:py-24 4xl:py-32'}`}>
+    <section className={`bg-white flex flex-col flex-1 min-h-0 overflow-hidden
+                         ${opened ? '' : 'justify-center py-10 md:py-14 lg:py-16'}`}>
 
       {/* 위쪽. 초기에는 헤드라인, 대화 중에는 스크롤되는 대화 영역 */}
       <div ref={scrollRef}
@@ -116,6 +104,7 @@ export default function SovereignHero() {
                       <AnswerText
                         text={stripMarkdown(m.content)}
                         sources={m.sources}
+                        links={m.links}
                         showSources={!(streaming && i === messages.length - 1)} />
                     )}
                   </div>
@@ -138,7 +127,7 @@ export default function SovereignHero() {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={onKeyDown}
               aria-label="동해사이 도우미에게 질문하기"
-              placeholder={opened ? '이어서 물어보세요' : '무엇이든 물어보세요'}
+              placeholder={opened ? '무엇이든 이어서 물어보세요' : '무엇이든 물어보세요'}
               className="flex-1 min-w-0 bg-transparent outline-none
                          font-pretendard font-normal text-text-pri
                          text-[16px] lg:text-[17px] tracking-[-0.01em]
@@ -157,28 +146,7 @@ export default function SovereignHero() {
           </div>
 
           {!opened && (
-            <div className={`mt-6 grid grid-cols-3 xs:grid-cols-6 gap-2 ${introMotion}`}>
-              {SHORTCUTS.map(({ label, to, Icon }) => (
-                <Link
-                  key={label}
-                  to={to}
-                  className="py-3 flex flex-col items-center gap-2 rounded-xl
-                             hover:bg-bg-card transition-colors duration-150">
-                  <span className="w-11 h-11 lg:w-12 lg:h-12 inline-flex items-center justify-center
-                                   rounded-full bg-primary-soft">
-                    <Icon size={20} className="text-primary-hover" />
-                  </span>
-                  <span className="font-pretendard font-medium
-                                   text-[13px] lg:text-[14px] text-text-sec tracking-[-0.01em]">
-                    {label}
-                  </span>
-                </Link>
-              ))}
-            </div>
-          )}
-
-          {!opened && (
-            <div className={`mt-6 rounded-2xl border border-border-sub overflow-hidden ${introMotion}`}>
+            <div className={`mt-8 rounded-2xl border border-border-sub overflow-hidden ${introMotion}`}>
               {SUGGESTIONS.map((s) => (
                 <button
                   key={s.label}

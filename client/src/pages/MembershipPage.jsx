@@ -220,13 +220,25 @@ export default function MembershipPage() {
       {/* CTA */}
       <section className={`${SECTION} py-12 md:py-18 lg:py-24 text-center`}>
         <h2 className={H2}>오늘 밤, 하루 더 머문다</h2>
-        <Link to={passCta(isAuthenticated, 'pass-2day')}
-              className="mt-6 inline-flex items-center justify-center h-12 lg:h-14 px-8
-                         bg-primary-hover text-white rounded-lg
-                         font-pretendard font-medium text-[15px] lg:text-[16px]
-                         hover:bg-primary transition-colors duration-150">
-          2일권 8,000원으로 시작하기
-        </Link>
+        <p className="mt-3 font-pretendard font-normal text-[15px] md:text-[16px] text-text-meta">
+          일회성 NFC 패스. 1일권 5,000원, 2일권 8,000원, 3일권 10,000원
+        </p>
+        <div className="mt-6 inline-flex flex-wrap justify-center gap-3">
+          <Link to={passCta(isAuthenticated, 'pass-2day')}
+                className="inline-flex items-center justify-center h-12 lg:h-14 px-8
+                           bg-primary-hover text-white rounded-lg
+                           font-pretendard font-medium text-[15px] lg:text-[16px]
+                           hover:bg-primary transition-colors duration-150">
+            2일권 8,000원으로 시작하기
+          </Link>
+          <Link to="/goods"
+                className="inline-flex items-center justify-center h-12 lg:h-14 px-8
+                           bg-white text-text-pri border border-border-def rounded-lg
+                           font-pretendard font-medium text-[15px] lg:text-[16px]
+                           hover:border-primary transition-colors duration-150">
+            굿즈 보기
+          </Link>
+        </div>
       </section>
     </div>
   )

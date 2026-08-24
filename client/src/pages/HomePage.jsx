@@ -1,19 +1,13 @@
 import { Helmet } from 'react-helmet-async'
+import { useLocation } from 'react-router-dom'
 import SovereignHero from '../components/SovereignHero'
-import RegionBlobSection from '../components/kareum/RegionBlobSection'
-import SectionHeader from '../components/SectionHeader'
-import PackageCard from '../components/card/PackageCard'
-import JournalCard from '../components/card/JournalCard'
-import packagesData from '../data/packages.json'
-import journalData from '../data/journal.json'
-import { Link, useLocation } from 'react-router-dom'
 
 export default function HomePage() {
   // 로고를 눌러 홈으로 다시 오면 히어로를 초기 상태로 되돌린다
   const location = useLocation()
 
   return (
-    <div className="page-enter">
+    <div className="page-enter flex-1 min-h-0 flex flex-col">
       <Helmet>
         <title>동해사이 | 하루와 하루 사이, 동해</title>
         <meta name="description" content="흩어진 동해의 장소와 경험을 이어 하루 더 머무는 여행을 만든다. 추암 무릉 천곡 묵호 망상 5개 권역과 동해사이 패스." />
@@ -25,71 +19,6 @@ export default function HomePage() {
         <meta name="theme-color" content="#60A5FA" />
       </Helmet>
       <SovereignHero key={location.key} />
-      <RegionBlobSection />
-
-      <section className="bg-bg-mute">
-        <div className="mx-auto w-full
-                        px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                        max-w-[1400px] 2xl:max-w-[1600px]
-                        py-12 md:py-18 lg:py-24 4xl:py-32">
-          <SectionHeader
-            title="COURSE"
-            subtitle="저녁부터 다음 날 아침까지, 코스 여덟 개와 프로그램 열 개"
-            to="/packages" />
-          <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {[...packagesData.filter((p) => p.category === 'course').slice(0, 3),
-              ...packagesData.filter((p) => p.category === 'program').slice(0, 3)]
-              .map((p) => <PackageCard key={p.id} {...p} />)}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto w-full
-                          px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                          max-w-[1400px] 2xl:max-w-[1600px]
-                          py-12 md:py-18 lg:py-24 4xl:py-32">
-        <SectionHeader
-          title="LOCAL"
-          subtitle="동해의 카페와 책방과 소품샵"
-          to="/journal" />
-        <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {journalData.slice(0, 3).map((j) => <JournalCard key={j.id} {...j} />)}
-        </div>
-      </section>
-
-      <section className="bg-black text-white py-16 lg:py-24 4xl:py-32">
-        <div className="mx-auto w-full
-                        px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                        max-w-[1400px] 2xl:max-w-[1600px]
-                        text-center">
-          <h2 className="font-pretendard font-bold
-                         text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
-                         tracking-[-0.02em]">
-            스탬프로 완성하는 하룻밤
-          </h2>
-          <p className="mt-3 font-pretendard font-normal text-[15px] md:text-[16px] text-white/80">
-            일회성 NFC 패스. 1일권 5,000원, 2일권 8,000원, 3일권 10,000원
-          </p>
-          <div className="mt-8 inline-flex gap-3">
-            <Link to="/membership"
-                  className="h-12 lg:h-14 px-6 lg:px-8
-                             bg-white text-text-pri
-                             font-pretendard font-medium text-[16px]
-                             rounded-lg inline-flex items-center
-                             hover:bg-white/90 transition-colors duration-150">
-              패스 보기
-            </Link>
-            <Link to="/goods"
-                  className="h-12 lg:h-14 px-6 lg:px-8
-                             bg-transparent text-white border border-white/30
-                             font-pretendard font-medium text-[16px]
-                             rounded-lg inline-flex items-center
-                             hover:bg-white/10 transition-colors duration-150">
-              굿즈 보기
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import HeroSlider from '../components/HeroSlider'
-import { HERO_SLIDES } from '../components/kareum/heroSlides'
+import { PROGRAM_HERO } from '../components/kareum/heroSlides'
 import ColorBlockCarousel from '../components/kareum/ColorBlockCarousel'
 import PackageCarousel from '../components/kareum/PackageCarousel'
 import packagesData from '../data/packages.json'
@@ -17,12 +17,12 @@ export default function PackagesPage() {
 
   return (
     <div className="page-enter">
-      <HeroSlider slides={HERO_SLIDES} />
+      <HeroSlider slides={PROGRAM_HERO} />
 
       <div className="mx-auto w-full
                       px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
                       max-w-[1400px] 2xl:max-w-[1600px]
-                      py-8 lg:py-12">
+                      pt-8 lg:pt-12">
         <h1 className="font-pretendard font-bold
                        text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
                        text-text-pri tracking-[-0.02em] leading-tight">

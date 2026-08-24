@@ -4,6 +4,9 @@ import { useSearchParams } from 'react-router-dom'
 import StayCard from '../components/card/StayCard'
 import Chip from '../components/Chip'
 import EmptyState from '../components/feedback/EmptyState'
+import HeroSlider from '../components/HeroSlider'
+import { STAYS_HERO } from '../components/kareum/heroSlides'
+import RegionBlobSection from '../components/kareum/RegionBlobSection'
 import staysData from '../data/stays.json'
 import { STAY_TYPE_LABEL } from '../lib/format'
 
@@ -48,6 +51,9 @@ export default function StaysPage() {
         <meta name="twitter:card" content="summary" />
         <meta name="theme-color" content="#60A5FA" />
       </Helmet>
+
+      <HeroSlider slides={STAYS_HERO} />
+      <RegionBlobSection />
     <div className="page-enter mx-auto w-full
                     px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
                     max-w-[1400px] 2xl:max-w-[1600px]

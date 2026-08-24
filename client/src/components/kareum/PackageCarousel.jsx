@@ -11,7 +11,7 @@ export default function PackageCarousel({ title, items = [] }) {
     <section className="mx-auto w-full
                         px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
                         max-w-[1400px] 2xl:max-w-[1600px]
-                        py-8 lg:py-12">
+                        py-8">
       <KareumHeader title={title} count={items.length} countLabel="개 코스" />
 
       <div className="mt-8">
@@ -24,7 +24,7 @@ export default function PackageCarousel({ title, items = [] }) {
             const hasPrice = p.price_label && p.price_label !== '확인 안 됨'
             return (
               <Link key={p.id} to={`/packages/${p.id}`} className="group block h-full">
-                <article className="flex flex-col h-full rounded-2xl overflow-hidden bg-white shadow-card">
+                <article className="flex flex-col h-full rounded-2xl overflow-hidden bg-white border border-border-sub">
                   <div className="relative aspect-[16/9] overflow-hidden bg-bg-card border-b-2 border-primary">
                     {p.main_image && (
                       <img src={p.main_image} alt={p.name} loading="lazy"

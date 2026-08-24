@@ -5,11 +5,13 @@
     "type": "play",
     "region": "묵호",
     "address": "동해시 묵호진동 2-109",
-    "hours": "4월에서 10월 10:00에서 18:00, 11월에서 3월 10:00에서 17:00, 월요일 휴장, 성인 3,000원",
-    "price_label": "성인 3,000원",
+    "hours": "하절기 3월에서 10월 10:00에서 18:00, 동절기 11월에서 2월 10:00에서 17:00, 매주 월요일 휴무. 월요일이 공휴일이면 다음 평일 휴무",
+    "price_label": "일반 3,000원, 청소년과 군인 2,000원, 어린이와 경로 1,000원. 자이언트 슬라이드와 스카이사이클 별도",
     "price_per_night": 0,
     "tags": [
-      "묵호"
+      "묵호",
+      "스카이워크",
+      "액티비티"
     ],
     "badges": [
       "연계 후보"
@@ -18,7 +20,7 @@
     "gallery": [],
     "tagline": "59미터 스카이워크, 스카이사이클, 자이언트슬라이드",
     "short_description": "59미터 스카이워크, 스카이사이클, 자이언트슬라이드",
-    "long_description": "59미터 스카이워크, 스카이사이클, 자이언트슬라이드",
+    "long_description": "도째비는 강원도 사투리로 도깨비, 골은 골짜기다. 도깨비가 사는 골짜기라는 뜻이다. 스카이사이클은 해발 59미터 골짜기를 횡단하는 레일 자전거, 자이언트 슬라이드는 약 30미터 나선형 미끄럼틀, 스카이워크는 유리 바닥 위를 걷는 코스다. 바람이 강할 때 일부 시설이 제한되므로 방문 전 운영을 확인해야 한다. 입구는 해안도로와 등대 두 곳에 연결된다.",
     "highlights": [],
     "host": null,
     "host_intro": null,
@@ -26,7 +28,7 @@
     "amenities": [],
     "rules": [],
     "nearby": [],
-    "source": "관광명소상세_0824.md",
+    "source": "관광명소상세_0824.md / 동해스토리북 chap2 chap3_4 chap5",
     "verified": "확인 안 됨",
     "target": "2030 강추천, 뚜벅이와 자차 공통",
     "is_active": true
@@ -73,7 +75,10 @@
     "price_label": "확인 안 됨",
     "price_per_night": 0,
     "tags": [
-      "묵호"
+      "느린우체통",
+      "등대",
+      "묵호",
+      "영화촬영지"
     ],
     "badges": [
       "연계 후보"
@@ -82,7 +87,7 @@
     "gallery": [],
     "tagline": "1963년 건립, 해발 67미터 등대와 바다 전망",
     "short_description": "1963년 건립, 해발 67미터 등대와 바다 전망",
-    "long_description": "1963년 건립, 해발 67미터 등대와 바다 전망",
+    "long_description": "높이 25미터, 해발 93미터 언덕 위에 있어 체감 높이가 높다. 불빛은 약 48킬로미터까지 닿는다. 1963년 6월 8일 첫 불빛을 밝혔다. 1968년 영화 미워도 다시 한번 촬영지다. 우체통에 엽서를 넣으면 1년 뒤 배달해준다. 등대 주변에 묵호 옛 사진과 전국 유명 등대 사진이 전시돼 있다.",
     "highlights": [],
     "host": null,
     "host_intro": null,
@@ -90,7 +95,7 @@
     "amenities": [],
     "rules": [],
     "nearby": [],
-    "source": "관광명소상세_0824.md",
+    "source": "관광명소상세_0824.md / 동해스토리북 chap2 chap3_4 chap5",
     "verified": "확인 안 됨",
     "target": "전 연령, 논골담길과 묶기",
     "is_active": true
@@ -105,7 +110,10 @@
     "price_label": "확인 안 됨",
     "price_per_night": 0,
     "tags": [
-      "묵호"
+      "골목",
+      "도시재생",
+      "묵호",
+      "벽화"
     ],
     "badges": [
       "연계 후보"
@@ -114,7 +122,7 @@
     "gallery": [],
     "tagline": "등대오름길과 논골 1 2 3길, 벽화와 묵호 생활사",
     "short_description": "등대오름길과 논골 1 2 3길, 벽화와 묵호 생활사",
-    "long_description": "등대오름길과 논골 1 2 3길, 벽화와 묵호 생활사",
+    "long_description": "2010년 동해문화원과 마을주민이 논골담길 프로젝트를 시작했다. 어르신 구술로 삶의 이야기를 기록하고 벽화와 공공미술로 풀어냈다. 매년 50만 명 이상이 찾는 동해 대표 여행지다. 등대오름길, 바람의 언덕으로 가는 논골1길, 벽화가 매력적인 논골2길, 1970년대 묵호의 활기를 담은 논골3길 네 개의 길이 있다. 중간의 바람의 언덕에서 묵호항과 앞바다가 한눈에 보인다. 묵호 시간여행이라는 어구전시관이 있다.",
     "highlights": [],
     "host": null,
     "host_intro": null,
@@ -122,7 +130,7 @@
     "amenities": [],
     "rules": [],
     "nearby": [],
-    "source": "관광명소상세_0824.md",
+    "source": "관광명소상세_0824.md / 동해스토리북 chap2 chap3_4 chap5",
     "verified": "확인 안 됨",
     "target": "2030 사진, 4050 해설",
     "is_active": true
@@ -137,7 +145,10 @@
     "price_label": "무료",
     "price_per_night": 0,
     "tags": [
-      "묵호"
+      "묵호",
+      "울릉도",
+      "포토존",
+      "활어"
     ],
     "badges": [
       "연계 후보"
@@ -146,7 +157,7 @@
     "gallery": [],
     "tagline": "항구와 활어판매센터와 지역 먹거리",
     "short_description": "항구와 활어판매센터와 지역 먹거리",
-    "long_description": "항구와 활어판매센터와 지역 먹거리",
+    "long_description": "묵호역에서 10분 거리다. 어업과 관광이 공존한다. 하루 1회 울릉도행 배가 오전 8시 출항하며 2시간 40분 걸린다. 묵호항활어판매센터에서 생선을 사서 손질을 맡기고 근처 야외 공간에서 먹을 수 있다. 항구 주변에 횟집과 건어물 가게가 즐비하다. 활어회센터와 친수공간에 포토존이 있다.",
     "highlights": [],
     "host": null,
     "host_intro": null,
@@ -154,7 +165,7 @@
     "amenities": [],
     "rules": [],
     "nearby": [],
-    "source": "관광명소상세_0824.md",
+    "source": "관광명소상세_0824.md / 동해스토리북 chap2 chap3_4 chap5",
     "verified": "확인 안 됨",
     "target": "전 연령, 식사 연결",
     "is_active": true
@@ -195,13 +206,16 @@
     "id": "sai-007",
     "name": "대진해변",
     "type": "play",
-    "region": "망상",
+    "region": "묵호",
     "address": "망상동 1-3",
     "hours": "해변 상시 이용 가능",
     "price_label": "확인 안 됨",
     "price_per_night": 0,
     "tags": [
-      "묵호"
+      "대진",
+      "묵호",
+      "서핑",
+      "일몰"
     ],
     "badges": [
       "연계 후보"
@@ -210,7 +224,7 @@
     "gallery": [],
     "tagline": "낮은 수심과 적당한 파도, 서핑",
     "short_description": "낮은 수심과 적당한 파도, 서핑",
-    "long_description": "낮은 수심과 적당한 파도, 서핑",
+    "long_description": "숨은 서핑 천국이다. 서퍼들의 사랑을 오래 받아온 곳으로 해변은 크지 않지만 서핑에 필요한 모든 것이 있다. 사람이 적어 초보자도 집중하기 좋고 강사가 세심하게 봐준다. 동해선 기차가 해안도로와 나란히 달려 파도 소리와 기차 소리가 어우러진다. 일몰이 장관이다. 화장실과 샤워장이 가깝고 개장 시즌에 안전요원이 배치된다.",
     "highlights": [],
     "host": null,
     "host_intro": null,
@@ -218,7 +232,7 @@
     "amenities": [],
     "rules": [],
     "nearby": [],
-    "source": "관광명소상세_0824.md",
+    "source": "관광명소상세_0824.md / 동해스토리북 chap2 chap3_4 chap5",
     "verified": "확인 안 됨",
     "target": "2030 핵심 체험",
     "is_active": true
@@ -260,12 +274,14 @@
     "name": "연필뮤지엄",
     "type": "see",
     "region": "묵호",
-    "address": "발한로 183-6",
-    "hours": "10:00에서 18:00, 입장마감 17:30, 화 수 휴관, 성인과 청소년 7,000원, 어린이 4,500원",
-    "price_label": "확인 안 됨",
+    "address": "동해시 발한로 183-6",
+    "hours": "10:00에서 18:00, 입장 17:30 마감, 화요일과 수요일 휴무. 공휴일 정상 운영",
+    "price_label": "일반 7,000원, 어린이 4,500원",
     "price_per_night": 0,
     "tags": [
-      "묵호"
+      "묵호",
+      "박물관",
+      "실내"
     ],
     "badges": [
       "연계 후보"
@@ -274,7 +290,7 @@
     "gallery": [],
     "tagline": "국내 최초 연필박물관, 세계 각국 연필 전시",
     "short_description": "국내 최초 연필박물관, 세계 각국 연필 전시",
-    "long_description": "국내 최초 연필박물관, 세계 각국 연필 전시",
+    "long_description": "세계 100여 나라 3,000여 종의 연필 박물관이다. 연필의 탄생과 역사, 예술연필, 캐릭터 연필 등을 테마로 전시한다. 체험 공간이 있다. 4층 카페에서 논골담길과 묵호항 일대가 보인다.",
     "highlights": [],
     "host": null,
     "host_intro": null,
@@ -282,10 +298,11 @@
     "amenities": [],
     "rules": [],
     "nearby": [],
-    "source": "관광명소상세_0824.md",
+    "source": "관광명소상세_0824.md / 동해스토리북 chap2 chap3_4 chap5",
     "verified": "확인 안 됨",
     "target": "2030 문화와 우천, 4050 문화",
-    "is_active": true
+    "is_active": true,
+    "instagram": "@pencil_museum"
   },
   {
     "id": "sai-010",
@@ -2441,14 +2458,17 @@
     "name": "묘한동해",
     "type": "see",
     "region": "묵호",
-    "address": "강원 동해시 발한로 204-1 1층",
+    "address": "동해시 발한로 204-1",
     "hours": "11:00부터 19:00, 매주 화요일 휴무",
     "price_label": "확인 안 됨",
     "price_per_night": 0,
     "tags": [
-      "고양이 컨셉 편집샵",
+      " 레진 마그넷",
+      "고양이",
       "고양이 일러스트 문구류",
-      " 레진 마그넷"
+      "고양이 컨셉 편집샵",
+      "묵호",
+      "소품샵"
     ],
     "badges": [
       "연계 후보"
@@ -2457,7 +2477,7 @@
     "gallery": [],
     "tagline": "묵호역 도보권 실내 데이트 코스",
     "short_description": "고양이 컨셉 편집샵",
-    "long_description": "묵호역 인근 발한동 상권의 고양이 테마 편집샵. 대중교통 접근성이 뛰어나며 이색 소품과 지역 작가 수공예품을 구비하여 실내 데이트 코스로 인지도 확대.",
+    "long_description": "묵호역 인근 발한동 상권의 고양이 테마 편집샵. 대중교통 접근성이 뛰어나며 이색 소품과 지역 작가 수공예품을 구비하여 실내 데이트 코스로 인지도 확대. 고양이를 테마로 한 소품샵이다. 묵호에서 가장 큰 소품샵으로 고양이를 키우는 주인장 취향의 고양이 관련 제품이 많다.",
     "highlights": [
       {
         "title": "메인 메뉴",
@@ -2470,10 +2490,11 @@
     "amenities": [],
     "rules": [],
     "nearby": [],
-    "source": "https://kr.trip.com/moments/detail/donghae-si-14772-134492521/",
+    "source": "https://kr.trip.com/moments/detail/donghae-si-14772-134492521/ / 동해스토리북 chap2 chap3_4 chap5",
     "verified": "실존 확인, 지역 작가 수공예",
     "target": "2030, 집사 계층과 뚜벅이 여행객",
-    "is_active": true
+    "is_active": true,
+    "instagram": "@miohan_donghae"
   },
   {
     "id": "sai-068",
@@ -2596,14 +2617,17 @@
     "name": "바다바란",
     "type": "see",
     "region": "묵호",
-    "address": "강원 동해시 동쪽바다중앙시장 안쪽",
+    "address": "동해시 시장안길 7",
     "hours": "확인 안 됨",
     "price_label": "확인 안 됨",
     "price_per_night": 0,
     "tags": [
+      " 썬캐처",
       "무인 바다 유리 소품샵",
-      "씨글래스 키링",
-      " 썬캐처"
+      "무인숍",
+      "묵호",
+      "소품샵",
+      "씨글래스 키링"
     ],
     "badges": [
       "연계 후보"
@@ -2612,7 +2636,7 @@
     "gallery": [],
     "tagline": "합리적 가격 굿즈 구매와 재미 콘텐츠",
     "short_description": "무인 바다 유리 소품샵",
-    "long_description": "동해안 바다 유리인 씨글래스와 레진아트를 조합한 키링과 썬캐처, 마그넷을 합리적 가격에 판매하는 무인 소품샵. 소라껍데기 무료 운세 뽑기 콘텐츠로 재미 제공.",
+    "long_description": "동해안 바다 유리인 씨글래스와 레진아트를 조합한 키링과 썬캐처, 마그넷을 합리적 가격에 판매하는 무인 소품샵. 소라껍데기 무료 운세 뽑기 콘텐츠로 재미 제공. 바다를 담은 기념품과 굿즈를 파는 동쪽바다중앙시장 안 핸드메이드 소품샵이다. 씨글라스 같은 바다 소재로 손으로 만든 제품을 선보인다. 무인숍으로 운영된다. 명언 한 줄이 있는 소라 뽑기가 인기다.",
     "highlights": [
       {
         "title": "메인 메뉴",
@@ -2625,10 +2649,11 @@
     "amenities": [],
     "rules": [],
     "nearby": [],
-    "source": "동해시_특산물_재해석_디저트_조사 문서",
+    "source": "동해시_특산물_재해석_디저트_조사 문서 / 동해스토리북 chap2 chap3_4 chap5",
     "verified": "실존 확인, 동해안 바다 유리 활용",
     "target": "2030, 여행객",
-    "is_active": true
+    "is_active": true,
+    "instagram": "@bada_baran"
   },
   {
     "id": "sai-072",
@@ -2712,14 +2737,17 @@
     "name": "여행책방 잔잔하게",
     "type": "see",
     "region": "묵호",
-    "address": "강원 동해시 발한로 215-2 1층",
+    "address": "동해시 발한로 215-2",
     "hours": "매일 11:00부터 19:00 또는 12:00부터 19:00, 매주 화요일 휴무",
     "price_label": "확인 안 됨",
     "price_per_night": 0,
     "tags": [
+      " 감성 엽서",
+      "독립서점",
+      "묵호",
       "여행 전문 독립서점",
       "여행서",
-      " 감성 엽서"
+      "책방"
     ],
     "badges": [
       "연계 후보"
@@ -2728,7 +2756,7 @@
     "gallery": [],
     "tagline": "묵호역 인근 문화 체류",
     "short_description": "여행 전문 독립서점",
-    "long_description": "묵호역 인근의 여행 전문 테마 독립서점. 트래블러스룸 전시를 운영하며 감성 엽서와 소품을 큐레이션. 책을 읽으며 쉬기 좋은 공간으로 언급.",
+    "long_description": "묵호역 인근의 여행 전문 테마 독립서점. 트래블러스룸 전시를 운영하며 감성 엽서와 소품을 큐레이션. 책을 읽으며 쉬기 좋은 공간으로 언급. 바다의 숨결이 깃든 여행 책방이다. 책과 함께 당신의 동해 여행이 시작되는 곳이라는 슬로건을 쓴다. 바다와 로컬과 나이듦과 AI까지 다양한 주제의 책을 갖췄다. 심야책방과 올해의 서점 프로그램을 진행했다. 서가 옆 공간에 지구촌 인형이 전시돼 있다.",
     "highlights": [
       {
         "title": "메인 메뉴",
@@ -2741,23 +2769,27 @@
     "amenities": [],
     "rules": [],
     "nearby": [],
-    "source": "https://kr.trip.com/moments/detail/donghae-si-14772-134492934/",
+    "source": "https://kr.trip.com/moments/detail/donghae-si-14772-134492934/ / 동해스토리북 chap2 chap3_4 chap5",
     "verified": "실존 확인",
     "target": "2030, 여행객",
-    "is_active": true
+    "is_active": true,
+    "instagram": "@zanzan_bookshop"
   },
   {
     "id": "sai-075",
     "name": "책방 균형",
     "type": "see",
     "region": "묵호",
-    "address": "강원 동해시 발한로 118 1층 101호",
+    "address": "동해시 발한로 118",
     "hours": "월요일부터 목요일 11:00부터 18:00, 금요일과 토요일 11:00부터 19:00, 목요일과 일요일 휴무",
     "price_label": "확인 안 됨",
     "price_per_night": 0,
     "tags": [
-      "한약방 개조 독립서점",
-      "독립서적"
+      "독립서적",
+      "묵호",
+      "북카페",
+      "책방",
+      "한약방 개조 독립서점"
     ],
     "badges": [
       "연계 후보"
@@ -2766,7 +2798,7 @@
     "gallery": [],
     "tagline": "골목 문화 체류",
     "short_description": "한약방 개조 독립서점",
-    "long_description": "발한동 동호육교 인근의 한약방을 개조한 독립서점. 따스한 햇살이 드는 골목 안에 자리하여 고요한 분위기 제공.",
+    "long_description": "발한동 동호육교 인근의 한약방을 개조한 독립서점. 따스한 햇살이 드는 골목 안에 자리하여 고요한 분위기 제공. 도서를 통해 균형을 제안하는 공간이다. 한쪽으로 기울어진 당신을 위해서라는 문구로 균형을 테마로 한 독립책방 겸 북카페다. 심리 관련 서적을 주로 다루고 분기마다 심리 전문가 치유프로그램을 진행한다. 과거 한약방을 리모델링했다.",
     "highlights": [
       {
         "title": "메인 메뉴",
@@ -2779,10 +2811,11 @@
     "amenities": [],
     "rules": [],
     "nearby": [],
-    "source": "https://www.bookshopmap.com/map/balance_books",
+    "source": "https://www.bookshopmap.com/map/balance_books / 동해스토리북 chap2 chap3_4 chap5",
     "verified": "실존 확인, 발한동 구도심",
     "target": "2030, 여행객",
-    "is_active": true
+    "is_active": true,
+    "instagram": "@balance__books"
   },
   {
     "id": "sai-076",
@@ -2944,14 +2977,17 @@
     "name": "문화팩토리 덕장카페",
     "type": "eat",
     "region": "묵호",
-    "address": "강원 동해시 묵호진동",
-    "hours": "확인 안 됨",
+    "address": "동해시 덕장길 9",
+    "hours": "10:00에서 18:00, 월요일 휴관",
     "price_label": "확인 안 됨",
     "price_per_night": 0,
     "tags": [
+      " 해랑화이트 등 수제 캔맥주 5종",
+      "덕장",
+      "묵호",
       "묵호태 안주와 수제맥주 페어링",
-      "어달썸머에일",
-      " 해랑화이트 등 수제 캔맥주 5종"
+      "복합문화공간",
+      "어달썸머에일"
     ],
     "badges": [
       "연계 후보"
@@ -2960,7 +2996,7 @@
     "gallery": [],
     "tagline": "묵호태 소비 외연 확대와 2030 안주 문화",
     "short_description": "묵호태 안주와 수제맥주 페어링",
-    "long_description": "묵호태 가공품과 함께 동해 바다의 청량함을 담은 수제 캔맥주 5종을 페어링해 제공. 다만 동해시 관내 수제맥주 양조장은 별도 조사에서 확인 안 됨으로 나와, 캔맥주 제조원이 위탁생산인지 여부는 발표 전 확인 필요.",
+    "long_description": "묵호태 가공품과 함께 동해 바다의 청량함을 담은 수제 캔맥주 5종을 페어링해 제공. 다만 동해시 관내 수제맥주 양조장은 별도 조사에서 확인 안 됨으로 나와, 캔맥주 제조원이 위탁생산인지 여부는 발표 전 확인 필요. 복합문화공간이다. 포토존과 그림 전시가 있고 명태 캐릭터 상품을 판매한다.",
     "highlights": [
       {
         "title": "메인 메뉴",
@@ -2973,7 +3009,7 @@
     "amenities": [],
     "rules": [],
     "nearby": [],
-    "source": "동해시_특산물_재해석_디저트_조사 문서, 강원_영동권_전통주_조사 문서",
+    "source": "동해시_특산물_재해석_디저트_조사 문서, 강원_영동권_전통주_조사 문서 / 동해스토리북 chap2 chap3_4 chap5",
     "verified": "실존 확인, 제조원은 확인 필요",
     "target": "2030, 혼술과 캠핑 수요층",
     "is_active": true
@@ -3655,11 +3691,15 @@
     "name": "103LAB 게스트하우스",
     "type": "stay",
     "region": "묵호",
-    "address": "확인 안 됨",
+    "address": "동해시 논골1길 19",
     "hours": "확인 안 됨",
     "price_label": "확인 안 됨",
     "price_per_night": 0,
-    "tags": [],
+    "tags": [
+      "게스트하우스",
+      "도미토리",
+      "묵호"
+    ],
     "badges": [
       "연계 후보"
     ],
@@ -3667,7 +3707,7 @@
     "gallery": [],
     "tagline": "혼행 친구 여행자의 교류형 숙박 후보. 운영과 객실형태 재확인 필요",
     "short_description": "혼행 친구 여행자의 교류형 숙박 후보. 운영과 객실형태 재확인 필요",
-    "long_description": "혼행 친구 여행자의 교류형 숙박 후보. 운영과 객실형태 재확인 필요",
+    "long_description": "논골담길 안에 있는 게스트하우스다. 도미토리 형태로 운영하며 조용한 환경을 원하는 나홀로 여행객에게 맞다. 카페가 함께 있고 길고양이를 볼 수 있다.",
     "highlights": [],
     "host": null,
     "host_intro": null,
@@ -3675,10 +3715,12 @@
     "amenities": [],
     "rules": [],
     "nearby": [],
-    "source": "관광코스기획안_0824.md / 프로그램기획안_0824.md",
+    "source": "관광코스기획안_0824.md / 프로그램기획안_0824.md / 동해스토리북 chap2 chap3_4 chap5",
     "verified": "확인 안 됨",
     "target": "확인 안 됨",
-    "is_active": true
+    "is_active": true,
+    "contact": "0507-1433-1074",
+    "instagram": "@103lab.official"
   },
   {
     "id": "sai-103",
@@ -4080,12 +4122,17 @@
     "id": "sai-116",
     "name": "동해비치호텔",
     "type": "stay",
-    "region": "확인 안 됨",
-    "address": "확인 안 됨",
+    "region": "묵호",
+    "address": "동해시 일출로 172",
     "hours": "확인 안 됨",
     "price_label": "확인 안 됨",
     "price_per_night": 0,
-    "tags": [],
+    "tags": [
+      "대진",
+      "묵호",
+      "오션뷰",
+      "호텔"
+    ],
     "badges": [
       "연계 후보"
     ],
@@ -4093,7 +4140,7 @@
     "gallery": [],
     "tagline": "일반 호텔형 선택지",
     "short_description": "일반 호텔형 선택지",
-    "long_description": "일반 호텔형 선택지",
+    "long_description": "전망이 뛰어난 실속형 호텔이다. 바다에서 가장 가까운 숙소 중 하나로 가족 단위에 부담이 없다. 궁전호텔과 나란히 있다.",
     "highlights": [],
     "host": null,
     "host_intro": null,
@@ -4101,10 +4148,11 @@
     "amenities": [],
     "rules": [],
     "nearby": [],
-    "source": "관광코스기획안_0824.md",
+    "source": "관광코스기획안_0824.md / 동해스토리북 chap2 chap3_4 chap5",
     "verified": "확인 안 됨",
     "target": "확인 안 됨",
-    "is_active": true
+    "is_active": true,
+    "contact": "010-2418-3139"
   },
   {
     "id": "sai-117",
@@ -4293,5 +4341,931 @@
     "verified": "확인 안 됨",
     "target": "확인 안 됨",
     "is_active": true
+  },
+  {
+    "id": "sai-123",
+    "name": "묵호역",
+    "type": "see",
+    "region": "묵호",
+    "address": "확인 안 됨",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "KTX",
+      "관문",
+      "기차역",
+      "묵호"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "동해 여행의 관문",
+    "short_description": "동해 여행의 관문",
+    "long_description": "서울에서 KTX로 달리면 정동진부터 묵호 구간은 바다 옆을 달린다. 오른쪽 길로 묵호항과 논골담길과 도째비골 스카이밸리, 대각선 횡단보도 건너 연필뮤지엄과 발한도서관이 있다. 시티투어버스가 여기서 출발한다. 경복궁 기준 정동진보다 더 동쪽에 있는 역이 묵호역이다. 서울 동해 KTX와 강릉 부전 무궁화호와 강릉 동해 동해산타열차가 정차한다. 물품보관함과 자동판매기가 있다. 여름에는 철로 옆 배롱나무에 분홍색 꽃이 핀다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true
+  },
+  {
+    "id": "sai-124",
+    "name": "묵호항 방파제",
+    "type": "see",
+    "region": "묵호",
+    "address": "확인 안 됨",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "노을",
+      "등대",
+      "묵호",
+      "방파제"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "테트라포드와 붉은 등대와 수평선",
+    "short_description": "테트라포드와 붉은 등대와 수평선",
+    "long_description": "파도를 막는 항만시설이자 낭만적 공간이다. 테트라포드와 붉은 등대와 수평선이 발걸음을 멈추게 한다. 2002년 태풍 루사로 상처를 입었지만 더 튼튼하게 보강됐다. 아침에는 어부들의 풍경을, 저녁에는 노을에 물든 바다를 즐긴다. 묵호항과 수변공원 사이에 있다. 수변공원 주차장이 넓고 주차가 무료다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true
+  },
+  {
+    "id": "sai-125",
+    "name": "별빛마을 전망대",
+    "type": "see",
+    "region": "묵호",
+    "address": "확인 안 됨",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "묵호",
+      "밤",
+      "별빛",
+      "야간",
+      "전망대"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "나무데크와 흔들의자가 있는 소박한 전망대",
+    "short_description": "나무데크와 흔들의자가 있는 소박한 전망대",
+    "long_description": "묵호역에서 묵호항 방향으로 걷다 왼쪽 어린왕자 조형물 옆 계단을 오르면 나온다. 낮에는 묵호항과 논골담길 지붕이, 밤에는 별빛을 주제로 한 조형물과 조명이 어우러진다. 새뜰마을사업으로 주민과 예술가가 골목을 꾸몄다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true
+  },
+  {
+    "id": "sai-126",
+    "name": "묵호덕장",
+    "type": "see",
+    "region": "묵호",
+    "address": "확인 안 됨",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "겨울",
+      "덕장",
+      "명태",
+      "묵호"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "80년 전통 명태 덕장",
+    "short_description": "80년 전통 명태 덕장",
+    "long_description": "겨울 바닷바람과 햇빛으로만 묵호태를 만든다. 11월에서 2월 약 15일에서 20일 건조하며 4개월 동안 4회에서 5회 건조한다. 한때 67가구가 운영했으나 현재 6가구가 명맥을 잇는다. 묵호등대에서 해맞이길을 따라가면 덕장길이 나오고 이 일대가 덕장마을이다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true
+  },
+  {
+    "id": "sai-127",
+    "name": "묵호성당",
+    "type": "see",
+    "region": "묵호",
+    "address": "동해시 발한로 161",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "건축",
+      "묵호",
+      "성당"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "바다의 별 성당",
+    "short_description": "바다의 별 성당",
+    "long_description": "파란색 외벽과 하얀 테두리가 특징이다. 한국전쟁 당시 아일랜드 신부가 사목하다 순교해 순교비가 있다. 스테인드글라스를 통과한 빛이 흘러내리는 고요한 공간이다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true
+  },
+  {
+    "id": "sai-128",
+    "name": "삼본아파트",
+    "type": "see",
+    "region": "묵호",
+    "address": "확인 안 됨",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "묵호",
+      "영화촬영지",
+      "포토존"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "영화 봄날은 간다 배경지",
+    "short_description": "영화 봄날은 간다 배경지",
+    "long_description": "2001년 영화 봄날은 간다의 배경지다. 유지태와 이영애가 주연했고 라면 먹을래요 대사로 기억되는 작품이다. 동해시 오래된 주거단지로 두 주인공의 일상과 감정이 오간 무대다. 일부 촬영된 계단과 복도가 당시 분위기를 간직하고 있다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true
+  },
+  {
+    "id": "sai-129",
+    "name": "까막바위",
+    "type": "see",
+    "region": "묵호",
+    "address": "확인 안 됨",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "묵호",
+      "문어",
+      "바위",
+      "어달",
+      "전설"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "문어의 전설이 깃든 검은 바위",
+    "short_description": "문어의 전설이 깃든 검은 바위",
+    "long_description": "해안도로를 걷다 보면 묵직한 검은 바위가 보인다. 주변과 대비되는 까만 색이 인상적이다. 조선시대 중엽 침입자가 마을을 습격했을 때 덕망 높은 호장이 맞서 싸웠고 하늘에서 천둥번개가 치고 큰 문어가 나타나 침입자의 배를 뒤집었다는 전설이 있다. 주민들은 그 문어가 호장의 혼이라 믿었다. 바위 옆에 문어상이 있다. 도로에 서울 남대문 정동 방향 표지석이 있어 정동진보다 더 동쪽임을 강조한다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true
+  },
+  {
+    "id": "sai-130",
+    "name": "어달항",
+    "type": "see",
+    "region": "묵호",
+    "address": "확인 안 됨",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "등대",
+      "묵호",
+      "어달",
+      "포토존",
+      "항구"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "빨간 등대와 하얀 등대가 서 있는 조용한 항구",
+    "short_description": "빨간 등대와 하얀 등대가 서 있는 조용한 항구",
+    "long_description": "묵호항과 달리 어달항은 조용하고 아늑하다. 방파제 끝에 빨간 등대와 하얀 등대가 서 있다. 알록달록 색을 칠한 테트라포드가 포토 명소다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true
+  },
+  {
+    "id": "sai-131",
+    "name": "아침햇살정원",
+    "type": "see",
+    "region": "묵호",
+    "address": "확인 안 됨",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "묵호",
+      "어달",
+      "전시",
+      "정원",
+      "포토존"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "어달항과 도로 사이의 옛 사진 전시 공간",
+    "short_description": "어달항과 도로 사이의 옛 사진 전시 공간",
+    "long_description": "항구와 방파제를 한눈에 보는 공간이다. 묵호와 어달의 옛 사진이 전시되고 테트라포드와 초승달 조형물 포토존이 있다. 작은 마을음악회 등 문화 활동의 장으로도 쓰인다. 카페어달로 이어지며 입구에 동해 독립서적을 큐레이션한 한평책방이 있다. 어달 어촌계에서 운영한다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true
+  },
+  {
+    "id": "sai-132",
+    "name": "대진항",
+    "type": "see",
+    "region": "묵호",
+    "address": "확인 안 됨",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "대진",
+      "묵호",
+      "문어",
+      "항구"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "문어를 상징으로 하는 어촌 항구",
+    "short_description": "문어를 상징으로 하는 어촌 항구",
+    "long_description": "대진해변 옆 어촌의 정취를 간직한 항구다. 소박한 어선들이 줄지어 있다. 상징은 문어다. 암반이 많아 문어 서식에 최적이다. 새벽마다 어선이 출항해 돌아오면 위판에 문어가 가득하다. 묵호항이 관광객으로 북적이는 반면 대진항은 차분하고 여유롭다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true
+  },
+  {
+    "id": "sai-133",
+    "name": "어달봉수대",
+    "type": "see",
+    "region": "묵호",
+    "address": "확인 안 됨",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "대진",
+      "묵호",
+      "문화재",
+      "봉수대",
+      "전망"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "고려시대부터 쓰인 산 위 봉수대 터",
+    "short_description": "고려시대부터 쓰인 산 위 봉수대 터",
+    "long_description": "대진해수욕장 뒤 어달산 정상에 고려시대부터 사용된 봉수대 터가 있다. 강원도 기념물 13호다. 지름 약 9미터 높이 2미터 도넛 형태 돌무더기가 있다. 낮에는 연기, 밤에는 횃불로 신호를 보냈다. 평상시 1개, 침입 징후 시 2개에서 3개, 전쟁 때 4개에서 5개의 불을 켰다. 북으로 강릉 오구산 봉수, 남으로 삼척 광진산 봉수와 이어졌다. 정비된 관광지가 아니어서 가파른 오르막을 올라야 한다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true
+  },
+  {
+    "id": "sai-134",
+    "name": "노봉해수욕장",
+    "type": "see",
+    "region": "망상",
+    "address": "확인 안 됨",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "고요",
+      "노봉",
+      "망상",
+      "송림",
+      "해변"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "시간이 멈춘 원시의 바다",
+    "short_description": "시간이 멈춘 원시의 바다",
+    "long_description": "망상해수욕장과 대진해수욕장 사이에 있다. 안내판이나 화려한 입구가 없어 의도적으로 찾지 않으면 지나치기 쉽다. 카페나 식당 같은 편의시설이 없다. 이 불편함이 노봉의 자산이다. 끝없는 백사장과 울창한 송림과 맑고 푸른 바다가 산수화를 그린다. 신석기 시대 석기와 토기 조각이 발견되어 오랜 거주지였음을 보여준다. 고요함을 추구하는 이들에게 최고의 선택이다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true
+  },
+  {
+    "id": "sai-135",
+    "name": "콩키",
+    "type": "eat",
+    "region": "묵호",
+    "address": "동해시 일출로 97 1층",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "묵호",
+      "베이커리",
+      "카페"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "하루에 소량만 굽는 작은 빵집",
+    "short_description": "하루에 소량만 굽는 작은 빵집",
+    "long_description": "일출로에 있는 작은 빵집으로 하루에 소량만 굽는다. 포카치아와 산도가 신선하다. 늦게 가면 품절이다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true,
+    "instagram": "@konki_pan"
+  },
+  {
+    "id": "sai-136",
+    "name": "아촌트",
+    "type": "eat",
+    "region": "묵호",
+    "address": "동해시 발한로",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "리모델링",
+      "묵호",
+      "카페"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "45년 된 여관을 리모델링한 대형 카페",
+    "short_description": "45년 된 여관을 리모델링한 대형 카페",
+    "long_description": "45년 된 여관을 리모델링한 100평 넘는 대형 카페다. 오래된 기둥과 천장이 새 시간과 공존한다. 짐 보관 서비스를 제공한다. 묵호에서 가장 넓은 카페다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true,
+    "instagram": "@afont_d"
+  },
+  {
+    "id": "sai-137",
+    "name": "도하하우스",
+    "type": "eat",
+    "region": "묵호",
+    "address": "동해시 발한로 223-1 1층",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "묵호",
+      "카페",
+      "티룸"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "티 블렌딩 중심의 티룸",
+    "short_description": "티 블렌딩 중심의 티룸",
+    "long_description": "티 블렌딩 중심의 티룸이다. 소품과 티웨어가 결합된 구조로 차를 마시며 소품을 둘러본다. 테이블 간격이 넓어 책 읽기 좋다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true,
+    "instagram": "@doyohaus.life"
+  },
+  {
+    "id": "sai-138",
+    "name": "카라멜스테이션",
+    "type": "eat",
+    "region": "묵호",
+    "address": "동해시 발한로 219-11",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "묵호",
+      "카페",
+      "호텔"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "호텔 카라멜 1층 카페",
+    "short_description": "호텔 카라멜 1층 카페",
+    "long_description": "호텔 카라멜 1층에 있다. 갈색 벽돌 외관이 거대한 카라멜처럼 보인다. 호텔과 연계된 라이프스타일 프로그램을 운영한다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true,
+    "instagram": "@karamel_station"
+  },
+  {
+    "id": "sai-139",
+    "name": "현상소",
+    "type": "eat",
+    "region": "망상",
+    "address": "동해시 노봉안길 20",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "노봉",
+      "망상",
+      "정원",
+      "카페"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "1200평 유럽풍 정원이 있는 바닷가 카페",
+    "short_description": "1200평 유럽풍 정원이 있는 바닷가 카페",
+    "long_description": "바닷가 근처지만 바다는 보이지 않는다. 오래된 마을 한가운데 유럽풍 정원이 있다. 1200평 정원에 관리된 잔디와 꽃이 어우러진다. 벽돌색 건물 주변에 소나무가 울창하다. 바다소금라떼가 유명하고 당근케이크와 피칸파이가 시그니처다. 마을길을 따라 노봉해변으로 나갈 수 있다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true,
+    "instagram": "@hyun_sanso"
+  },
+  {
+    "id": "sai-140",
+    "name": "호텔카라멜",
+    "type": "stay",
+    "region": "묵호",
+    "address": "동해시 발한로 219-11",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "묵호",
+      "테마",
+      "호텔"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "기차역을 연상시키는 테마형 숙소",
+    "short_description": "기차역을 연상시키는 테마형 숙소",
+    "long_description": "달콤한 추억을 만드는 정거장이라는 컨셉의 테마형 숙소다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true,
+    "contact": "0507-1468-5120",
+    "instagram": "@hotel.karamel"
+  },
+  {
+    "id": "sai-141",
+    "name": "선샤인호텔",
+    "type": "stay",
+    "region": "묵호",
+    "address": "동해시 일출로 20-1",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "묵호",
+      "역세권",
+      "호텔"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "묵호항 건너편 신축 현대식 호텔",
+    "short_description": "묵호항 건너편 신축 현대식 호텔",
+    "long_description": "묵호항 건너편 신축 건물로 냉난방과 전용 주차장을 갖췄다. 동쪽바다중앙시장이 가깝고 묵호역에서 걸어갈 수 있다. 홈페이지는 shhotel.co.kr이다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true,
+    "contact": "0507-1395-3707"
+  },
+  {
+    "id": "sai-142",
+    "name": "서진이네",
+    "type": "stay",
+    "region": "묵호",
+    "address": "동해시 해안로 513-2",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "게스트하우스",
+      "묵호"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "현지인이 운영하는 가정집 스타일 게스트하우스",
+    "short_description": "현지인이 운영하는 가정집 스타일 게스트하우스",
+    "long_description": "현지인이 운영하는 가정집 스타일이다. 요금이 합리적이고 호스트가 맛집과 관광 정보를 안내한다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true,
+    "contact": "0507-1442-6710",
+    "instagram": "@seojins_inn"
+  },
+  {
+    "id": "sai-143",
+    "name": "어쩌다어달",
+    "type": "stay",
+    "region": "묵호",
+    "address": "동해시 일출로 309",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "묵호",
+      "어달",
+      "오션뷰",
+      "펜션"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "바다를 보며 아침을 맞는 오션뷰 펜션",
+    "short_description": "바다를 보며 아침을 맞는 오션뷰 펜션",
+    "long_description": "오션뷰 펜션으로 바다를 보며 아침을 맞는다. 근처에 신비호텔과 어달을담다와 어달오션펜션 등이 이어져 있다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true,
+    "contact": "010-2702-3090",
+    "instagram": "@eojjeoda_eoda"
+  },
+  {
+    "id": "sai-144",
+    "name": "어달빛스테이",
+    "type": "stay",
+    "region": "묵호",
+    "address": "동해시 일출로 243-7",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "감성숙소",
+      "도미토리",
+      "묵호",
+      "어달"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "어달해변의 고요한 감성 숙소",
+    "short_description": "어달해변의 고요한 감성 숙소",
+    "long_description": "어달해변의 고요한 분위기와 어우러지는 감성 숙소다. 혼자 오는 여행객을 위한 도미토리도 운영한다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true,
+    "contact": "010-8481-1159",
+    "instagram": "@oudalbit_stay_2021s"
+  },
+  {
+    "id": "sai-145",
+    "name": "호텔828",
+    "type": "stay",
+    "region": "묵호",
+    "address": "동해시 일출로 277-10",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "묵호",
+      "어달",
+      "커플",
+      "호텔"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "객실 내 스파가 있는 부티크 호텔",
+    "short_description": "객실 내 스파가 있는 부티크 호텔",
+    "long_description": "개성 있는 인테리어로 커플에게 인기다. 높은 위치라 전망이 좋고 객실 내 스파가 있다. 홈페이지는 828spapension.com이다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true,
+    "contact": "010-2483-0828"
+  },
+  {
+    "id": "sai-146",
+    "name": "꿈의궁전호텔",
+    "type": "stay",
+    "region": "묵호",
+    "address": "동해시 일출로 174",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "묵호",
+      "어달",
+      "오션뷰",
+      "호텔"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "모든 객실 오션뷰인 클래식 숙소",
+    "short_description": "모든 객실 오션뷰인 클래식 숙소",
+    "long_description": "안정감 있는 서비스와 합리적 가격으로 출장객과 가족에게 사랑받는다. 모든 객실이 오션뷰다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true,
+    "contact": "0507-1382-0106"
+  },
+  {
+    "id": "sai-147",
+    "name": "서프팩토리",
+    "type": "stay",
+    "region": "묵호",
+    "address": "동해시 대진항길 47-1",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "게스트하우스",
+      "대진",
+      "묵호",
+      "서핑"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "대진해변 서핑의 베이스캠프",
+    "short_description": "대진해변 서핑의 베이스캠프",
+    "long_description": "대진해변 서핑의 중심지다. 서핑보드 보관과 장비 대여와 강습까지 원스톱 서비스를 제공한다. 서핑을 하지 않아도 예약 가능하다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true,
+    "contact": "0507-1411-6794",
+    "instagram": "@surffactory"
+  },
+  {
+    "id": "sai-148",
+    "name": "노봉 해비치펜션",
+    "type": "stay",
+    "region": "망상",
+    "address": "동해시 노봉안길 20-33",
+    "hours": "확인 안 됨",
+    "price_label": "확인 안 됨",
+    "price_per_night": 0,
+    "tags": [
+      "노봉",
+      "망상",
+      "펜션",
+      "프라이빗"
+    ],
+    "badges": [
+      "연계 후보"
+    ],
+    "main_image": null,
+    "gallery": [],
+    "tagline": "노봉과 망상을 내려다보는 언덕 위 펜션",
+    "short_description": "노봉과 망상을 내려다보는 언덕 위 펜션",
+    "long_description": "언덕 위에 있어 노봉과 망상을 내려다보는 프라이빗한 펜션이다. 사람들의 발길이 적어 휴식과 힐링에 좋다. 가족이나 단체가 많이 이용한다.",
+    "highlights": [],
+    "host": null,
+    "host_intro": null,
+    "max_guests": null,
+    "amenities": [],
+    "rules": [],
+    "nearby": [],
+    "source": "동해스토리북 chap2 chap3_4 chap5",
+    "verified": "확인 안 됨",
+    "target": "확인 안 됨",
+    "is_active": true,
+    "contact": "010-2787-8775",
+    "instagram": "@easternheaven.23"
   }
 ]

@@ -41,10 +41,6 @@ export default {
           def: '#DCDCDC'
         }
       },
-      boxShadow: {
-        // KAREUM_MIRROR 1-1. 허용된 유일한 그림자 토큰이다. 임의 그림자 금지
-        card: '0 1px 2px rgba(0,0,0,0.04), 0 6px 16px rgba(0,0,0,0.06)'
-      },
       borderRadius: {
         sm: '6px',
         md: '10px',

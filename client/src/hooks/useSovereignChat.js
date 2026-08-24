@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import staysData from '../data/stays.json'
 import packagesData from '../data/packages.json'
+import storiesData from '../data/stories.json'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000'
 
@@ -35,6 +36,7 @@ const SOURCE_LABELS = {
 const DATA_LABELS = { 'night-guide': '밤에 갈 만한 곳' }
 for (const s of staysData) DATA_LABELS[s.id] = s.name
 for (const p of packagesData) DATA_LABELS[p.id] = p.name
+for (const t of storiesData) DATA_LABELS[`story-${t.slug}`] = t.title
 
 export function sourceLabel(id) {
   return SOURCE_LABELS[id] || DATA_LABELS[id] || id
@@ -47,6 +49,8 @@ export function stripMarkdown(text) {
     .replace(/^\s*[*-]\s+/gm, '')
     .replace(/[#`]/g, '')
     .replace(/\*{3,}/g, '**')
+    // DESIGN.md는 AI 응답에 콜론을 금지한다. 시각 표기 10:00은 그대로 두고 항목 뒤 콜론만 지운다
+    .replace(/([^\d\s])\s*:[ \t]+/g, '$1 ')
   // 모델이 홑별표로 강조하는 경우가 잦다. 짝이 맞는 홑별표는 볼드로 승격한다
   out = out.replace(/(^|[^*])\*([^*\n]+?)\*(?!\*)/g, '$1**$2**')
   // 짝이 없이 남은 홑별표는 지운다
@@ -71,7 +75,7 @@ export default function useSovereignChat(initialMessages = []) {
     setStreaming(true)
 
     // 빈 어시스턴트 말풍선을 먼저 추가한다. 여기에 토큰을 이어붙인다
-    setMessages((prev) => [...prev, { role: 'assistant', content: '', sources: [] }])
+    setMessages((prev) => [...prev, { role: 'assistant', content: '', sources: [], links: {} }])
 
     try {
       const res = await fetch(`${API_URL}/api/sovereign/chat`, {
@@ -112,7 +116,7 @@ export default function useSovereignChat(initialMessages = []) {
               const next = [...prev]
               const last = next[next.length - 1]
               if (last && last.role === 'assistant') {
-                next[next.length - 1] = { ...last, sources: parsed.sources || [] }
+                next[next.length - 1] = { ...last, sources: parsed.sources || [], links: parsed.links || {} }
               }
               return next
             })

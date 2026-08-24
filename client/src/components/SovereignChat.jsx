@@ -68,6 +68,7 @@ export default function SovereignChat() {
                       compact
                       text={stripMarkdown(m.content)}
                       sources={m.sources}
+                      links={m.links}
                       showSources={!(streaming && i === messages.length - 1)} />
                   )}
                 </div>

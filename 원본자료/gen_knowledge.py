@@ -7,8 +7,20 @@ D = os.path.join(ROOT, "client/src/data")
 KB = os.path.join(ROOT, "server/data/donghae-knowledge.json")
 
 load = lambda f: json.load(open(os.path.join(D, f), encoding="utf-8"))
-curated = json.load(open(KB, encoding="utf-8"))
-curated_ids = {c["id"] for c in curated}
+# 손으로 쓴 큐레이션 23건. 나머지는 전부 이 스크립트가 만든 것이라 매번 새로 만든다
+CURATED_IDS = [
+    "muleung", "byeolnuri", "haeparang", "mukho", "positioning",
+    "pass-1day", "pass-2day", "pass-3day", "pass-family", "pass-how",
+    "course-2030-walk-mukho", "course-2030-walk-cheonok", "course-2030-car-active",
+    "course-2030-car-muleung", "course-4050-walk-slow", "course-4050-walk-beach",
+    "course-4050-car-heal", "course-4050-car-round",
+    "food-mukho", "food-cheonok-hanseom", "food-mangsang", "food-chuam", "food-muleung",
+]
+_kb = json.load(open(KB, encoding="utf-8"))
+_by_id = {c["id"]: c for c in _kb}
+curated = [_by_id[i] for i in CURATED_IDS if i in _by_id]
+assert len(curated) == len(CURATED_IDS), "큐레이션 항목이 사라졌다"
+curated_ids = set(CURATED_IDS)
 
 TYPE_KW = {
     "eat":  ("맛집", ["맛집", "식당", "먹을", "음식"]),
@@ -49,7 +61,7 @@ def clean(words):
 
 items, night_list = [], []
 
-# 1. 스팟 122건
+# 1. 스팟 148건
 for s in load("stays.json"):
     label, kws = TYPE_KW[s["type"]]
     desc = s.get("short_description") or ""
@@ -70,7 +82,7 @@ for s in load("stays.json"):
     if is_night:
         night_list.append((s["name"], region, label, s.get("hours") or UNKNOWN))
     items.append({
-        "id": s["id"], "weight": 1,
+        "id": s["id"], "weight": 1, "link": f"/stays/{s['id']}",
         "keywords": clean([s["name"], *s["name"].split(), region, *kws, *s.get("tags", []), *nk]),
         "content": " ".join(parts)
     })
@@ -104,10 +116,33 @@ for j in load("journal.json"):
     if is_night and not any(n[0] == j["title"] for n in night_list):
         night_list.append((j["title"], src.get("region") or UNKNOWN, label, src.get("hours") or UNKNOWN))
 
-# 3. 프로그램 10건. 코스 8건과 패스 3종은 기존 자료집에 이미 있어 건너뛴다
+# 3. 프로그램 10건과 산책 코스 4건. 1박 2일 코스 8건과 패스는 기존 자료집에 이미 있어 건너뛴다
 for p in load("packages.json"):
-    if p["id"] in curated_ids or p.get("category") != "program":
+    if p["id"] in curated_ids or p.get("category") not in ("program", "walk"):
         continue
+
+    if p["category"] == "walk":
+        route = []
+        for day in p.get("itinerary", []):
+            route.append(f"걷는 순서는 {' 에서 '.join(x['activity'] for x in day['schedule'])}.")
+        parts = [f"{p['name']}는 {p.get('region') or UNKNOWN} 권역의 도보 산책 코스다.",
+                 f"{p.get('tagline') or ''}".strip(),
+                 f"{p.get('short_description') or ''}".strip(),
+                 f"거리는 {p.get('distance_label') or UNKNOWN}, 걷는 시간은 {p.get('duration_label') or UNKNOWN}, 이용료는 {p.get('price_label') or UNKNOWN}.",
+                 *route,
+                 f"{p.get('long_description') or ''}".strip()]
+        if p.get("signature_experience"):
+            parts.append(p["signature_experience"])
+        blob = " ".join(parts)
+        nk, _ = night_keywords("", blob)
+        items.append({
+            "id": p["id"], "weight": 1.3, "link": f"/packages/{p['id']}",
+            "keywords": clean([p["name"], *p["name"].split(), "산책", "산책 코스", "걷기", "도보",
+                               p.get("region"), *p.get("tags", []), *nk]),
+            "content": " ".join(x for x in parts if x.strip())
+        })
+        continue
+
     flow = []
     for day in p.get("itinerary", []):
         acts = ", ".join(x["activity"] for x in day["schedule"])
@@ -128,7 +163,7 @@ for p in load("packages.json"):
     blob = " ".join(parts)
     nk, _ = night_keywords("", blob)
     items.append({
-        "id": p["id"], "weight": 1.3,
+        "id": p["id"], "weight": 1.3, "link": f"/packages/{p['id']}",
         "keywords": clean([p["name"], *p["name"].split(), "프로그램", "1박 2일",
                            p["target_persona"][0], p.get("region"), *p.get("tags", []), *nk]),
         "content": " ".join(x for x in parts if x.strip())
@@ -153,6 +188,30 @@ for c in curated:
     if nk:
         c["keywords"] = clean(c["keywords"] + nk)
 
+# 3-3. 이야기. 서사와 인터뷰와 음식 이야기다. 권역 이야기는 기존 권역 요약과 겹쳐 제외한다
+STORY_KW = {
+    "사람": ["인터뷰", "사람", "주민", "이야기"],
+    "음식": ["음식", "먹거리", "향토음식", "이야기"],
+    "테마": ["테마", "이야기"],
+}
+for st in load("stories.json"):
+    if st["category"] == "권역":
+        continue
+    box = st.get("summary_box") or {}
+    parts = [f"{st['title']}는 동해사이 이야기다. {st.get('subtitle') or ''}".strip() + ".",
+             *st.get("intro_paragraphs", [])]
+    if box.get("items"):
+        parts.append(f"{box.get('title') or '정리'}는 {', '.join(box['items'])}.")
+    spot_names = [sp["name"] for sp in st.get("spots", [])]
+    if spot_names:
+        parts.append(f"함께 볼 곳은 {', '.join(spot_names)}.")
+    items.append({
+        "id": f"story-{st['slug']}", "weight": 1.4, "link": f"/story/{st['slug']}",
+        "keywords": clean([st["title"], *st["title"].split(), st["category"],
+                           *STORY_KW.get(st["category"], []), *st.get("tags", []), *spot_names]),
+        "content": " ".join(x for x in parts if x.strip())
+    })
+
 # 4. 밤 안내. 위에서 야간으로 판정된 항목만 모아 만든다. 지어낸 항목 없음
 # 맛집만 줄줄이 나오지 않게 볼거리와 카페를 앞에 둔다. 모델이 시간을 오독하지 않게 완성 문장으로 쓴다
 ORDER = {"관광지": 0, "체험": 1, "시장": 2, "카페": 3, "맛집": 4, "숙소": 5}
@@ -168,8 +227,32 @@ items.append({
 
 # 기존 23건은 손대지 않는다. 요약형이라 개별 항목보다 우선하게 가중치를 준다
 SUMMARY = {"food-mukho", "food-cheonok-hanseom", "food-mangsang", "food-chuam", "food-muleung", "positioning"}
+
+# 상세페이지가 실제로 존재하는 항목만 link를 준다. 없는 경로를 지어내지 않는다
+stays_all = load("stays.json")
+pkg_ids = {x["id"] for x in load("packages.json")}
+by_stay_name = {x["name"]: x["id"] for x in stays_all}
+CURATED_LINK_NAME = {          # 자료집 id를 stays.json 실제 상호명에 대조한다
+    "muleung": "무릉별유천지",
+    "mukho": "묵호항",
+}
+PASS_LINK = {"pass-1day", "pass-2day", "pass-3day", "pass-family", "pass-how"}
+
 for c in curated:
     c["weight"] = 1.6 if c["id"] in SUMMARY else 1.3
+    link = None
+    if c["id"] in pkg_ids:
+        link = f"/packages/{c['id']}"
+    elif c["id"] in PASS_LINK:
+        link = "/membership"
+    elif c["id"] in CURATED_LINK_NAME:
+        sid = by_stay_name.get(CURATED_LINK_NAME[c["id"]])
+        if sid:
+            link = f"/stays/{sid}"
+    if link:
+        c["link"] = link
+    else:
+        c.pop("link", None)
 
 merged = curated + items
 seen = set()

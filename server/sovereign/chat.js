@@ -38,7 +38,11 @@ router.post('/', async (req, res) => {
     res.setHeader('Cache-Control', 'no-cache')
 
     // 먼저 sources를 한 줄 보낸다
-    res.write(JSON.stringify({ type: 'sources', sources: hits.map(h => h.id) }) + '\n')
+    res.write(JSON.stringify({
+      type: 'sources',
+      sources: hits.map(h => h.id),
+      links: Object.fromEntries(hits.filter(h => h.link).map(h => [h.id, h.link]))
+    }) + '\n')
 
     const reader = ollamaRes.body.getReader()
     const decoder = new TextDecoder()

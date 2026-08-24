@@ -14,15 +14,18 @@ export default function ColorBlockCarousel({ items = [] }) {
                       max-w-[1400px] 2xl:max-w-[1600px]
                       py-12 md:py-18 lg:py-24 4xl:py-32">
         <Carousel controls="bottom" itemClassName="w-full" gapClassName="gap-0" label="프로그램">
-          {items.map((p) => {
+          {items.map((p, i) => {
             // 이름 앞머리 번호를 아이브로우로 올리고 제목은 이름만 남긴다
             const m = p.name.match(/^(\d+)\s+(.*)$/)
             const num = m ? m[1] : null
             const title = m ? m[2] : p.name
             return (
               <article key={p.id} className="grid gap-6 md:gap-10 lg:gap-14 md:grid-cols-2 md:items-center">
-                <div className="overflow-hidden rounded-2xl shadow-card bg-bg-card">
-                  <img src={p.main_image} alt={p.name} loading="lazy"
+                <div className="overflow-hidden rounded-2xl border border-border-sub bg-bg-card">
+                  {/* 첫 슬라이드는 진입 즉시 떠야 한다. 나머지만 지연 로드한다 */}
+                  <img src={p.main_image} alt={p.name}
+                       loading={i === 0 ? 'eager' : 'lazy'}
+                       fetchpriority={i === 0 ? 'high' : undefined}
                        className="w-full aspect-[16/9] object-cover" />
                 </div>
 

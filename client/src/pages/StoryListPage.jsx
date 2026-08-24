@@ -1,15 +1,16 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import HeroSlider from '../components/HeroSlider'
-import { HERO_SLIDES } from '../components/kareum/heroSlides'
+import { STORY_HERO } from '../components/kareum/heroSlides'
 import RevealOnScroll from '../components/kareum/RevealOnScroll'
 import storiesData from '../data/stories.json'
 
 const TABS = [
   { key: 'ALL', label: '전체' },
-  { key: 'TRAVEL', label: 'TRAVEL' },
-  { key: 'MAGAZINE', label: 'MAGAZINE' },
-  { key: 'PICK', label: 'PICK' }
+  { key: '권역', label: '권역' },
+  { key: '사람', label: '사람' },
+  { key: '음식', label: '음식' },
+  { key: '테마', label: '테마' }
 ]
 
 export default function StoryListPage() {
@@ -18,7 +19,7 @@ export default function StoryListPage() {
 
   return (
     <div className="page-enter">
-      <HeroSlider slides={HERO_SLIDES} />
+      <HeroSlider slides={STORY_HERO} />
 
       <div className="mx-auto w-full
                       px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
@@ -27,10 +28,10 @@ export default function StoryListPage() {
         <h1 className="font-pretendard font-bold
                        text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
                        text-text-pri tracking-[-0.02em] leading-tight">
-          STORY
+          이야기
         </h1>
         <p className="mt-2 font-pretendard font-normal text-[15px] md:text-[16px] text-text-meta">
-          동해 다섯 권역을 더 깊이 여행하는 방법
+          권역과 사람과 음식으로 읽는 동해
         </p>
 
         <div className="mt-6 flex gap-1 border-b border-border-sub overflow-x-auto scrollbar-hide -mx-5 px-5">

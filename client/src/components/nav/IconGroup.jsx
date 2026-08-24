@@ -83,8 +83,8 @@ export default function IconGroup() {
         </button>
         {open && (
           <div className="absolute right-0 top-12 z-50 min-w-[200px]
-                          bg-white border border-border-sub rounded-xl
-                          shadow-card py-2">
+                          bg-white border border-border-def rounded-xl
+                          py-2">
             <div className="px-4 py-3 border-b border-border-sub">
               <p className="font-pretendard font-bold text-[14px] text-text-pri">{user?.name}</p>
               <p className="font-pretendard font-light text-[12px] text-text-meta">{user?.email}</p>
