@@ -24,7 +24,7 @@ export default function PackageCarousel({ title, items = [] }) {
             const hasPrice = p.price_label && p.price_label !== '확인 안 됨'
             return (
               <Link key={p.id} to={`/packages/${p.id}`} className="group block h-full">
-                <article className="flex flex-col h-full rounded-2xl overflow-hidden bg-white border border-border-sub">
+                <article className="flex flex-col h-full rounded-2xl overflow-hidden bg-white shadow-card">
                   <div className="relative aspect-[16/9] overflow-hidden bg-bg-card border-b-2 border-primary">
                     {p.main_image && (
                       <img src={p.main_image} alt={p.name} loading="lazy"

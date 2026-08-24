@@ -71,7 +71,7 @@ export default function PassPage() {
             카드 이미지 저장
           </button>
 
-        <section className="mt-6 border border-border-sub rounded-2xl p-6">
+        <section className="mt-6 shadow-card rounded-2xl p-6">
         <p className="font-pretendard font-bold text-[17px] text-text-pri tracking-[-0.02em]">
           아직 안 모은 권역
         </p>
@@ -137,7 +137,7 @@ export default function PassPage() {
             <h2 className="font-pretendard font-bold text-[20px] md:text-[22px] lg:text-[24px] text-text-pri tracking-[-0.02em] mb-4">
               방문 기록
             </h2>
-            <ul className="divide-y divide-border-sub border border-border-sub rounded-xl">
+            <ul className="divide-y divide-border-sub shadow-card rounded-xl">
               {DEMO.log.length === 0 ? (
                 <li className="px-5 py-4 font-pretendard font-light text-[14px] text-text-meta">
                   아직 태그한 기록이 없습니다

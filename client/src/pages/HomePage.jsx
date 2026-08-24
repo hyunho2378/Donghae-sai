@@ -16,7 +16,7 @@ export default function HomePage() {
         <meta property="og:image" content="/images/regions/mukho.jpg" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="theme-color" content="#60A5FA" />
+        <meta name="theme-color" content="#4AB8CD" />
       </Helmet>
       <SovereignHero key={location.key} />
     </div>

@@ -26,7 +26,7 @@ const STAMPS = ['저녁', '별', '밤 활동', '오늘의 동해 접수', '숙�
 const FAQ = [
   { q: '개인정보를 내야 하나요?', a: '이름과 전화번호를 받지 않는다. 익명 패스 번호가 세션 ID가 되어 여정 데이터를 익명으로 연결한다.' },
   { q: '관광지 입장료가 포함되나요?', a: '포함하지 않는다. 도째비골과 천곡동굴과 무릉별유천지는 이미 자체 할인과 동해사랑상품권 환급으로 운영된다. 패스는 별빛 콘텐츠와 상권 할인과 데이터 참여를 담는다.' },
-  { q: '가족은 어떻게 사나요?', a: '묶음권 1매가 아니라 인원수만큼 개별권으로 발급한다. 4인이면 패스 번호 4개를 발급해 각자 NFC 태그로 개인별 여정 데이터를 남긴다. 가족 묶음 시 10에서 15퍼센트 추가 할인이 적용된다. 2일권 4인은 32,000원에서 가족팩 27,900원이다.' },
+  { q: '가족은 어떻게 사나요?', a: '묶음권 1매가 아니라 인원수만큼 개별권으로 발급한다. 4인이면 패스 번호 4개를 발급해 각자 NFC 태그로 개인별 여정 데이터를 남긴다. 가족 묶음 시 10에서 15% 추가 할인이 적용된다. 2일권 4인은 32,000원에서 가족팩 27,900원이다.' },
   { q: '패스가 없어도 태그할 수 있나요?', a: '태그하면 코스 소개와 구매 안내가 뜬다. 혜택은 잠기되 익명 방문 기록은 남는다.' },
   { q: '스탬프를 다 모으면 어떻게 되나요?', a: '완주하면 문어 굿즈 등 보상을 준다.' },
   { q: '환불 규정은 어떻게 되나요?', a: '확인 안 됨. 자료 도착 후 안내한다.' }
@@ -50,7 +50,7 @@ export default function MembershipPage() {
         <title>동해사이 패스 | 동해사이</title>
         <meta name="description" content="스탬프로 완성하는 하룻밤. 1일권 5,000원, 2일권 8,000원, 3일권 10,000원." />
         <meta property="og:title" content="동해사이 패스 | 동해사이" />
-        <meta name="theme-color" content="#60A5FA" />
+        <meta name="theme-color" content="#4AB8CD" />
       </Helmet>
 
       {/* 히어로 */}
@@ -79,7 +79,7 @@ export default function MembershipPage() {
               return (
                 <div key={plan.id}
                      className={`relative bg-white rounded-2xl p-6 lg:p-8
-                       ${isRec ? 'border-2 border-primary' : 'border border-border-sub'}`}>
+                       ${isRec ? 'border-2 border-primary' : 'shadow-card'}`}>
                   {isRec && (
                     <span className="absolute -top-3 left-6 inline-flex items-center h-[24px] px-2.5
                                      bg-primary-hover text-white
@@ -132,7 +132,7 @@ export default function MembershipPage() {
         <h2 className={H2}>NFC 태그 세 가지</h2>
         <div className="mt-8 grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-3">
           {TAGS.map(({ Icon, title, desc }) => (
-            <div key={title} className="border border-border-sub rounded-2xl p-6">
+            <div key={title} className="shadow-card rounded-2xl p-6">
               <span className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-primary-soft">
                 <Icon size={20} className="text-primary-hover" />
               </span>
@@ -153,7 +153,7 @@ export default function MembershipPage() {
           <h2 className={H2}>사용 흐름</h2>
           <ol className="mt-8 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {FLOW.map((step, i) => (
-              <li key={step} className="bg-white border border-border-sub rounded-xl p-5">
+              <li key={step} className="bg-white shadow-card rounded-xl p-5">
                 <p className="font-pretendard font-bold text-[14px] text-primary-hover tracking-[0.04em]">
                   {String(i + 1).padStart(2, '0')}
                 </p>
@@ -193,7 +193,7 @@ export default function MembershipPage() {
       <section className="bg-bg-card">
         <div className={`${SECTION} py-12 md:py-18 lg:py-24`}>
           <h2 className={H2}>자주 묻는 질문</h2>
-          <div className="mt-8 border border-border-sub rounded-2xl bg-white overflow-hidden">
+          <div className="mt-8 shadow-card rounded-2xl bg-white overflow-hidden">
             {FAQ.map((item, i) => (
               <div key={item.q} className="border-t border-border-sub first:border-t-0">
                 <button

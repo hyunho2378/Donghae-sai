@@ -7,7 +7,7 @@ export default function PackageCard({
   const image = main_image || images?.[0]
   return (
     <Link to={`/packages/${id}`} className="group block">
-      <article className="border border-border-sub rounded-2xl overflow-hidden bg-white">
+      <article className="shadow-card rounded-2xl overflow-hidden bg-white">
         <div className="relative aspect-[16/9] bg-bg-card overflow-hidden">
           {image && (
             <img src={image} alt={name}

@@ -84,7 +84,7 @@ export default function CheckoutPage() {
 
         {/* 좌측 주문 요약 */}
         <div className="space-y-6">
-          <section className="border border-border-sub rounded-xl p-5 lg:p-6">
+          <section className="shadow-card rounded-xl p-5 lg:p-6">
             <h2 className="font-pretendard font-bold text-[16px] text-text-pri mb-4">예약 정보</h2>
             <div className="flex gap-4">
               {heroImage && (
@@ -120,7 +120,7 @@ export default function CheckoutPage() {
             </dl>
           </section>
 
-          <section className="border border-border-sub rounded-xl p-5 lg:p-6">
+          <section className="shadow-card rounded-xl p-5 lg:p-6">
             <h2 className="font-pretendard font-bold text-[16px] text-text-pri mb-4">결제 수단</h2>
             <div className="space-y-3">
               {PAYMENT_METHODS.map(({ key, label }) => (
@@ -138,7 +138,7 @@ export default function CheckoutPage() {
             </div>
           </section>
 
-          <section className="border border-border-sub rounded-xl p-5 lg:p-6">
+          <section className="shadow-card rounded-xl p-5 lg:p-6">
             <h2 className="font-pretendard font-bold text-[16px] text-text-pri mb-4">약관 동의</h2>
             <div className="space-y-3">
               {AGREEMENTS.map(({ key, label }) => (
@@ -160,7 +160,7 @@ export default function CheckoutPage() {
 
         {/* 우측 가격과 결제 버튼 */}
         <div className="mt-6 lg:mt-0">
-          <div className="lg:sticky lg:top-24 border border-border-sub rounded-xl p-5 lg:p-6 space-y-4">
+          <div className="lg:sticky lg:top-24 shadow-card rounded-xl p-5 lg:p-6 space-y-4">
             <h2 className="font-pretendard font-bold text-[16px] text-text-pri">결제 금액</h2>
             <dl className="space-y-2 font-pretendard text-[14px]">
               {type === 'stay' && nights > 0 && (

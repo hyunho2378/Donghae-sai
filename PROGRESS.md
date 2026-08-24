@@ -1151,3 +1151,51 @@ DB 재마이그레이션
 
 - [ ] 320 390 768 1024 1280 1536 폭별 입력창 추천질문 하단안내 육안 검증
 - [ ] 개인정보처리안내 고객센터 실제 페이지 생기면 no-op button 을 라우트 링크로 교체
+
+---
+
+# P1 브랜드 시스템 교체 (2026-08-24)
+
+브랜드 가이드 확정값을 토큰에 반영. 색은 토큰만 바꿔 전역 적용.
+
+## 단계 0. 색 토큰 교체
+
+- tailwind.config.js primary #60A5FA 계열 → 동해 블루 #4AB8CD, hover #3699AE, soft #E8F6F9
+- accent 토큰 신설 = 무코 레드 #FC5048, hover #E23B33, soft #FFECEA. 필수 배지와 강조에만
+- boxShadow.card 토큰 실제 추가(KAREUM_MIRROR 1-1 값). 그동안 클래스만 있고 정의가 없었음
+- 하드코딩 #60A5FA 제거. theme-color 메타 6곳 → #4AB8CD, index.css focus outline → theme('colors.primary.DEFAULT')
+- #3B82F6 #EFF6FF 는 config 에만 있던 값이라 config 교체로 정리
+- DESIGN_DELTA.md 에 브랜드 색 확정 기록
+
+## 단계 1. 폰트 통일
+
+- 이미 Pretendard 단독(html/body/컴포넌트 font-pretendard). 다른 폰트 잔재 0. 헤드라인 bold, 본문 regular 유지
+
+## 단계 2. 로고와 파비콘
+
+- Logo 동해=text-accent(무코레드), 사이=text-primary(동해블루). 위치 헤더 좌측 그대로
+- public/favicon.svg 신규(선라이즈 링크: 일출 반원+물결+양끝 점 두 개, 무코레드 점). index.html vite.svg → favicon.svg
+
+## 단계 3. 회색 카드 테두리 전역 제거
+
+- 카드 박스의 border border-border-sub 33건 제거 → shadow-card 로 깊이 대체(또는 배경 톤)
+- 예외 처리: 공유 저장 아이콘 버튼은 bg-bg-card hover:bg-bg-mute 로, 지도 자리 박스는 bg-bg-mute 로, 스테이지 칩은 배경만
+- 구분선(border-t/border-b border-border-sub)과 입력창 컨트롤(border-border-def)은 유지
+- 멤버십 주력 플랜의 border-2 border-primary 선택 표시는 유지(회색 아님)
+
+## 단계 4. 퍼센트 표기
+
+- 퍼센트 한글 7곳(StaysPage AboutPage MembershipPage) → % 기호
+
+## 검증
+
+- 파랑 하드코딩 0, 퍼센트 한글 0, 카드 border border-border-sub 0, vite.svg 참조 0
+- 컴파일된 CSS 에 #4AB8CD 와 카드 그림자(0 6px 16px) 존재 확인
+- 임의 그림자 shadow-[ 0, 그라데이션 0, backdrop-blur 0
+- vite build 통과
+
+## 남은 항목
+
+- [ ] CommunityPage 카테고리 배지 팔레트 hex(#FEF3C7 등)는 기존 다색 카테고리 색이라 이번 파랑 교체 범위 밖. 브랜드 확장 시 별도 판단
+- [ ] accent 무코 레드를 필수 배지(예 주력 필수 표시)에 넓게 적용할지 별도 판단. 현재 로고에만 사용
+- [ ] 320~1536 폭별 브랜드 색과 그림자 카드 육안 검증

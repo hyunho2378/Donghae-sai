@@ -42,7 +42,7 @@ export default function PackageDetailPage() {
         <meta property="og:image" content={pkg.main_image} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="theme-color" content="#60A5FA" />
+        <meta name="theme-color" content="#4AB8CD" />
       </Helmet>
 
       {/* Hero 풀와이드 */}
@@ -118,7 +118,7 @@ export default function PackageDetailPage() {
                 : { label: '이동수단', value: pkg.transport || '확인 안 됨' },
               { label: '방문지', value: `${pkg.itinerary.reduce((n, d) => n + d.schedule.length, 0)}곳` }
             ].map((item) => (
-              <div key={item.label} className="border border-border-sub rounded-xl p-4 md:p-5">
+              <div key={item.label} className="shadow-card rounded-xl p-4 md:p-5">
                 <p className="font-pretendard font-medium text-[12px] text-text-meta tracking-[0.04em] uppercase">
                   {item.label}
                 </p>
@@ -215,7 +215,7 @@ export default function PackageDetailPage() {
                       </h3>
                       <ul className="grid gap-3 md:grid-cols-3">
                         {g.items.map((o) => (
-                          <li key={o.name} className="border border-border-sub rounded-xl p-4">
+                          <li key={o.name} className="shadow-card rounded-xl p-4">
                             <p className="font-pretendard font-bold text-[15px] text-text-strong">
                               {o.name}
                             </p>
@@ -286,7 +286,7 @@ export default function PackageDetailPage() {
 
         {/* 코스는 판매 상품이 아니다. 패스 안내로 연결한다 */}
         <aside className="mt-8 lg:mt-0 lg:sticky lg:top-24 h-fit
-                          border border-border-sub rounded-2xl p-5 lg:p-6 bg-white">
+                          shadow-card rounded-2xl p-5 lg:p-6 bg-white">
           <p className="font-pretendard font-bold text-[18px] text-text-pri tracking-[-0.02em]">
             동해사이 패스로 이 {isProgram ? '프로그램을' : '코스를'} 즐긴다
           </p>

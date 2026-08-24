@@ -135,7 +135,7 @@ export default function CommunityPage() {
         </div>
 
         <aside className="space-y-6 lg:sticky lg:top-[100px] h-fit">
-          <div className="border border-border-sub rounded-2xl p-5">
+          <div className="shadow-card rounded-2xl p-5">
             <div className="flex items-center gap-2 mb-4">
               <TrendingUp size={16} className="text-primary" />
               <p className="font-pretendard font-bold text-[15px] text-text-pri">인기 게시글</p>
@@ -159,7 +159,7 @@ export default function CommunityPage() {
             </ol>
           </div>
 
-          <div className="border border-border-sub rounded-2xl p-5">
+          <div className="shadow-card rounded-2xl p-5">
             <div className="flex items-center gap-2 mb-4">
               <Calendar size={16} className="text-primary" />
               <p className="font-pretendard font-bold text-[15px] text-text-pri">이번 주 모임</p>

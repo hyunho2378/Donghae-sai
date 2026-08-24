@@ -29,7 +29,7 @@ export default function AdminPage() {
 
       <section className="mt-8 grid gap-4 grid-cols-1 md:grid-cols-3">
         {SUMMARY.map((s) => (
-          <div key={s.label} className="border border-border-sub rounded-xl p-5">
+          <div key={s.label} className="shadow-card rounded-xl p-5">
             <p className="font-pretendard font-medium text-[14px] text-text-meta">{s.label}</p>
             <p className="mt-2 font-pretendard font-bold text-[24px] text-text-pri">{formatPrice(s.value)}</p>
           </div>
@@ -40,7 +40,7 @@ export default function AdminPage() {
         <h2 className="font-pretendard font-bold text-[20px] md:text-[22px] lg:text-[24px] text-text-pri tracking-[-0.02em] mb-4">
           오늘 예약 현황
         </h2>
-        <div className="overflow-x-auto border border-border-sub rounded-xl">
+        <div className="overflow-x-auto shadow-card rounded-xl">
           <table className="w-full text-left">
             <thead>
               <tr className="border-b border-border-sub bg-bg-card">

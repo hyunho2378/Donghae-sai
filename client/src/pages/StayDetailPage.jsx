@@ -129,12 +129,12 @@ export default function StayDetailPage() {
           </div>
           <div className="hidden md:flex items-center gap-2 shrink-0">
             <button aria-label="공유"
-                    className="w-10 h-10 inline-flex items-center justify-center rounded-full hover:bg-bg-card border border-border-sub">
+                    className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-bg-card hover:bg-bg-mute">
               <Share2 size={18} className="text-text-pri" />
             </button>
             <button aria-label={isBookmarked ? '북마크 해제' : '저장'}
                     onClick={toggleBookmark}
-                    className="w-10 h-10 inline-flex items-center justify-center rounded-full hover:bg-bg-card border border-border-sub">
+                    className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-bg-card hover:bg-bg-mute">
               <Bookmark size={18} className={isBookmarked ? 'text-primary fill-primary' : 'text-text-pri'} fill={isBookmarked ? 'currentColor' : 'none'} />
             </button>
           </div>
@@ -206,7 +206,7 @@ export default function StayDetailPage() {
                   </h3>
                   <div className="grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-3">
                     {stay.highlights.map((h, i) => (
-                      <div key={i} className="border border-border-sub rounded-2xl p-5">
+                      <div key={i} className="shadow-card rounded-2xl p-5">
                         <p className="font-pretendard font-bold text-[15px] text-text-pri tracking-[-0.02em]">
                           {h.title}
                         </p>
@@ -235,7 +235,7 @@ export default function StayDetailPage() {
                 <p className="font-pretendard font-medium text-[14px] text-text-sec">{stay.address}</p>
               </div>
               <div className="aspect-[16/9] w-full rounded-2xl bg-bg-mute overflow-hidden
-                              flex items-center justify-center border border-border-sub">
+                              flex items-center justify-center">
                 <div className="text-center">
                   <MapPin size={32} className="mx-auto text-text-meta" />
                   <p className="mt-3 font-pretendard font-medium text-[14px] text-text-meta">
@@ -253,7 +253,7 @@ export default function StayDetailPage() {
                             className="-mx-5 px-5 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 pb-2"
                             itemClassName="w-[60%] sm:w-[42%] md:w-[30%]">
                     {stay.nearby.map((n, i) => (
-                      <div key={i} className="border border-border-sub rounded-xl p-4 h-full">
+                      <div key={i} className="shadow-card rounded-xl p-4 h-full">
                         <p className="font-pretendard font-bold text-[14px] text-text-pri">{n.name}</p>
                         <p className="mt-1 font-pretendard font-medium text-[13px] text-text-meta">{n.distance}</p>
                       </div>
@@ -283,7 +283,7 @@ export default function StayDetailPage() {
 
         {/* Reservation card */}
         <aside className="mt-8 lg:mt-0 lg:sticky lg:top-24 h-fit
-                          border border-border-sub rounded-2xl p-5 lg:p-6 bg-white">
+                          shadow-card rounded-2xl p-5 lg:p-6 bg-white">
           {!isFree ? (
             <>
               <p className="font-pretendard font-medium text-[12px] text-primary tracking-[0.04em] uppercase">

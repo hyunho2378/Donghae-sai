@@ -32,7 +32,7 @@ export default function RegionSection() {
           <Link
             key={r.name}
             to={`/stays?region=${encodeURIComponent(r.name)}`}
-            className="group block rounded-xl overflow-hidden border border-border-sub
+            className="group block rounded-xl overflow-hidden shadow-card
                        hover:border-primary transition-colors duration-150">
             <div className="relative aspect-[4/3] bg-bg-mute overflow-hidden
                             flex items-center justify-center">

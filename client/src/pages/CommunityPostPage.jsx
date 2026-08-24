@@ -15,7 +15,7 @@ const CATEGORY_STYLE = {
 const STAGE_STYLE = {
   visit: 'bg-bg-card text-text-meta border border-border-def',
   connect: 'bg-primary-soft text-primary',
-  relationship: 'bg-bg-mute text-text-sec border border-border-sub',
+  relationship: 'bg-bg-mute text-text-sec',
   settlement: 'bg-black text-white'
 }
 

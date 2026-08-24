@@ -51,7 +51,7 @@ export default function StoryDetailPage() {
         <meta property="og:image" content={story.cover_image} />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="theme-color" content="#60A5FA" />
+        <meta name="theme-color" content="#4AB8CD" />
       </Helmet>
 
       {/* Hero 풀블리드. 커버 한 장. 슬라이더 아님. 하단에 카피와 이름 */}

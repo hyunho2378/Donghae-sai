@@ -20,8 +20,8 @@ const TYPES = [
 // 수치는 REBRAND_MASTER.md의 확정 전제만 쓴다
 const INTRO_STATS = [
   { value: '1,220만 9,032명', label: '최근 1년 동해 방문객' },
-  { value: '86퍼센트', label: '당일 귀가 비율' },
-  { value: '14.2퍼센트', label: '숙박 전환율' }
+  { value: '86%', label: '당일 귀가 비율' },
+  { value: '14.2%', label: '숙박 전환율' }
 ]
 
 // EAT STAY PLAY SEE 진입. 대표 사진은 그 갈래에 속한 실제 장소 사진만 쓴다
@@ -60,7 +60,7 @@ export default function StaysPage() {
         <meta property="og:title" content="사이 찾기 | 동해사이" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary" />
-        <meta name="theme-color" content="#60A5FA" />
+        <meta name="theme-color" content="#4AB8CD" />
       </Helmet>
 
     <div className="page-enter mx-auto w-full
@@ -80,11 +80,11 @@ export default function StaysPage() {
           흩어진 장소를 이어 하루 더 머무는 여행을 만든다
         </h2>
         <p className="mt-3 font-pretendard font-normal text-[14px] md:text-[15px] text-text-meta leading-relaxed max-w-[760px]">
-          최근 1년 방문객 1,220만 9,032명 가운데 86퍼센트가 당일 귀가한다. 동해사이는 저녁부터 다음 날 아침까지를 잇는다.
+          최근 1년 방문객 1,220만 9,032명 가운데 86%가 당일 귀가한다. 동해사이는 저녁부터 다음 날 아침까지를 잇는다.
         </p>
         <div className="mt-6 grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-3">
           {INTRO_STATS.map((s) => (
-            <div key={s.value} className="border border-border-sub rounded-xl p-5">
+            <div key={s.value} className="shadow-card rounded-xl p-5">
               <p className="font-pretendard font-bold text-[18px] md:text-[20px] text-text-pri tracking-[-0.02em]">
                 {s.value}
               </p>

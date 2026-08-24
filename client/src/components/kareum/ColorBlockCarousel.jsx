@@ -21,7 +21,7 @@ export default function ColorBlockCarousel({ items = [] }) {
             const title = m ? m[2] : p.name
             return (
               <article key={p.id} className="grid gap-6 md:gap-10 lg:gap-14 md:grid-cols-2 md:items-center">
-                <div className="overflow-hidden rounded-2xl border border-border-sub bg-bg-card">
+                <div className="overflow-hidden rounded-2xl shadow-card bg-bg-card">
                   {/* 첫 슬라이드는 진입 즉시 떠야 한다. 나머지만 지연 로드한다 */}
                   <img src={p.main_image} alt={p.name}
                        loading={i === 0 ? 'eager' : 'lazy'}

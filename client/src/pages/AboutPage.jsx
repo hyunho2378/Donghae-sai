@@ -6,8 +6,8 @@ import staysData from '../data/stays.json'
 // 수치는 REBRAND_MASTER.md의 확정 전제만 쓴다
 const STATS = [
   { value: '1,220만 9,032명', label: '최근 1년 방문객' },
-  { value: '86퍼센트', label: '당일 귀가' },
-  { value: '14.2퍼센트', label: '숙박 전환율' }
+  { value: '86%', label: '당일 귀가' },
+  { value: '14.2%', label: '숙박 전환율' }
 ]
 
 const POINTS = [
@@ -49,7 +49,7 @@ export default function AboutPage() {
         <title>동해사이 소개 | 동해사이</title>
         <meta name="description" content="당일에서 1박으로. 흩어진 동해의 장소와 경험을 이어 하루 더 머무는 여행을 만든다." />
         <meta property="og:title" content="동해사이 소개 | 동해사이" />
-        <meta name="theme-color" content="#60A5FA" />
+        <meta name="theme-color" content="#4AB8CD" />
       </Helmet>
 
       {/* 히어로 */}
@@ -76,12 +76,12 @@ export default function AboutPage() {
         <p className="mt-4 max-w-[720px] font-pretendard font-normal
                       text-[15px] md:text-[16px] text-text-sec tracking-[-0.01em] leading-relaxed">
           동해는 사람이 오지 않는 도시가 아니다. 최근 1년 동안 1,220만 9,032명이 왔다.
-          문제는 그중 86퍼센트가 당일에 돌아간다는 것이다. 숙박 전환율은 14.2퍼센트에 그친다.
+          문제는 그중 86%가 당일에 돌아간다는 것이다. 숙박 전환율은 14.2%에 그친다.
           체류시간을 늘리는 것이 아니라 당일을 1박으로 바꾸는 것이 목표다.
         </p>
         <div className="mt-8 grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-3">
           {STATS.map((s) => (
-            <div key={s.label} className="border border-border-sub rounded-xl p-5">
+            <div key={s.label} className="shadow-card rounded-xl p-5">
               <p className="font-pretendard font-bold text-[20px] md:text-[24px] text-text-pri tracking-[-0.02em]">
                 {s.value}
               </p>
@@ -97,7 +97,7 @@ export default function AboutPage() {
           <h2 className={`${H2} text-text-pri`}>동해사이의 답</h2>
           <div className="mt-8 grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-3">
             {POINTS.map((p) => (
-              <div key={p.title} className="bg-white border border-border-sub rounded-2xl p-6">
+              <div key={p.title} className="bg-white shadow-card rounded-2xl p-6">
                 <p className="font-pretendard font-bold text-[17px] text-text-pri tracking-[-0.02em]">
                   {p.title}
                 </p>
@@ -115,7 +115,7 @@ export default function AboutPage() {
         <h2 className={`${H2} text-text-pri`}>하룻밤을 완성하는 일곱 단계</h2>
         <div className="mt-8 grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           {STAMPS.map((s) => (
-            <div key={s.num} className="border border-border-sub rounded-xl p-5">
+            <div key={s.num} className="shadow-card rounded-xl p-5">
               <p className="font-pretendard font-bold text-[13px] text-primary-hover tracking-[0.04em]">
                 {String(s.num).padStart(2, '0')}
               </p>

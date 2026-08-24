@@ -31,3 +31,13 @@
 ## 모션
 
 기존 DESIGN.md 인터랙션 정책 유지. 추가로 improve-animations 스킬 검수를 챗봇 히어로에만 적용한다. 별 점 트월링과 대화 패널 확장 정도가 대상이며 transform과 opacity 외 속성 금지는 그대로다.
+
+## 브랜드 색 확정 (2026-08-24, P1)
+
+브랜드 가이드 확정값을 토큰에 반영했다. 임시 파랑을 걷어냈다.
+
+- 주색 동해 블루 primary #4AB8CD. hover #3699AE, soft #E8F6F9. 기존 임시 #60A5FA 계열 대체
+- 강조색 무코 레드 accent #FC5048. hover #E23B33, soft #FFECEA. 캐릭터 무코 색. 필수 배지와 강조 포인트에만 쓴다. 남용 금지
+- 색은 tailwind.config.js 토큰 경유로만 쓴다. hex 직접 입력 금지 원칙 유지. theme-color 메타와 focus outline 도 토큰 값으로 맞췄다
+- shadow-card 토큰을 boxShadow.card 로 실제 추가했다. KAREUM_MIRROR 1-1 값 그대로. 회색 카드 테두리를 걷어낸 자리의 깊이를 이 그림자나 배경 톤으로 준다
+- 폰트는 Pretendard 단독. 헤드라인 SemiBold, 본문 Regular

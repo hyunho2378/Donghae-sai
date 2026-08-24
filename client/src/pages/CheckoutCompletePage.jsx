@@ -35,7 +35,7 @@ export default function CheckoutCompletePage() {
         </p>
       </div>
 
-      <div className="mt-10 border border-border-sub rounded-xl p-5 lg:p-6 space-y-3 font-pretendard text-[14px]">
+      <div className="mt-10 shadow-card rounded-xl p-5 lg:p-6 space-y-3 font-pretendard text-[14px]">
         <div className="flex justify-between gap-4">
           <span className="font-medium text-text-meta">예약 번호</span>
           <span className="font-bold text-text-pri tracking-[0.04em]">{orderId}</span>
