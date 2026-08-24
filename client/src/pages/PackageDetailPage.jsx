@@ -52,9 +52,9 @@ export default function PackageDetailPage() {
                className="w-full h-full object-cover" />
         )}
         <div className="absolute inset-0 bg-black/45" />
-        <div className="absolute bottom-0 left-0 right-0
-                        px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 pb-8 lg:pb-12">
-          <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
+        <div className="absolute bottom-0 left-0 right-0 pb-8 lg:pb-12">
+          {/* 캡션 컨테이너를 본문과 동일한 container-page 로 맞춰 좌측 기준선을 일치시킨다 */}
+          <div className="container-page">
             {pkg.badges?.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-3">
                 {pkg.badges.slice(0, 2).map((b) => (

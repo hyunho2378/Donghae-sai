@@ -73,20 +73,17 @@ export default function StoryDetailPage() {
         </div>
       </div>
       {story.cover_credit && (
-        <div className="mx-auto w-full px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 max-w-[720px]">
+        <div className="container-page">
           <p className="text-right font-pretendard font-light text-[12px] text-text-meta mt-2">
             {story.cover_credit}
           </p>
         </div>
       )}
 
-      <div className="mx-auto w-full
-                      px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                      max-w-[720px]
-                      pt-8 lg:pt-12">
+      <div className="container-page pt-8 lg:pt-12">
 
         <Link to="/story"
-              className="inline-flex items-center gap-1.5 font-pretendard font-medium text-[14px]
+          className="inline-flex items-center gap-1.5 font-pretendard font-medium text-[14px]
                          text-text-meta hover:text-text-pri transition-colors duration-100 mb-6">
           <ArrowLeft size={16} />
           스토리
@@ -145,7 +142,7 @@ export default function StoryDetailPage() {
       </div>
 
       {/* 8. Intro paragraphs */}
-      <div className="mx-auto w-full px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 max-w-[720px] mt-10 lg:mt-12">
+      <div className="container-page mt-10 lg:mt-12">
         <div className="space-y-5">
           {story.intro_paragraphs?.map((p, i) => (
             <p key={i} className="font-pretendard font-normal
@@ -183,7 +180,7 @@ export default function StoryDetailPage() {
               {i === 0 && spot.image ? (
                 <div className="relative w-full max-w-[420px] mx-auto aspect-square mb-1">
                   <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet"
-                       className="absolute inset-0 w-full h-full">
+                    className="absolute inset-0 w-full h-full">
                     <defs>
                       <clipPath id={`story-spot-blob-${i}`}>
                         <path d={SPOT_BLOB} />
@@ -191,7 +188,7 @@ export default function StoryDetailPage() {
                     </defs>
                     <g clipPath={`url(#story-spot-blob-${i})`}>
                       <image href={spot.image} x="0" y="0" width="400" height="400"
-                             preserveAspectRatio="xMidYMid slice" />
+                        preserveAspectRatio="xMidYMid slice" />
                     </g>
                   </svg>
                   <ScatterIllust items={[]} />
@@ -306,16 +303,15 @@ export default function StoryDetailPage() {
       {/* 12. Related stories */}
       {related.length > 0 && (
         <div className="mt-16 bg-bg-mute py-12 lg:py-16">
-          {/* 배경은 전체 폭, 안쪽 콘텐츠는 본문과 같은 720 기준선에 맞춘다 */}
-          <div className="mx-auto w-full px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 max-w-[720px]">
+          <div className="container-page">
             <h2 className="font-pretendard font-bold
                            text-[20px] md:text-[22px] lg:text-[24px]
                            text-text-pri tracking-[-0.02em] mb-6">
               비슷한 스토리
             </h2>
             <Carousel label="비슷한 스토리"
-                      className="-mx-5 px-5 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 pb-2"
-                      itemClassName="w-[72%] sm:w-[52%] md:w-[40%] lg:w-[31%]">
+              className="-mx-5 px-5 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 pb-2"
+              itemClassName="w-[72%] sm:w-[52%] md:w-[40%] lg:w-[31%]">
               {related.map((s) => (
                 <Link key={s.id} to={`/story/${s.slug}`} className="group block">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-card bg-bg-card">

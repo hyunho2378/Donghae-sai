@@ -128,9 +128,9 @@ export default function StayDetailPage() {
                  className="w-40 md:w-56 opacity-30 brightness-0 invert" />
           </div>
         )}
-        <div className="absolute bottom-0 left-0 right-0 pointer-events-none
-                        px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 pb-8 lg:pb-12">
-          <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
+        <div className="absolute bottom-0 left-0 right-0 pointer-events-none pb-8 lg:pb-12">
+          {/* 캡션 컨테이너를 본문과 동일한 container-page 로 맞춰 좌측 기준선을 완전히 일치시킨다 */}
+          <div className="container-page">
             <p className="font-pretendard font-medium text-[13px] md:text-[15px] text-white/80 tracking-[0.04em]">
               {stay.region} {STAY_TYPE_LABEL[stay.type]}
             </p>
