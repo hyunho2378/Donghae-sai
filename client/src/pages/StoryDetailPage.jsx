@@ -103,16 +103,18 @@ export default function StoryDetailPage() {
           <span className="font-medium text-[13px] text-text-meta">{story.author}</span>
         </div>
 
-        {/* 4. Target audience box */}
-        <div className="mt-6 flex items-start gap-3 bg-bg-card rounded-xl p-4">
-          <Users size={20} className="shrink-0 mt-0.5 text-text-meta" />
-          <div>
-            <p className="font-pretendard font-medium text-[13px] text-text-meta mb-1">추천 대상</p>
-            <p className="font-pretendard font-normal text-[14px] md:text-[15px] text-text-sec leading-relaxed">
-              {story.target_audience}
-            </p>
+        {/* 4. Target audience box. 값 없으면 박스 숨김 */}
+        {story.target_audience && (
+          <div className="mt-6 flex items-start gap-3 bg-bg-card rounded-xl p-4">
+            <Users size={20} className="shrink-0 mt-0.5 text-text-meta" />
+            <div>
+              <p className="font-pretendard font-medium text-[13px] text-text-meta mb-1">추천 대상</p>
+              <p className="font-pretendard font-normal text-[14px] md:text-[15px] text-text-sec leading-relaxed">
+                {story.target_audience}
+              </p>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* 5. Highlights box */}
         <div className="mt-4 flex items-start gap-3 bg-bg-card rounded-xl p-4">

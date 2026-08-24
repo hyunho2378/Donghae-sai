@@ -6,7 +6,7 @@
     "region": "묵호",
     "address": "동해시 묵호진동 2-109",
     "hours": "하절기 3월에서 10월 10:00에서 18:00, 동절기 11월에서 2월 10:00에서 17:00, 매주 월요일 휴무. 월요일이 공휴일이면 다음 평일 휴무",
-    "price_label": "일반 3,000원, 청소년과 군인 2,000원, 어린이와 경로 1,000원. 자이언트 슬라이드와 스카이사이클 별도",
+    "price_label": "일반 3,000원 부터",
     "price_per_night": 0,
     "tags": [
       "묵호",
@@ -27,9 +27,10 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md / 동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
+    "verified": false,
     "target": "2030 강추천, 뚜벅이와 자차 공통",
-    "is_active": true
+    "is_active": true,
+    "price_detail": "일반 3,000원, 청소년과 군인 2,000원, 어린이와 경로 1,000원. 자이언트 슬라이드와 스카이사이클 별도"
   },
   {
     "id": "sai-002",
@@ -57,7 +58,7 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md",
-    "verified": "확인 안 됨",
+    "verified": false,
     "target": "2030 야간과 사진, 4050 경관",
     "is_active": true
   },
@@ -68,7 +69,7 @@
     "region": "묵호",
     "address": "해맞이길 300",
     "hours": "09:00에서 18:00",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "느린우체통",
@@ -90,7 +91,7 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md / 동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
+    "verified": false,
     "target": "전 연령, 논골담길과 묶기",
     "is_active": true
   },
@@ -101,7 +102,7 @@
     "region": "묵호",
     "address": "논골1길 2",
     "hours": "상시 이용 가능",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "골목",
@@ -123,7 +124,7 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md / 동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
+    "verified": false,
     "target": "2030 사진, 4050 해설",
     "is_active": true
   },
@@ -156,7 +157,7 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md / 동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
+    "verified": false,
     "target": "전 연령, 식사 연결",
     "is_active": true
   },
@@ -167,7 +168,7 @@
     "region": "묵호",
     "address": "발한로 182",
     "hours": "시장 전체 공통 운영시간 공식 미기재, 점포별 확인 필요",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "묵호"
@@ -186,7 +187,7 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md",
-    "verified": "확인 안 됨",
+    "verified": false,
     "target": "로컬 먹거리, 야간 프로그램",
     "is_active": true
   },
@@ -197,7 +198,7 @@
     "region": "묵호",
     "address": "망상동 1-3",
     "hours": "해변 상시 이용 가능",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "대진",
@@ -219,7 +220,7 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md / 동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
+    "verified": false,
     "target": "2030 핵심 체험",
     "is_active": true
   },
@@ -230,7 +231,7 @@
     "region": "묵호",
     "address": "지리2길 20",
     "hours": "공식 관광페이지 운영시간 미기재",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "묵호"
@@ -249,7 +250,7 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md",
-    "verified": "확인 안 됨",
+    "verified": false,
     "target": "2030 감성과 문화",
     "is_active": true
   },
@@ -260,7 +261,7 @@
     "region": "묵호",
     "address": "동해시 발한로 183-6",
     "hours": "10:00에서 18:00, 입장 17:30 마감, 화요일과 수요일 휴무. 공휴일 정상 운영",
-    "price_label": "일반 7,000원, 어린이 4,500원",
+    "price_label": "일반 7,000원 부터",
     "price_per_night": 0,
     "tags": [
       "묵호",
@@ -281,10 +282,11 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md / 동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
+    "verified": false,
     "target": "2030 문화와 우천, 4050 문화",
     "is_active": true,
-    "instagram": "@pencil_museum"
+    "instagram": "@pencil_museum",
+    "price_detail": "일반 7,000원, 어린이 4,500원"
   },
   {
     "id": "sai-010",
@@ -293,7 +295,7 @@
     "region": "천곡",
     "address": "강원특별자치도 동해시 동굴로 50",
     "hours": "08:30에서 18:00, 입장마감 17:30, 연중개방, 문의 033-539-3630",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "천곡 한섬"
@@ -312,7 +314,7 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md",
-    "verified": "확인 안 됨",
+    "verified": false,
     "target": "2030 뚜벅이 4점, 4050 뚜벅이 5점, 4050 자차 4점",
     "is_active": true
   },
@@ -342,8 +344,8 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -372,7 +374,7 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md",
-    "verified": "확인 안 됨",
+    "verified": false,
     "target": "2030 뚜벅이 5점, 4050 뚜벅이 4점",
     "is_active": true
   },
@@ -382,8 +384,8 @@
     "type": "see",
     "region": "망상",
     "address": "동해시 동해대로 6270-10 망상관광안내소 일대",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "망상"
@@ -391,9 +393,9 @@
     "badges": [],
     "main_image": "/images/places/mangsang-beach.jpg",
     "gallery": [],
-    "tagline": "확인 안 됨",
-    "short_description": "확인 안 됨",
-    "long_description": "확인 안 됨",
+    "tagline": "",
+    "short_description": "",
+    "long_description": "",
     "highlights": [],
     "host": null,
     "host_intro": null,
@@ -402,8 +404,8 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -432,8 +434,8 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -452,8 +454,8 @@
     "main_image": "/images/places/chuam-candle-rock.jpg",
     "gallery": [],
     "tagline": "일출, 대표 동해 관광 이미지, 자차 1박 2일 DAY 2 시작점",
-    "short_description": "확인 안 됨",
-    "long_description": "확인 안 됨",
+    "short_description": "",
+    "long_description": "",
     "highlights": [],
     "host": null,
     "host_intro": null,
@@ -462,7 +464,7 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md",
-    "verified": "확인 안 됨",
+    "verified": false,
     "target": "2030 자차 5점, 4050 자차 5점",
     "is_active": true
   },
@@ -492,8 +494,8 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -522,7 +524,7 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md",
-    "verified": "확인 안 됨",
+    "verified": false,
     "target": "특히 4050 자연과 역사 코스",
     "is_active": true
   },
@@ -552,8 +554,8 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -563,7 +565,7 @@
     "region": "무릉",
     "address": "제1주차장 삼화로 380, 제2주차장 이기로 97",
     "hours": "09:30에서 17:30, 매표 09:30에서 16:30, 계절에 따라 한시적 야간개장 운영, 문의 033-533-0101",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "무릉"
@@ -582,8 +584,8 @@
     "rules": [],
     "nearby": [],
     "source": "관광명소상세_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -593,7 +595,7 @@
     "region": "묵호",
     "address": "강원 동해시 일출로 179 묵호진동",
     "hours": "06:00부터 15:00, 첫째 셋째 화요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "아침 해장 곰치국",
@@ -630,7 +632,7 @@
     "region": "묵호",
     "address": "강원 동해시 일출로 10-1 발한동",
     "hours": "07:00부터 18:00, 매주 월요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "아침 장칼국수",
@@ -667,7 +669,7 @@
     "region": "무릉",
     "address": "강원 동해시 삼화로 525-5 삼화동",
     "hours": "08:00부터 19:00, 연중무휴",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "무릉계곡 백숙",
@@ -704,7 +706,7 @@
     "region": "묵호",
     "address": "강원 동해시 일출로 10 2층 발한동",
     "hours": "평일 08:30부터 16:00, 주말 08:30부터 17:00, 매주 화요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "장칼국수 단일 메뉴",
@@ -740,7 +742,7 @@
     "region": "묵호",
     "address": "강원 동해시 일출로 189 묵호진동",
     "hours": "08:00부터 20:00, 매주 수요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "곰치국과 물회",
@@ -776,8 +778,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "강원 동해시 묵호진동 묵호시장길 34",
-    "hours": "08:30부터 20:00, 휴무 확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "08:30부터 20:00",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "물회",
@@ -813,8 +815,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "강원 동해시 묵호진동 묵호시장길 34",
-    "hours": "08:30부터 20:00, 휴무 확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "08:30부터 20:00",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "가성비 회도시락",
@@ -851,7 +853,7 @@
     "region": "추암",
     "address": "강원 동해시 촛대바위길 18 추암동",
     "hours": "09:00부터 새벽 02:00, 연중무휴",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "대게와 심야 해산물",
@@ -887,8 +889,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "강원 동해시 북평시장 내",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "북평장터 소머리국밥",
@@ -924,7 +926,7 @@
     "region": "천곡",
     "address": "강원 동해시 대동로 118 북평동",
     "hours": "11:30부터 20:40, 브레이크 15:00부터 17:00, 매주 일요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "북평장터 중식 노포",
@@ -961,7 +963,7 @@
     "region": "묵호",
     "address": "강원 동해시 일출로 83 묵호진동",
     "hours": "11:00부터 19:30, 브레이크 15:00부터 17:00, 매주 화요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "문어 결합 이색 중식",
@@ -998,7 +1000,7 @@
     "region": "묵호",
     "address": "강원 동해시 일출로 2-6 발한동",
     "hours": "10:00부터 18:30, 연중무휴",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "현지 장칼국수",
@@ -1034,8 +1036,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "강원 동해시 일출로 95 1층 묵호진동",
-    "hours": "11:00부터 20:00, 브레이크 15:00부터 17:00, 휴무 확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "11:00부터 20:00, 브레이크 15:00부터 17:00",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "한우 육회 짬뽕",
@@ -1071,8 +1073,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "강원 동해시 샘실3길 24 발한동",
-    "hours": "월요일부터 토요일 10:00부터 20:00, 일요일 10:00부터 16:00, 휴무 확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "월요일부터 토요일 10:00부터 20:00, 일요일 10:00부터 16:00",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "가자미 세꼬시 물회",
@@ -1109,7 +1111,7 @@
     "region": "천곡",
     "address": "강원 동해시 청운3길 56-1",
     "hours": "11:00부터 21:00, 매주 수요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "정갈한 1인 한상",
@@ -1146,7 +1148,7 @@
     "region": "망상",
     "address": "강원 동해시 동해대로 4766 망상동",
     "hours": "11:00부터 19:00, 브레이크 16:00부터 17:00, 추동기 화요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "전통 막국수",
@@ -1183,7 +1185,7 @@
     "region": "천곡",
     "address": "강원 동해시 송정로 39 송정동",
     "hours": "16:00부터 21:00, 매주 일요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "돼지 물갈비",
@@ -1219,8 +1221,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "강원 동해시 시내 권역",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "한우 갈비",
@@ -1256,8 +1258,8 @@
     "type": "eat",
     "region": "무릉",
     "address": "강원 동해시 삼화로 525-5 삼화동",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "생선산채정식",
@@ -1294,7 +1296,7 @@
     "region": "추암",
     "address": "강원 동해시 촛대바위길 16-2 추암동",
     "hours": "11:00부터 21:30, 연중무휴",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "박달대게와 오션뷰 회",
@@ -1331,7 +1333,7 @@
     "region": "묵호",
     "address": "강원 동해시 발한동 8-66",
     "hours": "10:00부터 14:00, 매주 일요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "감자옹심이 한정 영업",
@@ -1368,7 +1370,7 @@
     "region": "묵호",
     "address": "강원 동해시 해안로 515-1 묵호역 앞",
     "hours": "11:00부터 14:30, 매주 화요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "쫄면순두부 단일 메뉴",
@@ -1403,8 +1405,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "강원 동해시 중앙로 234 천곡동",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "생선찜",
@@ -1441,7 +1443,7 @@
     "region": "천곡",
     "address": "강원 동해시 충혼길 3 천곡동",
     "hours": "17:00부터 23:00, 매주 일요일과 월요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "저녁 포차형 횟집",
@@ -1477,8 +1479,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "강원 동해시 중앙로 240 1층 천곡동",
-    "hours": "11:30부터 22:00, 휴무 확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "11:30부터 22:00",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "정통 횟집",
@@ -1514,8 +1516,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "강원 동해시 동굴로 125-2 2동 2층 천곡동",
-    "hours": "11:30부터 22:00, 라스트오더 21:00, 휴무 확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "11:30부터 22:00, 라스트오더 21:00",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "조개구이와 대게찜",
@@ -1552,7 +1554,7 @@
     "region": "천곡",
     "address": "강원 동해시 감추4길 30 천곡동",
     "hours": "11:30부터 22:00, 브레이크 15:00부터 17:00, 매주 월요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "정통 일식 회 코스",
@@ -1588,8 +1590,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "강원 동해시 시내 권역",
-    "hours": "야간 운영, 상세 확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "야간 운영",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "시내 실내포차",
@@ -1625,8 +1627,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "강원 동해시 일출로 101 묵호진동",
-    "hours": "09:30부터 22:00, 휴무 확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "09:30부터 22:00",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "항 근처 대게와 회",
@@ -1663,7 +1665,7 @@
     "region": "묵호",
     "address": "강원 동해시 묵호시장길 24",
     "hours": "09:30부터 20:00, 매주 화요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "해물탕",
@@ -1699,8 +1701,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "강원 동해시 발한동 297-15",
-    "hours": "재료 소진 시 종료, 상세 확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "재료 소진 시 종료",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "숨은 메밀 노포",
@@ -1737,7 +1739,7 @@
     "region": "묵호",
     "address": "강원 동해시 시장안길 22",
     "hours": "10:00부터 17:00, 매주 화요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "수제 닭가슴살 김밥",
@@ -1773,8 +1775,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "강원 동해시 발한동 302-5",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "시장 분식과 칼국수",
@@ -1811,7 +1813,7 @@
     "region": "묵호",
     "address": "강원 동해시 시장안길 20-2",
     "hours": "11:00부터 15:00, 매주 월요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "시장 한정 중식",
@@ -1847,8 +1849,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "강원 동해시 일출로 161",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "황제물회",
@@ -1884,8 +1886,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "강원 동해시 일출로 85",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "정통 횟집",
@@ -1921,8 +1923,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "강원 동해시 일출로 151",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "냄비물회",
@@ -1958,8 +1960,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "강원 동해시 천곡동",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "매운 순대국",
@@ -1995,8 +1997,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "강원 동해시 시내 권역",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "보쌈",
@@ -2033,7 +2035,7 @@
     "region": "천곡",
     "address": "강원 동해시 한섬로 87 천곡동",
     "hours": "평일 12:00부터 20:00, 주말 12:00부터 21:00, 매주 월요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "수제 닭강정",
@@ -2068,8 +2070,8 @@
     "type": "eat",
     "region": "망상",
     "address": "강원 동해시 망상해변 전면",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "오션뷰 이탈리안",
@@ -2106,7 +2108,7 @@
     "region": "묵호",
     "address": "강원 동해시 일출로 195 어달과 묵호항 사이 해안도로",
     "hours": "매일 10:00부터 22:00, 일요일 10:00부터 20:00, 매월 마지막 주 월요일과 화요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "통유리 오션뷰와 루프탑",
@@ -2142,8 +2144,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "강원 동해시 묵호진동 월소택지길 끝자락",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "월소 설화 기반 4층 건축",
@@ -2180,7 +2182,7 @@
     "region": "추암",
     "address": "강원 동해시 촛대바위길 26 추암동",
     "hours": "평일 09:00부터 21:00, 주말 07:00부터 21:00, 연중무휴 (일부 자료는 22:00 마감)",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "추암 촛대바위 오션뷰",
@@ -2217,7 +2219,7 @@
     "region": "묵호",
     "address": "강원 동해시 일출로 묵호항과 해랑전망대 인근",
     "hours": "매일 07:00부터 22:00",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "묵호항 조망",
@@ -2253,8 +2255,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "강원 동해시 도째비골 스카이밸리 내",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "도째비 설화 컨셉 음료",
@@ -2291,7 +2293,7 @@
     "region": "묵호",
     "address": "강원 동해시 등대오름길 24-5 묵호진동",
     "hours": "10:30부터 18:00, 수요일 또는 화요일과 수요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "주택 개조형 오션뷰 소품샵",
@@ -2328,7 +2330,7 @@
     "region": "묵호",
     "address": "동해시 발한로 204-1",
     "hours": "11:00부터 19:00, 매주 화요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       " 레진 마그넷",
@@ -2368,8 +2370,8 @@
     "type": "see",
     "region": "망상",
     "address": "강원 동해시 동해대로 6270-10 망상관광안내소 건물 내",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "동해시 공식 캐릭터 굿즈",
@@ -2405,7 +2407,7 @@
     "region": "묵호",
     "address": "강원 동해시 중앙시장길 12 뉴월드상가 청년몰",
     "hours": "시장 시간대, 대략 10:00부터 20:00",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "묵호 풍경 사진 굿즈",
@@ -2442,7 +2444,7 @@
     "region": "묵호",
     "address": "강원 동해시 중앙시장길 12 뉴월드상가 청년몰",
     "hours": "시장 시간대",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "핸드메이드 소품과 LP 청음",
@@ -2478,8 +2480,8 @@
     "type": "see",
     "region": "묵호",
     "address": "동해시 시장안길 7",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       " 썬캐처",
@@ -2520,7 +2522,7 @@
     "region": "묵호",
     "address": "강원 동해시 논골1길 17-6 논골담길",
     "hours": "대략 11:00부터 19:00",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "등대와 테트라포트 오브제",
@@ -2557,7 +2559,7 @@
     "region": "묵호",
     "address": "강원 동해시 일출로 7 동쪽바다시장 근처",
     "hours": "11:00부터 19:00, 주말 09:30부터",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "바다와 고래 컨셉 편집샵",
@@ -2593,7 +2595,7 @@
     "region": "묵호",
     "address": "동해시 발한로 215-2",
     "hours": "매일 11:00부터 19:00 또는 12:00부터 19:00, 매주 화요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       " 감성 엽서",
@@ -2634,7 +2636,7 @@
     "region": "묵호",
     "address": "동해시 발한로 118",
     "hours": "월요일부터 목요일 11:00부터 18:00, 금요일과 토요일 11:00부터 19:00, 목요일과 일요일 휴무",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "독립서적",
@@ -2674,7 +2676,7 @@
     "region": "천곡",
     "address": "강원 동해시 공단2로 73 구호동",
     "hours": "상시 시음장과 견학 미개방, 사전 문의 필요",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "지장수 막걸리",
@@ -2710,8 +2712,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "강원 동해시 동해항1길 37 송정동",
-    "hours": "양조장 현장 직판, 견학 프로그램 확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "양조장 현장 직판, 견학 프로그램",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "4대 향토 동동주",
@@ -2745,10 +2747,10 @@
     "id": "sai-078",
     "name": "농업회사법인 더담 주식회사",
     "type": "eat",
-    "region": "확인 안 됨",
+    "region": "",
     "address": "강원 동해시 지역특산주 제조장",
-    "hours": "견학과 시음 공간 운영 확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "견학과 시음 공간 운영",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "프리미엄 과하주",
@@ -2783,8 +2785,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "강원 동해시 지리골길 9 1층 104호 발한동",
-    "hours": "견학과 시음 운영 확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "견학과 시음 운영",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "신생 탁주 약주",
@@ -2796,7 +2798,7 @@
     "gallery": [],
     "tagline": "신규 전통주 개발",
     "short_description": "신생 탁주 약주",
-    "long_description": "발한동 지리골길에 소재하며 2025년 11월 식품제조가공업 주류 허가를 취득한 신규 양조장. 탁주와 약주를 주력으로 등록하고 전통 양조 기술과 현대 감각을 결합한 제품 생산을 목표. 유통망과 직영 시음장 운영 여부는 확인 안 됨.",
+    "long_description": "발한동 지리골길에 소재하며 2025년 11월 식품제조가공업 주류 허가를 취득한 신규 양조장. 탁주와 약주를 주력으로 등록하고 전통 양조 기술과 현대 감각을 결합한 제품 생산을 목표. 유통망과 직영 시음장 운영 여부는.",
     "highlights": [
       {
         "title": "메인 메뉴",
@@ -2811,7 +2813,7 @@
     "nearby": [],
     "source": "강원_영동권_전통주_조사 문서",
     "verified": "실존 확인, 2025년 11월 11일 주류 제조 허가",
-    "target": "확인 안 됨",
+    "target": "",
     "is_active": true
   },
   {
@@ -2821,7 +2823,7 @@
     "region": "묵호",
     "address": "동해시 덕장길 9",
     "hours": "10:00에서 18:00, 월요일 휴관",
-    "price_label": "확인 안 됨",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       " 해랑화이트 등 수제 캔맥주 5종",
@@ -2836,7 +2838,7 @@
     "gallery": [],
     "tagline": "묵호태 소비 외연 확대와 2030 안주 문화",
     "short_description": "묵호태 안주와 수제맥주 페어링",
-    "long_description": "묵호태 가공품과 함께 동해 바다의 청량함을 담은 수제 캔맥주 5종을 페어링해 제공. 다만 동해시 관내 수제맥주 양조장은 별도 조사에서 확인 안 됨으로 나와, 캔맥주 제조원이 위탁생산인지 여부는 발표 전 확인 필요. 복합문화공간이다. 포토존과 그림 전시가 있고 명태 캐릭터 상품을 판매한다.",
+    "long_description": "묵호태 가공품과 함께 동해 바다의 청량함을 담은 수제 캔맥주 5종을 페어링해 제공. 복합문화공간이다. 포토존과 그림 전시가 있고 명태 캐릭터 상품을 판매한다.",
     "highlights": [
       {
         "title": "메인 메뉴",
@@ -2860,8 +2862,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "일출로 131 1층",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "물회와 회덮밥"
@@ -2880,8 +2882,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -2890,8 +2892,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "일출로 175",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "곰치국과 해물 생선"
@@ -2910,8 +2912,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -2920,8 +2922,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "묵호항 어시장 인근",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "물회 50년 노포"
@@ -2940,8 +2942,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -2950,8 +2952,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "동굴로 125-2",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "조개구이 22시"
@@ -2970,8 +2972,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -2980,8 +2982,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "감추로 6-1",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "해천탕 원조 해신탕 60, 000"
@@ -3000,8 +3002,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3010,8 +3012,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "천곡동",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "해물찜 아구찜 15, 000원 이상"
@@ -3030,8 +3032,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3040,8 +3042,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "항골길 7-5",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "쫄면 순두부와 주먹밥, 점심 웨이팅"
@@ -3060,8 +3062,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3070,8 +3072,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "감추7길 18",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "쌈밥 정식"
@@ -3090,8 +3092,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3100,8 +3102,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "천곡2길 7",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "청국장정식"
@@ -3120,8 +3122,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3130,8 +3132,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "천곡동",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "가마솥 순댓국"
@@ -3150,8 +3152,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3160,8 +3162,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "천곡동",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "콩나물국밥 5, 000원 이상"
@@ -3180,8 +3182,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3190,8 +3192,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "천곡동",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "백년가게 중식과 레몬탕수육"
@@ -3210,8 +3212,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3220,8 +3222,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "중앙로 236-1",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "3대 평양냉면과 옛날통닭"
@@ -3240,8 +3242,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3250,8 +3252,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "천곡동",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "돼지고기 구이"
@@ -3270,8 +3272,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3280,8 +3282,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "중앙로 242",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "향토 시오야끼"
@@ -3300,8 +3302,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3310,8 +3312,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "항골1길 29",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "스페인 양식"
@@ -3330,8 +3332,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3340,8 +3342,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "평원5길 8-5",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "일식 소바와 웨이팅"
@@ -3360,8 +3362,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3370,8 +3372,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "평릉길 21 18",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "물막국수 수육"
@@ -3390,8 +3392,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3400,8 +3402,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "평릉동 427-6",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "복어 전문"
@@ -3420,8 +3422,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3430,8 +3432,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "한섬로 126-1",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "동해감자빵 소금빵"
@@ -3450,8 +3452,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3460,8 +3462,8 @@
     "type": "eat",
     "region": "천곡",
     "address": "평원1길 120",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "수제버거와 반려견 동반"
@@ -3480,8 +3482,8 @@
     "rules": [],
     "nearby": [],
     "source": "맛집권역별_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3490,8 +3492,8 @@
     "type": "stay",
     "region": "묵호",
     "address": "동해시 논골1길 19",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "게스트하우스",
@@ -3512,8 +3514,8 @@
     "rules": [],
     "nearby": [],
     "source": "관광코스기획안_0824.md / 프로그램기획안_0824.md / 동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true,
     "contact": "0507-1433-1074",
     "instagram": "@103lab.official"
@@ -3523,9 +3525,9 @@
     "name": "망상오토캠핑리조트",
     "type": "stay",
     "region": "망상",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [],
     "badges": [],
@@ -3542,8 +3544,8 @@
     "rules": [],
     "nearby": [],
     "source": "관광코스기획안_0824.md / 프로그램기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3551,9 +3553,9 @@
     "name": "현진관광호텔",
     "type": "stay",
     "region": "천곡",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [],
     "badges": [],
@@ -3570,18 +3572,18 @@
     "rules": [],
     "nearby": [],
     "source": "관광코스기획안_0824.md / 프로그램기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
     "id": "sai-105",
     "name": "일마레펜션",
     "type": "stay",
-    "region": "확인 안 됨",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "region": "",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [],
     "badges": [],
@@ -3598,18 +3600,18 @@
     "rules": [],
     "nearby": [],
     "source": "프로그램기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
     "id": "sai-106",
     "name": "어달펜션",
     "type": "stay",
-    "region": "확인 안 됨",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "region": "",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [],
     "badges": [],
@@ -3626,18 +3628,18 @@
     "rules": [],
     "nearby": [],
     "source": "프로그램기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
     "id": "sai-107",
     "name": "동해 봉봉카라반",
     "type": "stay",
-    "region": "확인 안 됨",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "region": "",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [],
     "badges": [],
@@ -3654,18 +3656,18 @@
     "rules": [],
     "nearby": [],
     "source": "프로그램기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
     "id": "sai-108",
     "name": "아이체크호텔",
     "type": "stay",
-    "region": "확인 안 됨",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "region": "",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [],
     "badges": [],
@@ -3682,18 +3684,18 @@
     "rules": [],
     "nearby": [],
     "source": "프로그램기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
     "id": "sai-109",
     "name": "동해한옥동안재",
     "type": "stay",
-    "region": "확인 안 됨",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "region": "",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [],
     "badges": [],
@@ -3710,8 +3712,8 @@
     "rules": [],
     "nearby": [],
     "source": "프로그램기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3719,9 +3721,9 @@
     "name": "무릉계곡힐링캠프장",
     "type": "stay",
     "region": "무릉",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "무릉"
@@ -3740,18 +3742,18 @@
     "rules": [],
     "nearby": [],
     "source": "프로그램기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
     "id": "sai-111",
     "name": "동해보양온천컨벤션호텔",
     "type": "stay",
-    "region": "확인 안 됨",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "region": "",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [],
     "badges": [],
@@ -3768,8 +3770,8 @@
     "rules": [],
     "nearby": [],
     "source": "관광코스기획안_0824.md / 프로그램기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3777,9 +3779,9 @@
     "name": "망상해변한옥마을",
     "type": "stay",
     "region": "망상",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "망상"
@@ -3798,8 +3800,8 @@
     "rules": [],
     "nearby": [],
     "source": "프로그램기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3807,9 +3809,9 @@
     "name": "동해추암오토캠핑장",
     "type": "stay",
     "region": "추암",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "추암"
@@ -3828,18 +3830,18 @@
     "rules": [],
     "nearby": [],
     "source": "관광코스기획안_0824.md / 프로그램기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
     "id": "sai-114",
     "name": "뉴동해관광호텔",
     "type": "stay",
-    "region": "확인 안 됨",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "region": "",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [],
     "badges": [],
@@ -3856,18 +3858,18 @@
     "rules": [],
     "nearby": [],
     "source": "관광코스기획안_0824.md / 프로그램기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
     "id": "sai-115",
     "name": "호텔바다",
     "type": "stay",
-    "region": "확인 안 됨",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "region": "",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [],
     "badges": [],
@@ -3884,8 +3886,8 @@
     "rules": [],
     "nearby": [],
     "source": "관광코스기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3894,8 +3896,8 @@
     "type": "stay",
     "region": "묵호",
     "address": "동해시 일출로 172",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "대진",
@@ -3917,8 +3919,8 @@
     "rules": [],
     "nearby": [],
     "source": "관광코스기획안_0824.md / 동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true,
     "contact": "010-2418-3139"
   },
@@ -3927,9 +3929,9 @@
     "name": "동해 비치한섬",
     "type": "stay",
     "region": "천곡",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "천곡"
@@ -3937,9 +3939,9 @@
     "badges": [],
     "main_image": null,
     "gallery": [],
-    "tagline": "확인 안 됨",
-    "short_description": "확인 안 됨",
-    "long_description": "확인 안 됨",
+    "tagline": "",
+    "short_description": "",
+    "long_description": "",
     "highlights": [],
     "host": null,
     "host_intro": null,
@@ -3948,18 +3950,18 @@
     "rules": [],
     "nearby": [],
     "source": "관광코스기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
     "id": "sai-118",
     "name": "동해바다펜션",
     "type": "stay",
-    "region": "확인 안 됨",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "region": "",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [],
     "badges": [],
@@ -3976,8 +3978,8 @@
     "rules": [],
     "nearby": [],
     "source": "관광코스기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -3985,9 +3987,9 @@
     "name": "지금,느긋",
     "type": "stay",
     "region": "추암",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "추암"
@@ -4006,8 +4008,8 @@
     "rules": [],
     "nearby": [],
     "source": "관광코스기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -4015,9 +4017,9 @@
     "name": "추암해돋이펜션",
     "type": "stay",
     "region": "추암",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "추암"
@@ -4036,26 +4038,26 @@
     "rules": [],
     "nearby": [],
     "source": "관광코스기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
     "id": "sai-121",
     "name": "동해 에버그린펜션",
     "type": "stay",
-    "region": "확인 안 됨",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "region": "",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [],
     "badges": [],
     "main_image": null,
     "gallery": [],
-    "tagline": "확인 안 됨",
-    "short_description": "확인 안 됨",
-    "long_description": "확인 안 됨",
+    "tagline": "",
+    "short_description": "",
+    "long_description": "",
     "highlights": [],
     "host": null,
     "host_intro": null,
@@ -4064,8 +4066,8 @@
     "rules": [],
     "nearby": [],
     "source": "관광코스기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -4073,9 +4075,9 @@
     "name": "무릉계곡야영장",
     "type": "stay",
     "region": "무릉",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "무릉"
@@ -4094,8 +4096,8 @@
     "rules": [],
     "nearby": [],
     "source": "관광코스기획안_0824.md",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -4103,9 +4105,9 @@
     "name": "묵호역",
     "type": "see",
     "region": "묵호",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "KTX",
@@ -4127,8 +4129,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -4136,9 +4138,9 @@
     "name": "묵호항 방파제",
     "type": "see",
     "region": "묵호",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "노을",
@@ -4160,8 +4162,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -4169,9 +4171,9 @@
     "name": "별빛마을 전망대",
     "type": "see",
     "region": "묵호",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "묵호",
@@ -4194,8 +4196,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -4203,9 +4205,9 @@
     "name": "묵호덕장",
     "type": "see",
     "region": "묵호",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "겨울",
@@ -4227,8 +4229,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -4237,8 +4239,8 @@
     "type": "see",
     "region": "묵호",
     "address": "동해시 발한로 161",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "건축",
@@ -4259,8 +4261,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -4268,9 +4270,9 @@
     "name": "삼본아파트",
     "type": "see",
     "region": "묵호",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "묵호",
@@ -4291,8 +4293,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -4300,9 +4302,9 @@
     "name": "까막바위",
     "type": "see",
     "region": "묵호",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "묵호",
@@ -4325,8 +4327,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -4334,9 +4336,9 @@
     "name": "어달항",
     "type": "see",
     "region": "묵호",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "등대",
@@ -4359,8 +4361,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -4368,9 +4370,9 @@
     "name": "아침햇살정원",
     "type": "see",
     "region": "묵호",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "묵호",
@@ -4393,8 +4395,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -4402,9 +4404,9 @@
     "name": "대진항",
     "type": "see",
     "region": "묵호",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "대진",
@@ -4426,8 +4428,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -4435,9 +4437,9 @@
     "name": "어달봉수대",
     "type": "see",
     "region": "묵호",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "대진",
@@ -4460,8 +4462,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -4469,9 +4471,9 @@
     "name": "노봉해수욕장",
     "type": "see",
     "region": "망상",
-    "address": "확인 안 됨",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "address": "",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "고요",
@@ -4494,8 +4496,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true
   },
   {
@@ -4504,8 +4506,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "동해시 일출로 97 1층",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "묵호",
@@ -4526,8 +4528,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true,
     "instagram": "@konki_pan"
   },
@@ -4537,8 +4539,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "동해시 발한로",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "리모델링",
@@ -4559,8 +4561,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true,
     "instagram": "@afont_d"
   },
@@ -4570,8 +4572,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "동해시 발한로 223-1 1층",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "묵호",
@@ -4592,8 +4594,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true,
     "instagram": "@doyohaus.life"
   },
@@ -4603,8 +4605,8 @@
     "type": "eat",
     "region": "묵호",
     "address": "동해시 발한로 219-11",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "묵호",
@@ -4625,8 +4627,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true,
     "instagram": "@karamel_station"
   },
@@ -4636,8 +4638,8 @@
     "type": "eat",
     "region": "망상",
     "address": "동해시 노봉안길 20",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "노봉",
@@ -4659,8 +4661,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true,
     "instagram": "@hyun_sanso"
   },
@@ -4670,8 +4672,8 @@
     "type": "stay",
     "region": "묵호",
     "address": "동해시 발한로 219-11",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "묵호",
@@ -4692,8 +4694,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true,
     "contact": "0507-1468-5120",
     "instagram": "@hotel.karamel"
@@ -4704,8 +4706,8 @@
     "type": "stay",
     "region": "묵호",
     "address": "동해시 일출로 20-1",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "묵호",
@@ -4726,8 +4728,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true,
     "contact": "0507-1395-3707"
   },
@@ -4737,8 +4739,8 @@
     "type": "stay",
     "region": "묵호",
     "address": "동해시 해안로 513-2",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "게스트하우스",
@@ -4758,8 +4760,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true,
     "contact": "0507-1442-6710",
     "instagram": "@seojins_inn"
@@ -4770,8 +4772,8 @@
     "type": "stay",
     "region": "묵호",
     "address": "동해시 일출로 309",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "묵호",
@@ -4793,8 +4795,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true,
     "contact": "010-2702-3090",
     "instagram": "@eojjeoda_eoda"
@@ -4805,8 +4807,8 @@
     "type": "stay",
     "region": "묵호",
     "address": "동해시 일출로 243-7",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "감성숙소",
@@ -4828,8 +4830,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true,
     "contact": "010-8481-1159",
     "instagram": "@oudalbit_stay_2021s"
@@ -4840,8 +4842,8 @@
     "type": "stay",
     "region": "묵호",
     "address": "동해시 일출로 277-10",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "묵호",
@@ -4863,8 +4865,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true,
     "contact": "010-2483-0828"
   },
@@ -4874,8 +4876,8 @@
     "type": "stay",
     "region": "묵호",
     "address": "동해시 일출로 174",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "묵호",
@@ -4897,8 +4899,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true,
     "contact": "0507-1382-0106"
   },
@@ -4908,8 +4910,8 @@
     "type": "stay",
     "region": "묵호",
     "address": "동해시 대진항길 47-1",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "게스트하우스",
@@ -4931,8 +4933,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true,
     "contact": "0507-1411-6794",
     "instagram": "@surffactory"
@@ -4943,8 +4945,8 @@
     "type": "stay",
     "region": "망상",
     "address": "동해시 노봉안길 20-33",
-    "hours": "확인 안 됨",
-    "price_label": "확인 안 됨",
+    "hours": "",
+    "price_label": "요금 미정",
     "price_per_night": 0,
     "tags": [
       "노봉",
@@ -4966,8 +4968,8 @@
     "rules": [],
     "nearby": [],
     "source": "동해스토리북 chap2 chap3_4 chap5",
-    "verified": "확인 안 됨",
-    "target": "확인 안 됨",
+    "verified": false,
+    "target": "",
     "is_active": true,
     "contact": "010-2787-8775",
     "instagram": "@easternheaven.23"

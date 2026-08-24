@@ -43,7 +43,8 @@ function buildInfoRows(stay) {
     if (closed.length) rows.push({ label: '휴무', value: closed.join(', ').replace(/에서/g, ' ~ ') })
   }
 
-  const price = clean(stay.price_label)
+  // 상세 표는 price_detail(전체)을 우선한다. 카드는 price_label(대표)만 쓴다
+  const price = stay.price_detail || clean(stay.price_label)
   rows.push({ label: '요금', value: price ? price.replace(/에서/g, ' ~ ') : '요금 미정' })
   return rows
 }
@@ -246,20 +247,24 @@ export default function StayDetailPage() {
               ))}
             </dl>
 
-            {/* 구글맵. 주소 기반 임베드. 클릭 시 구글맵으로 연결 */}
-            <div className="mt-4 aspect-[16/9] w-full rounded-2xl overflow-hidden shadow-card bg-bg-card">
-              <iframe
-                title={`${stay.name} 지도`}
-                src={mapEmbedUrl(stay.address)}
-                loading="lazy"
-                className="w-full h-full border-0"
-                referrerPolicy="no-referrer-when-downgrade" />
-            </div>
-            <a href={mapSearchUrl(stay.address)} target="_blank" rel="noopener noreferrer"
-               className="mt-2 inline-flex items-center gap-1 font-pretendard font-medium text-[13px] text-primary hover:text-primary-hover transition-colors duration-150">
-              <MapPin size={14} />
-              구글맵에서 열기
-            </a>
+            {/* 구글맵. 주소 없으면 지도 블록 자체를 숨긴다 */}
+            {stay.address && (
+              <>
+                <div className="mt-4 aspect-[16/9] w-full rounded-2xl overflow-hidden shadow-card bg-bg-card">
+                  <iframe
+                    title={`${stay.name} 지도`}
+                    src={mapEmbedUrl(stay.address)}
+                    loading="lazy"
+                    className="w-full h-full border-0"
+                    referrerPolicy="no-referrer-when-downgrade" />
+                </div>
+                <a href={mapSearchUrl(stay.address)} target="_blank" rel="noopener noreferrer"
+                   className="mt-2 inline-flex items-center gap-1 font-pretendard font-medium text-[13px] text-primary hover:text-primary-hover transition-colors duration-150">
+                  <MapPin size={14} />
+                  구글맵에서 열기
+                </a>
+              </>
+            )}
 
             {stay.nearby?.length > 0 && (
               <div className="mt-8">
