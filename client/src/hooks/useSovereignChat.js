@@ -42,6 +42,32 @@ export function sourceLabel(id) {
   return SOURCE_LABELS[id] || DATA_LABELS[id] || id
 }
 
+// 출처 id를 우측 카드용 데이터로 푼다. link 라우트로 원본 데이터를 찾아 사진과 설명을 붙인다
+// 라우트가 없는 개념 항목(포지셔닝 등)은 카드로 만들 수 없어 건너뛴다
+export function resolveSources(sources = [], links = {}) {
+  return sources.map((id) => {
+    const route = links[id]
+    const name = sourceLabel(id)
+    if (route?.startsWith('/stays/')) {
+      const s = staysData.find((x) => x.id === route.split('/')[2])
+      if (s) return { id, name: s.name, image: s.main_image || s.gallery?.[0] || null, desc: s.short_description || s.tagline || '', route, kind: '장소' }
+    }
+    if (route?.startsWith('/packages/')) {
+      const p = packagesData.find((x) => x.id === route.split('/')[2])
+      if (p) return { id, name: p.name, image: p.main_image || null, desc: p.short_description || p.tagline || '', route, kind: p.category === 'program' ? '프로그램' : '코스' }
+    }
+    if (route?.startsWith('/story/')) {
+      const t = storiesData.find((x) => x.slug === route.split('/')[2])
+      if (t) return { id, name: t.title, image: t.cover_image || null, desc: (t.subtitle || '').toString().replace(/\n/g, ' '), route, kind: '스토리' }
+    }
+    if (route?.startsWith('/membership') || route?.startsWith('/pass')) {
+      return { id, name, image: null, desc: '동해사이 패스로 제휴처 할인과 스탬프를 이용해요', route, kind: '패스' }
+    }
+    if (route) return { id, name, image: null, desc: '', route, kind: '' }
+    return null // 라우트 없는 항목은 카드로 못 만든다
+  }).filter(Boolean)
+}
+
 // 한글 마지막 글자의 받침 유무. 0xAC00 기준 (코드-0xAC00)%28 이 0이면 받침 없음
 // 반환: null(한글 아님), 0(받침 없음), 8(ㄹ받침), 그 외 양수(받침 있음)
 function lastBatchim(word) {
