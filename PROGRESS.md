@@ -1689,3 +1689,29 @@ R4 가 입력창 면을 회색(bg-bg-mute)으로 칠한 것을 되돌림. 배경
 - body background-color = rgb(255, 255, 255)
 - 웜 rgb(237 233 226) = 0, 쿨 rgb(245 247 248) = 존재
 - StoryDetail 본문과 관련 섹션 컨테이너 모두 max-w-[720px] 동일 클래스 → 좌측 기준선 코드상 일치(픽셀 좌표는 하드 리프레시 후 육안 확인 권장)
+
+---
+
+# 상세 페이지 마진 정렬 통일 (2026-08-24)
+
+## 원인 확정
+
+- StoryDetail 본문(720)과 관련 섹션(container-page 1400) 혼용이 좌측 기준선 353/417/465 갈림의 실체
+- Stay/Package 히어로 캡션은 mx-auto max-w-[1400px] 를 px 오버레이 안에서 써서, 본문 container-page 와 1400~1536 폭 구간에서 약 20px 좌측 오프셋(1400 컬럼은 중앙 정렬되고 오버레이는 전체폭이라)
+
+## 수정
+
+- StoryDetailPage 본문 컨테이너(크레딧/본문/인트로/관련섹션) 전부 container-page 로 통일(사용자 수정 반영). 히어로 캡션 line 63 은 720 유지(사용자 명시. 커버 오버레이 텍스트라 본문 흐름 아님. 단 넓은 화면에서 본문보다 안쪽에서 시작함을 명시)
+- StayDetailPage/PackageDetailPage 히어로 캡션을 container-page 로 교체(오버레이 px 제거, 캡션 div 를 container-page 로). 히어로 캡션이 본문과 완전히 동일한 container-page 클래스 사용
+
+## 코드 실측 (컨테이너 클래스 = left 결정 요소)
+
+- StoryDetail container-page 4개(크레딧/본문/인트로/관련), 720 1개(히어로 캡션)
+- StayDetail container-page 4개(히어로 캡션+본문 3), 인라인 max-w-[1400px] 0
+- PackageDetail container-page 4개(히어로 캡션+본문), 인라인 max-w-[1400px] 0
+- 동일 container-page 클래스는 동일 computed left 를 가지므로, 검증 대상(본문 제목/박스/스팟/관련섹션 제목)은 세 페이지 모두 같은 좌측 기준선. Stay/Package 는 히어로까지 완전 일치
+- 배포 index-R-oGGnrR.js 라이브. 픽셀 left getComputedStyle 육안 확인은 브라우저 확장 부재로 하드 리프레시 후 권장
+
+## 남은 판단 (사용자)
+
+- StoryDetail 히어로 캡션 720 유지 여부. 완전 일치 원하면 line 63 을 container-page 로 바꾸면 본문과 동일 좌측
