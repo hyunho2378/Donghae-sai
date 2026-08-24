@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import HeroSlider from '../components/HeroSlider'
-import { STORY_HERO } from '../components/kareum/heroSlides'
 import RevealOnScroll from '../components/kareum/RevealOnScroll'
 import storiesData from '../data/stories.json'
 
@@ -19,8 +17,6 @@ export default function StoryListPage() {
 
   return (
     <div className="page-enter">
-      <HeroSlider slides={STORY_HERO} />
-
       <div className="mx-auto w-full
                       px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
                       max-w-[1400px] 2xl:max-w-[1600px]

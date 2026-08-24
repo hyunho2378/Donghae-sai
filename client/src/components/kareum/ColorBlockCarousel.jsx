@@ -12,7 +12,7 @@ export default function ColorBlockCarousel({ items = [] }) {
       <div className="mx-auto w-full
                       px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
                       max-w-[1400px] 2xl:max-w-[1600px]
-                      py-12 md:py-18 lg:py-24 4xl:py-32">
+                      pt-8 pb-12 md:pb-18 lg:pb-24 4xl:pb-32">
         <Carousel controls="bottom" itemClassName="w-full" gapClassName="gap-0" label="프로그램">
           {items.map((p, i) => {
             // 이름 앞머리 번호를 아이브로우로 올리고 제목은 이름만 남긴다

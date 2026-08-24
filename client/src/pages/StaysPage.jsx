@@ -4,9 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 import StayCard from '../components/card/StayCard'
 import Chip from '../components/Chip'
 import EmptyState from '../components/feedback/EmptyState'
-import HeroSlider from '../components/HeroSlider'
-import { STAYS_HERO } from '../components/kareum/heroSlides'
-import RegionBlobSection from '../components/kareum/RegionBlobSection'
+import RevealOnScroll from '../components/kareum/RevealOnScroll'
 import staysData from '../data/stays.json'
 import { STAY_TYPE_LABEL } from '../lib/format'
 
@@ -25,6 +23,19 @@ const INTRO_STATS = [
   { value: '86퍼센트', label: '당일 귀가 비율' },
   { value: '14.2퍼센트', label: '숙박 전환율' }
 ]
+
+// EAT STAY PLAY SEE 진입. 대표 사진은 그 갈래에 속한 실제 장소 사진만 쓴다
+// stay 갈래는 사진 자료가 없어 사진 없이 둔다. 다른 장소 사진을 끌어오지 않는다
+const TYPE_ENTRIES = ['eat', 'stay', 'play', 'see'].map((key) => {
+  const list = staysData.filter((s) => s.type === key)
+  const withImage = list.find((s) => s.main_image)
+  return {
+    key,
+    label: STAY_TYPE_LABEL[key],
+    count: list.length,
+    image: withImage ? withImage.main_image : null
+  }
+})
 
 export default function StaysPage() {
   const [params] = useSearchParams()
@@ -52,14 +63,12 @@ export default function StaysPage() {
         <meta name="theme-color" content="#60A5FA" />
       </Helmet>
 
-      <HeroSlider slides={STAYS_HERO} />
-      <RegionBlobSection />
     <div className="page-enter mx-auto w-full
                     px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
                     max-w-[1400px] 2xl:max-w-[1600px]
                     py-8 lg:py-12">
 
-      <section className="mb-10 lg:mb-14">
+      <RevealOnScroll className="mb-10 lg:mb-14">
         <span className="inline-flex items-center h-[26px] px-2.5
                          bg-primary-soft text-primary
                          font-pretendard font-medium text-[12px] tracking-[0.04em] rounded-md">
@@ -85,7 +94,40 @@ export default function StaysPage() {
             </div>
           ))}
         </div>
-      </section>
+      </RevealOnScroll>
+
+      <RevealOnScroll className="mb-10 lg:mb-14">
+        <div className="grid gap-3 md:gap-4 grid-cols-2 lg:grid-cols-4">
+          {TYPE_ENTRIES.map((t) => (
+            <button
+              key={t.key}
+              type="button"
+              onClick={() => setType(t.key)}
+              aria-pressed={type === t.key}
+              className={`group text-left overflow-hidden rounded-xl border transition-colors duration-150
+                          ${type === t.key ? 'border-primary' : 'border-border-sub hover:border-border-def'}`}>
+              <div className="relative aspect-[4/3] overflow-hidden bg-bg-card">
+                {t.image ? (
+                  <img src={t.image} alt={t.label} loading="lazy"
+                       className="w-full h-full object-cover
+                                  transition-transform duration-[600ms] ease-out
+                                  motion-reduce:transition-none group-hover:scale-[1.04]" />
+                ) : (
+                  <div className="w-full h-full bg-primary-soft" />
+                )}
+              </div>
+              <div className="p-4">
+                <p className="font-pretendard font-bold text-[16px] md:text-[18px] tracking-[0.04em] text-text-pri">
+                  {t.label}
+                </p>
+                <p className="mt-1 font-pretendard font-medium text-[13px] text-text-meta">
+                  {t.count}곳
+                </p>
+              </div>
+            </button>
+          ))}
+        </div>
+      </RevealOnScroll>
 
       <h1 className="font-pretendard font-bold
                      text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]

@@ -1007,3 +1007,54 @@ DB 재마이그레이션
 - [ ] 문어 애셋 도착 시 images/character 에 넣고 RegionBlobSection 에서 BlobCard 의 illust prop 을 채운다
 - [ ] 브랜드 색 확정 시 tailwind.config.js 의 primary 계열 토큰 값만 교체한다
 - [ ] 히어로 카피의 호스트 실명은 자료 대기 상태다. 확정되면 heroSlides.js 의 subtitle 을 형식대로 채운다
+
+---
+
+# V3a 앞절반 교정 (2026-08-24)
+
+가벼운 교정 세 개. 리스트 히어로 제거, 버그 두 개, 사이 찾기 카름 질감. 홈 챗봇 히어로는 건드리지 않았다.
+
+## 단계 0. 리스트 페이지 히어로 제거
+
+- PackagesPage 상단 HeroSlider 제거. 제목 1박 2일 코스와 프로그램으로 바로 시작
+- StoryListPage 상단 HeroSlider 제거. 제목 이야기로 바로 시작
+- StaysPage(사이 찾기) 상단 HeroSlider 와 RegionBlobSection 제거. 제목 통계 카드로 바로 시작
+- heroSlides.js 삭제. PROGRAM_HERO STAYS_HERO STORY_HERO 세 배열이 전부 리스트 히어로 전용이라 고아가 됐다
+- HeroSlider.jsx 컴포넌트는 보존. V3b 상세 페이지에서 다른 방식으로 쓴다
+- RegionBlobSection.jsx 컴포넌트는 보존. HomePage 에서 계속 쓴다
+
+## 단계 1. 버그 두 개
+
+- ColorBlockCarousel 첫 슬라이드 좌측 사진은 이미 loading eager 와 fetchpriority high 로 잡혀 있었다. 코드는 정상이고 미배포 상태였다. 재배포로 반영된다
+- PackagesPage 탭과 프로그램 섹션 사이 130픽셀 여백은 ColorBlockCarousel 상단 패딩(py-24 4xl py-32)이 원인이었다. pt-8 로 낮추고 하단 패딩은 pb 로 보존했다. 코스 탭 PackageCarousel 은 이미 py-8 이라 그대로 뒀다
+
+## 단계 2. 사이 찾기 카름 질감
+
+- 히어로 없이 제목 통계 카드로 시작. 기존 구성 유지
+- EAT STAY PLAY SEE 네 갈래 카드 진입 추가. 각 갈래 대표 사진 한 장과 갈래명과 개수. 카드는 하단 유형 필터와 같은 type 상태를 세팅한다
+- 대표 사진은 그 갈래 실제 장소 사진만 쓴다. eat 는 food 사진, play 와 see 는 places 사진. stay 갈래는 stays.json 에 사진 있는 항목이 0건이라 사진 없이 bg-primary-soft 자리로 둔다. 다른 장소 사진을 끌어오지 않았다
+- 하단 지역 유형 필터와 카드 그리드는 그대로 유지
+- 인트로 섹션과 갈래 카드 섹션에 RevealOnScroll 적용
+
+## 수정 파일
+
+- client/src/pages/PackagesPage.jsx (HeroSlider 제거)
+- client/src/pages/StoryListPage.jsx (HeroSlider 제거)
+- client/src/pages/StaysPage.jsx (HeroSlider 와 RegionBlobSection 제거, EAT STAY PLAY SEE 갈래 카드 추가, RevealOnScroll 적용)
+- client/src/components/kareum/ColorBlockCarousel.jsx (상단 패딩 pt-8 로 축소)
+- client/src/components/kareum/heroSlides.js (삭제)
+
+## grep 검증 결과 (client/src 전역)
+
+- 임의 box-shadow 0건, 그라데이션 0건, backdrop-blur 0건
+- 카드 자체 scale 0건. 이미지 zoom scale 1.04 만 존재
+- 이모지 0건, 가운데점과 줄표 0건
+- 리스트 세 페이지 슬라이더 히어로 0건
+- hex 직접 입력은 V3a 변경분 0건. 기존 파일(theme-color 메타, CommunityPage 배지, StayDetailPage 오류색 등)의 기존 hex 는 이번 범위 밖이라 손대지 않았다
+- vite build 통과
+
+## 남은 항목
+
+- [ ] 320 390 768 1024 1280 1536 1920 2560 폭별 사이 찾기 갈래 카드 육안 검증. 갈래 카드는 grid-cols-2 lg grid-cols-4 표준 반응형 그리드라 가로 스크롤 위험 없음
+- [ ] 배포 URL 육안 검증
+- [ ] 뒷절반 V3b 로 진행
