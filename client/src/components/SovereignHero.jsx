@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowUp, ArrowUpRight, MapPin, Ticket } from 'lucide-react'
+import { ArrowUp, ArrowUpRight, MapPin, Ticket, Plus } from 'lucide-react'
 import useSovereignChat, { stripMarkdown, sourceLabel } from '../hooks/useSovereignChat'
 
 // 동해시 공식 권역 구분 5개와 패스. 네이버 검색창 아래 바로가기 줄과 같은 자리
@@ -22,21 +22,48 @@ const SUGGESTIONS = [
 // 근거가 많이 잡히면 칩이 줄을 덮는다. 앞 네 개만 보이고 나머지는 개수로 접는다
 const SOURCE_LIMIT = 4
 
+// 인트로가 사라지는 시간. 이 뒤에 입력창이 하단으로 내려간다
+const LEAVE_MS = 240
+
+const reduceMotion = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+const WRAP = 'mx-auto w-full max-w-[900px] px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24'
+
 export default function SovereignHero() {
   const [input, setInput] = useState('')
-  const { messages, loading, streaming, send } = useSovereignChat()
-  const panelRef = useRef(null)
+  const [phase, setPhase] = useState('idle') // idle 초기, leaving 인트로 소멸, chat 대화
+  const { messages, streaming, send, reset } = useSovereignChat()
+  const scrollRef = useRef(null)
+  const timer = useRef(null)
+
+  const opened = phase === 'chat'
+  const leaving = phase === 'leaving'
 
   useEffect(() => {
-    if (panelRef.current) {
-      panelRef.current.scrollTop = panelRef.current.scrollHeight
-    }
-  }, [messages])
+    const el = scrollRef.current
+    if (el) el.scrollTop = el.scrollHeight
+  }, [messages, opened])
+
+  useEffect(() => () => clearTimeout(timer.current), [])
 
   function submit(text) {
-    if (streaming) return
+    if (streaming || !text.trim()) return
+    if (phase === 'idle') {
+      // 인트로를 먼저 위로 걷어내고 그 다음 입력창을 하단으로 내린다
+      setPhase('leaving')
+      timer.current = setTimeout(() => setPhase('chat'), reduceMotion() ? 0 : LEAVE_MS)
+    }
     send(text)
     setInput('')
+  }
+
+  function newChat() {
+    clearTimeout(timer.current)
+    reset()
+    setInput('')
+    setPhase('idle')
   }
 
   function onKeyDown(e) {
@@ -46,151 +73,183 @@ export default function SovereignHero() {
     }
   }
 
-  const opened = messages.length > 0
+  const introMotion = `transition-[opacity,transform] duration-[240ms] ease-out
+                       motion-reduce:transition-none
+                       ${leaving ? 'opacity-0 -translate-y-2 pointer-events-none' : 'opacity-100 translate-y-0'}`
 
   return (
-    <section className="bg-white flex items-center
-                        min-h-[calc(100vh-60px)] lg:min-h-[calc(100vh-80px)]
-                        py-16 md:py-20 lg:py-24 4xl:py-32">
-      <div className="mx-auto w-full max-w-[900px]
-                      px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24">
-        {!opened && (
-          <h1 className="text-center font-pretendard font-bold
-                         text-[32px] md:text-[44px] lg:text-[56px] 4xl:text-[72px]
-                         tracking-[-0.02em] leading-tight">
-            <span className="text-primary-hover">오늘 밤 동해</span>
-            <span className="text-text-pri">, 어디로 갈까요</span>
-          </h1>
-        )}
+    <section className={`bg-white flex flex-col
+                         min-h-[calc(100vh-60px)] lg:min-h-[calc(100vh-80px)]
+                         ${opened ? '' : 'justify-center py-16 md:py-20 lg:py-24 4xl:py-32'}`}>
 
-        <div className={`${opened ? '' : 'mt-8 lg:mt-10'}
-                        flex items-center gap-3 h-16 lg:h-20 pl-6 pr-3
-                        rounded-2xl border border-border-def
-                        focus-within:border-primary transition-colors duration-150`}>
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={onKeyDown}
-            disabled={streaming}
-            aria-label="동해사이 도우미에게 질문하기"
-            placeholder="무엇이든 물어보세요"
-            className="flex-1 min-w-0 bg-transparent outline-none
-                       font-pretendard font-normal text-text-pri
-                       text-[16px] lg:text-[17px] tracking-[-0.01em]
-                       placeholder:text-text-ter
-                       disabled:opacity-40 disabled:cursor-not-allowed" />
-          <button
-            onClick={() => submit(input)}
-            disabled={streaming}
-            aria-label="전송"
-            className="w-11 h-11 lg:w-12 lg:h-12 shrink-0
-                       inline-flex items-center justify-center rounded-full
-                       bg-primary-hover text-white
-                       hover:bg-primary transition-colors duration-150
-                       disabled:opacity-40 disabled:cursor-not-allowed">
-            <ArrowUp size={20} />
-          </button>
-        </div>
+      {/* 위쪽. 초기에는 헤드라인, 대화 중에는 스크롤되는 대화 영역 */}
+      <div ref={scrollRef}
+           className={opened ? 'flex-1 min-h-0 overflow-y-auto pt-8 lg:pt-12 pb-4' : ''}>
+        <div className={WRAP}>
+          {!opened && (
+            <h1 className={`text-center font-pretendard font-bold
+                            text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
+                            tracking-[-0.02em] leading-tight text-balance ${introMotion}`}>
+              <span className="text-primary-hover">오늘 밤 동해</span>
+              <span className="text-text-pri">, 어디로 갈까요</span>
+            </h1>
+          )}
 
-        <div className="mt-6 grid grid-cols-3 xs:grid-cols-6 gap-2">
-          {SHORTCUTS.map(({ label, to, Icon }) => (
-            <Link
-              key={label}
-              to={to}
-              className="py-3 flex flex-col items-center gap-2 rounded-xl
-                         hover:bg-bg-card transition-colors duration-150">
-              <span className="w-11 h-11 lg:w-12 lg:h-12 inline-flex items-center justify-center
-                               rounded-full bg-primary-soft">
-                <Icon size={20} className="text-primary-hover" />
-              </span>
-              <span className="font-pretendard font-medium
-                               text-[13px] lg:text-[14px] text-text-sec tracking-[-0.01em]">
-                {label}
-              </span>
-            </Link>
-          ))}
-        </div>
-
-        {!opened && (
-          <div className="mt-6 rounded-2xl border border-border-sub overflow-hidden">
-            {SUGGESTIONS.map((s) => (
-              <button
-                key={s.label}
-                onClick={() => submit(s.question)}
-                className="w-full min-h-14 lg:min-h-16 px-5 py-3 text-left
-                           flex flex-col xs:flex-row xs:items-center gap-1 xs:gap-3
-                           border-t border-border-sub first:border-t-0
-                           hover:bg-bg-card transition-colors duration-150">
-                <span className="shrink-0 flex items-center gap-3">
-                  <ArrowUpRight size={16} className="shrink-0 text-text-ter" />
-                  <span className="font-pretendard font-bold
-                                   text-[15px] lg:text-[16px] text-text-pri tracking-[-0.01em]">
-                    {s.label}
-                  </span>
-                </span>
-                <span className="xs:truncate font-pretendard font-normal
-                                 text-[15px] lg:text-[16px] text-text-sec tracking-[-0.01em]">
-                  {s.question}
-                </span>
-              </button>
-            ))}
-          </div>
-        )}
-
-        {opened && (
-          <div ref={panelRef}
-               className="mt-6 max-h-[420px] overflow-y-auto
-                          rounded-2xl border border-border-sub px-4 py-4 space-y-3">
-            {messages.map((m, i) => (
-              <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className="max-w-[85%]">
-                  <div className={`px-4 py-3 rounded-xl
-                                   font-pretendard font-normal text-[15px] lg:text-[16px]
-                                   tracking-[-0.01em] leading-relaxed whitespace-pre-wrap
-                                   ${m.role === 'user'
-                                     ? 'bg-primary text-white'
-                                     : 'bg-bg-card text-text-pri border border-border-sub'}`}>
-                    {m.role === 'assistant' ? stripMarkdown(m.content) : m.content}
+          {opened && (
+            <div className="space-y-6 lg:space-y-8">
+              {messages.map((m, i) => (
+                m.role === 'user' ? (
+                  <div key={i} className="flex justify-end animate-flow-down">
+                    <p className="max-w-[85%] px-4 py-3 rounded-2xl
+                                  bg-primary-soft text-text-pri
+                                  font-pretendard font-medium
+                                  text-[15px] lg:text-[16px] tracking-[-0.01em]
+                                  leading-relaxed whitespace-pre-wrap">
+                      {m.content}
+                    </p>
                   </div>
-                  {m.role === 'assistant' && m.sources?.length > 0 && (
-                    <div className="mt-2 flex flex-wrap gap-1.5">
-                      {m.sources.slice(0, SOURCE_LIMIT).map((s) => (
-                        <span key={s}
-                              className="inline-flex items-center h-7 px-2.5 rounded-full
-                                         bg-primary-soft
-                                         font-pretendard font-medium text-[12px]
-                                         tracking-[-0.01em] text-primary">
-                          근거 {sourceLabel(s)}
-                        </span>
-                      ))}
-                      {m.sources.length > SOURCE_LIMIT && (
-                        <span className="inline-flex items-center h-7 px-2.5 rounded-full
-                                         bg-primary-soft
-                                         font-pretendard font-medium text-[12px]
-                                         tracking-[-0.01em] text-primary">
-                          외 {m.sources.length - SOURCE_LIMIT}개
-                        </span>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-            {loading && (
-              <div className="flex justify-start">
-                <div className="px-4 py-3 rounded-xl bg-bg-card border border-border-sub
-                                font-pretendard font-light text-[14px] text-text-meta">
-                  답변 생성 중
-                </div>
-              </div>
+                ) : (
+                  <div key={i} className="animate-flow-down">
+                    {m.content === '' ? (
+                      <span className="inline-flex items-center gap-1.5 h-6" aria-label="답변 생성 중">
+                        <span className="w-1.5 h-1.5 rounded-full bg-text-ter animate-loading-dot-1" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-text-ter animate-loading-dot-2" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-text-ter animate-loading-dot-3" />
+                      </span>
+                    ) : (
+                      <p className="font-pretendard font-normal
+                                    text-[15px] lg:text-[16px] text-text-pri
+                                    tracking-[-0.01em] leading-relaxed whitespace-pre-wrap text-pretty">
+                        {stripMarkdown(m.content)}
+                      </p>
+                    )}
+
+                    {m.sources?.length > 0 && (
+                      <div className="mt-3 flex flex-wrap gap-1.5">
+                        {m.sources.slice(0, SOURCE_LIMIT).map((s) => (
+                          <span key={s}
+                                className="inline-flex items-center h-7 px-2.5 rounded-full
+                                           bg-primary-soft
+                                           font-pretendard font-medium text-[12px]
+                                           tracking-[-0.01em] text-primary">
+                            근거 {sourceLabel(s)}
+                          </span>
+                        ))}
+                        {m.sources.length > SOURCE_LIMIT && (
+                          <span className="inline-flex items-center h-7 px-2.5 rounded-full
+                                           bg-primary-soft
+                                           font-pretendard font-medium text-[12px]
+                                           tracking-[-0.01em] text-primary">
+                            외 {m.sources.length - SOURCE_LIMIT}개
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* 아래쪽. 입력창은 초기에 헤드라인 밑, 대화 중에는 화면 하단 */}
+      <div className={`shrink-0 ${opened ? 'pb-8 lg:pb-10 pt-2 animate-flow-down-late' : ''}`}>
+        <div className={WRAP}>
+          <div className={`${opened ? '' : 'mt-8 lg:mt-10'}
+                          flex items-center gap-3 h-16 lg:h-20 pl-6 pr-3
+                          rounded-2xl border border-border-def
+                          focus-within:border-primary transition-colors duration-150`}>
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={onKeyDown}
+              disabled={streaming}
+              aria-label="동해사이 도우미에게 질문하기"
+              placeholder={opened ? '이어서 물어보세요' : '무엇이든 물어보세요'}
+              className="flex-1 min-w-0 bg-transparent outline-none
+                         font-pretendard font-normal text-text-pri
+                         text-[16px] lg:text-[17px] tracking-[-0.01em]
+                         placeholder:text-text-ter
+                         disabled:opacity-40 disabled:cursor-not-allowed" />
+            <button
+              onClick={() => submit(input)}
+              disabled={streaming}
+              aria-label="전송"
+              className="w-11 h-11 lg:w-12 lg:h-12 shrink-0
+                         inline-flex items-center justify-center rounded-full
+                         bg-primary-hover text-white
+                         hover:bg-primary transition-colors duration-150
+                         disabled:opacity-40 disabled:cursor-not-allowed">
+              <ArrowUp size={20} />
+            </button>
+          </div>
+
+          {!opened && (
+            <div className={`mt-6 grid grid-cols-3 xs:grid-cols-6 gap-2 ${introMotion}`}>
+              {SHORTCUTS.map(({ label, to, Icon }) => (
+                <Link
+                  key={label}
+                  to={to}
+                  className="py-3 flex flex-col items-center gap-2 rounded-xl
+                             hover:bg-bg-card transition-colors duration-150">
+                  <span className="w-11 h-11 lg:w-12 lg:h-12 inline-flex items-center justify-center
+                                   rounded-full bg-primary-soft">
+                    <Icon size={20} className="text-primary-hover" />
+                  </span>
+                  <span className="font-pretendard font-medium
+                                   text-[13px] lg:text-[14px] text-text-sec tracking-[-0.01em]">
+                    {label}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          )}
+
+          {!opened && (
+            <div className={`mt-6 rounded-2xl border border-border-sub overflow-hidden ${introMotion}`}>
+              {SUGGESTIONS.map((s) => (
+                <button
+                  key={s.label}
+                  onClick={() => submit(s.question)}
+                  className="w-full min-h-14 lg:min-h-16 px-5 py-3 text-left
+                             flex flex-col xs:flex-row xs:items-center gap-1 xs:gap-3
+                             border-t border-border-sub first:border-t-0
+                             hover:bg-bg-card transition-colors duration-150">
+                  <span className="shrink-0 flex items-center gap-3">
+                    <ArrowUpRight size={16} className="shrink-0 text-text-ter" />
+                    <span className="font-pretendard font-bold
+                                     text-[15px] lg:text-[16px] text-text-pri tracking-[-0.01em]">
+                      {s.label}
+                    </span>
+                  </span>
+                  <span className="xs:truncate font-pretendard font-normal
+                                   text-[15px] lg:text-[16px] text-text-sec tracking-[-0.01em]">
+                    {s.question}
+                  </span>
+                </button>
+              ))}
+            </div>
+          )}
+
+          <div className="mt-6 flex items-center justify-center gap-4">
+            <p className="font-pretendard font-light text-[12px] 4xl:text-[13px] text-text-meta">
+              동해 자료로만 답하는 동해사이 도우미
+            </p>
+            {opened && (
+              <button
+                onClick={newChat}
+                className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full
+                           border border-border-def
+                           font-pretendard font-medium text-[12px] text-text-sec
+                           hover:border-primary hover:text-primary-hover
+                           transition-colors duration-150">
+                <Plus size={16} />
+                새 대화
+              </button>
             )}
           </div>
-        )}
-
-        <p className="mt-6 text-center font-pretendard font-light
-                      text-[12px] 4xl:text-[13px] text-text-meta">
-          동해 자료로만 답하는 동해사이 도우미
-        </p>
+        </div>
       </div>
     </section>
   )

@@ -58,7 +58,9 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 .animate-flow-down { animation: flowDown 240ms ease-out; }
+.animate-flow-down-late { animation: flowDown 240ms ease-out 80ms backwards; }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-flow-down { animation: none; }
+  .animate-flow-down,
+  .animate-flow-down-late { animation: none; }
 }

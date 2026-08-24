@@ -6,9 +6,12 @@ import PackageCard from '../components/card/PackageCard'
 import JournalCard from '../components/card/JournalCard'
 import packagesData from '../data/packages.json'
 import journalData from '../data/journal.json'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function HomePage() {
+  // 로고를 눌러 홈으로 다시 오면 히어로를 초기 상태로 되돌린다
+  const location = useLocation()
+
   return (
     <div className="page-enter">
       <Helmet>
@@ -21,7 +24,7 @@ export default function HomePage() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="theme-color" content="#60A5FA" />
       </Helmet>
-      <SovereignHero />
+      <SovereignHero key={location.key} />
       <RegionSection />
 
       <section className="bg-bg-mute">
