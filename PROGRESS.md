@@ -1550,3 +1550,25 @@ R1 의 웜 배경(#F4F1EC)을 순백으로 되돌림. R1B 가 토큰만 보고 i
 ## 남은 항목
 
 - [ ] Layout.jsx 는 원래 bg-white 라 시각상 이미 흰색이었음. body 자체도 이제 흰색으로 일치
+
+---
+
+# R4 챗봇 입력창 경계 (2026-08-24)
+
+R1C 로 배경이 순백이 되면서 챗봇 히어로 입력창(bg-white + 아주 옅은 shadow-card)이 흰 배경에 묻혔다. 이 입력창 하나만 고침.
+
+## 수정 (SovereignHero 입력창 한 곳)
+
+- `bg-white shadow-card` → `bg-bg-mute border border-border-def`
+- 포커스 `focus-within:border-primary focus-within:ring-2 focus-within:ring-primary`(민트 링)
+- 다른 페이지 입력창/버튼 미변경(파일 1개만 변경)
+
+## 배포 실측 (값 확인, 스크린샷은 브라우저 확장 부재로 불가)
+
+배포 CSS(index 최신) 실측:
+- 페이지/body 배경 흰색 rgb(255 255 255)
+- 입력창 면 bg-bg-mute = #EDE9E2 = rgb(237 233 226) → 흰색 대비 채널당 18~29 차이로 면이 또렷이 구분
+- 입력창 테두리 border-def = #DCDCDC = rgb(220 220 220) → 흰색 대비 채널당 35 차이로 테두리 또렷
+- 포커스 시 primary(#4AB8CD) 테두리 + 링
+
+즉 순백 배경 위에서 입력창 면과 테두리가 수치상 명확히 구분됨. 육안 스크린샷은 현호 님 확인 필요.
