@@ -1662,3 +1662,30 @@ R4 가 입력창 면을 회색(bg-bg-mute)으로 칠한 것을 되돌림. 배경
 - 마이페이지 존재
 - StaysPage 아이브로우 파랑겹침 0, 헤더 장바구니 0
 - vite build 통과
+
+---
+
+# R8 배포 확인 + 상세 컨테이너 기준선 통일 (2026-08-24)
+
+## 원인 1. 배포 (라이브 실측 결과: 이미 정상)
+
+- 라이브 donghae-sai.vercel.app 를 직접 재실측한 결과 최신 코드가 이미 배포돼 있었다
+- 실측값(배포 CSS index-D0XPcpdG.css):
+  - body { background-color: rgb(255 255 255) } → 순백
+  - 웜베이지 rgb(237 233 226) = 0건
+  - 쿨그레이 rgb(245 247 248) = 존재(bg-mute #F5F7F8)
+- 즉 코드도 라이브도 웜색 0. 사용자 측 웜 실측은 브라우저/엣지 캐시가 옛 CSS를 물고 있던 것
+- 이번 커밋으로 JS 해시 새로 발급(index-BUlnzu16.js)해 캐시 무효화. 사용자는 하드 리프레시하면 됨
+
+## 원인 2. StoryDetail 컨테이너 720/1400 혼용
+
+- StoryDetailPage 본문은 max-w-[720px] 읽기 폭, 관련 스토리 섹션만 line 309 container-page(1400) → 좌측 기준선 어긋남
+- 수정: 관련 섹션 배경(bg-bg-mute)은 전체 폭 유지, 안쪽 콘텐츠 컨테이너를 본문과 동일한 mx-auto px-... max-w-[720px] 로 통일. StoryDetail container-page 0, max-w-[720px] 컨테이너 5개로 일치
+- StayDetailPage / PackageDetailPage 확인: 본문과 히어로 캡션 모두 container-page(1400)/max-w-[1400px] 로 이미 일관. 720 혼용 없음. 무릉(StayDetail) left 353/417/465 실측은 R3 이전 옛 캐시로 판단
+
+## 라이브 실측 (실제 읽은 값)
+
+- 배포 JS index-BUlnzu16.js = 로컬 HEAD 일치
+- body background-color = rgb(255, 255, 255)
+- 웜 rgb(237 233 226) = 0, 쿨 rgb(245 247 248) = 존재
+- StoryDetail 본문과 관련 섹션 컨테이너 모두 max-w-[720px] 동일 클래스 → 좌측 기준선 코드상 일치(픽셀 좌표는 하드 리프레시 후 육안 확인 권장)
