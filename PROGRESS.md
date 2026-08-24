@@ -1522,3 +1522,31 @@ R1 위에서 위계 외 개별 문제만. R1 이 잡은 굵기/크기는 재손�
 
 - [ ] 아티클 720 을 max-w-text 토큰으로 통일할지(현재 max-w-[720px] 리터럴) 별도 판단
 - [ ] 1440 1920 2560 폭 정렬 육안 검증
+
+---
+
+# R1C body 배경 순백 직접 수정 (2026-08-24)
+
+R1 의 웜 배경(#F4F1EC)을 순백으로 되돌림. R1B 가 토큰만 보고 index.css body 직접 선언을 놓친 것이 원인.
+
+## 원인 확정
+
+- index.css `body { @apply bg-page }` → 컴파일 시 `body{background-color:rgb(244 241 236)}` (#F4F1EC). tailwind 토큰만 봐선 안 잡힘
+- 소스 전역 grep 결과 #F4F1EC 는 tailwind.config.js colors.page 한 곳 값. body 는 그 토큰을 @apply
+
+## 수정
+
+- tailwind.config.js `page: '#F4F1EC'` → `'#FFFFFF'`
+- index.css `body { @apply bg-page }` → `@apply bg-white` (직접)
+
+## 실측 검증 (추측 아님, 실제 읽은 값)
+
+- 소스 grep `F4F1EC`, `244 241 236` = 0
+- 로컬 빌드 dist CSS `body{...background-color:rgb(255 255 255)...}`, dist 내 `244 241 236` = 0
+- **배포 사이트 실측** (https://donghae-sai.vercel.app, index-BxWPAsp_.css):
+  `body { background-color: rgb(255 255 255) }`, 배포 CSS 내 `244 241 236` = 0건
+- 즉 배포 body computed background-color = **rgb(255, 255, 255)**
+
+## 남은 항목
+
+- [ ] Layout.jsx 는 원래 bg-white 라 시각상 이미 흰색이었음. body 자체도 이제 흰색으로 일치
