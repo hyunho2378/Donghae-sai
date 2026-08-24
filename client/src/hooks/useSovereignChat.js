@@ -42,10 +42,19 @@ export function sourceLabel(id) {
 
 // 모델이 남긴 마크다운 기호를 지운다. 스트리밍 중 잘린 기호도 같이 처리된다
 export function stripMarkdown(text) {
-  return text
+  let out = text
     .replace(/^#{1,6}\s*/gm, '')
     .replace(/^\s*[*-]\s+/gm, '')
-    .replace(/[*#`]/g, '')
+    .replace(/[#`]/g, '')
+    .replace(/\*{3,}/g, '**')
+  // 모델이 홑별표로 강조하는 경우가 잦다. 짝이 맞는 홑별표는 볼드로 승격한다
+  out = out.replace(/(^|[^*])\*([^*\n]+?)\*(?!\*)/g, '$1**$2**')
+  // 짝이 없이 남은 홑별표는 지운다
+  out = out.replace(/(^|[^*])\*(?!\*)/g, '$1')
+  // 스트리밍 도중 짝이 안 맞는 마지막 별표는 감춘다
+  const marks = out.match(/\*\*/g)
+  if (marks && marks.length % 2 === 1) out = out.replace(/\*\*(?=[^*]*$)/, '')
+  return out
 }
 
 export default function useSovereignChat(initialMessages = []) {

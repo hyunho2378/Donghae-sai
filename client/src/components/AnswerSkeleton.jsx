@@ -16,7 +16,7 @@ export default function AnswerSkeleton({ compact = false }) {
 
   return (
     <div aria-live="polite" aria-label="답변 생성 중">
-      <p className={`font-pretendard font-light text-text-meta
+      <p className={`font-pretendard font-medium text-text-sec
                      ${compact ? 'text-[12px]' : 'text-[13px]'}`}>
         {PHRASES[step]}
       </p>

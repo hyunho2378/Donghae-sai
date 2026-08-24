@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowUp, ArrowUpRight, MapPin, Ticket, Plus } from 'lucide-react'
-import useSovereignChat, { stripMarkdown, sourceLabel } from '../hooks/useSovereignChat'
+import useSovereignChat, { stripMarkdown } from '../hooks/useSovereignChat'
 import AnswerSkeleton from './AnswerSkeleton'
+import AnswerText from './AnswerText'
 
 // 동해시 공식 권역 구분 5개와 패스. 네이버 검색창 아래 바로가기 줄과 같은 자리
 const SHORTCUTS = [
@@ -19,9 +20,6 @@ const SUGGESTIONS = [
   { label: '묵호 맛집', question: '묵호에서 저녁 먹을 데 알려줘' },
   { label: '패스 안내', question: '2일권은 뭐가 포함돼' }
 ]
-
-// 근거가 많이 잡히면 칩이 줄을 덮는다. 앞 네 개만 보이고 나머지는 개수로 접는다
-const SOURCE_LIMIT = 4
 
 // 인트로가 사라지는 시간. 이 뒤에 입력창이 하단으로 내려간다
 const LEAVE_MS = 240
@@ -68,6 +66,7 @@ export default function SovereignHero() {
   }
 
   function onKeyDown(e) {
+    if (e.nativeEvent.isComposing || e.keyCode === 229) return
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
       submit(input)
@@ -114,33 +113,10 @@ export default function SovereignHero() {
                     {m.content === '' ? (
                       <AnswerSkeleton />
                     ) : (
-                      <p className="font-pretendard font-normal
-                                    text-[15px] lg:text-[16px] text-text-pri
-                                    tracking-[-0.01em] leading-relaxed whitespace-pre-wrap text-pretty">
-                        {stripMarkdown(m.content)}
-                      </p>
-                    )}
-
-                    {m.sources?.length > 0 && (
-                      <div className="mt-3 flex flex-wrap gap-1.5">
-                        {m.sources.slice(0, SOURCE_LIMIT).map((s) => (
-                          <span key={s}
-                                className="inline-flex items-center h-7 px-2.5 rounded-full
-                                           border border-primary
-                                           font-pretendard font-medium text-[12px]
-                                           tracking-[-0.01em] text-primary-hover">
-                            근거 {sourceLabel(s)}
-                          </span>
-                        ))}
-                        {m.sources.length > SOURCE_LIMIT && (
-                          <span className="inline-flex items-center h-7 px-2.5 rounded-full
-                                           border border-primary
-                                           font-pretendard font-medium text-[12px]
-                                           tracking-[-0.01em] text-primary-hover">
-                            외 {m.sources.length - SOURCE_LIMIT}개
-                          </span>
-                        )}
-                      </div>
+                      <AnswerText
+                        text={stripMarkdown(m.content)}
+                        sources={m.sources}
+                        showSources={!(streaming && i === messages.length - 1)} />
                     )}
                   </div>
                 )
@@ -169,7 +145,7 @@ export default function SovereignHero() {
                          placeholder:text-text-ter" />
             <button
               onClick={() => submit(input)}
-              disabled={streaming}
+              disabled={streaming || !input.trim()}
               aria-label="전송"
               className="w-11 h-11 lg:w-12 lg:h-12 shrink-0
                          inline-flex items-center justify-center rounded-full

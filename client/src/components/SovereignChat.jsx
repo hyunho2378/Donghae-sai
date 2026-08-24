@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { MessageCircle, X, Send } from 'lucide-react'
-import useSovereignChat, { stripMarkdown, sourceLabel } from '../hooks/useSovereignChat'
+import useSovereignChat, { stripMarkdown } from '../hooks/useSovereignChat'
 import AnswerSkeleton from './AnswerSkeleton'
+import AnswerText from './AnswerText'
 
 export default function SovereignChat() {
   const [open, setOpen] = useState(false)
@@ -24,6 +25,7 @@ export default function SovereignChat() {
   }
 
   function onKeyDown(e) {
+    if (e.nativeEvent.isComposing || e.keyCode === 229) return
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
       sendMessage()
@@ -53,26 +55,20 @@ export default function SovereignChat() {
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className="max-w-[85%]">
-                  <div className={`px-3.5 py-2.5 rounded-xl font-pretendard font-normal text-[14px] leading-relaxed whitespace-pre-wrap
-                                   ${m.role === 'user'
-                                     ? 'bg-primary text-white'
-                                     : 'bg-white text-text-pri border border-border-sub'}`}>
-                    {m.role === 'assistant'
-                      ? (m.content === '' ? <AnswerSkeleton compact /> : stripMarkdown(m.content))
-                      : m.content}
-                  </div>
-                  {m.role === 'assistant' && m.sources?.length > 0 && (
-                    <div className="mt-2 flex flex-wrap gap-1.5">
-                      {m.sources.map((s) => (
-                        <span key={s}
-                              className="inline-flex items-center h-7 px-2.5 rounded-full
-                                         border border-primary
-                                         font-pretendard font-medium text-[11px]
-                                         tracking-[0.06em] text-primary-hover">
-                          근거 {sourceLabel(s)}
-                        </span>
-                      ))}
-                    </div>
+                  {m.role === 'user' ? (
+                    <p className="px-3.5 py-2.5 rounded-xl bg-primary-soft text-text-pri
+                                  font-pretendard font-medium text-[14px]
+                                  leading-relaxed whitespace-pre-wrap">
+                      {m.content}
+                    </p>
+                  ) : m.content === '' ? (
+                    <AnswerSkeleton compact />
+                  ) : (
+                    <AnswerText
+                      compact
+                      text={stripMarkdown(m.content)}
+                      sources={m.sources}
+                      showSources={!(streaming && i === messages.length - 1)} />
                   )}
                 </div>
               </div>
@@ -91,7 +87,7 @@ export default function SovereignChat() {
                          transition-colors duration-150" />
             <button
               onClick={sendMessage}
-              disabled={streaming}
+              disabled={streaming || !input.trim()}
               aria-label="전송"
               className="w-10 h-10 shrink-0 inline-flex items-center justify-center
                          bg-primary text-white rounded-lg
