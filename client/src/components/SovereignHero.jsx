@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { ArrowUp, ArrowUpRight, Plus } from 'lucide-react'
+import { ArrowDown, CornerDownRight, Plus } from 'lucide-react'
 import useSovereignChat, { stripMarkdown } from '../hooks/useSovereignChat'
 import AnswerSkeleton from './AnswerSkeleton'
 import AnswerText from './AnswerText'
@@ -24,6 +24,7 @@ export default function SovereignHero() {
   const [phase, setPhase] = useState('idle') // idle 초기, leaving 인트로 소멸, chat 대화
   const { messages, streaming, send, reset } = useSovereignChat()
   const scrollRef = useRef(null)
+  const taRef = useRef(null)
   const timer = useRef(null)
 
   const opened = phase === 'chat'
@@ -33,6 +34,14 @@ export default function SovereignHero() {
     const el = scrollRef.current
     if (el) el.scrollTop = el.scrollHeight
   }, [messages, opened])
+
+  // 입력이 길어지면 textarea 높이를 내용에 맞춰 늘린다. 최소와 최대는 CSS 가 잡는다
+  useEffect(() => {
+    const el = taRef.current
+    if (!el) return
+    el.style.height = 'auto'
+    el.style.height = `${el.scrollHeight}px`
+  }, [input, opened])
 
   useEffect(() => () => clearTimeout(timer.current), [])
 
@@ -119,51 +128,55 @@ export default function SovereignHero() {
       <div className={`shrink-0 ${opened ? 'pb-8 lg:pb-10 pt-2 animate-flow-down-late' : ''}`}>
         <div className={WRAP}>
           <div className={`${opened ? '' : 'mt-8 lg:mt-10'}
-                          flex items-center gap-3 h-16 lg:h-20 pl-6 pr-3
+                          flex items-end gap-3 p-3 pl-5
                           rounded-2xl border border-border-def
                           focus-within:border-primary transition-colors duration-150`}>
-            <input
+            <textarea
+              ref={taRef}
+              rows={2}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={onKeyDown}
               aria-label="동해사이 도우미에게 질문하기"
               placeholder={opened ? '무엇이든 이어서 물어보세요' : '무엇이든 물어보세요'}
-              className="flex-1 min-w-0 bg-transparent outline-none
+              className="flex-1 min-w-0 self-stretch resize-none bg-transparent outline-none
+                         py-2 min-h-[72px] lg:min-h-[88px] max-h-[220px] overflow-y-auto
                          font-pretendard font-normal text-text-pri
-                         text-[16px] lg:text-[17px] tracking-[-0.01em]
-                         placeholder:text-text-ter" />
+                         text-[16px] lg:text-[17px] tracking-[-0.01em] leading-relaxed
+                         placeholder:text-text-meta" />
             <button
               onClick={() => submit(input)}
               disabled={streaming || !input.trim()}
               aria-label="전송"
-              className="w-11 h-11 lg:w-12 lg:h-12 shrink-0
-                         inline-flex items-center justify-center rounded-full
-                         bg-primary-hover text-white
-                         hover:bg-primary transition-colors duration-150
-                         disabled:opacity-40 disabled:cursor-not-allowed">
-              <ArrowUp size={20} />
+              className={`w-11 h-11 lg:w-12 lg:h-12 shrink-0
+                          inline-flex items-center justify-center rounded-full
+                          transition-colors duration-150
+                          ${input.trim() && !streaming
+                            ? 'bg-primary text-white hover:bg-primary-hover'
+                            : 'bg-bg-card text-text-ter cursor-not-allowed'}`}>
+              <ArrowDown size={20} />
             </button>
           </div>
 
           {!opened && (
-            <div className={`mt-8 rounded-2xl border border-border-sub overflow-hidden ${introMotion}`}>
+            <div className={`mt-6 ${introMotion}`}>
               {SUGGESTIONS.map((s) => (
                 <button
                   key={s.label}
                   onClick={() => submit(s.question)}
-                  className="w-full min-h-14 lg:min-h-16 px-5 py-3 text-left
+                  className="w-full min-h-14 lg:min-h-16 px-1 py-3 text-left
                              flex flex-col xs:flex-row xs:items-center gap-1 xs:gap-3
-                             border-t border-border-sub first:border-t-0
+                             border-b border-border-sub last:border-b-0
                              hover:bg-bg-card transition-colors duration-150">
                   <span className="shrink-0 flex items-center gap-3">
-                    <ArrowUpRight size={16} className="shrink-0 text-text-ter" />
-                    <span className="font-pretendard font-bold
-                                     text-[15px] lg:text-[16px] text-text-pri tracking-[-0.01em]">
+                    <CornerDownRight size={16} className="shrink-0 text-text-ter" />
+                    <span className="font-pretendard font-normal
+                                     text-[15px] lg:text-[16px] text-text-meta tracking-[-0.01em]">
                       {s.label}
                     </span>
                   </span>
                   <span className="xs:truncate font-pretendard font-normal
-                                   text-[15px] lg:text-[16px] text-text-sec tracking-[-0.01em]">
+                                   text-[15px] lg:text-[16px] text-text-pri tracking-[-0.01em]">
                     {s.question}
                   </span>
                 </button>
@@ -171,10 +184,23 @@ export default function SovereignHero() {
             </div>
           )}
 
-          <div className="mt-6 flex items-center justify-center gap-4">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
             <p className="font-pretendard font-light text-[12px] 4xl:text-[13px] text-text-meta">
-              동해 자료로만 답하는 동해사이 도우미
+              동해 로컬 데이터로만 답해요. 동해 밖 정보는 모를 수 있어요
             </p>
+            <span aria-hidden="true" className="hidden sm:inline-block w-px h-3 bg-border-def" />
+            <span className="flex items-center gap-3">
+              <button type="button"
+                      className="font-pretendard font-medium text-[12px] text-text-sec
+                                 hover:text-text-pri transition-colors duration-150">
+                개인정보처리안내
+              </button>
+              <button type="button"
+                      className="font-pretendard font-medium text-[12px] text-text-sec
+                                 hover:text-text-pri transition-colors duration-150">
+                고객센터
+              </button>
+            </span>
             {opened && (
               <button
                 onClick={newChat}

@@ -1104,3 +1104,50 @@ DB 재마이그레이션
 - [ ] 배포 URL 육안 검증
 - [ ] 문어 애셋 도착 시 상세 ScatterIllust 슬롯과 첫 스팟 블롭에 illust 채움
 - [ ] 기존 error red hex(text-[#DC2626]) 토큰화는 브랜드 색 확정 시 함께 처리
+
+---
+
+# 홈 챗봇 히어로 네이버식 교정 (2026-08-24)
+
+네이버 AI탭 레퍼런스에 맞춘 입력 상태와 위계와 안내 교정. 카름 작업과 별개. SovereignHero.jsx 한 파일. 소버린 로직(useSovereignChat 스트리밍 send)은 안 건드림.
+
+## 단계 0. 입력창 멀티라인
+
+- 한 줄 input 을 textarea 로 교체. rows 2, min-h-[72px] lg min-h-[88px], max-h-[220px] overflow-y-auto. 입력 길어지면 taRef 로 height=scrollHeight 자동 확장(useEffect [input, opened])
+- 플레이스홀더는 textarea 특성상 좌측 상단 정렬. 정중앙 제거
+- placeholder 색 text-ter → text-meta 한 단 진하게
+
+## 단계 1. 전송 버튼 상태와 방향
+
+- ArrowUp → ArrowDown
+- 빈 값이면 bg-bg-card text-text-ter cursor-not-allowed + disabled(streaming || !input.trim())로 클릭 차단
+- 글자 있으면 bg-primary text-white hover:bg-primary-hover 활성
+
+## 단계 2. 추천 질문 위계 뒤집기
+
+- 주제 라벨 볼드 text-pri → font-normal text-text-meta(회색)
+- 뒤 내용 text-sec → text-text-pri(검정), non-bold
+- 앞 아이콘 ArrowUpRight → CornerDownRight(꺾인 방향)
+
+## 단계 3. 추천 질문 바깥 박스 제거
+
+- 감싼 rounded-2xl border overflow-hidden 박스 제거
+- 각 질문 border-b border-border-sub last:border-b-0 구분선만
+- 입력창과 간격 mt-8 → mt-6, 항목 좌우 패딩 px-5 → px-1 로 플러시 정렬
+
+## 단계 4. 하단 안내와 링크
+
+- 문구를 동해 로컬 데이터로만 답해요. 동해 밖 정보는 모를 수 있어요 로 교체(text-text-meta)
+- 옆에 개인정보처리안내와 고객센터 링크(text-text-sec, 조금 진하게). 대상 페이지 미존재라 no-op button 으로 두고 자리만 잡음(404 안 만듦)
+- 기존 새 대화 버튼은 대화 중에만 유지
+
+## 검증
+
+- ArrowUp 잔재 0. vite build 통과
+- SovereignHero.jsx 전역 grep: 임의 그림자 hex 이모지 가운데점 줄표 그라데이션 blur scale 0건
+- 버튼 상태: 빈 값 연한 비활성 클릭 차단, 글자 있으면 primary 활성, 화살표 아래 방향
+
+## 남은 항목
+
+- [ ] 320 390 768 1024 1280 1536 폭별 입력창 추천질문 하단안내 육안 검증
+- [ ] 개인정보처리안내 고객센터 실제 페이지 생기면 no-op button 을 라우트 링크로 교체
