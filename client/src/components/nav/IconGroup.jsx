@@ -64,7 +64,7 @@ export default function IconGroup() {
         {cartCount > 0 && (
           <span className="absolute top-1 right-1
                            min-w-[16px] h-[16px] px-0.5
-                           bg-[#DC2626] text-white
+                           bg-accent text-white
                            font-pretendard font-bold text-[10px]
                            rounded-full flex items-center justify-center leading-none">
             {cartCount}

@@ -1,31 +1,25 @@
 import { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import Input from '../components/Input'
-import Select from '../components/Select'
+import { Helmet } from 'react-helmet-async'
 import { useAuthStore } from '../store/useAuthStore'
-import { ROLE_LABEL } from '../lib/format'
+
+const FIELD = 'w-full h-12 lg:h-14 px-4 rounded-lg bg-bg-card font-pretendard text-[15px] text-text-pri placeholder:text-text-ter outline-none focus:ring-2 focus:ring-primary transition-shadow duration-150'
 
 export default function AuthPage() {
-  const [mode, setMode] = useState('login')
-  const [email, setEmail] = useState('')
+  const [userId, setUserId] = useState('')
   const [password, setPassword] = useState('')
-  const [name, setName] = useState('')
-  const [role, setRole] = useState('walk2030')
-  const [error, setError] = useState('')
   const login = useAuthStore((s) => s.login)
   const navigate = useNavigate()
   const [params] = useSearchParams()
   const redirect = params.get('redirect') || '/'
 
+  // 프로토타입. 서버와 DB 없이 클라이언트 상태로만 로그인한다. 아무 값이나 통과한다
   const onSubmit = (e) => {
     e.preventDefault()
-    setError('')
-    if (!email.includes('@')) { setError('올바른 이메일을 입력하세요.'); return }
-    if (password.length < 4) { setError('비밀번호는 4자 이상이어야 합니다.'); return }
+    const id = userId.trim() || '게스트'
     const mockUser = {
-      id: 'user-' + email.split('@')[0],
-      name: name || email.split('@')[0],
-      email,
+      id: 'user-' + id,
+      name: id,
       membership: null,
       cart: [],
       bookmarks: []
@@ -38,32 +32,25 @@ export default function AuthPage() {
   return (
     <div className="page-enter mx-auto w-full
                     px-5 md:px-8 lg:px-12
-                    max-w-[480px]
+                    max-w-[440px]
                     py-12 lg:py-20">
+      <Helmet>
+        <title>로그인 | 동해사이</title>
+      </Helmet>
+
       <h1 className="font-pretendard font-bold
                      text-[24px] md:text-[28px] text-text-pri tracking-[-0.02em] leading-tight">
-        {mode === 'login' ? '로그인' : '가입하기'}
+        로그인
       </h1>
       <p className="mt-2 font-pretendard font-normal text-[14px] md:text-[15px] text-text-meta">
-        {mode === 'login' ? '이메일과 비밀번호로 들어오세요' : '역할을 골라 가입을 시작합니다'}
+        아이디와 비밀번호로 들어오세요
       </p>
 
-      <form onSubmit={onSubmit} className="mt-8 space-y-4">
-        {mode === 'signup' && (
-          <Input label="이름" value={name} onChange={(e) => setName(e.target.value)} />
-        )}
-        <Input label="이메일" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        <Input label="비밀번호" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        {mode === 'signup' && (
-          <Select
-            label="여행 유형"
-            value={role}
-            onChange={setRole}
-            options={Object.entries(ROLE_LABEL).map(([value, label]) => ({ value, label }))} />
-        )}
-        {error && (
-          <p className="font-pretendard font-normal text-[13px] text-[#DC2626]">{error}</p>
-        )}
+      <form onSubmit={onSubmit} className="mt-8 space-y-3">
+        <input className={FIELD} placeholder="아이디" aria-label="아이디"
+               value={userId} onChange={(e) => setUserId(e.target.value)} />
+        <input className={FIELD} type="password" placeholder="비밀번호" aria-label="비밀번호"
+               value={password} onChange={(e) => setPassword(e.target.value)} />
         <button type="submit"
                 className="w-full h-12 lg:h-14 px-6
                            bg-primary text-white
@@ -71,15 +58,13 @@ export default function AuthPage() {
                            rounded-lg
                            hover:bg-primary-hover
                            transition-colors duration-150">
-          {mode === 'login' ? '로그인' : '가입 완료'}
+          로그인
         </button>
       </form>
 
-      <button
-        onClick={() => setMode(mode === 'login' ? 'signup' : 'login')}
-        className="mt-6 w-full font-pretendard font-medium text-[14px] text-text-sec hover:text-text-pri transition-colors duration-100">
-        {mode === 'login' ? '계정이 없으신가요. 가입하기' : '이미 계정이 있으신가요. 로그인'}
-      </button>
+      <p className="mt-6 font-pretendard font-light text-[12px] text-text-meta text-center leading-relaxed">
+        프로토타입 로그인입니다. 아무 값이나 넣어도 들어갈 수 있어요
+      </p>
     </div>
   )
 }

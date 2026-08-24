@@ -1311,3 +1311,42 @@ DB 재마이그레이션
 - [ ] stays.json long_description 등 데이터 산문에 남은 확인 안 됨 발표 전 확인 필요 같은 조사 노트(데이터 정제 별도 작업)
 - [ ] 구글맵 정식 임베드 API 키 적용 여부
 - [ ] Select 기본 placeholder 선택해라 톤 통일 여부
+
+---
+
+# P4 체크아웃과 로그인 (2026-08-24)
+
+봄내헬퍼 GTS 체크아웃 구조를 동해사이 패스 결제로 이식. 영어를 한국어로. 로그인은 UI만.
+
+## 단계 0. 체크아웃 페이지
+
+- 2단 그리드(lg 1fr 380px). 좌 요약, 우 스티키 결제
+- 좌: 이용권 선택(1일권 5,000 / 2일권 8,000 / 3일권 10,000 단일 선택, 각 포함 안내 한 줄) → 선택 요약(예약 항목/일정/인원/선택 이용권) → 결제 수단 8종 그리드
+- 결제 수단 8종(applepay alipay visa mastercard paypal amex jcb unionpay). /images/pay/키.svg, 부재 시 한국어 브랜드명 텍스트 폴백(PayLogo onError). svg 8개 이미 존재
+- 카드 계열(visa/mastercard/amex/jcb/unionpay) 선택 시 카드 번호/만료/CVC/이름 폼 펼침. 검증 없음 빈 제출 허용. 하단 프로토타입 안내 실제 결제가 이뤄지지 않습니다
+- 우: 금액 내역, 전액 포함 안내 밴드(bg-primary-soft), 취소 및 환불(시작 48시간 전 취소 시 보증금 전액 환불, 48시간 이내 환불 불가)+동의 체크, 결제하기 버튼, 수정하기(navigate -1)
+- Pay 활성 조건 셋: 이용권 선택 + 결제 수단 선택 + 환불 동의. 미충족 시 비활성 + 부족 항목 한 줄 안내(동해사이는 하차 지점 없음이라 하차 조건 제외)
+- 영어 전부 한국어(Choose your time pass→이용권 선택, Price breakdown→금액 내역, Payment method→결제 수단, Cancellation and refund→취소 및 환불, Pay→결제하기, Edit my day→수정하기). 회색 테두리 없음(shadow-card + ring 선택 표시)
+
+## 단계 1. 로그인 UI
+
+- AuthPage 아이디/비밀번호/로그인 버튼. 이메일 검증과 역할 선택 제거
+- 검증 없이 아무 값이나(빈 값도) 통과. localStorage goun_user + useAuthStore.login 클라이언트 상태만. 서버/DB/구글 없음
+- 헤더 상태 전환은 IconGroup 이 이미 처리(비로그인 로그인 링크, 로그인 후 프로필/로그아웃)
+- filled input(bg-bg-card, focus ring). 회색 테두리 없음. 하단 프로토타입 안내
+
+## 부수 정리
+
+- IconGroup 장바구니 배지 bg-[#DC2626] → bg-accent(무코 레드 토큰). 사이트 전역 하드코딩 색 클래스 0
+
+## 검증
+
+- 체크아웃/로그인 영어 UI 카피 0(결제 수단은 한국어 브랜드명, JCB 만 브랜드 약칭). 태그 사이 영어 텍스트 0
+- 결제 수단 파일 부재 시 텍스트 폴백 경로 확인(PayLogo onError)
+- 로그인 검증 없음 아무 값 통과
+- 카드 회색 테두리 0, 하드코딩 색 클래스 0, vite build 통과
+
+## 남은 항목
+
+- [ ] 결제 로고 svg 는 현호가 최종본 교체(현재 자리와 폴백 완비)
+- [ ] 고객센터 등 정식 페이지 생기면 관련 링크 연결
