@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowDown, CornerDownRight, Plus } from 'lucide-react'
+import { ArrowUp, CornerDownRight, Plus, Sparkles } from 'lucide-react'
 import useSovereignChat, { stripMarkdown } from '../hooks/useSovereignChat'
 import AnswerSkeleton from './AnswerSkeleton'
 import AnswerText from './AnswerText'
@@ -23,6 +23,7 @@ const WRAP = 'mx-auto w-full max-w-[900px] px-5 md:px-8 lg:px-12 xl:px-16 3xl:px
 export default function SovereignHero() {
   const [input, setInput] = useState('')
   const [phase, setPhase] = useState('idle') // idle 초기, leaving 인트로 소멸, chat 대화
+  const [mukoErr, setMukoErr] = useState(false) // 무코 애셋 부재 시 아이콘 폴백
   const { messages, streaming, send, reset } = useSovereignChat()
   const scrollRef = useRef(null)
   const taRef = useRef(null)
@@ -85,12 +86,27 @@ export default function SovereignHero() {
            className={opened ? 'flex-1 min-h-0 overflow-y-auto pt-8 lg:pt-12 pb-6' : ''}>
         <div className={WRAP}>
           {!opened && (
-            <h1 className={`text-center font-pretendard font-bold
-                            text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
-                            tracking-[-0.02em] leading-tight text-balance ${introMotion}`}>
-              <span className="text-primary-hover">오늘 밤 동해</span>
-              <span className="text-text-pri">, 어디로 갈까요</span>
-            </h1>
+            <div className={introMotion}>
+              {/* 무코 캐릭터 자리. 애셋 부재 시 아이콘 폴백 */}
+              <div className="flex justify-center mb-5">
+                {!mukoErr ? (
+                  <img src="/images/character/muko-main.png" alt="동해사이 무코" loading="lazy"
+                       onError={() => setMukoErr(true)}
+                       className="w-20 h-20 lg:w-24 lg:h-24 object-contain" />
+                ) : (
+                  <span className="w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-primary-soft
+                                   inline-flex items-center justify-center">
+                    <Sparkles size={28} className="text-primary" />
+                  </span>
+                )}
+              </div>
+              <h1 className="text-center font-pretendard font-bold
+                             text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
+                             tracking-[-0.02em] leading-tight text-balance">
+                <span className="text-primary-hover">오늘 밤 동해</span>
+                <span className="text-text-pri">, 어디로 갈까요</span>
+              </h1>
+            </div>
           )}
 
           {opened && (
@@ -155,7 +171,7 @@ export default function SovereignHero() {
                           ${input.trim() && !streaming
                             ? 'bg-primary text-white hover:bg-primary-hover'
                             : 'bg-bg-card text-text-ter cursor-not-allowed'}`}>
-              <ArrowDown size={20} />
+              <ArrowUp size={20} />
             </button>
           </div>
 

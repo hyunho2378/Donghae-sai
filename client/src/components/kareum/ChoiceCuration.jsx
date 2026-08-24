@@ -17,7 +17,7 @@ const THEMES = [
     place: '도째비골 스카이밸리'
   },
   {
-    tag: '밤이 목적지',
+    tag: '야간 관광',
     desc: '저녁 이후가 비어 있던 동해의 밤을 채우는 코스',
     image: '/images/places/nongol-damgil.jpg',
     place: '논골담길'
@@ -48,16 +48,19 @@ export default function ChoiceCuration() {
                      className="w-full h-full object-cover
                                 transition-transform duration-[600ms] ease-out
                                 motion-reduce:transition-none group-hover:scale-[1.04]" />
-                <div className="absolute inset-0 bg-black/40" />
+                {/* 가독성용 오버레이. 전체 어둡게 + 하단 절반 한 번 더(그라데이션 금지라 솔리드 겹침) */}
+                <div className="absolute inset-0 bg-black/45" />
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-black/35" />
               </div>
+              {/* 텍스트 위치를 카드 간 통일. desc 는 2줄로 고정해 제목 높이를 맞춘다 */}
               <div className="absolute inset-x-0 bottom-0 p-5 lg:p-6">
                 <p className="font-pretendard font-bold text-[20px] md:text-[22px] text-white tracking-[-0.02em]">
                   #{t.tag.replace(/\s/g, '')}
                 </p>
-                <p className="mt-2 font-pretendard font-normal text-[14px] md:text-[15px] text-white/90 leading-relaxed">
+                <p className="mt-2 min-h-[44px] font-pretendard font-normal text-[14px] md:text-[15px] text-white leading-relaxed line-clamp-2">
                   {t.desc}
                 </p>
-                <p className="mt-3 font-pretendard font-medium text-[12px] text-white/70 tracking-[0.04em]">
+                <p className="mt-3 font-pretendard font-medium text-[12px] text-white/80 tracking-[0.04em]">
                   {t.place}
                 </p>
               </div>

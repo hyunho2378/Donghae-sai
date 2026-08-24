@@ -84,7 +84,7 @@ export default function MembershipPage() {
                     <span className="absolute -top-3 left-6 inline-flex items-center h-[24px] px-2.5
                                      bg-primary-hover text-white
                                      font-pretendard font-medium text-[11px] tracking-[0.04em] rounded-md">
-                      주력
+                      추천
                     </span>
                   )}
                   <p className={`font-pretendard font-bold text-[20px] tracking-[-0.02em]
