@@ -22,7 +22,7 @@ const FLOW = [
   '여정이 끝날 때까지 반복'
 ]
 
-const STAMPS = ['저녁', '별', '밤 활동', '오늘의 동해 접수', '숙소', '일출', '오늘의 동해 수령']
+const STAMPS = ['추암', '무릉', '천곡', '묵호', '망상', '별빛', '완주']
 
 const FAQ = [
   {
@@ -74,6 +74,10 @@ export default function MembershipPage() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
   const [openFaq, setOpenFaq] = useState(null)
   const [mukoErr, setMukoErr] = useState(false)
+  // 기본은 추천권이 강조된다. 다른 카드에 호버하면 강조가 그 카드로 옮겨간다
+  const [hoveredId, setHoveredId] = useState(null)
+  const recommendedId = plansData.find((p) => p.recommended)?.id
+  const activeId = hoveredId ?? recommendedId
 
   return (
     <div className="page-enter">
@@ -114,10 +118,15 @@ export default function MembershipPage() {
         <h2 className={H2}>패스 상품</h2>
         <div className="mt-4 grid gap-4 md:gap-5 grid-cols-1 md:grid-cols-3">
           {plansData.map((plan, i) => {
-            const tone = plan.recommended ? PLAN_TONE.recommended : PLAN_TONE.plain
+            const isActive = plan.id === activeId
+            const tone = isActive ? PLAN_TONE.recommended : PLAN_TONE.plain
             return (
               <div key={plan.id}
-                className={`relative rounded-[32px] p-5 flex flex-col ${tone.card}`}>
+                onMouseEnter={() => setHoveredId(plan.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                className={`relative rounded-[32px] p-5 flex flex-col
+                               transition-[background-color,border-color,box-shadow] duration-200 ease-out
+                               motion-reduce:transition-none ${tone.card}`}>
                 {plan.recommended && (
                   <span className="absolute -top-3 left-5 inline-flex items-center h-[26px] px-3
                                    bg-accent text-white

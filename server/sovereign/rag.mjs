@@ -15,6 +15,15 @@ const SYNONYMS = [
   { hit: /밤|야간|저녁 ?이후|별|야경/, add: ' 밤 야간' },
   { hit: /체험|놀거리|액티비티|즐길|볼거리/, add: ' 체험 액티비티' }
 ]
+
+const MIN_SCORE = 2
+const FOLLOWUP_MARKER = /아까|방금|앞에서|그중|그곳|거기|첫\s*번째|두\s*번째|세\s*번째|다른\s*곳/
+const CONCRETE_TOPIC = /묵호|무릉|추암|망상|천곡|한섬|동해|바다|해변|숙소|숙박|호텔|펜션|맛집|식당|카페|패스|코스|산책|체험|아이|가족|뚜벅이|버스|야간|밤/
+
+function isContextOnlyFollowUp(query) {
+  return FOLLOWUP_MARKER.test(query) && !CONCRETE_TOPIC.test(query)
+}
+
 function expandQuery(query) {
   let q = query
   for (const { hit, add } of SYNONYMS) if (hit.test(query)) q += add
@@ -22,6 +31,10 @@ function expandQuery(query) {
 }
 
 export function searchKnowledge(rawQuery, maxHits = 3) {
+  // 지시어뿐인 후속 질문은 억지로 자료를 붙이지 않는다.
+  // 0건을 반환하면 chat 라우트가 이미 전달한 대화 히스토리를 우선 활용한다.
+  if (isContextOnlyFollowUp(rawQuery)) return []
+
   const query = expandQuery(rawQuery)
   const scored = knowledge.map((item, idx) => {
     let score = 0
@@ -30,7 +43,7 @@ export function searchKnowledge(rawQuery, maxHits = 3) {
         score += 2 // 키워드 전체가 질문에 들어 있으면 더 준다
       } else {
         for (const word of kw.split(' ')) {
-          if (word.length >= 1 && query.includes(word)) score += 1
+          if (word.length >= 2 && query.includes(word)) score += 1
         }
       }
     }
@@ -39,7 +52,7 @@ export function searchKnowledge(rawQuery, maxHits = 3) {
   })
 
   return scored
-    .filter(s => s.score > 0)
+    .filter(s => s.score >= MIN_SCORE)
     .sort((a, b) => b.score - a.score || a.idx - b.idx)
     .slice(0, maxHits)
     .map(s => s.item)
@@ -56,6 +69,9 @@ const RULES = `너는 동해사이 여행 도우미다. 동해로 여행 오는 
 장소만 나열하지 말고 왜 그곳이 좋은지 이유를 한 마디씩 붙인다.
 질문한 사람의 상황에 맞춘다. 가족이라고 하면 아이와 함께 움직이는 상황을, 뚜벅이라고 하면 차 없이 걷고 버스 타는 상황을 기준으로 답한다.
 네가 AI라는 말은 하지 않는다.
+
+답변 형식 우선 규칙.
+여러 장소나 항목을 안내할 때는 반드시 하이픈 불릿을 쓰고, 각 항목의 이름은 별표 두 개로 굵게 한다. 이동 순서나 단계는 번호 목록으로 쓴다.
 
 조사.
 받침 있는 단어 뒤에는 은 이 을 과 으로를 쓰고, 받침 없는 단어 뒤에는 는 가 를 와 로를 쓴다.
@@ -116,7 +132,7 @@ export function buildSystemPrompt(hits, hasHistory = false) {
       return RULES + `
 
 동해 자료집.
-지금 질문에 딱 맞는 새 자료집 항목은 없지만 대화가 이어지는 중이다. 바로 위 대화에서 네가 이미 안내한 곳들을 떠올려 그 맥락으로 자연스럽게 답한다. 앞에서 말한 장소를 다시 활용하되 없는 사실은 새로 지어내지 않는다. 정말 정보가 부족하면 무엇을 더 알려줄지 한 문장으로 되묻는다.`
+지금 질문에 딱 맞는 새 자료집 항목은 없지만 대화가 이어지는 중이다. 직전 대화에서 언급한 장소나 코스를 최우선으로 참고해 자연스럽게 답한다. 바로 위에서 네가 이미 안내한 곳들을 떠올리고, 앞에서 말한 장소를 다시 활용하되 없는 사실은 새로 지어내지 않는다. 정말 정보가 부족하면 무엇을 더 알려줄지 한 문장으로 되묻는다.`
     }
     return RULES + `
 

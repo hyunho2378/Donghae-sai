@@ -10,7 +10,7 @@ export default function Description({ text, className = '', size = 'md' }) {
       <ul className={`flex flex-wrap gap-2 ${className}`}>
         {items.map((it) => (
           <li key={it}
-              className="inline-flex items-center h-8 px-3 rounded-full bg-bg-mute
+            className="inline-flex items-center h-8 px-3 rounded-full bg-bg-mute
                          font-pretendard font-medium text-[13px] md:text-[14px] text-text-pri">
             {it}
           </li>
@@ -22,7 +22,7 @@ export default function Description({ text, className = '', size = 'md' }) {
   const t = endSentence(text)
   if (!t) return null
   return (
-    <p className={`font-pretendard font-normal
+    <p className={`font-pretendard font-normal text-pretty
                    ${size === 'lg' ? 'text-[15px] md:text-[16px]' : 'text-[14px] md:text-[15px]'}
                    text-text-sec leading-relaxed ${className}`}>
       {t}

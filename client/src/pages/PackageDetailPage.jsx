@@ -26,7 +26,7 @@ export default function PackageDetailPage() {
   const kindLabel = isProgram ? '프로그램' : '코스'
   const similar = packagesData
     .filter((p) => p.id !== pkg.id && p.category === pkg.category
-                   && p.target_persona?.[0] === pkg.target_persona?.[0])
+      && p.target_persona?.[0] === pkg.target_persona?.[0])
     .slice(0, 3)
 
   const gallery = pkg.gallery?.length ? pkg.gallery : (pkg.main_image ? [pkg.main_image] : [])
@@ -50,7 +50,7 @@ export default function PackageDetailPage() {
       <div className="relative w-full h-[38vw] min-h-[220px] max-h-[400px] overflow-hidden bg-bg-card">
         {heroImage && (
           <img src={heroImage} alt={pkg.name}
-               className="w-full h-full object-cover" />
+            className="w-full h-full object-cover" />
         )}
         <div className="absolute inset-0 bg-black/45" />
         <div className="absolute bottom-0 left-0 right-0 pb-8 lg:pb-12">
@@ -60,7 +60,7 @@ export default function PackageDetailPage() {
               <div className="flex flex-wrap gap-2 mb-3">
                 {pkg.badges.slice(0, 2).map((b) => (
                   <span key={b}
-                        className="h-[26px] px-2.5 bg-primary-soft text-primary
+                    className="h-[26px] px-2.5 bg-primary-soft text-primary
                                    font-pretendard font-medium text-[12px]
                                    rounded-md inline-flex items-center">
                     {b}
@@ -106,39 +106,39 @@ export default function PackageDetailPage() {
 
           {/* 1. Overview grid */}
           <RevealOnScroll>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {[
-              { label: '기간', value: pkg.duration_label },
-              { label: '타깃', value: pkg.target_persona?.[0] || '미정' },
-              isProgram
-                ? { label: '권역', value: pkg.region || '미정' }
-                : { label: '이동수단', value: pkg.transport || '미정' },
-              { label: '방문지', value: `${pkg.itinerary.reduce((n, d) => n + d.schedule.length, 0)}곳` }
-            ].map((item) => (
-              <div key={item.label} className="shadow-card rounded-xl p-4 md:p-5">
-                <p className="font-pretendard font-semibold text-[12px] text-text-meta tracking-[0.08em] uppercase">
-                  {item.label}
-                </p>
-                <p className="mt-2 font-pretendard font-bold text-[16px] md:text-[18px] text-text-pri">
-                  {item.value}
-                  {item.sub && (
-                    <span className="ml-1 font-medium text-[12px] text-text-meta">{item.sub}</span>
-                  )}
-                </p>
-              </div>
-            ))}
-          </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+              {[
+                { label: '기간', value: pkg.duration_label },
+                { label: '타깃', value: pkg.target_persona?.[0] || '미정' },
+                isProgram
+                  ? { label: '권역', value: pkg.region || '미정' }
+                  : { label: '이동수단', value: pkg.transport || '미정' },
+                { label: '방문지', value: `${pkg.itinerary.reduce((n, d) => n + d.schedule.length, 0)}곳` }
+              ].map((item) => (
+                <div key={item.label} className="shadow-card rounded-xl p-4 md:p-5">
+                  <p className="font-pretendard font-semibold text-[12px] text-text-meta tracking-[0.08em] uppercase">
+                    {item.label}
+                  </p>
+                  <p className="mt-2 font-pretendard font-bold text-[16px] md:text-[18px] text-text-pri">
+                    {item.value}
+                    {item.sub && (
+                      <span className="ml-1 font-medium text-[12px] text-text-meta">{item.sub}</span>
+                    )}
+                  </p>
+                </div>
+              ))}
+            </div>
           </RevealOnScroll>
 
           {/* 2. Host message */}
           {pkg.host_message && (
             <RevealOnScroll>
-            <div className="mt-8 bg-bg-card rounded-2xl p-6 lg:p-8">
-              <Quote size={24} className="text-primary mb-3" />
-              <p className="font-pretendard font-normal text-[15px] md:text-[16px] text-text-sec leading-relaxed tracking-[-0.01em]">
-                {pkg.host_message}
-              </p>
-            </div>
+              <div className="mt-8 bg-bg-card rounded-2xl p-6 lg:p-8">
+                <Quote size={24} className="text-primary mb-3" />
+                <p className="font-pretendard font-normal text-pretty text-[15px] md:text-[16px] text-text-sec leading-relaxed tracking-[-0.01em]">
+                  {pkg.host_message}
+                </p>
+              </div>
             </RevealOnScroll>
           )}
 
@@ -147,12 +147,12 @@ export default function PackageDetailPage() {
             <div className="flex gap-1 border-b border-border-sub overflow-x-auto scrollbar-hide -mx-5 px-5">
               {TABS.map((t) => (
                 <button key={t.key}
-                        onClick={() => setTab(t.key)}
-                        className={`px-4 py-3 font-pretendard font-semibold text-[15px] tracking-[0.02em]
+                  onClick={() => setTab(t.key)}
+                  className={`px-4 py-3 font-pretendard font-semibold text-[15px] tracking-[0.02em]
                                     border-b-2 transition-colors duration-150 whitespace-nowrap
                                     ${tab === t.key
-                                      ? 'text-accent border-accent'
-                                      : 'text-text-meta border-transparent hover:text-text-pri'}`}>
+                      ? 'text-accent border-accent'
+                      : 'text-text-meta border-transparent hover:text-text-pri'}`}>
                   {t.label}
                 </button>
               ))}
@@ -187,7 +187,7 @@ export default function PackageDetailPage() {
                           <span className="font-pretendard font-medium text-[13px] text-primary">
                             {item.time}
                           </span>
-                          <p className="mt-0.5 font-pretendard font-normal text-[15px] text-text-sec leading-relaxed">
+                          <p className="mt-0.5 font-pretendard font-normal text-pretty text-[15px] text-text-sec leading-relaxed">
                             {item.activity}
                           </p>
                         </div>
@@ -197,45 +197,44 @@ export default function PackageDetailPage() {
                 </RevealOnScroll>
               ))}
 
-              {/* 프로그램 전용. 원본의 후보군을 그대로 노출한다 */}
-              {isProgram && (
-                <div className="space-y-8">
-                  {[
-                    { title: '식사 후보', items: pkg.meal_options },
-                    { title: '아침과 다음 날 식사 후보', items: pkg.breakfast_options },
-                    { title: '숙소 후보', items: pkg.stay_options }
-                  ].filter((g) => g.items?.length > 0).map((g) => (
-                    <div key={g.title}>
-                      <h3 className="font-pretendard font-bold text-[17px] md:text-[18px]
-                                     text-text-pri tracking-[-0.02em] mb-4">
-                        {g.title}
-                      </h3>
-                      <ul className="grid gap-3 md:grid-cols-3">
-                        {g.items.map((o) => (
-                          <li key={o.name} className="shadow-card rounded-xl p-4">
-                            <p className="font-pretendard font-bold text-[15px] text-text-strong">
-                              {o.name}
-                            </p>
-                            <p className="mt-1.5 font-pretendard font-normal text-[13px] text-text-sec leading-relaxed">
-                              {o.note || '미정'}
-                            </p>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+              {/* 식사와 숙소 후보. 코스와 프로그램 둘 다 보여준다. 후보가 있는 그룹만 노출 */}
+              <div className="space-y-8">
+                {[
+                  { title: '식사 후보', items: pkg.meal_options },
+                  { title: '아침과 다음 날 식사 후보', items: pkg.breakfast_options },
+                  { title: '숙소 후보', items: pkg.stay_options }
+                ].filter((g) => g.items?.length > 0).map((g) => (
+                  <div key={g.title}>
+                    <h3 className="font-pretendard font-bold text-[17px] md:text-[18px]
+                                   text-text-pri tracking-[-0.02em] mb-4">
+                      {g.title}
+                    </h3>
+                    <ul className="grid gap-3 md:grid-cols-3">
+                      {g.items.map((o) => (
+                        <li key={o.name} className="shadow-card rounded-xl p-4">
+                          <p className="font-pretendard font-bold text-[15px] text-text-strong">
+                            {o.name}
+                          </p>
+                          <p className="mt-1.5 font-pretendard font-normal text-pretty text-[13px] text-text-sec leading-relaxed">
+                            {o.note || '재확인 필요'}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
 
-                  {pkg.signature_experience && (
-                    <div className="border border-primary rounded-2xl p-6 lg:p-8 bg-primary-soft">
-                      <Eyebrow>새로 기획할 핵심 체험</Eyebrow>
-                      <p className="mt-2 font-pretendard font-normal text-[15px] md:text-[16px]
-                                    text-text-sec leading-relaxed tracking-[-0.01em]">
-                        {pkg.signature_experience}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              )}
+                {/* 시그니처 체험은 프로그램에만 있다 */}
+                {isProgram && pkg.signature_experience && (
+                  <div className="border border-primary rounded-2xl p-6 lg:p-8 bg-primary-soft">
+                    <Eyebrow>특별한 체험</Eyebrow>
+                    <p className="mt-2 font-pretendard font-normal text-pretty text-[15px] md:text-[16px]
+                                  text-text-sec leading-relaxed tracking-[-0.01em]">
+                      {pkg.signature_experience}
+                    </p>
+                  </div>
+                )}
+              </div>
 
               {/* 5. Gallery 3×2 */}
               {galleryGrid.length > 0 && (
@@ -247,9 +246,9 @@ export default function PackageDetailPage() {
                   <div className="grid grid-cols-3 gap-2 md:gap-3">
                     {galleryGrid.map((src, i) => (
                       <button key={i} onClick={() => setLightbox(i)}
-                              className="aspect-[4/3] overflow-hidden rounded-xl bg-bg-card block">
+                        className="aspect-[4/3] overflow-hidden rounded-xl bg-bg-card block">
                         <img src={src} alt={`${pkg.name} ${i + 1}`}
-                             className="w-full h-full object-cover
+                          className="w-full h-full object-cover
                                         transition-transform duration-[600ms] ease-out
                                         hover:scale-[1.04]" />
                       </button>
@@ -263,18 +262,18 @@ export default function PackageDetailPage() {
           {/* 비슷한 코스 */}
           {similar.length > 0 && (
             <RevealOnScroll>
-            <section className="mt-16">
-              <h2 className="font-pretendard font-bold
+              <section className="mt-16">
+                <h2 className="font-pretendard font-bold
                              text-[20px] md:text-[22px] lg:text-[24px]
                              text-text-pri tracking-[-0.02em] mb-4">
-                비슷한 {kindLabel}
-              </h2>
-              <Carousel label={`비슷한 ${kindLabel}`}
-                        className="-mx-5 px-5 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 pb-2"
-                        itemClassName="w-[80%] sm:w-[60%] md:w-[46%] lg:w-[32%]">
-                {similar.map((p) => <PackageCard key={p.id} {...p} />)}
-              </Carousel>
-            </section>
+                  비슷한 {kindLabel}
+                </h2>
+                <Carousel label={`비슷한 ${kindLabel}`}
+                  className="-mx-5 px-5 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 pb-2"
+                  itemClassName="w-[80%] sm:w-[60%] md:w-[46%] lg:w-[32%]">
+                  {similar.map((p) => <PackageCard key={p.id} {...p} />)}
+                </Carousel>
+              </section>
             </RevealOnScroll>
           )}
         </div>
@@ -285,11 +284,11 @@ export default function PackageDetailPage() {
           <p className="font-pretendard font-bold text-[18px] text-text-pri tracking-[-0.02em]">
             동해사이 패스로 이 {isProgram ? '프로그램을' : '코스를'} 즐긴다
           </p>
-          <p className="mt-2 font-pretendard font-normal text-[14px] text-text-sec leading-relaxed">
+          <p className="mt-2 font-pretendard font-normal text-pretty text-[14px] text-text-sec leading-relaxed">
             {kindLabel} 안의 상점과 체험에서 패스 할인을 적용한다. 1일권 5,000원, 2일권 8,000원, 3일권 10,000원이다.
           </p>
           <Link to="/membership"
-                className="mt-5 w-full h-12 inline-flex items-center justify-center
+            className="mt-5 w-full h-12 inline-flex items-center justify-center
                            bg-primary-hover text-white rounded-lg
                            font-pretendard font-medium text-[15px]
                            hover:bg-primary transition-colors duration-150">
@@ -305,28 +304,28 @@ export default function PackageDetailPage() {
       {lightbox !== null && galleryGrid.length > 0 && (
         <div className="fixed inset-0 z-[60] bg-black flex items-center justify-center">
           <button aria-label="닫기" onClick={() => setLightbox(null)}
-                  className="absolute top-5 right-5 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20
+            className="absolute top-5 right-5 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20
                              inline-flex items-center justify-center transition-colors duration-150">
             <X size={22} className="text-white" />
           </button>
           {galleryGrid.length > 1 && (
             <>
               <button aria-label="이전"
-                      onClick={() => setLightbox((i) => (i - 1 + galleryGrid.length) % galleryGrid.length)}
-                      className="absolute left-5 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20
+                onClick={() => setLightbox((i) => (i - 1 + galleryGrid.length) % galleryGrid.length)}
+                className="absolute left-5 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20
                                  inline-flex items-center justify-center transition-colors duration-150">
                 <ChevronLeft size={24} className="text-white" />
               </button>
               <button aria-label="다음"
-                      onClick={() => setLightbox((i) => (i + 1) % galleryGrid.length)}
-                      className="absolute right-5 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20
+                onClick={() => setLightbox((i) => (i + 1) % galleryGrid.length)}
+                className="absolute right-5 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20
                                  inline-flex items-center justify-center transition-colors duration-150">
                 <ChevronRight size={24} className="text-white" />
               </button>
             </>
           )}
           <img src={galleryGrid[lightbox]} alt={`${pkg.name} ${lightbox + 1}`}
-               className="max-w-[90vw] max-h-[85vh] object-contain" />
+            className="max-w-[90vw] max-h-[85vh] object-contain" />
           <div className="absolute bottom-5 font-pretendard font-medium text-[14px] text-white">
             {lightbox + 1} / {galleryGrid.length}
           </div>

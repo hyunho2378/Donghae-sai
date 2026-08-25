@@ -56,7 +56,7 @@ export default function StoryDetailPage() {
         <div className="absolute top-0 left-0 right-0 pt-4">
           <div className="container-page">
             <Link to="/story"
-                  className="inline-flex items-center gap-1.5 h-11 pl-3 pr-4 -ml-3 rounded-full
+              className="inline-flex items-center gap-1.5 h-11 pl-3 pr-4 -ml-3 rounded-full
                              bg-black/35 hover:bg-black/55
                              font-pretendard font-semibold text-[14px] text-white
                              transition-[background-color,scale] duration-150 ease-out
@@ -103,7 +103,7 @@ export default function StoryDetailPage() {
             <Users size={20} className="shrink-0 mt-0.5 text-text-meta" />
             <div>
               <p className="font-pretendard font-semibold text-[13px] text-text-meta mb-1">추천 대상</p>
-              <p className="font-pretendard font-normal text-[14px] md:text-[15px] text-text-sec leading-relaxed">
+              <p className="font-pretendard font-normal text-pretty text-[14px] md:text-[15px] text-text-sec leading-relaxed">
                 {story.target_audience}
               </p>
             </div>
@@ -196,7 +196,7 @@ export default function StoryDetailPage() {
                                   aspect-[16/9] overflow-hidden rounded-none md:rounded-2xl
                                   bg-bg-mute mb-3">
                     <img src={spot.image} alt={spot.name} loading="lazy"
-                         className="w-full h-full object-cover" />
+                      className="w-full h-full object-cover" />
                   </div>
                 )}
                 {spot.credit && (
@@ -209,12 +209,12 @@ export default function StoryDetailPage() {
                 <div className="space-y-4">
                   {spot.description_paragraphs?.length > 0
                     ? spot.description_paragraphs.map((p, j) => (
-                        <p key={j} className="font-pretendard font-normal
+                      <p key={j} className="font-pretendard font-normal
                                               text-[15px] md:text-[16px]
                                               text-text-sec leading-relaxed">
-                          {endSentence(p)}
-                        </p>
-                      ))
+                        {endSentence(p)}
+                      </p>
+                    ))
                     : <Description text={spot.description} size="lg" />}
                 </div>
 
@@ -225,8 +225,8 @@ export default function StoryDetailPage() {
                         <dt className="w-14 shrink-0 font-pretendard font-semibold text-[13px] text-text-meta">주소</dt>
                         <dd className="flex-1 font-pretendard font-medium text-[14px] text-text-pri leading-relaxed">
                           <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(spot.address)}`}
-                             target="_blank" rel="noopener noreferrer"
-                             className="inline-flex items-start gap-1.5 hover:text-primary
+                            target="_blank" rel="noopener noreferrer"
+                            className="inline-flex items-start gap-1.5 hover:text-primary
                                         transition-[color] duration-150 motion-reduce:transition-none">
                             <MapPin size={15} className="shrink-0 mt-0.5 text-text-meta" />
                             {spot.address}

@@ -14,12 +14,6 @@ import { STAY_TYPE_LABEL } from '../lib/format'
 
 const REGIONS = ['전체', '추암', '무릉', '천곡', '묵호', '망상']
 
-// 수치는 REBRAND_MASTER.md의 확정 전제만 쓴다
-const INTRO_STATS = [
-  { value: '1,220만 9,032명', label: '최근 1년 동해 방문객' },
-  { value: '86%', label: '당일 귀가 비율' },
-  { value: '14.2%', label: '숙박 전환율' }
-]
 
 // 네 갈래 진입. 대표 사진은 그 갈래에 속한 실제 장소 사진만 쓴다
 // 숙박 갈래는 사진 자료가 없어 사진 없이 둔다. 다른 장소 사진을 끌어오지 않는다
@@ -79,21 +73,6 @@ export default function StaysPage() {
                            text-text-pri tracking-[-0.02em] leading-tight max-w-[820px]">
               흩어진 장소를 이어 하루 더 머무는 여행을 만든다
             </h1>
-            <p className="mt-3 font-pretendard font-normal text-[14px] md:text-[15px] text-text-meta leading-relaxed max-w-[760px]">
-              최근 1년 방문객 1,220만 9,032명 가운데 86%가 당일 귀가한다. 동해사이는 저녁부터 다음 날 아침까지를 잇는다.
-            </p>
-            <div className="mt-6 grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-3">
-              {INTRO_STATS.map((s) => (
-                <div key={s.value} className="bg-white shadow-depth rounded-xl p-5">
-                  <p className="font-pretendard font-bold text-[22px] md:text-[26px] text-accent tabular-nums">
-                    {s.value}
-                  </p>
-                  <p className="mt-1 font-pretendard font-semibold text-[13px] text-text-sec">
-                    {s.label}
-                  </p>
-                </div>
-              ))}
-            </div>
           </RevealOnScroll>
 
           {/* 네 갈래 진입. 정보용 개요 카드 */}
@@ -101,11 +80,11 @@ export default function StaysPage() {
             <div className="grid gap-3 md:gap-4 grid-cols-2 lg:grid-cols-4">
               {TYPE_ENTRIES.map((t) => (
                 <div key={t.key}
-                     className="overflow-hidden rounded-xl border border-primary bg-white">
+                  className="overflow-hidden rounded-xl border border-primary bg-white">
                   <div className="relative aspect-[4/3] overflow-hidden bg-bg-mute">
                     {t.image ? (
                       <img src={t.image} alt={t.label} loading="lazy"
-                           className="w-full h-full object-cover" />
+                        className="w-full h-full object-cover" />
                     ) : (
                       <div className="w-full h-full bg-primary-soft" />
                     )}
@@ -138,12 +117,12 @@ export default function StaysPage() {
                 const count = packagesData.filter((p) => p.category === t.key).length
                 return (
                   <button key={t.key}
-                          onClick={() => setPkgTab(t.key)}
-                          className={`min-h-11 px-4 font-pretendard font-semibold text-[15px] tracking-[0.02em]
+                    onClick={() => setPkgTab(t.key)}
+                    className={`min-h-11 px-4 font-pretendard font-semibold text-[15px] tracking-[0.02em]
                                       border-b-2 transition-colors duration-150 motion-reduce:transition-none
                                       ${pkgTab === t.key
-                                        ? 'text-accent border-accent'
-                                        : 'text-text-meta border-transparent hover:text-text-pri'}`}>
+                        ? 'text-accent border-accent'
+                        : 'text-text-meta border-transparent hover:text-text-pri'}`}>
                     {t.label} {count}
                   </button>
                 )

@@ -104,7 +104,35 @@
     "cancellation_policy": "",
     "source": "donghae-knowledge.json course 항목",
     "is_active": true,
-    "region": ""
+    "region": "묵호",
+    "meal_options": [
+      {
+        "name": "대우칼국수",
+        "note": "장칼국수 단일 메뉴"
+      },
+      {
+        "name": "동남횟집",
+        "note": "가성비 회도시락"
+      },
+      {
+        "name": "거동탕수육",
+        "note": "문어 결합 이색 중식"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "103LAB 게스트하우스",
+        "note": "혼행 친구 여행자의 교류형 숙박 후보. 운영과 객실형태 재확인 필요"
+      },
+      {
+        "name": "동해비치호텔",
+        "note": "일반 호텔형 선택지"
+      },
+      {
+        "name": "호텔카라멜",
+        "note": "기차역을 연상시키는 테마형 숙소"
+      }
+    ]
   },
   {
     "id": "course-2030-walk-cheonok",
@@ -211,7 +239,31 @@
     "cancellation_policy": "",
     "source": "donghae-knowledge.json course 항목",
     "is_active": true,
-    "region": ""
+    "region": "천곡",
+    "meal_options": [
+      {
+        "name": "순두부",
+        "note": "쫄면 순두부와 주먹밥, 점심 웨이팅"
+      },
+      {
+        "name": "숟가락젓가락",
+        "note": "쌈밥 정식"
+      },
+      {
+        "name": "유정청국장",
+        "note": "청국장정식"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "현진관광호텔",
+        "note": "천곡권 관광 거점형 선택지"
+      },
+      {
+        "name": "동해 비치한섬",
+        "note": "재확인 필요"
+      }
+    ]
   },
   {
     "id": "course-2030-car-active",
@@ -318,7 +370,35 @@
     "cancellation_policy": "",
     "source": "donghae-knowledge.json course 항목",
     "is_active": true,
-    "region": ""
+    "region": "망상",
+    "meal_options": [
+      {
+        "name": "딸부자막국수",
+        "note": "전통 막국수"
+      },
+      {
+        "name": "피아노",
+        "note": "오션뷰 이탈리안"
+      },
+      {
+        "name": "현상소",
+        "note": "1200평 유럽풍 정원이 있는 바닷가 카페"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "망상오토캠핑리조트",
+        "note": "카라반 캠핑 등 다양한 숙박 형태를 선택할 수 있는 핵심 후보"
+      },
+      {
+        "name": "망상해변한옥마을",
+        "note": "한옥이라는 특별한 숙박 경험을 원하는 가족"
+      },
+      {
+        "name": "노봉 해비치펜션",
+        "note": "노봉과 망상을 내려다보는 언덕 위 펜션"
+      }
+    ]
   },
   {
     "id": "course-2030-car-muleung",
@@ -409,7 +489,27 @@
     "cancellation_policy": "",
     "source": "donghae-knowledge.json course 항목",
     "is_active": true,
-    "region": ""
+    "region": "무릉",
+    "meal_options": [
+      {
+        "name": "진성식당",
+        "note": "무릉계곡 백숙"
+      },
+      {
+        "name": "무릉일가",
+        "note": "생선산채정식"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "무릉계곡힐링캠프장",
+        "note": "자연 안에서 이어지는 가족 체류"
+      },
+      {
+        "name": "무릉계곡야영장",
+        "note": "자연형"
+      }
+    ]
   },
   {
     "id": "course-4050-walk-slow",
@@ -512,7 +612,31 @@
     "cancellation_policy": "",
     "source": "donghae-knowledge.json course 항목",
     "is_active": true,
-    "region": ""
+    "region": "천곡",
+    "meal_options": [
+      {
+        "name": "순두부",
+        "note": "쫄면 순두부와 주먹밥, 점심 웨이팅"
+      },
+      {
+        "name": "숟가락젓가락",
+        "note": "쌈밥 정식"
+      },
+      {
+        "name": "유정청국장",
+        "note": "청국장정식"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "현진관광호텔",
+        "note": "천곡권 관광 거점형 선택지"
+      },
+      {
+        "name": "동해 비치한섬",
+        "note": "재확인 필요"
+      }
+    ]
   },
   {
     "id": "course-4050-walk-beach",
@@ -615,7 +739,35 @@
     "cancellation_policy": "",
     "source": "donghae-knowledge.json course 항목",
     "is_active": true,
-    "region": ""
+    "region": "망상",
+    "meal_options": [
+      {
+        "name": "딸부자막국수",
+        "note": "전통 막국수"
+      },
+      {
+        "name": "피아노",
+        "note": "오션뷰 이탈리안"
+      },
+      {
+        "name": "현상소",
+        "note": "1200평 유럽풍 정원이 있는 바닷가 카페"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "망상오토캠핑리조트",
+        "note": "카라반 캠핑 등 다양한 숙박 형태를 선택할 수 있는 핵심 후보"
+      },
+      {
+        "name": "망상해변한옥마을",
+        "note": "한옥이라는 특별한 숙박 경험을 원하는 가족"
+      },
+      {
+        "name": "노봉 해비치펜션",
+        "note": "노봉과 망상을 내려다보는 언덕 위 펜션"
+      }
+    ]
   },
   {
     "id": "course-4050-car-heal",
@@ -710,7 +862,27 @@
     "cancellation_policy": "",
     "source": "donghae-knowledge.json course 항목",
     "is_active": true,
-    "region": ""
+    "region": "무릉",
+    "meal_options": [
+      {
+        "name": "진성식당",
+        "note": "무릉계곡 백숙"
+      },
+      {
+        "name": "무릉일가",
+        "note": "생선산채정식"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "무릉계곡힐링캠프장",
+        "note": "자연 안에서 이어지는 가족 체류"
+      },
+      {
+        "name": "무릉계곡야영장",
+        "note": "자연형"
+      }
+    ]
   },
   {
     "id": "course-4050-car-round",
@@ -813,7 +985,35 @@
     "cancellation_policy": "",
     "source": "donghae-knowledge.json course 항목",
     "is_active": true,
-    "region": ""
+    "region": "묵호",
+    "meal_options": [
+      {
+        "name": "대우칼국수",
+        "note": "장칼국수 단일 메뉴"
+      },
+      {
+        "name": "동남횟집",
+        "note": "가성비 회도시락"
+      },
+      {
+        "name": "거동탕수육",
+        "note": "문어 결합 이색 중식"
+      }
+    ],
+    "stay_options": [
+      {
+        "name": "103LAB 게스트하우스",
+        "note": "혼행 친구 여행자의 교류형 숙박 후보. 운영과 객실형태 재확인 필요"
+      },
+      {
+        "name": "동해비치호텔",
+        "note": "일반 호텔형 선택지"
+      },
+      {
+        "name": "호텔카라멜",
+        "note": "기차역을 연상시키는 테마형 숙소"
+      }
+    ]
   },
   {
     "id": "program-01-mukho-night-stay",
