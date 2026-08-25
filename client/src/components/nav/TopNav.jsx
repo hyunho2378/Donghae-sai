@@ -13,14 +13,13 @@ export default function TopNav() {
   return (
     <>
       <header className="sticky top-0 z-40 bg-white border-b border-border-sub">
-        <div className={`mx-auto w-full px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                        transition-[max-width] duration-300 ease-out
-                        ${panelOpen ? 'max-w-[2400px]' : 'max-w-[1400px] 2xl:max-w-[1600px]'}
+        {/* 로고 좌측 기준선을 본문과 완전히 일치시킨다. 본문과 같은 container-page 를 그대로 쓴다 */}
+        <div className={`container-page
+                        transition-[max-width] duration-300 ease-out motion-reduce:transition-none
+                        ${panelOpen ? '!max-w-[2400px]' : ''}
                         h-[60px] lg:h-[80px]
                         flex items-center justify-between gap-6`}>
-          <div className="flex items-center gap-6 lg:gap-10 shrink-0">
-            <Logo />
-          </div>
+          <Logo />
           <div className="hidden lg:flex flex-1 items-center justify-end gap-8">
             <NavMenu />
             <IconGroup />
@@ -28,8 +27,10 @@ export default function TopNav() {
           <button
             aria-label="메뉴"
             onClick={() => setMenuOpen(true)}
-            className="lg:hidden w-10 h-10 inline-flex items-center justify-center
-                       rounded-full hover:bg-bg-card transition-colors duration-150">
+            className="lg:hidden w-11 h-11 -mr-2 inline-flex items-center justify-center
+                       rounded-full hover:bg-bg-mute
+                       transition-[background-color,scale] duration-150 ease-out
+                       motion-reduce:transition-none active:scale-[0.96]">
             <Menu size={22} className="text-text-pri" />
           </button>
         </div>
@@ -41,8 +42,10 @@ export default function TopNav() {
               <button
                 aria-label="닫기"
                 onClick={() => setMenuOpen(false)}
-                className="w-10 h-10 inline-flex items-center justify-center
-                           rounded-full hover:bg-bg-card transition-colors duration-150">
+                className="w-11 h-11 -mr-2 inline-flex items-center justify-center
+                           rounded-full hover:bg-bg-mute
+                           transition-[background-color,scale] duration-150 ease-out
+                           motion-reduce:transition-none active:scale-[0.96]">
                 <X size={22} className="text-text-pri" />
               </button>
             </div>

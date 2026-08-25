@@ -38,7 +38,7 @@ export default function SovereignChat() {
     <>
       {open && (
         <div className="fixed bottom-24 right-5 z-50 w-[340px] max-w-[calc(100vw-40px)]
-                        h-[460px] bg-white border border-border-def rounded-2xl
+                        h-[460px] bg-white rounded-2xl shadow-float
                         flex flex-col overflow-hidden">
           <div className="h-14 px-5 flex items-center justify-between border-b border-border-sub bg-white">
             <p className="font-pretendard font-bold text-[15px] text-text-pri tracking-[-0.02em]">
@@ -103,18 +103,23 @@ export default function SovereignChat() {
         </div>
       )}
 
+      {/* 무코 fab. 그림자로 떠 있고 hover 에 한 번 더 올라온다. 누르면 0.96 로 눌린다 */}
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label="동해사이 도우미 열기"
-        className="fixed bottom-6 right-5 z-50 w-14 h-14 rounded-full overflow-hidden
-                   bg-primary text-white flex items-center justify-center
-                   hover:bg-primary-hover transition-colors duration-150">
+        aria-label={open ? '동해사이 도우미 닫기' : '동해사이 도우미 열기'}
+        className={`fixed bottom-6 right-5 z-50 w-14 h-14 rounded-full overflow-hidden
+                    flex items-center justify-center
+                    shadow-float hover:shadow-float-hover
+                    hover:-translate-y-0.5 active:scale-[0.96]
+                    transition-[box-shadow,transform,background-color] duration-200 ease-out
+                    motion-reduce:transition-none motion-reduce:hover:translate-y-0
+                    ${open ? 'bg-primary text-white hover:bg-primary-hover' : 'bg-accent-soft'}`}>
         {open ? <X size={22} /> : (
           !mukoErr ? (
             <img src="/images/character/muko-main.png" alt="무코 도우미"
                  onError={() => setMukoErr(true)}
-                 className="w-full h-full object-cover" />
-          ) : <MessageCircle size={22} />
+                 className="w-full h-full object-contain p-1" />
+          ) : <MessageCircle size={22} className="text-accent" />
         )}
       </button>
     </>

@@ -12,6 +12,64 @@ function renderInline(text) {
   )
 }
 
+// 블록 안의 줄들을 문단/불릿(- )/번호(1. ) 그룹으로 나눠 그린다.
+// 실제 LLM처럼 나열은 목록으로, 단계는 번호로 보여준다. 볼드는 항목 안에서도 적용된다
+const BULLET = /^-\s+(.*)$/
+const NUMBER = /^\d+\.\s+(.*)$/
+function renderRich(raw, size) {
+  const lines = raw.split('\n')
+  const out = []
+  let i = 0
+  let key = 0
+  while (i < lines.length) {
+    const t = lines[i].trim()
+    if (BULLET.test(t)) {
+      const items = []
+      while (i < lines.length && BULLET.test(lines[i].trim())) {
+        items.push(lines[i].trim().match(BULLET)[1]); i++
+      }
+      out.push(
+        <ul key={key++} className="list-disc pl-5 space-y-1 marker:text-text-ter">
+          {items.map((it, j) => (
+            <li key={j} className={`font-pretendard font-normal ${size} text-text-pri tracking-[-0.01em] leading-normal pl-0.5`}>
+              {renderInline(it)}
+            </li>
+          ))}
+        </ul>
+      )
+    } else if (NUMBER.test(t)) {
+      const items = []
+      while (i < lines.length && NUMBER.test(lines[i].trim())) {
+        items.push(lines[i].trim().match(NUMBER)[1]); i++
+      }
+      out.push(
+        <ol key={key++} className="list-decimal pl-5 space-y-1 marker:text-text-meta marker:font-medium">
+          {items.map((it, j) => (
+            <li key={j} className={`font-pretendard font-normal ${size} text-text-pri tracking-[-0.01em] leading-normal pl-0.5`}>
+              {renderInline(it)}
+            </li>
+          ))}
+        </ol>
+      )
+    } else {
+      const para = []
+      while (i < lines.length) {
+        const s = lines[i].trim()
+        if (BULLET.test(s) || NUMBER.test(s)) break
+        para.push(lines[i]); i++
+      }
+      const txt = para.join('\n').trim()
+      if (txt) out.push(
+        <p key={key++} className={`font-pretendard font-normal ${size} text-text-pri
+                                   tracking-[-0.01em] leading-normal whitespace-pre-wrap text-pretty`}>
+          {renderInline(txt)}
+        </p>
+      )
+    }
+  }
+  return out
+}
+
 // 마크다운 파이프 표 판별. 첫 줄이 헤더, 둘째 줄이 구분선(--- 포함)
 function isTableBlock(block) {
   const lines = block.split('\n')
@@ -168,10 +226,9 @@ export default function AnswerText({ text, sources = [], links = {}, showSources
           const slot = slots[pi++]
           return (
             <div key={i}>
-              <p className={`font-pretendard font-normal ${size} text-text-pri
-                             tracking-[-0.01em] leading-normal whitespace-pre-wrap text-pretty`}>
-                {renderInline(b.raw)}
-              </p>
+              <div className="space-y-1.5">
+                {renderRich(b.raw, size)}
+              </div>
               {slot.length > 0 && (
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {slot.map((s) => <Chip key={s.id} label={s.label} link={s.link} />)}

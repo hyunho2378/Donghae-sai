@@ -10,6 +10,7 @@ import Counter from '../components/Counter'
 import DateRangePicker from '../components/DateRangePicker'
 import Carousel from '../components/kareum/Carousel'
 import RevealOnScroll from '../components/kareum/RevealOnScroll'
+import Eyebrow from '../components/Eyebrow'
 import { formatPrice, STAY_TYPE_LABEL, calcNights } from '../lib/format'
 import { useAuthStore } from '../store/useAuthStore'
 import { useBookmark } from '../hooks/useBookmark'
@@ -132,9 +133,7 @@ export default function StayDetailPage() {
         <div className="absolute bottom-0 left-0 right-0 pointer-events-none pb-8 lg:pb-12">
           {/* 캡션 컨테이너를 본문과 동일한 container-page 로 맞춰 좌측 기준선을 완전히 일치시킨다 */}
           <div className="container-page">
-            <p className="font-pretendard font-medium text-[13px] md:text-[15px] text-white/80 tracking-[0.04em]">
-              {stay.region} {STAY_TYPE_LABEL[stay.type]}
-            </p>
+            <Eyebrow tone="light">{stay.region} {STAY_TYPE_LABEL[stay.type]}</Eyebrow>
             <h1 className="mt-2 font-pretendard font-bold
                            text-[24px] md:text-[36px] lg:text-[44px] 4xl:text-[52px]
                            text-white tracking-[-0.02em] leading-tight">
@@ -144,36 +143,36 @@ export default function StayDetailPage() {
         </div>
       </div>
 
-      {/* 공유와 저장. 이름은 히어로 안에만 둔다. 중복 제거 */}
+      {/* Body grid. 히어로 바로 아래에서 2단으로 나눈다.
+          요금 예약 카드가 첫 화면 안에 들어오게 하려고 사이 여백을 두지 않는다 */}
       <section className="container-page
-                          pt-5 lg:pt-6">
-        <div className="flex items-center gap-2">
-          <button onClick={onShare}
-                  className="inline-flex items-center gap-1.5 h-10 px-4 rounded-full
-                             bg-bg-card hover:bg-bg-mute
-                             font-pretendard font-medium text-[14px] text-text-pri
-                             transition-colors duration-150">
-            <Share2 size={16} className="text-text-meta" />
-            공유
-          </button>
-          <button onClick={toggleBookmark}
-                  aria-label={isBookmarked ? '북마크 해제' : '저장'}
-                  className="inline-flex items-center gap-1.5 h-10 px-4 rounded-full
-                             bg-bg-card hover:bg-bg-mute
-                             font-pretendard font-medium text-[14px] text-text-pri
-                             transition-colors duration-150">
-            <Bookmark size={16} className={isBookmarked ? 'text-primary fill-primary' : 'text-text-meta'}
-                      fill={isBookmarked ? 'currentColor' : 'none'} />
-            저장
-          </button>
-        </div>
-      </section>
-
-      {/* Body grid. 소개와 위치를 세로 하나로 잇는다. 탭 없음 */}
-      <section className="container-page
-                          mt-6 lg:mt-8 pb-16 lg:pb-24
+                          pt-5 lg:pt-6 pb-16 lg:pb-24
                           lg:grid lg:grid-cols-[1fr_380px] lg:gap-12">
-        <div className="space-y-12 lg:space-y-16">
+        <div className="space-y-10 lg:space-y-14">
+
+          {/* 공유와 저장. 이름은 히어로 안에만 둔다. 중복 제거 */}
+          <div className="flex items-center gap-2">
+            <button onClick={onShare}
+                    className="inline-flex items-center gap-1.5 h-11 px-4 rounded-full
+                               bg-bg-mute hover:bg-border-sub
+                               font-pretendard font-medium text-[14px] text-text-pri
+                               transition-[background-color,scale] duration-150 ease-out
+                               motion-reduce:transition-none active:scale-[0.96]">
+              <Share2 size={16} className="text-text-meta" />
+              공유
+            </button>
+            <button onClick={toggleBookmark}
+                    aria-label={isBookmarked ? '북마크 해제' : '저장'}
+                    className="inline-flex items-center gap-1.5 h-11 px-4 rounded-full
+                               bg-bg-mute hover:bg-border-sub
+                               font-pretendard font-medium text-[14px] text-text-pri
+                               transition-[background-color,scale] duration-150 ease-out
+                               motion-reduce:transition-none active:scale-[0.96]">
+              <Bookmark size={16} className={isBookmarked ? 'text-primary fill-primary' : 'text-text-meta'}
+                        fill={isBookmarked ? 'currentColor' : 'none'} />
+              저장
+            </button>
+          </div>
 
           {/* 소개 */}
           <RevealOnScroll>
@@ -298,32 +297,28 @@ export default function StayDetailPage() {
           )}
         </div>
 
-        {/* Reservation card */}
-        <aside className="mt-10 lg:mt-0 lg:sticky lg:top-24 h-fit
-                          shadow-card rounded-2xl p-5 lg:p-6 bg-white">
+        {/* 요금 예약 카드. 헤더(80px) 아래에 붙어 첫 화면부터 따라다닌다 */}
+        <aside className="mt-10 lg:mt-0 lg:sticky lg:top-[92px] h-fit
+                          shadow-depth rounded-2xl p-5 lg:p-6 bg-white">
           {!isFree ? (
             <>
-              <p className="font-pretendard font-medium text-[12px] text-primary tracking-[0.04em] uppercase">
-                쿠폰 적용 할인가
-              </p>
-              <div className="mt-1 flex items-baseline gap-2">
-                <span className="font-pretendard font-bold text-[14px] text-primary">
+              <Eyebrow>쿠폰 적용 할인가</Eyebrow>
+              <div className="mt-2 flex items-baseline gap-2">
+                <span className="font-pretendard font-bold text-[15px] text-primary tabular-nums">
                   {Math.round(DISCOUNT_RATE * 100)}%
                 </span>
-                <span className="font-pretendard font-light text-[14px] text-text-meta line-through">
+                <span className="font-pretendard font-medium text-[14px] text-text-meta line-through tabular-nums">
                   {basePrice.toLocaleString()}원
                 </span>
               </div>
-              <p className="mt-1 font-pretendard font-bold text-[26px] text-text-pri">
-                {discountedPerNight.toLocaleString()}<span className="ml-1 text-[14px] font-medium text-text-meta">원/박</span>
+              <p className="mt-1 font-pretendard font-bold text-[28px] text-text-pri tabular-nums">
+                {discountedPerNight.toLocaleString()}<span className="ml-1 text-[15px] font-semibold text-text-sec">원/박</span>
               </p>
             </>
           ) : (
             <>
-              <p className="font-pretendard font-medium text-[12px] text-primary tracking-[0.04em] uppercase">
-                이용 요금
-              </p>
-              <p className="mt-1 font-pretendard font-bold text-[24px] text-text-pri">
+              <Eyebrow>이용 요금</Eyebrow>
+              <p className="mt-2 font-pretendard font-bold text-[24px] text-text-pri">
                 {clean(stay.price_label) || '요금 미정'}
               </p>
             </>
@@ -345,17 +340,17 @@ export default function StayDetailPage() {
 
           {!isFree && nights > 0 && (
             <div className="mt-5 pt-5 border-t border-border-sub space-y-2 font-pretendard text-[14px]">
-              <div className="flex justify-between text-text-sec">
-                <span>객실 요금 ({nights}박 × {discountedPerNight.toLocaleString()}원)</span>
-                <span>{discountedTotal.toLocaleString()}원</span>
+              <div className="flex justify-between gap-3">
+                <span className="font-normal text-text-meta">객실 요금 ({nights}박 × {discountedPerNight.toLocaleString()}원)</span>
+                <span className="font-medium text-text-pri tabular-nums">{discountedTotal.toLocaleString()}원</span>
               </div>
-              <div className="flex justify-between text-text-meta line-through">
-                <span>정가</span>
-                <span>{baseTotal.toLocaleString()}원</span>
+              <div className="flex justify-between gap-3 text-text-meta line-through">
+                <span className="font-normal">정가</span>
+                <span className="font-medium tabular-nums">{baseTotal.toLocaleString()}원</span>
               </div>
-              <div className="flex justify-between pt-2 border-t border-border-sub font-bold text-text-pri text-[15px]">
+              <div className="flex justify-between gap-3 pt-2 border-t border-border-sub font-bold text-text-pri text-[16px]">
                 <span>총액</span>
-                <span>{formatPrice(discountedTotal)}</span>
+                <span className="tabular-nums">{formatPrice(discountedTotal)}</span>
               </div>
             </div>
           )}
@@ -371,10 +366,12 @@ export default function StayDetailPage() {
             disabled={nights <= 0}
             className="mt-6 w-full h-12 lg:h-14 px-6
                        bg-text-pri text-white
-                       font-pretendard font-medium text-[16px]
+                       font-pretendard font-bold text-[16px]
                        rounded-lg
                        hover:bg-black
-                       transition-colors duration-150 motion-reduce:transition-none
+                       transition-[background-color,scale] duration-150 ease-out
+                       motion-reduce:transition-none
+                       enabled:active:scale-[0.96]
                        disabled:opacity-40 disabled:cursor-not-allowed">
             {nights > 0 ? '예약하기' : '날짜를 선택하세요'}
           </button>

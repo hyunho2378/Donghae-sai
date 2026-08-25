@@ -7,6 +7,7 @@ import PackageCard from '../components/card/PackageCard'
 import Carousel from '../components/kareum/Carousel'
 import RevealOnScroll from '../components/kareum/RevealOnScroll'
 import ScatterIllust from '../components/kareum/ScatterIllust'
+import Eyebrow from '../components/Eyebrow'
 
 const TABS = [
   { key: 'itinerary', label: '일정' }
@@ -46,7 +47,7 @@ export default function PackageDetailPage() {
       </Helmet>
 
       {/* Hero 풀와이드 */}
-      <div className="relative w-full h-[50vw] min-h-[280px] max-h-[560px] overflow-hidden bg-bg-card">
+      <div className="relative w-full h-[38vw] min-h-[220px] max-h-[400px] overflow-hidden bg-bg-card">
         {heroImage && (
           <img src={heroImage} alt={pkg.name}
                className="w-full h-full object-cover" />
@@ -67,11 +68,7 @@ export default function PackageDetailPage() {
                 ))}
               </div>
             )}
-            {pkg.tagline && (
-              <p className="font-pretendard font-medium text-[13px] md:text-[15px] text-white/80 tracking-[0.04em]">
-                {pkg.tagline}
-              </p>
-            )}
+            {pkg.tagline && <Eyebrow tone="light">{pkg.tagline}</Eyebrow>}
             <h1 className="mt-2 font-pretendard font-bold
                            text-[24px] md:text-[36px] lg:text-[44px] 4xl:text-[52px]
                            text-white tracking-[-0.02em] leading-tight">
@@ -83,14 +80,12 @@ export default function PackageDetailPage() {
 
       {/* 대상명 타이포 포인트. 카름 마을 상세 손글씨 로고 자리. 문어 슬롯은 애셋 도착 전까지 빈다 */}
       <section className="relative container-page
-                          pt-10 lg:pt-14">
+                          pt-6 lg:pt-8">
         <ScatterIllust items={[]} />
-        <p className="font-pretendard font-medium text-[13px] tracking-[0.06em] text-primary">
-          {kindLabel}
-        </p>
-        <h2 className="mt-2 font-pretendard font-bold
-                       text-[32px] md:text-[44px] lg:text-[56px]
-                       text-text-pri tracking-[-0.03em] leading-[1.05]">
+        <Eyebrow>{kindLabel}</Eyebrow>
+        <h2 className="mt-3 font-pretendard font-bold
+                       text-[26px] md:text-[34px] lg:text-[40px]
+                       text-text-pri leading-tight">
           {pkg.name}
         </h2>
       </section>
@@ -115,7 +110,7 @@ export default function PackageDetailPage() {
               { label: '방문지', value: `${pkg.itinerary.reduce((n, d) => n + d.schedule.length, 0)}곳` }
             ].map((item) => (
               <div key={item.label} className="shadow-card rounded-xl p-4 md:p-5">
-                <p className="font-pretendard font-medium text-[12px] text-text-meta tracking-[0.04em] uppercase">
+                <p className="font-pretendard font-semibold text-[12px] text-text-meta tracking-[0.08em] uppercase">
                   {item.label}
                 </p>
                 <p className="mt-2 font-pretendard font-bold text-[16px] md:text-[18px] text-text-pri">
@@ -226,9 +221,7 @@ export default function PackageDetailPage() {
 
                   {pkg.signature_experience && (
                     <div className="border border-primary rounded-2xl p-6 lg:p-8 bg-primary-soft">
-                      <p className="font-pretendard font-medium text-[12px] text-primary-hover tracking-[0.04em]">
-                        새로 기획할 핵심 체험
-                      </p>
+                      <Eyebrow>새로 기획할 핵심 체험</Eyebrow>
                       <p className="mt-2 font-pretendard font-normal text-[15px] md:text-[16px]
                                     text-text-sec leading-relaxed tracking-[-0.01em]">
                         {pkg.signature_experience}
@@ -281,8 +274,8 @@ export default function PackageDetailPage() {
         </div>
 
         {/* 코스는 판매 상품이 아니다. 패스 안내로 연결한다 */}
-        <aside className="mt-8 lg:mt-0 lg:sticky lg:top-24 h-fit
-                          shadow-card rounded-2xl p-5 lg:p-6 bg-white">
+        <aside className="mt-8 lg:mt-0 lg:sticky lg:top-[92px] h-fit
+                          shadow-depth rounded-2xl p-5 lg:p-6 bg-white">
           <p className="font-pretendard font-bold text-[18px] text-text-pri tracking-[-0.02em]">
             동해사이 패스로 이 {isProgram ? '프로그램을' : '코스를'} 즐긴다
           </p>
@@ -296,8 +289,8 @@ export default function PackageDetailPage() {
                            hover:bg-primary transition-colors duration-150">
             패스 보기
           </Link>
-          <p className="mt-3 font-pretendard font-light text-[12px] text-text-meta">
-            {kindLabel}에 등장하는 장소는 방문 전 영업일과 휴무를 확인한다
+          <p className="mt-3 font-pretendard font-normal text-[13px] text-text-meta leading-relaxed">
+            {kindLabel}에 나오는 장소는 방문 전에 영업일과 휴무를 확인하세요
           </p>
         </aside>
       </div>

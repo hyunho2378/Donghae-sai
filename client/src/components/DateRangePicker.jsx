@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Calendar, X } from 'lucide-react'
 
 const WEEK = ['일', '월', '화', '수', '목', '금', '토']
 const YEARS_PER_PAGE = 9   // iOS 연도 선택과 같은 3x3 격자. 가로 스크롤을 쓰지 않는다
@@ -58,11 +58,16 @@ export default function DateRangePicker({
     return false
   }
 
+  // 1회차 클릭은 체크인, 2회차는 체크아웃. 체크아웃이 정해진 순간에만 달력을 닫는다
+  const step = !ci || (ci && co) ? 'in' : 'out'
+
   const pick = (d) => {
     if (disabled(d)) return
-    if (!ci || (ci && co)) { onChange?.({ checkIn: iso(d), checkOut: '' }); return }
-    if (d <= ci) { onChange?.({ checkIn: iso(d), checkOut: '' }); return }
-    onChange?.({ checkIn, checkOut: iso(d) })
+    if (step === 'in' || d <= ci) {
+      onChange?.({ checkIn: iso(d), checkOut: '' })
+      return
+    }
+    onChange?.({ checkIn: iso(ci), checkOut: iso(d) })
     setOpen(false)
   }
 
@@ -82,25 +87,56 @@ export default function DateRangePicker({
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-label="날짜 선택 열기"
-        className="w-full h-12 px-4 flex items-center justify-between gap-2
-                   bg-white border border-border-def rounded-lg
-                   font-pretendard font-normal text-[15px] text-text-pri
-                   hover:border-primary focus-visible:border-primary
-                   transition-colors duration-150 motion-reduce:transition-none">
-        <span className={checkIn ? 'text-text-pri' : 'text-text-ter'}>
-          {checkIn ? `${checkIn}${checkOut ? ` ~ ${checkOut}` : ''}` : '날짜를 선택하세요'}
+        className={`w-full min-h-14 px-4 py-2 flex items-center justify-between gap-3
+                   bg-white rounded-lg border
+                   transition-[border-color] duration-150 motion-reduce:transition-none
+                   ${open ? 'border-primary' : 'border-border-def hover:border-primary'}`}>
+        <span className="flex items-center gap-3 min-w-0">
+          <span className="text-left">
+            <span className="block font-pretendard font-medium text-[11px] tracking-[0.06em] text-text-meta">
+              체크인
+            </span>
+            <span className={`block font-pretendard text-[15px] tabular-nums
+                              ${checkIn ? 'font-bold text-text-pri' : 'font-normal text-text-ter'}`}>
+              {checkIn || '선택'}
+            </span>
+          </span>
+          <span aria-hidden="true" className="text-text-ter">~</span>
+          <span className="text-left">
+            <span className="block font-pretendard font-medium text-[11px] tracking-[0.06em] text-text-meta">
+              체크아웃
+            </span>
+            <span className={`block font-pretendard text-[15px] tabular-nums
+                              ${checkOut ? 'font-bold text-text-pri' : 'font-normal text-text-ter'}`}>
+              {checkOut || '선택'}
+            </span>
+          </span>
         </span>
         <Calendar size={20} className="shrink-0 text-text-meta" />
       </button>
       {nights > 0 && (
-        <p className="mt-1 font-pretendard font-light text-[12px] text-text-meta">
-          {nights}박 {nights + 1}일. 최대 {maxNights}박까지 선택할 수 있다
+        <p className="mt-1.5 font-pretendard font-medium text-[13px] text-text-pri tabular-nums">
+          {nights}박 {nights + 1}일
+          <span className="ml-1.5 font-normal text-text-meta">최대 {maxNights}박</span>
         </p>
       )}
 
       {open && (
         <div className="absolute z-40 mt-2 w-[320px] max-w-[calc(100vw-40px)]
-                        bg-white border border-border-def rounded-2xl p-4">
+                        bg-white rounded-[28px] shadow-float p-4">
+          {/* 지금 고르는 것이 체크인인지 체크아웃인지 항상 알려준다 */}
+          <div className="flex items-center justify-between gap-2 px-1">
+            <p className="font-pretendard font-semibold text-[13px] text-primary">
+              {step === 'in' ? '체크인 날짜를 고르세요' : '체크아웃 날짜를 고르세요'}
+            </p>
+            <button type="button" onClick={() => setOpen(false)}
+                    className="w-11 h-11 -mr-2 inline-flex items-center justify-center rounded-full
+                               hover:bg-bg-mute
+                               transition-[background-color,scale] duration-150 ease-out
+                               motion-reduce:transition-none active:scale-[0.96]">
+              <X size={18} className="text-text-meta" />
+            </button>
+          </div>
           <div className="h-11 flex items-center justify-between">
             <button type="button" aria-label="이전"
                     onClick={() => view === 'year'
