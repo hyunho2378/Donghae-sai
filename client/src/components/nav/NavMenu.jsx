@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom'
 
 const ITEMS = [
-  { to: '/story', label: '동해 스토리' },
   { to: '/stays', label: '동해 사이' },
+  { to: '/story', label: '동해 스토리' },
   { to: '/membership', label: '패스' },
   { to: '/goods', label: '굿즈' }
 ]

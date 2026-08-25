@@ -259,7 +259,7 @@ export default function SovereignHero() {
             </div>
           )}
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+          <div className="mt-16 md:mt-20 lg:mt-24 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
             {disclaimer}
             <span aria-hidden="true" className="hidden sm:inline-block w-px h-3 bg-border-def" />
             <span className="flex items-center gap-3">
