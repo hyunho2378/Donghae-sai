@@ -53,3 +53,15 @@
 - 근거 종속(1차 구조)·카드 클릭 이동·스트리밍 유지.
 
 수정 파일: `SovereignHero.jsx` 한 곳.
+
+---
+
+## 3차: 앵커 방탄 + 근거 카드 화살표
+
+**스크롤 원인 진단.** hero(`absolute inset-0 overflow-y-auto`)에는 스트리밍 자동 바닥 스크롤이 이미 없음(2차에서 제거). 남은 실패 원인은 앵커의 `scrollIntoView({behavior:'smooth'})` 가 전송 직후 sources/토큰 유입으로 레이아웃이 커지는 동안 부드러운 애니메이션이 어긋나 질문이 top 까지 안 올라가던 것. (참고: 자동 바닥 스크롤은 FAB `SovereignChat.jsx:19` 에만 남아 있는데, 이건 460px 소형 팝업이라 정상 동작으로 유지.)
+
+**문제1 앵커 방탄.** 질문 offsetTop 은 그 위 콘텐츠(확정됨)로 정해져 안정적 → 컨테이너를 직접 `scrollTo({top: q.offsetTop - 24})`. `requestAnimationFrame` 으로 레이아웃 확정 후 실행하고, 450ms 뒤 `behavior:'auto'` 로 한 번 더 확정해 초기 유입으로 어긋난 위치를 스냅 교정. 강제 바닥 스크롤 없음(방법 가). 하단 `min-h-[85vh]` 스페이서로 짧은 답변에도 top 도달 보장.
+
+**문제2 근거 카드 화살표.** `ArrowUpRight`(↗) → `ArrowRight`(→), 원형 프라이머리 버튼(`bg-primary-soft`, hover 시 `bg-primary`). box-shadow 없이 색으로만. 카드 전체 클릭 → 상세 이동 로직 유지.
+
+수정 파일: `SovereignHero.jsx`(앵커), `SourcePanel.jsx`(화살표). 스트리밍·좌우분할·근거종속·액션버튼·카드클릭 유지.

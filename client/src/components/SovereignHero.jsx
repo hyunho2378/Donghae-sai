@@ -80,10 +80,18 @@ export default function SovereignHero() {
   }, [opened, streaming])
 
   // 새 질문을 보내면 그 질문 말풍선을 대화 영역 최상단으로 올린다(챗지피티식 앵커).
-  // 이전 질문과 답변은 위로 밀려 뷰포트를 벗어난다. 스트리밍 중에도 질문이 상단에 고정된다
+  // 질문의 offsetTop 은 그 위 콘텐츠(이미 확정됨)로 정해져 안정적이다. 아래에 답변이 쌓여도
+  // 질문 위치는 안 바뀐다. 컨테이너를 직접 scrollTo 하고, 부드러운 스크롤이 초기 레이아웃 변화로
+  // 어긋날 수 있어 한 프레임 뒤와 잠시 뒤에 한 번 더 확정한다. 강제 바닥 스크롤은 없다
   useEffect(() => {
     if (!opened) return
-    lastQRef.current?.scrollIntoView({ block: 'start', behavior: reduceMotion() ? 'auto' : 'smooth' })
+    const el = scrollRef.current
+    const q = lastQRef.current
+    if (!el || !q) return
+    const anchor = (behavior) => el.scrollTo({ top: Math.max(0, q.offsetTop - 24), behavior })
+    const raf = requestAnimationFrame(() => anchor(reduceMotion() ? 'auto' : 'smooth'))
+    const fix = setTimeout(() => anchor('auto'), 450) // sources/토큰 유입으로 어긋나면 즉시 재확정
+    return () => { cancelAnimationFrame(raf); clearTimeout(fix) }
   }, [userCount, opened])
 
   // 입력이 길어지면 textarea 높이를 내용에 맞춰 늘린다. 최소와 최대는 CSS 가 잡는다

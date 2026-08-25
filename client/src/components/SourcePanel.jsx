@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 // 우측 출처 카드 패널. 답변 근거가 된 장소 코스 패스 프로그램을 카드로 쌓는다
 // 카드 클릭 시 실제 상세페이지로 이동한다. 검증된 link 라우트를 그대로 쓴다
@@ -52,8 +52,13 @@ export default function SourcePanel({ sources = [] }) {
                 </p>
               )}
             </div>
-            <ArrowUpRight size={16}
-                          className="shrink-0 text-text-ter group-hover:text-primary transition-colors duration-150" />
+            {/* 상세페이지 진입을 알리는 원형 프라이머리 버튼. box-shadow 없이 색으로만 */}
+            <span className="shrink-0 self-center w-7 h-7 inline-flex items-center justify-center rounded-full
+                             bg-primary-soft text-primary
+                             group-hover:bg-primary group-hover:text-white
+                             transition-colors duration-150 motion-reduce:transition-none">
+              <ArrowRight size={15} />
+            </span>
           </div>
         </Link>
       ))}
