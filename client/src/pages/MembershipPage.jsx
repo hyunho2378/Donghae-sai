@@ -8,9 +8,9 @@ import plansData from '../data/membership_plans.json'
 
 // 아래 내용은 전부 자료집 pass 항목 원문 근거다. 원문에 없는 값은 미정으로 둔다
 const TAGS = [
-  { Icon: DoorOpen, title: '관문 태그', desc: '여정 시작점에서 패스를 켠다' },
-  { Icon: MapPin, title: '코스 태그', desc: '관광지와 상점에서 스탬프를 쌓는다' },
-  { Icon: BedDouble, title: '체류 태그', desc: '숙소에서 하룻밤을 기록한다' }
+  { Icon: DoorOpen, title: '관문 태그', desc: '여정을 시작하는 곳에서 패스를 켜세요' },
+  { Icon: MapPin, title: '코스 태그', desc: '관광지와 상점에서 스탬프를 모으세요' },
+  { Icon: BedDouble, title: '체류 태그', desc: '숙소에서 하룻밤을 남기세요' }
 ]
 
 const FLOW = [
@@ -27,22 +27,22 @@ const STAMPS = ['저녁', '별', '밤 활동', '오늘의 동해 접수', '숙�
 const FAQ = [
   {
     q: '개인정보를 내야 하나요?',
-    a: '이름도 전화번호도 받지 않는다. 결제할 때 받은 익명 패스 번호 하나가 세션 ID 역할을 하고, 여정 기록은 그 번호에만 붙는다.'
+    a: '이름도 전화번호도 받지 않아요. 결제할 때 발급되는 익명 패스 번호 하나로 여정이 기록돼요.'
   },
   {
     q: '관광지 입장료가 포함되나요?',
-    a: '포함하지 않는다. 도째비골과 천곡동굴과 무릉별유천지는 이미 자체 할인과 동해사랑상품권 환급으로 운영한다. 패스가 담는 것은 별빛 콘텐츠와 상권 할인, 그리고 데이터 참여다.'
+    a: '포함되지 않아요. 도째비골과 천곡동굴, 무릉별유천지는 이미 자체 할인과 동해사랑상품권 환급으로 운영해요. 패스는 별빛 콘텐츠와 상권 할인을 담고 있어요.'
   },
   {
     q: '가족은 어떻게 사나요?',
-    a: '묶음권 1매가 아니라 인원수만큼 개별권으로 발급한다. 4인이면 패스 번호 4개를 받아 각자 태그하고 각자의 여정 기록을 남긴다. 가족 묶음에는 10에서 15% 추가 할인이 붙어 2일권 4인 32,000원이 가족팩 27,900원이 된다.'
+    a: '묶음권 한 장이 아니라 인원수만큼 개별로 발급돼요. 4인이면 패스 번호 4개를 받아 각자 태그하고 각자의 여정을 기록해요. 가족 묶음에는 10부터 15%까지 추가 할인이 붙어 2일권 4인 32,000원이 가족팩 27,900원이 돼요.'
   },
   {
     q: '패스가 없어도 태그할 수 있나요?',
-    a: '태그하면 코스 소개와 구매 안내가 뜬다. 혜택은 잠기지만 익명 방문 기록은 남는다.'
+    a: '태그하면 코스 소개와 구매 안내가 떠요. 혜택은 잠기지만 방문 기록은 익명으로 남아요.'
   },
-  { q: '스탬프를 다 모으면 어떻게 되나요?', a: '일곱 개를 다 채우면 문어 굿즈를 비롯한 완주 보상을 받는다.' },
-  { q: '환불 규정은 어떻게 되나요?', a: '자료 도착 후 안내한다.' }
+  { q: '스탬프를 다 모으면 어떻게 되나요?', a: '일곱 개를 모두 채우면 무코 굿즈를 비롯한 완주 보상을 받아요.' },
+  { q: '환불 규정은 어떻게 되나요?', a: '시작 48시간 전까지 취소하면 전액 환불해요. 48시간 이내에는 환불하지 않아요.' }
 ]
 
 function passCta(isAuthenticated, planId) {
@@ -50,7 +50,8 @@ function passCta(isAuthenticated, planId) {
   return isAuthenticated ? target : `/auth?redirect=${target}`
 }
 
-// 세 카드가 서로 구분되게 톤을 나눈다. 강조는 추천권 하나뿐이다
+// 세 카드가 서로 구분되게 톤을 나눈다. 강조는 추천권 하나뿐이다.
+// 추천이 아닌 카드는 전부 같은 톤을 쓴다. 1일권과 3일권이 서로 달라 보이면 안 된다
 const PLAN_TONE = {
   recommended: {
     card: 'bg-white border-2 border-accent shadow-float',
@@ -63,12 +64,6 @@ const PLAN_TONE = {
     name: 'text-text-pri',
     check: 'text-primary',
     cta: 'bg-white text-text-pri border border-border-def hover:border-primary hover:text-primary'
-  },
-  tinted: {
-    card: 'bg-primary-soft shadow-depth',
-    name: 'text-primary-hover',
-    check: 'text-primary-hover',
-    cta: 'bg-white text-primary-hover border border-primary hover:bg-primary hover:text-white'
   }
 }
 
@@ -94,7 +89,7 @@ export default function MembershipPage() {
         <div className={`${SECTION} py-6 md:py-7 lg:py-8`}>
           <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
             <div>
-              <Eyebrow tone="accent">donghae sai pass</Eyebrow>
+              <Eyebrow tone="accent">동해사이 패스</Eyebrow>
               <h1 className="mt-3 font-pretendard font-bold
                              text-[26px] md:text-[32px] lg:text-[38px]
                              text-text-pri leading-tight">
@@ -107,8 +102,8 @@ export default function MembershipPage() {
             </div>
             {!mukoErr && (
               <img src="/images/character/muko-main.png" alt="동해사이 캐릭터 무코"
-                   onError={() => setMukoErr(true)}
-                   className="hidden md:block w-[130px] lg:w-[160px] h-auto justify-self-end" />
+                onError={() => setMukoErr(true)}
+                className="hidden md:block w-[130px] lg:w-[160px] h-auto justify-self-end" />
             )}
           </div>
         </div>
@@ -119,12 +114,10 @@ export default function MembershipPage() {
         <h2 className={H2}>패스 상품</h2>
         <div className="mt-4 grid gap-4 md:gap-5 grid-cols-1 md:grid-cols-3">
           {plansData.map((plan, i) => {
-            const tone = plan.recommended
-              ? PLAN_TONE.recommended
-              : (i === 0 ? PLAN_TONE.plain : PLAN_TONE.tinted)
+            const tone = plan.recommended ? PLAN_TONE.recommended : PLAN_TONE.plain
             return (
               <div key={plan.id}
-                   className={`relative rounded-[32px] p-5 flex flex-col ${tone.card}`}>
+                className={`relative rounded-[32px] p-5 flex flex-col ${tone.card}`}>
                 {plan.recommended && (
                   <span className="absolute -top-3 left-5 inline-flex items-center h-[26px] px-3
                                    bg-accent text-white
@@ -158,7 +151,7 @@ export default function MembershipPage() {
                 </p>
                 <div className="mt-auto pt-4">
                   <Link to={passCta(isAuthenticated, plan.id)}
-                        className={`w-full h-12 rounded-lg inline-flex items-center justify-center
+                    className={`w-full h-12 rounded-lg inline-flex items-center justify-center
                                     font-pretendard font-bold text-[15px]
                                     transition-[background-color,border-color,color,scale] duration-150 ease-out
                                     motion-reduce:transition-none active:scale-[0.96]
@@ -216,7 +209,7 @@ export default function MembershipPage() {
         <div className={`${SECTION} py-8 md:py-10 lg:py-12`}>
           <h2 className={H2}>스탬프 일곱 단계</h2>
           <p className="mt-2 font-pretendard font-medium text-[15px] text-text-sec leading-relaxed">
-            저녁에 시작해 다음 날 아침에 끝난다. 일곱 개를 다 모으면 하룻밤이 완성된다
+            저녁에 시작해 다음 날 아침에 끝나요. 일곱 개를 모두 모으면 하룻밤이 완성돼요
           </p>
           <ol className="mt-6 grid grid-cols-4 md:grid-cols-7 gap-x-3 gap-y-5">
             {STAMPS.map((s, i) => (

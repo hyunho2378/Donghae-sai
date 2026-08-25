@@ -8,9 +8,6 @@ const MENU = [
   { to: '/membership', label: '패스' }
 ]
 
-// 공공 협력 사업. 개인 사업이 아니다
-const PARTNERS = ['동해시청 관광과', '동해문화관광재단']
-
 export default function Footer() {
   return (
     <footer className="bg-primary-deep text-white">
@@ -29,7 +26,7 @@ export default function Footer() {
           <nav aria-label="푸터 메뉴" className="flex flex-col gap-1">
             {MENU.map((m) => (
               <Link key={m.to} to={m.to}
-                    className="inline-flex items-center min-h-11 -my-0.5
+                className="inline-flex items-center min-h-11 -my-0.5
                                font-pretendard font-semibold text-[15px] text-white/90
                                hover:text-white
                                transition-colors duration-100 motion-reduce:transition-none">
@@ -43,12 +40,11 @@ export default function Footer() {
         <div className="mt-10 pt-6 border-t border-white/15
                         flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="font-pretendard font-normal text-[13px] text-white/70 space-y-1">
-            <p>공공 협력 기관 {PARTNERS.join(', ')}</p>
             <p>강원특별자치도 동해시</p>
             <p>이메일 hello@donghaesai.kr</p>
           </div>
-          <Link to="/privacy"
-                className="inline-flex items-center min-h-11
+          <Link to="/privacy" target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center min-h-11
                            font-pretendard font-semibold text-[13px] text-white/85 hover:text-white
                            transition-colors duration-100 motion-reduce:transition-none">
             개인정보처리방침

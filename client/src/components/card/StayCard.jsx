@@ -11,11 +11,13 @@ export default function StayCard({
   return (
     <Link to={`/stays/${id}`} className="group block">
       <article>
-        <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-bg-mute">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-bg-mute
+                        ring-1 ring-primary/25 group-hover:ring-primary/50
+                        transition-[box-shadow] duration-150 motion-reduce:transition-none">
           {image && (
             <img src={image} alt={name}
-                 loading="lazy"
-                 className="w-full h-full object-cover
+              loading="lazy"
+              className="w-full h-full object-cover
                             transition-transform duration-[600ms] ease-out
                             motion-reduce:transition-none group-hover:scale-[1.04]" />
           )}

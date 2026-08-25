@@ -34,8 +34,8 @@ function PayLogo({ pkey, label }) {
   }
   return (
     <img src={`/images/pay/${pkey}.svg`} alt={label}
-         onError={() => setErr(true)}
-         className="max-h-11 max-w-full object-contain" />
+      onError={() => setErr(true)}
+      className="max-h-11 max-w-full object-contain" />
   )
 }
 
@@ -113,9 +113,9 @@ export default function CheckoutPage() {
             <div className="space-y-3">
               {PASSES.map((p) => (
                 <button key={p.key} type="button"
-                        onClick={() => setSelectedPass(p.key)}
-                        aria-pressed={selectedPass === p.key}
-                        className={`w-full text-left rounded-xl p-4 lg:p-5 shadow-card transition-shadow duration-150
+                  onClick={() => setSelectedPass(p.key)}
+                  aria-pressed={selectedPass === p.key}
+                  className={`w-full text-left rounded-xl p-4 lg:p-5 shadow-card transition-shadow duration-150
                                     ${selectedPass === p.key ? 'ring-2 ring-primary' : 'hover:ring-1 hover:ring-border-def'}`}>
                   <div className="flex items-baseline justify-between gap-3">
                     <p className="font-pretendard font-bold text-[17px] text-text-pri">{p.name}</p>
@@ -166,9 +166,9 @@ export default function CheckoutPage() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {PAY_METHODS.map((m) => (
                 <button key={m.key} type="button"
-                        onClick={() => setPayMethod(m.key)}
-                        aria-pressed={payMethod === m.key}
-                        className={`h-20 md:h-[88px] rounded-xl bg-white flex items-center justify-center px-4 shadow-card transition-shadow duration-150
+                  onClick={() => setPayMethod(m.key)}
+                  aria-pressed={payMethod === m.key}
+                  className={`h-20 md:h-[88px] rounded-xl bg-white flex items-center justify-center px-4 shadow-card transition-shadow duration-150
                                     ${payMethod === m.key ? 'ring-2 ring-primary' : 'hover:ring-1 hover:ring-border-def'}`}>
                   <PayLogo pkey={m.key} label={m.label} />
                 </button>
@@ -220,25 +220,25 @@ export default function CheckoutPage() {
             <div>
               <h3 className="font-pretendard font-bold text-[14px] text-text-pri mb-2">취소 및 환불</h3>
               <p className="font-pretendard font-normal text-[13px] text-text-meta leading-relaxed">
-                시작 48시간 전까지 취소하면 전액 환불하고, 48시간 이내에는 환불하지 않는다
+                시작 48시간 전까지 취소하면 전액 환불해요. 48시간 이내에는 환불하지 않아요
               </p>
               {/* 체크박스 행 전체가 히트 영역이다. 높이 44px 확보.
                   빈 상태에서도 2px 테두리로 또렷이 보이게 한다. 브라우저 기본 체크박스를 쓰지 않는다 */}
               <button type="button"
-                      role="checkbox"
-                      aria-checked={refundAgreed}
-                      onClick={() => setRefundAgreed((v) => !v)}
-                      className="mt-3 -mx-2 px-2 w-[calc(100%+1rem)] min-h-11 rounded-full
+                role="checkbox"
+                aria-checked={refundAgreed}
+                onClick={() => setRefundAgreed((v) => !v)}
+                className="mt-3 -mx-2 px-2 w-[calc(100%+1rem)] min-h-11 rounded-full
                                  flex items-center gap-3 text-left
                                  hover:bg-bg-mute
                                  transition-[background-color] duration-150 motion-reduce:transition-none">
                 <span aria-hidden="true"
-                      className={`w-5 h-5 rounded-sm shrink-0 border-2
+                  className={`w-5 h-5 rounded-sm shrink-0 border-2
                                   flex items-center justify-center
                                   transition-[background-color,border-color] duration-150 motion-reduce:transition-none
                                   ${refundAgreed
-                                    ? 'bg-primary border-primary'
-                                    : 'bg-white border-border-def'}`}>
+                      ? 'bg-primary border-primary'
+                      : 'bg-white border-border-def'}`}>
                   {refundAgreed && <Check size={13} className="text-white" strokeWidth={3.5} />}
                 </span>
                 <span className={`font-pretendard text-[14px]

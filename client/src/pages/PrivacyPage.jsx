@@ -24,7 +24,7 @@ const SECTIONS = [
   }
 ]
 
-const SECTION = 'mx-auto w-full px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 max-w-[720px]'
+const SECTION = 'container-page'
 
 export default function PrivacyPage() {
   return (
@@ -64,12 +64,9 @@ export default function PrivacyPage() {
             문의처
           </h2>
           <div className="mt-2 font-pretendard font-normal text-[14px] md:text-[15px] text-text-sec leading-relaxed space-y-1">
-            <p>공공 협력 기관 동해시청 관광과, 동해문화관광재단</p>
+            <p>강원특별자치도 동해시</p>
             <p>이메일 hello@donghaesai.kr</p>
           </div>
-          <p className="mt-4 font-pretendard font-normal text-[12px] text-text-meta">
-            본 방침은 발표용 시안이며 확정 문안은 협력 기관 검수 후 반영한다.
-          </p>
         </div>
       </div>
     </div>
