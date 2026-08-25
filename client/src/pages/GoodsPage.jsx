@@ -21,7 +21,7 @@ export default function GoodsPage() {
       <p className="mt-2 font-pretendard font-normal text-[15px] md:text-[16px] text-text-meta">
         마을의 손과 텃밭에서 온 상품
       </p>
-      <p className="mt-1 font-pretendard font-light text-[12px] md:text-[13px] text-text-meta">
+      <p className="mt-1 font-pretendard font-normal text-[12px] md:text-[13px] text-text-meta">
         총 {items.length}개 표시 중
       </p>
 

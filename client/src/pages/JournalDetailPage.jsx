@@ -17,7 +17,7 @@ export default function JournalDetailPage() {
         <img src={post.cover_image} alt={post.title} className="w-full h-full object-cover" />
       </div>
       <div className="mx-auto w-full max-w-[720px] px-5 md:px-0 py-10 lg:py-16">
-        <span className="font-pretendard font-medium text-[11px] tracking-[0.06em] text-primary uppercase">
+        <span className="font-pretendard font-semibold text-[13px] md:text-[14px] tracking-[0.12em] text-primary uppercase">
           {JOURNAL_CATEGORY_LABEL[post.category]}
         </span>
         <h1 className="mt-3 font-pretendard font-bold
@@ -30,7 +30,7 @@ export default function JournalDetailPage() {
         </p>
         <div className="mt-4 flex items-center gap-3 font-pretendard text-[13px]">
           <span className="font-medium text-text-meta">{post.author}</span>
-          <span className="font-light text-text-meta">{formatDateLong(post.published_at)}</span>
+          <span className="font-medium text-text-meta">{formatDateLong(post.published_at)}</span>
         </div>
 
         <div className="mt-8 font-pretendard font-normal text-[16px] md:text-[17px] text-text-sec leading-relaxed tracking-[-0.01em]">
@@ -39,7 +39,7 @@ export default function JournalDetailPage() {
 
         {next && next.id !== post.id && (
           <div className="mt-16 border-t border-border-sub pt-8">
-            <span className="font-pretendard font-light text-[12px] text-text-meta">다음 글</span>
+            <span className="font-pretendard font-medium text-[12px] text-text-meta">다음 글</span>
             <Link to={`/journal/${next.id}`} className="block mt-2 font-pretendard font-bold text-[18px] text-text-pri hover:text-primary transition-colors duration-100">
               {next.title}
             </Link>

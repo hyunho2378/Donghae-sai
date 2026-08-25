@@ -170,7 +170,7 @@ export default function SovereignHero() {
   )
 
   const disclaimer = (
-    <p className="font-pretendard font-light text-[12px] text-text-meta text-center">
+    <p className="font-pretendard font-normal text-[12px] text-text-meta text-center">
       동해 로컬 데이터만 사용해 답하며, 최신 정보와 다를 수 있어요
     </p>
   )

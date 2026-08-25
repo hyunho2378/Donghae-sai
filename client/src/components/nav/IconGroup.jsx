@@ -68,7 +68,7 @@ export default function IconGroup() {
                           py-2">
             <div className="px-4 py-3 border-b border-border-sub">
               <p className="font-pretendard font-bold text-[14px] text-text-pri">{user?.name}</p>
-              <p className="font-pretendard font-light text-[12px] text-text-meta">{user?.email}</p>
+              <p className="font-pretendard font-normal text-[12px] text-text-meta">{user?.email}</p>
               <p className="mt-1 font-pretendard font-medium text-[12px] text-primary">
                 패스 {membershipLabel}
               </p>

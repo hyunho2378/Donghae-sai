@@ -9,6 +9,7 @@ import ColorBlockCarousel from '../components/kareum/ColorBlockCarousel'
 import PackageCarousel from '../components/kareum/PackageCarousel'
 import staysData from '../data/stays.json'
 import packagesData from '../data/packages.json'
+import Eyebrow from '../components/Eyebrow'
 import { STAY_TYPE_LABEL } from '../lib/format'
 
 const REGIONS = ['전체', '추암', '무릉', '천곡', '묵호', '망상']
@@ -72,12 +73,8 @@ export default function StaysPage() {
                         pt-8 lg:pt-12">
 
           <RevealOnScroll className="mb-10 lg:mb-14">
-            <span className="inline-flex items-center h-[26px] px-2.5
-                             bg-bg-mute text-text-meta
-                             font-pretendard font-semibold text-[12px] tracking-[0.04em] rounded-md">
-              강원특별자치도 동해시
-            </span>
-            <h1 className="mt-4 font-pretendard font-bold
+            <Eyebrow>강원특별자치도 동해시</Eyebrow>
+            <h1 className="mt-3 font-pretendard font-bold
                            text-[22px] md:text-[26px] lg:text-[30px]
                            text-text-pri tracking-[-0.02em] leading-tight max-w-[820px]">
               흩어진 장소를 이어 하루 더 머무는 여행을 만든다
@@ -87,11 +84,11 @@ export default function StaysPage() {
             </p>
             <div className="mt-6 grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-3">
               {INTRO_STATS.map((s) => (
-                <div key={s.value} className="bg-bg-card shadow-card rounded-xl p-5">
-                  <p className="font-pretendard font-bold text-[22px] md:text-[26px] text-accent tracking-[-0.02em]">
+                <div key={s.value} className="bg-white shadow-depth rounded-xl p-5">
+                  <p className="font-pretendard font-bold text-[22px] md:text-[26px] text-accent tabular-nums">
                     {s.value}
                   </p>
-                  <p className="mt-1 font-pretendard font-medium text-[13px] text-text-meta">
+                  <p className="mt-1 font-pretendard font-semibold text-[13px] text-text-sec">
                     {s.label}
                   </p>
                 </div>
@@ -104,8 +101,8 @@ export default function StaysPage() {
             <div className="grid gap-3 md:gap-4 grid-cols-2 lg:grid-cols-4">
               {TYPE_ENTRIES.map((t) => (
                 <div key={t.key}
-                     className="overflow-hidden rounded-xl shadow-card">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-bg-card">
+                     className="overflow-hidden rounded-xl border border-primary bg-white">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-bg-mute">
                     {t.image ? (
                       <img src={t.image} alt={t.label} loading="lazy"
                            className="w-full h-full object-cover" />
@@ -114,10 +111,10 @@ export default function StaysPage() {
                     )}
                   </div>
                   <div className="p-4">
-                    <p className="font-pretendard font-bold text-[16px] md:text-[18px] tracking-[0.04em] text-text-pri">
+                    <p className="font-pretendard font-bold text-[16px] md:text-[18px] text-text-pri">
                       {t.label}
                     </p>
-                    <p className="mt-1 font-pretendard font-medium text-[13px] text-text-meta">
+                    <p className="mt-1 font-pretendard font-semibold text-[13px] text-text-sec tabular-nums">
                       {t.count}곳
                     </p>
                   </div>

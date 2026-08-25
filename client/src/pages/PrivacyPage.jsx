@@ -67,7 +67,7 @@ export default function PrivacyPage() {
             <p>공공 협력 기관 동해시청 관광과, 동해문화관광재단</p>
             <p>이메일 hello@donghaesai.kr</p>
           </div>
-          <p className="mt-4 font-pretendard font-light text-[12px] text-text-meta">
+          <p className="mt-4 font-pretendard font-normal text-[12px] text-text-meta">
             본 방침은 발표용 시안이며 확정 문안은 협력 기관 검수 후 반영한다.
           </p>
         </div>

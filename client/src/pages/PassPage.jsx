@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Download, MapPin, Star, Gift } from 'lucide-react'
 import html2canvas from 'html2canvas'
 import PassCard from '../components/card/PassCard'
+import Eyebrow from '../components/Eyebrow'
 import { STAMPS } from '../lib/format'
 
 // 발표 시연용 가짜 데이터다. NFC 실물 태그와 NeonDB를 연결하기 전까지 이 값을 쓴다
@@ -39,13 +40,14 @@ export default function PassPage() {
   return (
     <div className="page-enter container-page
                     py-8 lg:py-12">
-      <h1 className="font-pretendard font-bold
+      <Eyebrow>my pass</Eyebrow>
+      <h1 className="mt-3 font-pretendard font-bold
                      text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
-                     text-text-pri tracking-[-0.02em] leading-tight">
+                     text-text-pri leading-tight">
         마이 패스
       </h1>
-      <p className="mt-2 font-pretendard font-normal text-[15px] md:text-[16px] text-text-meta">
-        권역에서 태그할 때마다 스탬프가 쌓인다. 일곱 개를 다 모으면 문어 굿즈를 받는다
+      <p className="mt-2 font-pretendard font-medium text-[15px] md:text-[16px] text-text-sec leading-relaxed">
+        권역에서 태그할 때마다 스탬프가 하나씩 쌓이고, 일곱 개를 다 모으면 문어 굿즈를 받는다
       </p>
 
       <div className="mt-8 grid gap-10 lg:grid-cols-[480px_1fr]">
@@ -69,11 +71,11 @@ export default function PassPage() {
             카드 이미지 저장
           </button>
 
-        <section className="mt-6 shadow-card rounded-2xl p-6">
+        <section className="mt-6 bg-white shadow-depth rounded-[32px] p-5">
         <p className="font-pretendard font-bold text-[17px] text-text-pri tracking-[-0.02em]">
           아직 안 모은 권역
         </p>
-        <p className="mt-2 font-pretendard font-normal text-[14px] text-text-sec leading-relaxed">
+        <p className="mt-2 font-pretendard font-medium text-[15px] text-text-pri leading-relaxed">
           {STAMPS.filter((s) => s.kind === 'region' && !done.has(s.id)).map((s) => s.label).join(', ') || '전부 모았다'}
         </p>
         <Link to="/packages"
@@ -92,7 +94,7 @@ export default function PassPage() {
               <h2 className="font-pretendard font-bold text-[20px] md:text-[22px] lg:text-[24px] text-text-pri tracking-[-0.02em]">
                 스탬프
               </h2>
-              <p className="font-pretendard font-bold text-[15px] text-primary-hover">
+              <p className="font-pretendard font-bold text-[16px] text-primary-hover tabular-nums">
                 {done.size} / {total}
               </p>
             </div>
@@ -126,8 +128,8 @@ export default function PassPage() {
               })}
             </ul>
 
-            <p className="mt-5 font-pretendard font-light text-[13px] text-text-meta leading-relaxed">
-              권역 다섯 곳과 별빛 콘텐츠를 모으면 완주 스탬프가 열린다. 완주 보상은 문어 굿즈다
+            <p className="mt-5 font-pretendard font-normal text-[14px] text-text-sec leading-relaxed">
+              권역 다섯 곳과 별빛 콘텐츠를 모으면 완주 스탬프가 열리고, 보상으로 문어 굿즈를 받는다
             </p>
           </section>
 
@@ -137,8 +139,8 @@ export default function PassPage() {
             </h2>
             <ul className="divide-y divide-border-sub shadow-card rounded-xl">
               {DEMO.log.length === 0 ? (
-                <li className="px-5 py-4 font-pretendard font-light text-[14px] text-text-meta">
-                  아직 태그한 기록이 없습니다
+                <li className="px-5 py-4 font-pretendard font-normal text-[14px] text-text-meta">
+                  아직 태그한 기록이 없어요
                 </li>
               ) : DEMO.log.map((r) => {
                 const stamp = STAMPS.find((s) => s.id === r.stamp)
@@ -146,7 +148,7 @@ export default function PassPage() {
                   <li key={`${r.stamp}-${r.at}`} className="px-5 py-4 flex items-center justify-between gap-4">
                     <div className="min-w-0">
                       <p className="font-pretendard font-medium text-[15px] text-text-pri truncate">{r.place}</p>
-                      <p className="mt-0.5 font-pretendard font-light text-[13px] text-text-meta">{r.at}</p>
+                      <p className="mt-0.5 font-pretendard font-medium text-[13px] text-text-sec tabular-nums">{r.at}</p>
                     </div>
                     <span className="shrink-0 font-pretendard font-medium text-[12px] text-primary
                                      bg-primary-soft px-2.5 py-1 rounded-md">
@@ -156,8 +158,8 @@ export default function PassPage() {
                 )
               })}
             </ul>
-            <p className="mt-3 font-pretendard font-light text-[12px] text-text-meta">
-              방문 기록은 익명 패스 번호에만 연결된다. 이름과 전화번호는 받지 않는다
+            <p className="mt-3 font-pretendard font-normal text-[13px] text-text-meta leading-relaxed">
+              방문 기록은 익명 패스 번호에만 붙는다. 이름과 전화번호는 받지 않는다
             </p>
           </section>
         </div>

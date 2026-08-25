@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import KareumHeader from './KareumHeader'
 import Carousel from './Carousel'
 
 // KAREUM_MIRROR 2-8. 코스 2열 가로 캐러셀
@@ -10,9 +9,14 @@ export default function PackageCarousel({ title, items = [] }) {
   return (
     <section className="container-page
                         py-8">
-      <KareumHeader title={title} count={items.length} countLabel="개 코스" />
+      {/* 제목만 둔다. 긴 구분선과 개수 표기는 읽을 정보가 아니라 장식이었다 */}
+      <h2 className="font-pretendard font-bold
+                     text-[22px] md:text-[26px] lg:text-[30px]
+                     text-text-pri leading-tight">
+        {title}
+      </h2>
 
-      <div className="mt-8">
+      <div className="mt-6">
         <Carousel
           label={title}
           className="-mx-5 px-5 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12
@@ -22,8 +26,14 @@ export default function PackageCarousel({ title, items = [] }) {
             const hasPrice = p.price_label && p.price_label !== '확인 안 됨'
             return (
               <Link key={p.id} to={`/packages/${p.id}`} className="group block h-full">
-                <article className="flex flex-col h-full rounded-2xl overflow-hidden bg-white shadow-card">
-                  <div className="relative aspect-[16/9] overflow-hidden bg-bg-card border-b-2 border-primary">
+                {/* 카드가 흰 배경에 묻히지 않게 프라이머리 테두리를 원색으로 두른다 */}
+                <article className="flex flex-col h-full rounded-2xl overflow-hidden bg-white
+                                    border border-primary
+                                    transition-[box-shadow,transform] duration-200 ease-out
+                                    motion-reduce:transition-none
+                                    group-hover:shadow-depth-hover group-hover:-translate-y-0.5
+                                    group-active:scale-[0.96]">
+                  <div className="relative aspect-[16/9] overflow-hidden bg-bg-mute">
                     {p.main_image && (
                       <img src={p.main_image} alt={p.name} loading="lazy"
                            className="w-full h-full object-cover
@@ -53,7 +63,7 @@ export default function PackageCarousel({ title, items = [] }) {
                     <p className="mt-auto pt-4 text-right font-pretendard font-bold
                                   text-[16px] tracking-[-0.02em] text-text-strong">
                       {hasPrice ? p.price_label : (
-                        <span className="font-light text-[13px] text-text-meta">가격 자료 대기</span>
+                        <span className="font-medium text-[13px] text-text-meta">가격 자료 대기</span>
                       )}
                     </p>
                   </div>

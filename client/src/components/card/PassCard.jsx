@@ -26,12 +26,12 @@ const PassCard = forwardRef(function PassCard({ userName, planLabel, validLabel,
         <p className="font-pretendard font-medium text-[14px] text-white/80">
           스탬프 {collected} / {total}
         </p>
-        <p className="mt-0.5 font-pretendard font-light text-[13px] text-white/60">
+        <p className="mt-0.5 font-pretendard font-medium text-[13px] text-white/60">
           {validLabel}
         </p>
       </div>
       <div className="absolute bottom-6 right-6 lg:bottom-8 lg:right-8 w-24 h-24 bg-white rounded-md flex items-center justify-center">
-        <div className="font-pretendard font-light text-[10px] text-black text-center break-all px-1">
+        <div className="font-pretendard font-medium text-[10px] text-black text-center break-all px-1">
           {passCode}
         </div>
       </div>

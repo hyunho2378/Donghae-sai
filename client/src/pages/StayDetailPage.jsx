@@ -11,7 +11,8 @@ import DateRangePicker from '../components/DateRangePicker'
 import Carousel from '../components/kareum/Carousel'
 import RevealOnScroll from '../components/kareum/RevealOnScroll'
 import Eyebrow from '../components/Eyebrow'
-import { formatPrice, STAY_TYPE_LABEL, calcNights } from '../lib/format'
+import Description from '../components/Description'
+import { formatPrice, STAY_TYPE_LABEL, calcNights, cleanCopy, asList } from '../lib/format'
 import { useAuthStore } from '../store/useAuthStore'
 import { useBookmark } from '../hooks/useBookmark'
 
@@ -19,13 +20,6 @@ const DISCOUNT_RATE = 0.10
 
 // 미상 값 sentinel 은 화면에 내보내지 않는다
 const clean = (v) => (v && v !== '확인 안 됨' ? v : null)
-
-// 데이터 원문이 마침표 없이 잘린 경우 문장을 자연스럽게 맺는다
-const endSentence = (s) => {
-  if (!s) return s
-  const t = s.trimEnd()
-  return /[.。!?…”"’)]$/.test(t) ? t : `${t}.`
-}
 
 // hours 자유 문자열을 영업시간과 휴무 행으로 나눈다. 에서 표기는 물결로 바꾼다
 function buildInfoRows(stay) {
@@ -80,6 +74,7 @@ export default function StayDetailPage() {
   const main = stay.main_image || gallery[0]
   const lightboxImages = gallery.length ? gallery : (main ? [main] : [])
   const infoRows = buildInfoRows(stay)
+  const taglineItems = asList(stay.tagline)
 
   const onReserveClick = () => {
     if (!isAuthenticated) {
@@ -176,12 +171,12 @@ export default function StayDetailPage() {
 
           {/* 소개 */}
           <RevealOnScroll>
-            <h3 className="font-pretendard font-bold text-[22px] md:text-[26px] lg:text-[30px] text-text-pri tracking-[-0.02em] leading-tight">
-              {stay.tagline}
+            {/* 태그라인이 반점 나열이면 제목으로 세우지 않고 항목으로 편다 */}
+            <h3 className="font-pretendard font-bold text-[22px] md:text-[26px] lg:text-[30px] text-text-pri leading-tight">
+              {taglineItems ? '한눈에 보기' : cleanCopy(stay.tagline)}
             </h3>
-            <p className="mt-4 font-pretendard font-normal text-[15px] md:text-[16px] text-text-sec leading-relaxed tracking-[-0.01em]">
-              {endSentence(stay.long_description)}
-            </p>
+            {taglineItems && <Description text={stay.tagline} className="mt-4" />}
+            <Description text={stay.long_description} size="lg" className="mt-4" />
 
             {gallery.length > 1 && (
               <div className="mt-8 grid gap-3 md:gap-4 grid-cols-2">
@@ -206,13 +201,11 @@ export default function StayDetailPage() {
               </h3>
               <div className="grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-3">
                 {stay.highlights.map((h, i) => (
-                  <div key={i} className="shadow-card rounded-2xl p-5">
-                    <p className="font-pretendard font-bold text-[15px] text-text-pri tracking-[-0.02em]">
+                  <div key={i} className="bg-white shadow-depth rounded-2xl p-5">
+                    <p className="font-pretendard font-bold text-[15px] text-text-pri">
                       {h.title}
                     </p>
-                    <p className="mt-2 font-pretendard font-normal text-[13px] text-text-sec leading-relaxed line-clamp-4">
-                      {h.description}
-                    </p>
+                    {h.description && <Description text={h.description} className="mt-2" />}
                   </div>
                 ))}
               </div>
@@ -299,7 +292,7 @@ export default function StayDetailPage() {
 
         {/* 요금 예약 카드. 헤더(80px) 아래에 붙어 첫 화면부터 따라다닌다 */}
         <aside className="mt-10 lg:mt-0 lg:sticky lg:top-[92px] h-fit
-                          shadow-depth rounded-2xl p-5 lg:p-6 bg-white">
+                          shadow-depth rounded-[32px] p-5 bg-white">
           {!isFree ? (
             <>
               <Eyebrow>쿠폰 적용 할인가</Eyebrow>
@@ -425,7 +418,7 @@ export default function StayDetailPage() {
 
             <dl className="mt-6 space-y-3 font-pretendard text-[14px]">
               <div className="flex justify-between gap-4">
-                <dt className="font-medium text-text-meta">거점</dt>
+                <dt className="font-medium text-text-meta">장소</dt>
                 <dd className="font-bold text-text-pri text-right">{stay.name}</dd>
               </div>
               <div className="flex justify-between gap-4">

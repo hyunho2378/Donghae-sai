@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import Badge from '../Badge'
 export default function PackageCard({
   id, name, badges = [], images, main_image,
-  duration_label, short_description, itinerary = []
+  duration_label, short_description
 }) {
   const image = main_image || images?.[0]
   return (
@@ -23,7 +23,7 @@ export default function PackageCard({
           <h3 className="font-pretendard font-bold text-[19px] text-text-strong tracking-[-0.02em] line-clamp-2">
             {name}
           </h3>
-          <p className="mt-1 font-pretendard font-medium text-[14px] text-text-meta">
+          <p className="mt-1 font-pretendard font-semibold text-[14px] text-text-sec">
             {duration_label}
           </p>
           {short_description && (
@@ -31,13 +31,8 @@ export default function PackageCard({
               {short_description}
             </p>
           )}
-          {itinerary.length > 0 && (
-            <p className="mt-3 font-pretendard font-light text-[13px] text-text-meta line-clamp-1">
-              {itinerary[0].schedule.slice(0, 3).map((s) => s.activity).join(', ')}
-            </p>
-          )}
           <span className="mt-4 inline-flex items-center justify-center
-                           h-10 px-4
+                           h-11 px-4
                            bg-white text-primary border border-primary
                            font-pretendard font-medium text-[14px] rounded-lg
                            hover:bg-primary-soft transition-colors duration-150">

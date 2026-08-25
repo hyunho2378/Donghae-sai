@@ -54,7 +54,7 @@ export default function AdminPage() {
                 <tr key={r.id} className="border-b border-border-sub last:border-b-0">
                   <td className="px-5 py-4 font-pretendard font-medium text-[15px] text-text-pri">{r.stay}</td>
                   <td className="px-5 py-4 font-pretendard font-normal text-[15px] text-text-sec">{r.guest}</td>
-                  <td className="px-5 py-4 font-pretendard font-light text-[14px] text-text-meta">{formatDate(r.checkIn)}</td>
+                  <td className="px-5 py-4 font-pretendard font-medium text-[14px] text-text-meta">{formatDate(r.checkIn)}</td>
                   <td className="px-5 py-4 font-pretendard font-normal text-[15px] text-text-sec">{r.guests}명</td>
                   <td className="px-5 py-4">
                     <span className="font-pretendard font-medium text-[12px] text-primary bg-primary-soft px-2.5 py-1 rounded-md">

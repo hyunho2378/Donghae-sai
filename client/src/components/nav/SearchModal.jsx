@@ -192,7 +192,7 @@ export default function SearchModal({ onClose }) {
                           {CATEGORY_LABEL[item._category] || item._category}
                         </span>
                         {item._label && (
-                          <span className="font-pretendard font-light text-[12px] text-text-meta">
+                          <span className="font-pretendard font-medium text-[12px] text-text-meta">
                             {item._label}
                           </span>
                         )}

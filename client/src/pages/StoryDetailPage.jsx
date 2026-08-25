@@ -1,114 +1,108 @@
-import { useState } from 'react'
 import { useParams, Navigate, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { ArrowLeft, Link2, Check, Users, Pin, Lightbulb } from 'lucide-react'
+import { ArrowLeft, Users, Pin, Lightbulb, MapPin, Clock } from 'lucide-react'
 import storiesData from '../data/stories.json'
 import Carousel from '../components/kareum/Carousel'
 import RevealOnScroll from '../components/kareum/RevealOnScroll'
-import ScatterIllust from '../components/kareum/ScatterIllust'
+import Eyebrow from '../components/Eyebrow'
+import Description from '../components/Description'
+import { cleanCopy, endSentence, STAY_TYPE_LABEL } from '../lib/format'
 
-// 첫 스팟 블롭 마스킹 포인트용 path 하나. viewBox 0 0 400 400 기준
-const SPOT_BLOB = 'M 365.1 200.0 C 363.2 242.9, 330.6 295.1, 297.0 321.6 C 263.4 348.2, 206.5 366.7, 163.7 359.2 C 120.8 351.8, 59.1 315.7, 40.0 277.1 C 20.9 238.4, 28.5 166.6, 49.1 127.3 C 69.7 88.0, 120.5 51.7, 163.7 41.2 C 207.0 30.6, 274.8 37.6, 308.4 64.1 C 341.9 90.6, 367.0 157.1, 365.1 200.0 Z'
+// 스팟 갈래. 데이터는 type 한 필드만 쓴다
+const SPOT_LABEL = STAY_TYPE_LABEL
 
-const CATEGORY_LABEL = {
-  Culture: '문화',
-  Spot: '명소',
-  Stay: '스테이',
-  Cafe: '카페',
-  Dining: '식당',
-  Cowork: '코워킹',
-  Activity: '액티비티',
-  Market: '마켓'
-}
+// 자료 정리 과정에서 자동으로 붙은 제목이다. 화면에 낼 문구가 아니라 목차 메모다
+const AUTO_SUMMARY_TITLE = /(에서 볼 곳|에서 먹을 것)$/
+
+// hours 원문의 에서 표기를 물결로 바꾸고 미상 조각은 버린다
+const readableHours = (h) => cleanCopy(h)
+  .split(',')
+  .map((p) => p.trim())
+  .filter((p) => p && !/확인 안 됨|미기재|미상/.test(p))
+  .join(', ')
+  .replace(/에서/g, ' ~ ')
 
 export default function StoryDetailPage() {
   const { slug } = useParams()
-  const [copied, setCopied] = useState(false)
 
   const story = storiesData.find((s) => s.slug === slug)
   if (!story) return <Navigate to="/story" replace />
 
   const related = storiesData.filter((s) => story.related_stories?.includes(s.id))
-
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
-  const handleTwitterShare = () => {
-    const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(story.title)}`
-    window.open(url, '_blank', 'noopener noreferrer')
-  }
+  const summary = story.summary_box
+  const summaryTitle = typeof summary === 'string' ? '' : summary?.title
+  const summaryItems = typeof summary === 'string' ? [summary] : (summary?.items || [])
+  const showSummary = summaryItems.length > 0 && !AUTO_SUMMARY_TITLE.test(summaryTitle || '')
 
   return (
     <div className="page-enter">
       <Helmet>
         <title>{story.title} | 동해사이</title>
-        <meta name="description" content={story.subtitle || story.summary_box} />
+        <meta name="description" content={story.subtitle} />
         <meta property="og:title" content={`${story.title} | 동해사이`} />
-        <meta property="og:description" content={story.subtitle || story.summary_box} />
+        <meta property="og:description" content={story.subtitle} />
         <meta property="og:image" content={story.cover_image} />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="theme-color" content="#4AB8CD" />
       </Helmet>
 
-      {/* Hero 풀블리드. 커버 한 장. 슬라이더 아님. 하단에 카피와 이름 */}
-      <div className="relative w-full aspect-[21/9] min-h-[240px] max-h-[560px] overflow-hidden bg-bg-card">
+      {/* Hero 풀블리드. 높이는 상세 페이지 공통 기준을 따른다 */}
+      <div className="relative w-full h-[38vw] min-h-[220px] max-h-[400px] overflow-hidden bg-bg-card">
         <img src={story.cover_image} alt={story.title} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/45" />
-        <div className="absolute bottom-0 left-0 right-0
-                        px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24 pb-8 lg:pb-12">
-          <div className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px]">
-            <p className="font-pretendard font-medium text-[12px] md:text-[13px] tracking-[0.08em] text-white/80">
-              {story.category}
-            </p>
-            <h1 className="mt-2 font-pretendard font-bold
+
+        {/* 목록으로 돌아가는 길. 히어로 좌상단이 제자리다 */}
+        <div className="absolute top-0 left-0 right-0 pt-4">
+          <div className="container-page">
+            <Link to="/story"
+                  className="inline-flex items-center gap-1.5 h-11 pl-3 pr-4 -ml-3 rounded-full
+                             bg-black/35 hover:bg-black/55
+                             font-pretendard font-semibold text-[14px] text-white
+                             transition-[background-color,scale] duration-150 ease-out
+                             motion-reduce:transition-none active:scale-[0.96]">
+              <ArrowLeft size={16} />
+              스토리
+            </Link>
+          </div>
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 pb-8 lg:pb-10">
+          <div className="container-page">
+            <Eyebrow tone="light">{story.category}</Eyebrow>
+            <h1 className="mt-3 font-pretendard font-bold
                            text-[26px] md:text-[36px] lg:text-[44px]
-                           text-white tracking-[-0.02em] leading-tight">
+                           text-white leading-tight">
               {story.title}
             </h1>
           </div>
         </div>
       </div>
-      {story.cover_credit && (
-        <div className="container-page">
-          <p className="text-right font-pretendard font-light text-[12px] text-text-meta mt-2">
+
+      <div className="container-page pt-6 lg:pt-8">
+        {story.cover_credit && (
+          <p className="text-right font-pretendard font-normal text-[12px] text-text-meta">
             {story.cover_credit}
           </p>
-        </div>
-      )}
+        )}
 
-      <div className="container-page pt-8 lg:pt-12">
-
-        <Link to="/story"
-          className="inline-flex items-center gap-1.5 font-pretendard font-medium text-[14px]
-                         text-text-meta hover:text-text-pri transition-colors duration-100 mb-6">
-          <ArrowLeft size={16} />
-          스토리
-        </Link>
-
-        {/* 2. Subtitle. 수동 줄바꿈을 없애고 자동 줄바꿈에 맡긴다 */}
-        <p className="mt-3 font-pretendard font-normal
+        <p className="font-pretendard font-normal
                       text-[16px] md:text-[18px]
                       text-text-sec leading-relaxed">
           {story.subtitle?.replace(/\n/g, ' ')}
         </p>
 
-        {/* 3. Date + Author */}
         <div className="mt-4 flex items-center gap-3 font-pretendard">
-          <span className="font-light text-[13px] text-text-meta">{story.published_at}</span>
+          <span className="font-medium text-[13px] text-text-meta tabular-nums">{story.published_at}</span>
           <span className="w-px h-3 bg-border-def" />
           <span className="font-medium text-[13px] text-text-meta">{story.author}</span>
         </div>
 
-        {/* 4. Target audience box. 값 없으면 박스 숨김 */}
         {story.target_audience && (
-          <div className="mt-6 flex items-start gap-3 bg-bg-card rounded-xl p-4">
+          <div className="mt-6 flex items-start gap-3 bg-bg-mute rounded-2xl p-5">
             <Users size={20} className="shrink-0 mt-0.5 text-text-meta" />
             <div>
-              <p className="font-pretendard font-medium text-[13px] text-text-meta mb-1">추천 대상</p>
+              <p className="font-pretendard font-semibold text-[13px] text-text-meta mb-1">추천 대상</p>
               <p className="font-pretendard font-normal text-[14px] md:text-[15px] text-text-sec leading-relaxed">
                 {story.target_audience}
               </p>
@@ -116,147 +110,179 @@ export default function StoryDetailPage() {
           </div>
         )}
 
-        {/* 5. Highlights box */}
-        <div className="mt-4 flex items-start gap-3 bg-bg-card rounded-xl p-4">
-          <Pin size={20} className="shrink-0 mt-0.5 text-text-meta" />
-          <div>
-            <p className="font-pretendard font-medium text-[13px] text-text-meta mb-2">이 스토리의 특징</p>
-            <ol className="space-y-1.5">
-              {story.highlights?.map((h, i) => (
-                <li key={i} className="font-pretendard font-normal text-[14px] md:text-[15px] text-text-sec leading-relaxed">
-                  <span className="font-medium text-primary-hover mr-1.5">{i + 1}</span>
-                  {typeof h === 'string' ? h : `${h.title}. ${h.description}`}
-                </li>
-              ))}
-            </ol>
+        {/* 이 스토리의 특징. 제목은 굵게 세우고 설명은 항목이나 문장으로 편다 */}
+        {story.highlights?.length > 0 && (
+          <div className="mt-4 flex items-start gap-3 bg-bg-mute rounded-2xl p-5">
+            <Pin size={20} className="shrink-0 mt-0.5 text-text-meta" />
+            <div className="min-w-0 flex-1">
+              <p className="font-pretendard font-semibold text-[13px] text-text-meta mb-3">이 스토리의 특징</p>
+              <ol className="space-y-4">
+                {story.highlights.map((h, i) => {
+                  const title = typeof h === 'string' ? h : h.title
+                  const desc = typeof h === 'string' ? '' : h.description
+                  return (
+                    <li key={i}>
+                      <p className="font-pretendard font-bold text-[15px] md:text-[16px] text-text-pri">
+                        <span className="mr-2 text-primary tabular-nums">{i + 1}</span>
+                        {title}
+                      </p>
+                      {desc && <Description text={desc} className="mt-2" />}
+                    </li>
+                  )
+                })}
+              </ol>
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* 6. Summary box */}
-        <div className="mt-4 flex items-start gap-3 bg-bg-mute rounded-xl p-4">
-          <Lightbulb size={20} className="shrink-0 mt-0.5 text-text-meta" />
-          <p className="font-pretendard font-normal text-[14px] md:text-[15px] text-text-sec leading-relaxed">
-            {typeof story.summary_box === 'string'
-              ? story.summary_box
-              : `${story.summary_box?.title}. ${story.summary_box?.items?.join(', ')}`}
-          </p>
-        </div>
+        {showSummary && (
+          <div className="mt-4 flex items-start gap-3 bg-primary-soft rounded-2xl p-5">
+            <Lightbulb size={20} className="shrink-0 mt-0.5 text-primary-hover" />
+            <div className="min-w-0 flex-1">
+              {summaryTitle && (
+                <p className="font-pretendard font-semibold text-[13px] text-primary-hover mb-2">
+                  {summaryTitle}
+                </p>
+              )}
+              <ul className="space-y-1.5">
+                {summaryItems.map((it) => (
+                  <li key={it} className="font-pretendard font-medium text-[14px] md:text-[15px] text-text-pri leading-relaxed">
+                    {it}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* 8. Intro paragraphs */}
       <div className="container-page mt-10 lg:mt-12">
         <div className="space-y-5">
           {story.intro_paragraphs?.map((p, i) => (
             <p key={i} className="font-pretendard font-normal
                                    text-[15px] md:text-[16px] 4xl:text-[17px]
-                                   text-text-sec leading-relaxed tracking-[-0.01em]">
-              {p}
+                                   text-text-sec leading-relaxed">
+              {endSentence(p)}
             </p>
           ))}
         </div>
 
-        {/* 9. Spots */}
-        <div className="mt-12 space-y-16">
-          {story.spots?.map((spot, i) => (
-            <RevealOnScroll key={i}>
-              {/* Spot number + name + category */}
-              <div className="flex items-baseline gap-3 mb-4">
-                <span className="font-pretendard font-bold text-[32px] md:text-[40px]
-                                 text-text-ter tracking-[-0.02em] leading-none">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <div>
-                  <h2 className="font-pretendard font-bold
-                                 text-[20px] md:text-[22px] lg:text-[24px]
-                                 text-text-pri tracking-[-0.02em] leading-tight">
-                    {spot.name}
-                  </h2>
-                  <span className="mt-0.5 inline-block font-pretendard font-medium text-[12px]
-                                   text-primary tracking-[0.04em]">
-                    {CATEGORY_LABEL[spot.category] || spot.category}
+        {/* 스팟. 사진은 섹션을 꽉 채우고 그 아래 소개 글이 따라온다 */}
+        <div className="mt-12 space-y-14">
+          {story.spots?.map((spot, i) => {
+            const hours = readableHours(spot.hours)
+            return (
+              <RevealOnScroll key={i}>
+                <div className="flex items-baseline gap-3 mb-4">
+                  <span className="font-pretendard font-bold text-[32px] md:text-[40px]
+                                   text-text-ter leading-none tabular-nums">
+                    {String(i + 1).padStart(2, '0')}
                   </span>
+                  <div>
+                    <h2 className="font-pretendard font-bold
+                                   text-[20px] md:text-[22px] lg:text-[24px]
+                                   text-text-pri leading-tight">
+                      {spot.name}
+                    </h2>
+                    <span className="mt-1 inline-block font-pretendard font-semibold text-[12px]
+                                     text-primary tracking-[0.08em] uppercase">
+                      {SPOT_LABEL[spot.type] || ''}
+                    </span>
+                  </div>
                 </div>
-              </div>
 
-              {/* 스팟 사진. 첫 스팟만 BlobCard 방식 블롭 마스킹 포인트. 나머지는 풀블리드 16:9 */}
-              {i === 0 && spot.image ? (
-                <div className="relative w-full max-w-[420px] mx-auto aspect-square mb-1">
-                  <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet"
-                    className="absolute inset-0 w-full h-full">
-                    <defs>
-                      <clipPath id={`story-spot-blob-${i}`}>
-                        <path d={SPOT_BLOB} />
-                      </clipPath>
-                    </defs>
-                    <g clipPath={`url(#story-spot-blob-${i})`}>
-                      <image href={spot.image} x="0" y="0" width="400" height="400"
-                        preserveAspectRatio="xMidYMid slice" />
-                    </g>
-                  </svg>
-                  <ScatterIllust items={[]} />
-                </div>
-              ) : (
-                <div className="-mx-5 md:-mx-8 lg:-mx-12 xl:-mx-16 3xl:-mx-24
-                                aspect-[16/9] overflow-hidden rounded-none md:rounded-xl
-                                bg-bg-card mb-1">
-                  {spot.image && (
-                    <img
-                      src={spot.image}
-                      alt={spot.name}
-                      className="w-full h-full object-cover" />
-                  )}
-                </div>
-              )}
-              <p className="font-pretendard font-light text-[12px] text-text-meta mb-5 text-right
-                             px-0">
-                {spot.credit}
-              </p>
-
-              {/* Spot description */}
-              <div className="space-y-4">
-                {spot.description_paragraphs?.map((p, j) => (
-                  <p key={j} className="font-pretendard font-normal
-                                        text-[15px] md:text-[16px]
-                                        text-text-sec leading-relaxed tracking-[-0.01em]">
-                    {p}
+                {spot.image && (
+                  <div className="-mx-5 md:-mx-8 lg:-mx-12 xl:-mx-16 3xl:-mx-24
+                                  aspect-[16/9] overflow-hidden rounded-none md:rounded-2xl
+                                  bg-bg-mute mb-3">
+                    <img src={spot.image} alt={spot.name} loading="lazy"
+                         className="w-full h-full object-cover" />
+                  </div>
+                )}
+                {spot.credit && (
+                  <p className="font-pretendard font-normal text-[12px] text-text-meta mb-4 text-right">
+                    {spot.credit}
                   </p>
-                ))}
-              </div>
+                )}
 
-              {/* Linked stay CTA */}
-              {spot.linked_stay_id && (
-                <div className="mt-5">
-                  <Link
-                    to={`/stays/${spot.linked_stay_id}`}
-                    className="inline-flex items-center h-10 px-5
-                               bg-white text-primary border border-primary
-                               font-pretendard font-medium text-[14px] rounded-lg
-                               hover:bg-primary-soft transition-colors duration-150">
-                    스테이 예약하기
-                  </Link>
+                {/* 소개 글. 데이터에 있는 원문을 그대로 노출한다 */}
+                <div className="space-y-4">
+                  {spot.description_paragraphs?.length > 0
+                    ? spot.description_paragraphs.map((p, j) => (
+                        <p key={j} className="font-pretendard font-normal
+                                              text-[15px] md:text-[16px]
+                                              text-text-sec leading-relaxed">
+                          {endSentence(p)}
+                        </p>
+                      ))
+                    : <Description text={spot.description} size="lg" />}
                 </div>
-              )}
-            </RevealOnScroll>
-          ))}
+
+                {(spot.address || hours) && (
+                  <dl className="mt-5 rounded-2xl bg-bg-mute overflow-hidden">
+                    {spot.address && (
+                      <div className="flex gap-4 px-5 py-4">
+                        <dt className="w-14 shrink-0 font-pretendard font-semibold text-[13px] text-text-meta">주소</dt>
+                        <dd className="flex-1 font-pretendard font-medium text-[14px] text-text-pri leading-relaxed">
+                          <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(spot.address)}`}
+                             target="_blank" rel="noopener noreferrer"
+                             className="inline-flex items-start gap-1.5 hover:text-primary
+                                        transition-[color] duration-150 motion-reduce:transition-none">
+                            <MapPin size={15} className="shrink-0 mt-0.5 text-text-meta" />
+                            {spot.address}
+                          </a>
+                        </dd>
+                      </div>
+                    )}
+                    {hours && (
+                      <div className={`flex gap-4 px-5 py-4 ${spot.address ? 'border-t border-border-sub' : ''}`}>
+                        <dt className="w-14 shrink-0 font-pretendard font-semibold text-[13px] text-text-meta">운영</dt>
+                        <dd className="flex-1 font-pretendard font-medium text-[14px] text-text-pri leading-relaxed">
+                          <span className="inline-flex items-start gap-1.5">
+                            <Clock size={15} className="shrink-0 mt-0.5 text-text-meta" />
+                            {hours}
+                          </span>
+                        </dd>
+                      </div>
+                    )}
+                  </dl>
+                )}
+
+                {spot.linked_stay_id && (
+                  <div className="mt-5">
+                    <Link
+                      to={`/stays/${spot.linked_stay_id}`}
+                      className="inline-flex items-center h-11 px-5
+                                 bg-white text-primary border border-primary
+                                 font-pretendard font-semibold text-[14px] rounded-lg
+                                 hover:bg-primary-soft
+                                 transition-[background-color,scale] duration-150 ease-out
+                                 motion-reduce:transition-none active:scale-[0.96]">
+                      스테이 예약하기
+                    </Link>
+                  </div>
+                )}
+              </RevealOnScroll>
+            )
+          })}
         </div>
 
-        {/* 10. FAQ */}
         {story.faq?.length > 0 && (
-          <div className="mt-16 pt-12 border-t border-border-sub">
+          <div className="mt-14 pt-10 border-t border-border-sub">
             <h2 className="font-pretendard font-bold
                            text-[20px] md:text-[22px] lg:text-[24px]
-                           text-text-pri tracking-[-0.02em] mb-8">
+                           text-text-pri mb-8">
               자주 묻는 질문
             </h2>
             <div className="space-y-8">
               {story.faq.map((item, i) => (
                 <div key={i}>
                   <p className="font-pretendard font-bold text-[16px] md:text-[17px]
-                                 text-text-pri tracking-[-0.01em] mb-2">
+                                 text-text-pri mb-2">
                     Q. {item.question}
                   </p>
                   <p className="font-pretendard font-normal text-[15px] md:text-[16px]
-                                 text-text-sec leading-relaxed tracking-[-0.01em]">
+                                 text-text-sec leading-relaxed">
                     {item.answer}
                   </p>
                 </div>
@@ -264,51 +290,14 @@ export default function StoryDetailPage() {
             </div>
           </div>
         )}
-
-        {/* 11. Share buttons */}
-        <div className="mt-12 pt-8 border-t border-border-sub">
-          <p className="font-pretendard font-medium text-[14px] text-text-meta mb-4">
-            이 스토리 공유하기
-          </p>
-          <div className="flex gap-3">
-            <button
-              onClick={handleCopyLink}
-              className="inline-flex items-center gap-2 h-10 px-4
-                         bg-white border border-border-def rounded-lg
-                         font-pretendard font-medium text-[14px] text-text-sec
-                         hover:border-primary hover:text-primary
-                         transition-colors duration-150">
-              {copied ? <Check size={15} /> : <Link2 size={15} />}
-              {copied ? '복사됨' : '링크 복사'}
-            </button>
-            <button
-              onClick={handleTwitterShare}
-              className="inline-flex items-center gap-2 h-10 px-4
-                         bg-white border border-border-def rounded-lg
-                         font-pretendard font-medium text-[14px] text-text-sec
-                         hover:border-primary hover:text-primary
-                         transition-colors duration-150">
-              X(트위터)
-            </button>
-            <button
-              onClick={() => alert('카카오 공유 기능은 준비 중입니다.')}
-              className="inline-flex items-center gap-2 h-10 px-4
-                         bg-white border border-border-def rounded-lg
-                         font-pretendard font-medium text-[14px] text-text-ter
-                         cursor-not-allowed">
-              카카오 (준비중)
-            </button>
-          </div>
-        </div>
       </div>
 
-      {/* 12. Related stories */}
       {related.length > 0 && (
-        <div className="mt-16 bg-bg-mute py-12 lg:py-16">
+        <div className="mt-14 bg-bg-mute py-12 lg:py-16">
           <div className="container-page">
             <h2 className="font-pretendard font-bold
                            text-[20px] md:text-[22px] lg:text-[24px]
-                           text-text-pri tracking-[-0.02em] mb-6">
+                           text-text-pri mb-6">
               비슷한 스토리
             </h2>
             <Carousel label="비슷한 스토리"
@@ -320,13 +309,14 @@ export default function StoryDetailPage() {
                     <img
                       src={s.cover_image}
                       alt={s.title}
+                      loading="lazy"
                       className="w-full h-full object-cover
                                  transition-transform duration-[600ms] ease-out
                                  motion-reduce:transition-none group-hover:scale-[1.04]" />
                   </div>
                   <h3 className="mt-3 font-pretendard font-bold
                                  text-[16px] md:text-[17px]
-                                 text-text-strong tracking-[-0.02em] leading-snug line-clamp-2">
+                                 text-text-strong leading-snug line-clamp-2">
                     {s.title}
                   </h3>
                   <p className="mt-1 font-pretendard font-medium text-[13px] text-text-meta">

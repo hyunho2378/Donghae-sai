@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import RevealOnScroll from '../components/kareum/RevealOnScroll'
 import ChoiceCuration from '../components/kareum/ChoiceCuration'
+import Eyebrow from '../components/Eyebrow'
 import storiesData from '../data/stories.json'
 
 const TABS = [
@@ -20,12 +21,13 @@ export default function StoryListPage() {
     <div className="page-enter">
       <div className="container-page
                       py-8 lg:py-12">
-        <h1 className="font-pretendard font-bold
+        <Eyebrow>donghae story</Eyebrow>
+        <h1 className="mt-3 font-pretendard font-bold
                        text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
-                       text-text-pri tracking-[-0.02em] leading-tight">
+                       text-text-pri leading-tight">
           동해 스토리
         </h1>
-        <p className="mt-2 font-pretendard font-normal text-[15px] md:text-[16px] text-text-meta">
+        <p className="mt-2 font-pretendard font-medium text-[15px] md:text-[16px] text-text-sec">
           권역과 사람과 음식으로 읽는 동해
         </p>
 
@@ -59,9 +61,10 @@ export default function StoryListPage() {
                     <img
                       src={s.cover_image}
                       alt={s.title}
+                      loading="lazy"
                       className="w-full h-full object-cover
                                  transition-transform duration-[600ms] ease-out
-                                 group-hover:scale-[1.04]" />
+                                 motion-reduce:transition-none group-hover:scale-[1.04]" />
                     <span className="absolute top-3 left-3
                                      h-[26px] px-2.5
                                      bg-accent text-white
@@ -71,7 +74,7 @@ export default function StoryListPage() {
                     </span>
                   </div>
                   <div className="pt-4">
-                    <p className="font-pretendard font-light text-[12px] text-text-meta">
+                    <p className="font-pretendard font-semibold text-[12px] tracking-[0.08em] text-primary">
                       {s.spots?.length ? `스팟 ${s.spots.length}곳` : ''}{s.tags?.[0] ? ` ${s.tags[0]}` : ''}
                     </p>
                     <h3 className="mt-1 font-pretendard font-bold

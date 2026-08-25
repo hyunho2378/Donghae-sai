@@ -1715,3 +1715,136 @@ R4 가 입력창 면을 회색(bg-bg-mute)으로 칠한 것을 되돌림. 배경
 ## 남은 판단 (사용자)
 
 - StoryDetail 히어로 캡션 720 유지 여부. 완전 일치 원하면 line 63 을 container-page 로 바꾸면 본문과 동일 좌측
+
+---
+
+# MASTER_FINAL 전 항목 실행 (2026-08-25)
+
+측정 환경. `npm run build` 로 만든 프로덕션 `dist` 를 `vite preview :4173` 로 올리고
+Chrome 151 헤드리스를 CDP 로 붙여 `getComputedStyle` 과 `getBoundingClientRect` 값을 읽었다.
+Vercel 이 서빙하는 것과 같은 산출물이다. 아직 push 하지 않았으므로 라이브 URL 실측은 아니다.
+아래 수치는 전부 측정값이고 추정은 없다.
+
+## 검증 기준
+
+make-interfaces-feel-better(SKILL/typography/surfaces/animations/performance), im-not-ai(CLAUDE.md, quick-rules 10대 70패턴), skills-main 을 읽고 적용했다.
+
+## A. 타이포 위계
+
+- `font-light` 35건 → **0건**. 값과 날짜는 medium, 설명은 normal 로 올림
+- 공용 아이브로우 `components/Eyebrow.jsx` 신설. 11개 파일에서 사용
+- 아이브로우 computed 값이 8개 페이지에서 전부 동일: `14px / weight 600 / letter-spacing 1.68px / uppercase`
+  (`/membership /story /pass /mypage /stays /stays/:id /packages/:id /story/:slug`)
+- `index.css` @layer base 에 h1~h4 `letter-spacing:-0.02em; line-height:1.2; text-wrap:balance`,
+  p/li/dd/figcaption/blockquote `text-wrap:pretty` 를 한 곳에서 정의
+- 사진 1px 인셋 아웃라인 `rgba(0,0,0,0.1)` 을 jpg/jpeg/webp 에만 적용. 로고 svg 와 무코 png 는 제외
+- 값 색 상향: 카드 요금 `text-text-meta` → `text-text-pri` + `tabular-nums`, 권역 라벨은 프라이머리 아이브로우로
+
+## B. 히어로 세로 압축
+
+| 페이지 | 이전 | 실측 |
+|---|---|---|
+| `/stays/sai-001` | `h-[38vw] max-h-[400px]` | **400px** |
+| `/story/muleung` | `aspect-[21/9] max-h-[560px]` | **400px** |
+| `/packages/:id` | `h-[50vw] max-h-[560px]` | **400px** |
+
+768폭에서는 셋 다 292px 로 같다.
+
+## C. 스티키 요금 카드와 날짜 선택
+
+- `aside` computed: `position:sticky, top:92px, radius:32px`
+- 1440x900 첫 화면에서 카드 top **505px**, bottom **870px** (뷰포트 900) → 스크롤 없이 전체가 보임
+- 날짜 선택 라이브 클릭 실측
+  - 1회 클릭 → `체크인 2026-08-27 ~ 체크아웃 선택`, 달력 **열린 채 유지**, 안내문 `체크아웃 날짜를 고르세요`
+  - 2회 클릭 → `체크인 2026-08-27 ~ 체크아웃 2026-08-28`, 달력 **닫힘**, 버튼 `예약하기` **활성**
+- 트리거를 체크인/체크아웃 두 칸으로 분리해 선택 상태가 항상 보이게 함
+
+## D. 환불 동의 체크박스
+
+- 비활성: `border 2px rgb(220,220,220)`, `background rgb(255,255,255)` → 흰 배경에서도 테두리가 보임
+- 활성: `background rgb(74,184,205)` + SVG 체크 표시
+- 히트 영역 **356 x 44** (행 전체가 버튼)
+
+## E. 푸터
+
+- `background-color rgb(42,107,120)` = #2A6B78. `bg-black` 0건
+- `flex-direction: column`
+- 메뉴 `["동해 스토리","동해 사이","굿즈","패스"]` — 프로그램 없음
+- 각 항목 히트 높이 44px, 좌측 로고 있음, 개인정보처리방침 링크 있음, 협력 기관 2곳 표기 유지
+
+## F. 동해 사이 페이지
+
+- `개 코스` 표기 **false**, 구분선 span **0개** (KareumHeader 를 이 페이지에서 제거)
+- 코스 카드 `border-top: 1px rgb(74,184,205)`, 네 갈래 진입 카드도 동일
+- 사진 하단 프라이머리 언더라인 `border-bottom-width: 0px`
+
+## G. 스토리 상세
+
+- 공유 블록 **삭제됨** (링크복사/트위터/카카오)
+- `무릉에서 볼 곳` 같은 자동 생성 목차 문구 **노출 0**
+- 말줄임 `...` 노출 **0**
+- 반점 나열이 항목 칩 **18개**로 분해됨
+- 스팟 본문 노출 확인 (`spot.description_paragraphs` 만 읽어 비어 있던 것을 `spot.description` 폴백으로 수정). 주소와 운영시간 표 추가
+- 뒤로가기 버튼 히어로 좌상단 `top: 29px`
+- 첫 스팟 블롭 마스킹 제거 → 모든 스팟이 같은 16:9 풀블리드 `object-cover`
+
+## H. 반점 나열 정리
+
+- `lib/format.js` 에 `cleanCopy` `asList` `endSentence` 추가, `components/Description.jsx` 로 공용화
+- 천 단위 반점(1,400미터)은 자르지 않고 문장이 섞이면 목록으로 보지 않음
+- `client/scripts/test-format.mjs` 자체 검증 통과
+- clamp 걸린 카드 설명 167개 전수: 2줄 초과 **0건**
+
+## I. UX 라이팅
+
+- `NFC 태그 세 가지` → `3가지 NFC 태그`
+- 마이 패스 안내를 흐름이 끊기지 않게 연결형으로 재작성
+- 패스 FAQ 4건을 읽히는 문장으로 재작성(익명 패스 번호 문단 포함)
+- 체크아웃 이용권 설명과 환불 문구를 사이트 한다체로 통일
+- `거점` → `장소`
+
+## J. 패스 페이지
+
+- 플랜 카드 3장 첫 화면 실측: top **395px**, bottom **786px**, 800/900/1080 뷰포트 전부 `allInFirstScreen: true`
+- 카드 톤 3종 구분: 흰색 / 흰색+`2px rgb(252,80,72)` 무코 코랄 테두리(추천 2일권) / `rgb(232,246,249)` 프라이머리 소프트
+- 무코 캐릭터 이미지 히어로에 배치, 히어로 배경 `accent-soft`
+- 하단 CTA 블록(오늘 밤 하루 더 머문다 / 2일권으로 시작하기 / 굿즈 보기) **삭제됨**
+- 스탬프 7단계를 `grid-cols-4 md:grid-cols-7` 로 바꿔 원과 라벨 정렬
+
+## K. 마이페이지
+
+- 기존 `/mypage` 유지. 아이브로우 추가, 예약 내역 바로가기가 `/pass` 로 잘못 가던 것을 페이지 내 앵커로 교정
+- 헤더 사람 아이콘 → 마이페이지 진입 경로 그대로
+
+## L. 챗봇 fab
+
+- 56x56, `box-shadow: rgba(16,16,16,0.1) 0 2px 4px -1px, rgba(16,16,16,0.18) 0 8px 20px -4px`
+- `transition-property: box-shadow, transform, background-color` (transition-all 아님)
+- hover 시 `-translate-y-0.5` + 짙은 그림자, press `scale(0.96)`
+
+## M. 헤더 정렬
+
+헤더 내부 컨테이너를 본문과 같은 `.container-page` 로 교체. 로고 left 와 본문 h1 left 실측.
+
+| 폭 | 320 | 390 | 768 | 1024 | 1280 | 1440 | 1536 | 1920 |
+|---|---|---|---|---|---|---|---|---|
+| Δ(로고−h1) | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+## N. 이미지 채움
+
+- `/story/mukho`, `/story/people-mukho` 전 이미지 `object-fit: cover`, 이미지 박스와 크기 완전 일치(1425x400 히어로, 1400x788 스팟)
+
+## 최종 검증
+
+- grep: `font-light` **0**, `transition-all` **0**, 푸터 `bg-black` **0**, 푸터 메뉴 프로그램 **0**
+- 동심원 라운드 감사(둥근 조상 안의 둥근 자손 전수, absolute 오버레이 제외): 9개 페이지 **위반 0건**
+  - 요금 카드 `rounded-[32px] p-5` + 내부 컨트롤 12px
+  - 결제 스티키 패널 `rounded-[36px] p-5` + 내부 버튼 16px
+  - 패스 플랜 카드 `rounded-[32px] p-5` + CTA 12px
+  - 사진 위 배지는 `rounded-full` 로 바꿔 오버레이로 분리
+- 가로 오버플로 스윕: 13개 페이지 x 320/390/768/1024/1280/1536/1920 = **91개 조합 전부 0px**
+- `npm run build` 통과
+
+## 남은 것
+
+- 라이브 URL 실측은 `git push` 로 Vercel 배포가 돌아야 가능하다. 배포는 하지 않았다

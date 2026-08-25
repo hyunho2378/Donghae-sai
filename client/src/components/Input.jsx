@@ -22,7 +22,7 @@ export default function Input({ label, error, className, type = 'text', ...rest 
         )}
         {...rest} />
       {error && (
-        <span className="mt-1 block font-pretendard font-light text-[12px] text-red-600">{error}</span>
+        <span className="mt-1 block font-pretendard font-medium text-[12px] text-red-600">{error}</span>
       )}
     </label>
   )

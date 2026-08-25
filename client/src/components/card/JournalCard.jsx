@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import Eyebrow from '../Eyebrow'
 import { formatDate, JOURNAL_CATEGORY_LABEL } from '../../lib/format'
 
 export default function JournalCard({
@@ -10,15 +11,14 @@ export default function JournalCard({
         <div className="aspect-[4/3] overflow-hidden rounded-xl bg-bg-card">
           {cover_image && (
             <img src={cover_image} alt={title}
+                 loading="lazy"
                  className="w-full h-full object-cover
                             transition-transform duration-[600ms] ease-out
-                            group-hover:scale-[1.04]" />
+                            motion-reduce:transition-none group-hover:scale-[1.04]" />
           )}
         </div>
         <div className="pt-4">
-          <span className="font-pretendard font-medium text-[11px] tracking-[0.06em] text-primary uppercase">
-            {JOURNAL_CATEGORY_LABEL[category]}
-          </span>
+          <Eyebrow as="span" className="inline-block">{JOURNAL_CATEGORY_LABEL[category]}</Eyebrow>
           <h3 className="mt-2 font-pretendard font-bold text-[18px] text-text-strong tracking-[-0.02em] line-clamp-2">
             {title}
           </h3>
@@ -27,7 +27,7 @@ export default function JournalCard({
           </p>
           <div className="mt-3 flex items-center gap-2">
             <span className="font-pretendard font-medium text-[13px] text-text-meta">{author}</span>
-            <span className="font-pretendard font-light text-[13px] text-text-meta">{formatDate(published_at)}</span>
+            <span className="font-pretendard font-medium text-[13px] text-text-meta">{formatDate(published_at)}</span>
           </div>
         </div>
       </article>

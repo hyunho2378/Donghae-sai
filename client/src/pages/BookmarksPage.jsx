@@ -21,7 +21,7 @@ export default function BookmarksPage() {
         <h1 className="font-pretendard font-bold text-[24px] lg:text-[28px] text-text-pri tracking-[-0.02em]">
           내 북마크
         </h1>
-        <p className="mt-1 font-pretendard font-light text-[14px] text-text-meta">
+        <p className="mt-1 font-pretendard font-normal text-[14px] text-text-meta">
           저장한 공간 {total}곳
         </p>
       </div>

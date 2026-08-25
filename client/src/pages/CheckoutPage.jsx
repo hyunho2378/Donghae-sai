@@ -8,9 +8,9 @@ import { formatPrice, calcNights } from '../lib/format'
 
 // 동해사이 패스 3종. 자료집 확정 가격
 const PASSES = [
-  { key: '1day', name: '1일권', price: 5000, desc: '하루 동안 제휴처 할인과 스탬프를 이용해요' },
-  { key: '2day', name: '2일권', price: 8000, desc: '저녁부터 다음 날 아침까지 이틀을 잇는 코스' },
-  { key: '3day', name: '3일권', price: 10000, desc: '사흘 동안 동해 다섯 권역을 담아요' }
+  { key: '1day', name: '1일권', price: 5000, desc: '하루 동안 제휴처 할인과 스탬프를 쓴다' },
+  { key: '2day', name: '2일권', price: 8000, desc: '저녁부터 다음 날 아침까지 이틀을 잇는다' },
+  { key: '3day', name: '3일권', price: 10000, desc: '사흘에 걸쳐 동해 다섯 권역을 다 돈다' }
 ]
 
 // 결제 수단 8종. 로고 파일은 client/public/images/pay 의 각 svg. 부재 시 텍스트 폴백
@@ -128,7 +128,7 @@ export default function CheckoutPage() {
           </section>
 
           {/* 선택 요약 */}
-          <section className="shadow-card rounded-xl p-5 lg:p-6">
+          <section className="bg-white shadow-depth rounded-2xl p-5">
             <h2 className="font-pretendard font-bold text-[16px] text-text-pri mb-4">선택 요약</h2>
             <dl className="space-y-3 font-pretendard text-[14px]">
               {item && (
@@ -161,7 +161,7 @@ export default function CheckoutPage() {
           </section>
 
           {/* 결제 수단 */}
-          <section className="shadow-card rounded-xl p-5 lg:p-6">
+          <section className="bg-white shadow-depth rounded-[36px] p-5">
             <h2 className="font-pretendard font-bold text-[16px] text-text-pri mb-4">결제 수단</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {PAY_METHODS.map((m) => (
@@ -187,15 +187,15 @@ export default function CheckoutPage() {
               </div>
             )}
 
-            <p className="mt-4 font-pretendard font-light text-[12px] text-text-meta">
-              프로토타입 화면입니다. 실제 결제가 이뤄지지 않습니다
+            <p className="mt-4 font-pretendard font-normal text-[12px] text-text-meta">
+              프로토타입 화면이라 실제 결제는 일어나지 않는다
             </p>
           </section>
         </div>
 
         {/* 우측 스티키 결제 */}
         <div className="mt-6 lg:mt-0">
-          <div className="lg:sticky lg:top-24 shadow-card rounded-xl p-5 lg:p-6 space-y-5">
+          <div className="lg:sticky lg:top-[92px] bg-white shadow-depth rounded-[36px] p-5 space-y-5">
 
             <div>
               <h2 className="font-pretendard font-bold text-[16px] text-text-pri mb-3">금액 내역</h2>
@@ -211,16 +211,16 @@ export default function CheckoutPage() {
               </dl>
             </div>
 
-            <div className="rounded-lg bg-primary-soft px-4 py-3">
+            <div className="rounded-xl bg-primary-soft px-4 py-3">
               <p className="font-pretendard font-medium text-[13px] text-primary-hover leading-relaxed">
-                패스 금액에 제휴처 할인과 스탬프 이용이 모두 포함됩니다
+                패스 하나에 제휴처 할인과 스탬프가 모두 들어 있다
               </p>
             </div>
 
             <div>
               <h3 className="font-pretendard font-bold text-[14px] text-text-pri mb-2">취소 및 환불</h3>
               <p className="font-pretendard font-normal text-[13px] text-text-meta leading-relaxed">
-                시작 48시간 전 취소 시 보증금 전액 환불, 48시간 이내는 환불 불가
+                시작 48시간 전까지 취소하면 전액 환불하고, 48시간 이내에는 환불하지 않는다
               </p>
               {/* 체크박스 행 전체가 히트 영역이다. 높이 44px 확보.
                   빈 상태에서도 2px 테두리로 또렷이 보이게 한다. 브라우저 기본 체크박스를 쓰지 않는다 */}
@@ -228,7 +228,7 @@ export default function CheckoutPage() {
                       role="checkbox"
                       aria-checked={refundAgreed}
                       onClick={() => setRefundAgreed((v) => !v)}
-                      className="mt-3 -mx-2 px-2 w-[calc(100%+1rem)] min-h-11 rounded-lg
+                      className="mt-3 -mx-2 px-2 w-[calc(100%+1rem)] min-h-11 rounded-full
                                  flex items-center gap-3 text-left
                                  hover:bg-bg-mute
                                  transition-[background-color] duration-150 motion-reduce:transition-none">

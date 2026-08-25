@@ -68,10 +68,16 @@ export default function PackageDetailPage() {
                 ))}
               </div>
             )}
-            {pkg.tagline && <Eyebrow tone="light">{pkg.tagline}</Eyebrow>}
+            <Eyebrow tone="light">{kindLabel}{pkg.region ? ` ${pkg.region}` : ''}</Eyebrow>
+            {pkg.tagline && (
+              <p className="mt-2 max-w-[720px] font-pretendard font-medium
+                            text-[14px] md:text-[16px] text-white/85 leading-relaxed">
+                {pkg.tagline}
+              </p>
+            )}
             <h1 className="mt-2 font-pretendard font-bold
-                           text-[24px] md:text-[36px] lg:text-[44px] 4xl:text-[52px]
-                           text-white tracking-[-0.02em] leading-tight">
+                           text-[24px] md:text-[34px] lg:text-[40px] 4xl:text-[46px]
+                           text-white leading-tight">
               {pkg.name}
             </h1>
           </div>
@@ -275,7 +281,7 @@ export default function PackageDetailPage() {
 
         {/* 코스는 판매 상품이 아니다. 패스 안내로 연결한다 */}
         <aside className="mt-8 lg:mt-0 lg:sticky lg:top-[92px] h-fit
-                          shadow-depth rounded-2xl p-5 lg:p-6 bg-white">
+                          shadow-depth rounded-[32px] p-5 bg-white">
           <p className="font-pretendard font-bold text-[18px] text-text-pri tracking-[-0.02em]">
             동해사이 패스로 이 {isProgram ? '프로그램을' : '코스를'} 즐긴다
           </p>

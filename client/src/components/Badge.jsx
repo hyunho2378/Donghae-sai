@@ -9,7 +9,7 @@ const VARIANTS = {
 export default function Badge({ variant = 'primary', children, className }) {
   return (
     <span className={clsx(
-      'h-[26px] px-2.5 rounded-md inline-flex items-center',
+      'h-[26px] px-2.5 rounded-full inline-flex items-center',
       'font-pretendard font-medium text-[12px]',
       VARIANTS[variant],
       className

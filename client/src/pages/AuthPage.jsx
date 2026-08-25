@@ -62,7 +62,7 @@ export default function AuthPage() {
         </button>
       </form>
 
-      <p className="mt-6 font-pretendard font-light text-[12px] text-text-meta text-center leading-relaxed">
+      <p className="mt-6 font-pretendard font-normal text-[12px] text-text-meta text-center leading-relaxed">
         프로토타입 로그인입니다. 아무 값이나 넣어도 들어갈 수 있어요
       </p>
     </div>

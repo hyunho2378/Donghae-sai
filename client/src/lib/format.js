@@ -12,6 +12,27 @@ export const shortPrice = (label) => {
   return `${parts[0]} 부터`
 }
 
+// 원문 설명 끝에 남은 말줄임과 매달린 반점을 걷어낸다
+export const cleanCopy = (t) => (t || '').replace(/[,\s·]*(\.{2,}|…)\s*$/, '').replace(/\s*,\s*$/, '').trim()
+
+// 반점으로만 이어 붙인 명사 나열이면 읽는 문장이 아니라 항목으로 끊어 준다.
+// 천 단위 구분 반점(1,400)은 자르지 않는다. 문장이 섞여 있으면 그대로 읽게 둔다
+export const asList = (t) => {
+  const s = cleanCopy(t)
+  if (!s) return null
+  const parts = s.split(/,(?!\d)/).map((x) => x.trim()).filter(Boolean)
+  if (parts.length < 3) return null
+  if (parts.some((p) => p.length > 20 || /[.!?]$/.test(p))) return null
+  return parts
+}
+
+// 데이터 원문이 마침표 없이 잘린 경우 문장을 자연스럽게 맺는다
+export const endSentence = (t) => {
+  const s = cleanCopy(t)
+  if (!s) return s
+  return /[.。!?…”"’)]$/.test(s) ? s : `${s}.`
+}
+
 export const formatPricePerNight = (won) => {
   const n = Number(won)
   if (!n || n <= 0) return '패키지 포함'

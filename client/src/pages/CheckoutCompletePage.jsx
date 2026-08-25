@@ -41,7 +41,7 @@ export default function CheckoutCompletePage() {
           <span className="font-bold text-text-pri tracking-[0.04em]">{orderId}</span>
         </div>
         <div className="flex justify-between gap-4">
-          <span className="font-medium text-text-meta">예약 거점</span>
+          <span className="font-medium text-text-meta">예약 장소</span>
           <span className="font-medium text-text-pri text-right">{name}</span>
         </div>
         {type === 'stay' && checkin && (

@@ -36,7 +36,7 @@ export default function RegionSection() {
                             flex items-center justify-center">
               {/* 사진이 없을 때만 드러나는 폴백. 사진이 덮으므로 보조기기에서는 감춘다 */}
               <span aria-hidden="true"
-                    className="select-none font-pretendard font-light text-[13px] text-text-ter">
+                    className="select-none font-pretendard font-normal text-[13px] text-text-ter">
                 이미지 자료 대기
               </span>
               <img
