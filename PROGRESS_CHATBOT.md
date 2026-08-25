@@ -99,3 +99,21 @@
 **2~4단계는 이미 됨(무변경).** 클라가 누적 전체 텍스트를 렌더(2단계 OK), 렌더러 renderRich가 볼드/불릿(-)/번호(1.)/문단 렌더(3단계 OK, 지난 4차), rag 프롬프트에 서식 규칙(4단계 OK, 지난 4차). react-markdown 도입 안 함 — renderRich가 필요한 케이스 다 커버하고 출처칩/조사교정/표/액션바와 통합돼 있어 교체가 오히려 위험.
 
 **적용/증거.** 서버 파일이라 Vercel 무관, **로컬 서버 재기동 필요**. 백엔드 없어 라이브 캡처 불가 — 현호 님 로컬에서 Ollama 켜고 재기동 후 한글 답변에 `<0xEC>` 안 뜨는지, 볼드/불릿 렌더되는지 확인.
+
+---
+
+## 6차: 대화 히스토리 + 근거 노출 타이밍 + 동적 하단 여백
+
+**문제1 대화 히스토리(핵심).** 전엔 `[system, user]`만 보내 맥락 0.
+- 클라(useSovereignChat send): 매 요청에 최근 대화를 `history`로 함께 전송. role/content만, 최근 8개(질문4+답변4), seed·빈 메시지 제외.
+- 서버(chat.js): `history` 정제(role/content, 최근8) → `[system, ...history, user]`로 Ollama 전달.
+- RAG 검색은 이번 질문만 기준(`searchKnowledge(message)`) 유지. 히스토리를 검색 쿼리에 안 넣음.
+- **후속질문 거절 방지**: 후속질문("아까 추천한 다른 곳")은 RAG 0 hit이라 기존엔 "자료 없음" 거절 프롬프트가 나왔다. `buildSystemPrompt(hits, hasHistory)` 분기 추가 — 0 hit이어도 히스토리 있으면 앞 대화 맥락으로 답하게 함. 이거 없으면 검증 시나리오 실패.
+- newChat→reset→`setMessages([])`로 히스토리 초기화 확인.
+- self-check: 히스토리 빌더(seed/빈 제외, role/content만, slice8, 교대순서), 프롬프트 분기(0hit+히스토리=이어가기, 무히스토리=거절), 검색은 현재 질문만.
+
+**문제2 근거 카드 스트리밍 중 노출.** Hero가 `cards.length>0`이면 스트리밍 중에도 뜸. FAB식 조건 적용 → `showCards = cards.length>0 && !(streaming && i===last)`. 데스크톱/모바일 SourcePanel 둘 다. 답변 끝난 뒤에만 카드.
+
+**문제3 과한 하단 여백.** 고정 `min-h-[85vh]` → 동적 `spacerH`(px). `useLayoutEffect`로 `clientHeight - (마지막답변바닥 - 마지막질문top)` 계산 = 마지막 질문을 상단까지 올릴 만큼만. 답변 짧으면 화면 딱 채우고, 길면 0. paint 전 확정이라 앵커(rAF)가 올바른 여백에서 동작 → 앵커 안 깨짐.
+
+수정 파일: useSovereignChat.js, chat.js, rag.mjs, SovereignHero.jsx (범위 지정 커밋). 클라(2·3)는 Vercel 반영, 서버(1)는 로컬 재기동 필요. 검증 시나리오(3단계 질문 맥락 유지)는 백엔드 켜고 확인.

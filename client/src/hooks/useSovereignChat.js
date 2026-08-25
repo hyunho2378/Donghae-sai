@@ -136,6 +136,13 @@ export default function useSovereignChat(initialMessages = []) {
     const text = raw.trim()
     if (!text || streaming) return
 
+    // 최근 대화 맥락을 서버로 함께 보낸다. role/content 만, 최근 8개(질문 4 + 답변 4)로 제한한다.
+    // seed 안내 말풍선과 빈 메시지는 제외. RAG 검색은 서버에서 이번 질문만 기준으로 한다
+    const history = messages
+      .filter((m) => (m.role === 'user' || m.role === 'assistant') && m.content && !m.seed)
+      .slice(-8)
+      .map((m) => ({ role: m.role, content: m.content }))
+
     setMessages((prev) => [...prev, { role: 'user', content: text }])
     setLoading(true)
     setStreaming(true)
@@ -147,7 +154,7 @@ export default function useSovereignChat(initialMessages = []) {
       const res = await fetch(`${API_URL}/api/sovereign/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text })
+        body: JSON.stringify({ message: text, history })
       })
 
       if (!res.body) {

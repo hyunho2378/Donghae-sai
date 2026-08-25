@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowUp, ArrowDown, CornerDownRight, SquarePen } from 'lucide-react'
 import useSovereignChat, { stripMarkdown, resolveSources } from '../hooks/useSovereignChat'
@@ -35,6 +35,7 @@ export default function SovereignHero() {
   const lastQRef = useRef(null) // 가장 최근 질문 말풍선. 새 질문을 상단으로 앵커할 때 쓴다
   const lastMsgRef = useRef(null) // 마지막 메시지. 하단 스페이서를 무시하고 이 요소 기준으로 위치를 잡는다
   const [showScrollDown, setShowScrollDown] = useState(false)
+  const [spacerH, setSpacerH] = useState(0) // 하단 여유 공간 높이(px). 마지막 질문을 상단까지 올릴 만큼만
 
   const opened = phase === 'chat'
   const leaving = phase === 'leaving'
@@ -93,6 +94,18 @@ export default function SovereignHero() {
     const fix = setTimeout(() => anchor('auto'), 450) // sources/토큰 유입으로 어긋나면 즉시 재확정
     return () => { cancelAnimationFrame(raf); clearTimeout(fix) }
   }, [userCount, opened])
+
+  // 하단 여유 공간을 동적으로 계산한다. 마지막 질문이 화면 최상단까지 스크롤될 만큼만 준다.
+  // 답변이 짧으면 화면을 딱 채우는 만큼, 답변이 길면 0에 가깝게 → 과한 흰 여백이 안 남는다.
+  // paint 전에 확정해 앵커(rAF)가 올바른 여백 위에서 동작하게 한다
+  useLayoutEffect(() => {
+    const el = scrollRef.current
+    const q = lastQRef.current
+    const last = lastMsgRef.current
+    if (!opened || !el || !q || !last) { setSpacerH(0); return }
+    const contentAfterQ = (last.offsetTop + last.offsetHeight) - q.offsetTop
+    setSpacerH(Math.max(0, el.clientHeight - contentAfterQ))
+  }, [messages, opened, streaming])
 
   // 입력이 길어지면 textarea 높이를 내용에 맞춰 늘린다. 최소와 최대는 CSS 가 잡는다
   useEffect(() => {
@@ -296,6 +309,8 @@ export default function SovereignHero() {
                     }
                     // 답변마다 자기 근거를 자기 옆에 가진다. 근거 없어도 우측 340 트랙은 유지된다
                     const cards = m.sources?.length ? resolveSources(m.sources, m.links) : []
+                    // 스트리밍 중인 마지막 답변에는 아직 근거 카드를 안 띄운다. 답변이 끝난 뒤에 뜬다
+                    const showCards = cards.length > 0 && !(streaming && i === messages.length - 1)
                     return (
                       <div key={i}
                            ref={(el) => { if (i === messages.length - 1) lastMsgRef.current = el }}
@@ -311,25 +326,25 @@ export default function SovereignHero() {
                               showSources={false}
                               showActions={!(streaming && i === messages.length - 1)} />
                           )}
-                          {/* 모바일. 우측 열이 접히므로 근거 카드를 본문 아래에 둔다 */}
-                          {cards.length > 0 && (
+                          {/* 모바일. 우측 열이 접히므로 근거 카드를 본문 아래에 둔다. 스트리밍 끝난 뒤에만 */}
+                          {showCards && (
                             <div className="lg:hidden mt-4 pt-4 border-t border-border-sub">
                               <SourcePanel sources={cards} />
                             </div>
                           )}
                         </div>
-                        {/* 데스크톱. 이 답변의 근거를 같은 높이 우측 열에 붙인다 */}
+                        {/* 데스크톱. 이 답변의 근거를 같은 높이 우측 열에 붙인다. 스트리밍 끝난 뒤에만 */}
                         <div className="hidden lg:block min-w-0">
-                          {cards.length > 0 && <SourcePanel sources={cards} />}
+                          {showCards && <SourcePanel sources={cards} />}
                         </div>
                       </div>
                     )
                   })}
 
-                  {/* 하단 여유 공간. 답변이 스켈레톤뿐인 순간에도 새 질문을 화면 최상단까지 올릴 수 있게
-                      뷰포트에 준하는 높이를 준다. 감지는 마지막 메시지 기준이라 이 빈 공간이
+                  {/* 하단 여유 공간. 동적 높이. 마지막 질문을 상단까지 올릴 만큼만 주고, 답변이 끝나
+                      화면이 차면 0에 가까워진다. 감지는 마지막 메시지 기준이라 이 여백이
                       아래로 가기 버튼을 잘못 띄우지 않고, 아래로 가기도 마지막 답변까지만 간다 */}
-                  <div aria-hidden="true" className="min-h-[85vh]" />
+                  <div aria-hidden="true" style={{ height: spacerH }} />
                 </div>
               </div>
 

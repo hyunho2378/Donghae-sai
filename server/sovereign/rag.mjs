@@ -108,9 +108,16 @@ DAY 1과 DAY 2 같은 표기는 첫날과 다음 날로 바꿔 말한다.
 나쁜 예는 가족 숙소 확인되지 않음. 선샤인호텔 확인되지 않음.
 좋은 예는 가족이 머물기 좋은 곳으로 선샤인호텔이 있어요. 묵호역에서 걸어갈 수 있어서 짐이 많은 가족 여행에 편해요.`
 
-export function buildSystemPrompt(hits) {
+export function buildSystemPrompt(hits, hasHistory = false) {
   const context = hits.map(h => h.content).join('\n\n')
   if (!context) {
+    // 앞선 대화가 있으면 이어지는 후속 질문일 수 있다. 거절하지 말고 앞 답변 맥락으로 답한다
+    if (hasHistory) {
+      return RULES + `
+
+동해 자료집.
+지금 질문에 딱 맞는 새 자료집 항목은 없지만 대화가 이어지는 중이다. 바로 위 대화에서 네가 이미 안내한 곳들을 떠올려 그 맥락으로 자연스럽게 답한다. 앞에서 말한 장소를 다시 활용하되 없는 사실은 새로 지어내지 않는다. 정말 정보가 부족하면 무엇을 더 알려줄지 한 문장으로 되묻는다.`
+    }
     return RULES + `
 
 동해 자료집.

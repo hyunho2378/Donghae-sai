@@ -7,11 +7,20 @@ const MODEL = 'gemma4:e4b'
 
 router.post('/', async (req, res) => {
   try {
-    const { message } = req.body
+    const { message, history } = req.body
     if (!message) return res.status(400).json({ error: 'message가 없다' })
 
+    // 최근 대화만 컨텍스트로 넘긴다. role/content 만 허용하고 최근 8개로 제한한다(토큰 방어)
+    const safeHistory = Array.isArray(history)
+      ? history
+          .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.trim())
+          .slice(-8)
+          .map((m) => ({ role: m.role, content: m.content }))
+      : []
+
+    // 자료집 검색은 이번 질문만 기준으로 한다. 대화 맥락은 히스토리로만 보완한다
     const hits = searchKnowledge(message)
-    const systemPrompt = buildSystemPrompt(hits)
+    const systemPrompt = buildSystemPrompt(hits, safeHistory.length > 0)
 
     const ollamaRes = await fetch(OLLAMA_URL, {
       method: 'POST',
@@ -20,6 +29,7 @@ router.post('/', async (req, res) => {
         model: MODEL,
         messages: [
           { role: 'system', content: systemPrompt },
+          ...safeHistory,
           { role: 'user', content: message }
         ],
         stream: true,
