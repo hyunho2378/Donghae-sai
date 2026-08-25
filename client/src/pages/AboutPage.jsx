@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import RevealOnScroll from '../components/kareum/RevealOnScroll'
 import Eyebrow from '../components/Eyebrow'
@@ -152,28 +151,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-primary text-white">
-        <div className={`${SECTION} py-16 lg:py-24 text-center`}>
-          <h2 className={H2}>오늘 밤, 하루 더 머문다</h2>
-          <div className="mt-8 inline-flex flex-wrap justify-center gap-3">
-            <Link to="/membership"
-                  className="h-12 lg:h-14 px-6 lg:px-8 inline-flex items-center rounded-lg
-                             bg-white text-primary
-                             font-pretendard font-medium text-[15px] lg:text-[16px]
-                             hover:bg-white/90 transition-colors duration-150">
-              패스 보기
-            </Link>
-            <Link to="/stays"
-                  className="h-12 lg:h-14 px-6 lg:px-8 inline-flex items-center rounded-lg
-                             bg-transparent text-white border border-white/40
-                             font-pretendard font-medium text-[15px] lg:text-[16px]
-                             hover:bg-white/10 transition-colors duration-150">
-              동해 사이 보기
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

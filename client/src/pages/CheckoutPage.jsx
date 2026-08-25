@@ -15,19 +15,19 @@ const PASSES = [
 
 // 결제 수단 8종. 로고 파일은 client/public/images/pay 의 각 svg. 부재 시 텍스트 폴백
 const PAY_METHODS = [
-  { key: 'applepay', label: '애플페이' },
-  { key: 'alipay', label: '알리페이' },
-  { key: 'visa', label: '비자', card: true },
-  { key: 'mastercard', label: '마스터카드', card: true },
-  { key: 'paypal', label: '페이팔' },
-  { key: 'amex', label: '아멕스', card: true },
-  { key: 'jcb', label: 'JCB', card: true },
-  { key: 'unionpay', label: '유니온페이', card: true }
+  { key: 'applepay', label: '애플페이', logoSize: 'h-12 md:h-14' },
+  { key: 'alipay', label: '알리페이', logoSize: 'h-16 md:h-[72px]' },
+  { key: 'visa', label: '비자', card: true, logoSize: 'h-[52px] md:h-[60px]' },
+  { key: 'mastercard', label: '마스터카드', card: true, logoSize: 'h-14 md:h-16' },
+  { key: 'paypal', label: '페이팔', logoSize: 'h-14 md:h-16' },
+  { key: 'amex', label: '아멕스', card: true, logoSize: 'h-[52px] md:h-[60px]' },
+  { key: 'jcb', label: 'JCB', card: true, logoSize: 'h-14 md:h-16' },
+  { key: 'unionpay', label: '유니온페이', card: true, logoSize: 'h-14 md:h-16' }
 ]
 
 const isCard = (key) => PAY_METHODS.find((m) => m.key === key)?.card
 
-function PayLogo({ pkey, label }) {
+function PayLogo({ pkey, label, sizeClass }) {
   const [err, setErr] = useState(false)
   if (err) {
     return <span className="font-pretendard font-medium text-[12px] text-text-sec text-center leading-tight">{label}</span>
@@ -35,7 +35,7 @@ function PayLogo({ pkey, label }) {
   return (
     <img src={`/images/pay/${pkey}.svg`} alt={label}
       onError={() => setErr(true)}
-      className="max-h-11 max-w-full object-contain" />
+      className={`${sizeClass} w-auto max-w-full object-contain`} />
   )
 }
 
@@ -170,7 +170,7 @@ export default function CheckoutPage() {
                   aria-pressed={payMethod === m.key}
                   className={`h-20 md:h-[88px] rounded-xl bg-white flex items-center justify-center px-4 shadow-card transition-shadow duration-150
                                     ${payMethod === m.key ? 'ring-2 ring-primary' : 'hover:ring-1 hover:ring-border-def'}`}>
-                  <PayLogo pkey={m.key} label={m.label} />
+                  <PayLogo pkey={m.key} label={m.label} sizeClass={m.logoSize} />
                 </button>
               ))}
             </div>
@@ -187,9 +187,6 @@ export default function CheckoutPage() {
               </div>
             )}
 
-            <p className="mt-4 font-pretendard font-normal text-[12px] text-text-meta">
-              이 화면에서는 결제 정보가 전송되지 않아요
-            </p>
           </section>
         </div>
 
