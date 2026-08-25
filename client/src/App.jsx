@@ -15,7 +15,6 @@ import StoryListPage from './pages/StoryListPage'
 import StoryDetailPage from './pages/StoryDetailPage'
 import MembershipPage from './pages/MembershipPage'
 import PassPage from './pages/PassPage'
-import GoodsPage from './pages/GoodsPage'
 import MyPage from './pages/MyPage'
 import PrivacyPage from './pages/PrivacyPage'
 import AuthPage from './pages/AuthPage'
@@ -65,7 +64,6 @@ export default function App() {
             <Route path="/story/:slug" element={<StoryDetailPage />} />
             <Route path="/membership" element={<MembershipPage />} />
             <Route path="/pass" element={<PassPage />} />
-            <Route path="/goods" element={<GoodsPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/checkout" element={<RequireAuth><CheckoutPage /></RequireAuth>} />
             <Route path="/checkout/complete" element={<RequireAuth><CheckoutCompletePage /></RequireAuth>} />

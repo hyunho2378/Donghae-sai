@@ -5,15 +5,11 @@ import StayCard from '../components/card/StayCard'
 import Chip from '../components/Chip'
 import EmptyState from '../components/feedback/EmptyState'
 import RevealOnScroll from '../components/kareum/RevealOnScroll'
-import ColorBlockCarousel from '../components/kareum/ColorBlockCarousel'
-import PackageCarousel from '../components/kareum/PackageCarousel'
 import staysData from '../data/stays.json'
-import packagesData from '../data/packages.json'
 import Eyebrow from '../components/Eyebrow'
 import { STAY_TYPE_LABEL } from '../lib/format'
 
 const REGIONS = ['전체', '추암', '무릉', '천곡', '묵호', '망상']
-
 
 // 네 갈래 진입. 대표 사진은 그 갈래에 속한 실제 장소 사진만 쓴다
 // 숙박 갈래는 사진 자료가 없어 사진 없이 둔다. 다른 장소 사진을 끌어오지 않는다
@@ -28,17 +24,11 @@ const TYPE_ENTRIES = ['eat', 'stay', 'play', 'see'].map((key) => {
   }
 })
 
-// 프로그램을 동해 사이 안으로 합쳤다. 코스와 프로그램 두 갈래
-const PKG_TABS = [
-  { key: 'course', label: '코스', desc: '2030과 4050, 뚜벅이와 자차로 나눈 이동 동선이다' },
-  { key: 'program', label: '프로그램', desc: '숙박과 식사와 체험을 묶은 선택형 1박 2일 상품이다' }
-]
-
+// 이 페이지는 로컬 자원 소개와 검색만 다룬다. 코스와 프로그램은 여행 코스 페이지로 분리했다
 export default function StaysPage() {
   const [params] = useSearchParams()
   const q = params.get('q') || ''
   const [region, setRegion] = useState('전체')
-  const [pkgTab, setPkgTab] = useState('course')
 
   const items = useMemo(() => {
     return staysData.filter((s) => {
@@ -48,23 +38,19 @@ export default function StaysPage() {
     })
   }, [region, q])
 
-  const pkgList = packagesData.filter((p) => p.category === pkgTab)
-  const pkgCurrent = PKG_TABS.find((t) => t.key === pkgTab)
-
   return (
     <>
       <Helmet>
-        <title>동해 사이 | 동해사이</title>
-        <meta name="description" content="추암 무릉 천곡 묵호 망상 5개 권역의 먹거리 숙박 체험 볼거리와 1박 2일 코스와 프로그램을 살펴보세요." />
-        <meta property="og:title" content="동해 사이 | 동해사이" />
+        <title>로컬 자원 | 동해사이</title>
+        <meta name="description" content="추암 무릉 천곡 묵호 망상 5개 권역의 먹거리 숙박 체험 볼거리를 살펴보세요." />
+        <meta property="og:title" content="로컬 자원 | 동해사이" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary" />
         <meta name="theme-color" content="#4AB8CD" />
       </Helmet>
 
       <div className="page-enter">
-        <div className="container-page
-                        pt-8 lg:pt-12">
+        <div className="container-page pt-8 lg:pt-12">
 
           <RevealOnScroll className="mb-10 lg:mb-14">
             <Eyebrow>강원특별자치도 동해시</Eyebrow>
@@ -102,42 +88,6 @@ export default function StaysPage() {
             </div>
           </RevealOnScroll>
 
-          {/* 코스와 프로그램. 프로그램 페이지를 여기로 합쳤다 */}
-          <RevealOnScroll className="mb-2">
-            <h2 className="font-pretendard font-bold
-                           text-[22px] md:text-[26px] lg:text-[30px]
-                           text-text-pri tracking-[-0.02em] leading-tight">
-              코스와 프로그램
-            </h2>
-            <p className="mt-2 font-pretendard font-normal text-[15px] md:text-[16px] text-text-meta">
-              {pkgCurrent.desc}
-            </p>
-            <div className="mt-6 flex gap-1 border-b border-border-sub">
-              {PKG_TABS.map((t) => {
-                const count = packagesData.filter((p) => p.category === t.key).length
-                return (
-                  <button key={t.key}
-                    onClick={() => setPkgTab(t.key)}
-                    className={`min-h-11 px-4 font-pretendard font-semibold text-[15px] tracking-[0.02em]
-                                      border-b-2 transition-colors duration-150 motion-reduce:transition-none
-                                      ${pkgTab === t.key
-                        ? 'text-accent border-accent'
-                        : 'text-text-meta border-transparent hover:text-text-pri'}`}>
-                    {t.label} {count}
-                  </button>
-                )
-              })}
-            </div>
-          </RevealOnScroll>
-        </div>
-
-        {pkgTab === 'program'
-          ? <ColorBlockCarousel items={pkgList} />
-          : <PackageCarousel title="1박 2일 코스" items={pkgList} />}
-
-        <div className="container-page
-                        pt-8 lg:pt-12 pb-12 lg:pb-16">
-
           <h2 className="font-pretendard font-bold
                          text-[22px] md:text-[26px] lg:text-[30px]
                          text-text-pri tracking-[-0.02em] leading-tight">
@@ -156,7 +106,7 @@ export default function StaysPage() {
             </div>
           </div>
 
-          <div className="mt-8 lg:mt-10">
+          <div className="mt-8 lg:mt-10 pb-12 lg:pb-16">
             {items.length === 0 ? (
               <EmptyState
                 title="결과가 없어요"

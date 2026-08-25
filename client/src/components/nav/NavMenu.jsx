@@ -1,10 +1,12 @@
 import { NavLink } from 'react-router-dom'
 
+// 굿즈 삭제. 로컬 자원과 여행 코스를 분리. 동해사이는 브랜드 소개(About)로 이름을 옮겼다
 const ITEMS = [
-  { to: '/stays', label: '동해 사이' },
+  { to: '/stays', label: '로컬 자원' },
+  { to: '/packages', label: '여행 코스' },
   { to: '/story', label: '동해 스토리' },
   { to: '/membership', label: '패스' },
-  { to: '/goods', label: '굿즈' }
+  { to: '/about', label: '동해사이' }
 ]
 
 export default function NavMenu({ vertical = false, onClick }) {
