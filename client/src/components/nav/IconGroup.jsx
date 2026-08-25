@@ -32,7 +32,7 @@ export default function IconGroup() {
       <div className="flex items-center">
         <Link
           to="/auth"
-          className="h-10 px-3 inline-flex items-center gap-1.5
+          className="min-h-11 lg:h-10 px-3 inline-flex items-center gap-1.5
                      font-pretendard font-medium text-[14px] text-text-pri
                      rounded-lg hover:bg-bg-card transition-colors duration-150">
           <User size={20} className="text-text-pri" />
@@ -58,7 +58,7 @@ export default function IconGroup() {
         <button
           aria-label="내 계정"
           onClick={() => setOpen(!open)}
-          className="w-10 h-10 inline-flex items-center justify-center
+          className="w-11 h-11 lg:w-10 lg:h-10 inline-flex items-center justify-center
                      rounded-full hover:bg-bg-card transition-colors duration-150">
           <User size={20} className="text-text-pri" />
         </button>

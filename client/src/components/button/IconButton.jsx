@@ -5,7 +5,7 @@ export default function IconButton({ icon: Icon, label, size = 24, className, ..
     <button
       aria-label={label}
       className={clsx(
-        'w-10 h-10 inline-flex items-center justify-center',
+        'w-11 h-11 md:w-10 md:h-10 inline-flex items-center justify-center',
         'rounded-full hover:bg-bg-card',
         'transition-colors duration-150',
         className

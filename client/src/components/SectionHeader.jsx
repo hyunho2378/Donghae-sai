@@ -16,7 +16,7 @@ export default function SectionHeader({ title, subtitle, to }) {
       </div>
       {to && (
         <Link to={to} aria-label="전체 보기"
-              className="w-10 h-10 rounded-full hover:bg-bg-card
+              className="w-11 h-11 md:w-10 md:h-10 rounded-full hover:bg-bg-card
                          inline-flex items-center justify-center
                          transition-colors duration-150">
           <ChevronRight size={24} className="text-text-pri" />

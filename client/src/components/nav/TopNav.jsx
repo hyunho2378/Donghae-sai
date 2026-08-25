@@ -12,7 +12,7 @@ export default function TopNav() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white border-b border-border-sub">
+      <header className="sticky top-0 z-40 bg-white border-b border-border-sub pt-[env(safe-area-inset-top)]">
         {/* 로고 좌측 기준선을 본문과 완전히 일치시킨다. 본문과 같은 container-page 를 그대로 쓴다 */}
         <div className={`container-page
                         transition-[max-width] duration-300 ease-out motion-reduce:transition-none
@@ -36,7 +36,7 @@ export default function TopNav() {
         </div>
 
         {menuOpen && (
-          <div className="lg:hidden fixed inset-0 z-50 bg-white">
+          <div className="lg:hidden fixed inset-0 z-50 bg-white pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] overflow-y-auto">
             <div className="px-5 h-[60px] flex items-center justify-between border-b border-border-sub">
               <Logo />
               <button

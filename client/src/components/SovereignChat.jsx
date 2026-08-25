@@ -37,7 +37,7 @@ export default function SovereignChat() {
   return (
     <>
       {open && (
-        <div className="fixed bottom-24 right-5 z-50 w-[340px] max-w-[calc(100vw-40px)]
+        <div className="fixed bottom-[calc(6rem+env(safe-area-inset-bottom))] right-5 z-50 w-[340px] max-w-[calc(100vw-40px)]
                         h-[460px] bg-white rounded-2xl shadow-float
                         flex flex-col overflow-hidden">
           <div className="h-14 px-5 flex items-center justify-between border-b border-border-sub bg-white">
@@ -85,7 +85,7 @@ export default function SovereignChat() {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={onKeyDown}
               placeholder="동해 여행에 대해 물어보세요"
-              className="flex-1 h-10 px-3 rounded-lg border border-border-def
+              className="flex-1 h-11 px-3 rounded-lg border border-border-def
                          font-pretendard font-normal text-[14px] text-text-pri
                          placeholder:text-text-ter focus:border-primary outline-none
                          transition-colors duration-150" />
@@ -93,7 +93,7 @@ export default function SovereignChat() {
               onClick={sendMessage}
               disabled={streaming || !input.trim()}
               aria-label="전송"
-              className="w-10 h-10 shrink-0 inline-flex items-center justify-center
+              className="w-11 h-11 shrink-0 inline-flex items-center justify-center
                          bg-primary text-white rounded-lg
                          hover:bg-primary-hover transition-colors duration-150
                          disabled:opacity-40 disabled:cursor-not-allowed">
@@ -107,7 +107,7 @@ export default function SovereignChat() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? '동해사이 도우미 닫기' : '동해사이 도우미 열기'}
-        className={`fixed bottom-6 right-5 z-50 w-14 h-14 rounded-full overflow-hidden
+        className={`fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] right-5 z-50 w-14 h-14 rounded-full overflow-hidden
                     flex items-center justify-center
                     shadow-float hover:shadow-float-hover
                     hover:-translate-y-0.5 active:scale-[0.96]

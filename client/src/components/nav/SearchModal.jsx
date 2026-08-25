@@ -115,7 +115,7 @@ export default function SearchModal({ onClose }) {
     <div
       ref={backdropRef}
       onClick={(e) => { if (e.target === backdropRef.current) onClose() }}
-      className="fixed inset-0 z-50 bg-black/40 flex items-start justify-center pt-[80px] px-5">
+      className="fixed inset-0 z-50 bg-black/40 flex items-start justify-center pt-[calc(60px+env(safe-area-inset-top))] pb-[env(safe-area-inset-bottom)] px-5 overflow-y-auto md:pt-[80px]">
 
       <div className="w-full max-w-[600px] bg-white rounded-2xl overflow-hidden">
 

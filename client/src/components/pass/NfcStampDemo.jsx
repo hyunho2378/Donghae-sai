@@ -41,7 +41,7 @@ function CategoryProgress() {
 
 function StampResult({ onNext }) {
   return (
-    <div className="relative -mt-5 rounded-t-[28px] bg-white px-5 pt-6 pb-7 text-center">
+    <div className="relative -mt-5 rounded-t-[28px] bg-white px-5 pt-6 pb-7 text-center md:mt-0 md:rounded-none md:px-0 md:py-8">
       <div className="mx-auto w-14 h-14 rounded-full bg-primary flex items-center justify-center text-white shadow-card">
         <Check size={32} strokeWidth={3} />
       </div>
@@ -76,7 +76,7 @@ function StampResult({ onNext }) {
 
 function NextCourse() {
   return (
-    <div className="relative -mt-5 rounded-t-[28px] bg-white px-5 pt-6 pb-7 text-center">
+    <div className="relative -mt-5 rounded-t-[28px] bg-white px-5 pt-6 pb-7 text-center md:mt-0 md:rounded-none md:px-0 md:py-8">
       <h2 className="font-pretendard font-bold text-[25px] leading-tight tracking-[-0.03em] text-text-pri text-wrap balance">
         다음 <span className="text-accent">동해</span><span className="text-primary-hover">사이</span>는<br />어디일까요?
       </h2>
@@ -144,28 +144,30 @@ export default function NfcStampDemo({ onClose }) {
   }, [])
 
   return (
-    <div className="fixed inset-0 z-[80] overflow-y-auto scrollbar-hide bg-bg-card" role="dialog" aria-modal="true" aria-label="NFC 방문 스탬프 시연">
-      <div className="min-h-full md:flex md:items-center md:justify-center md:p-6">
+    <div className="fixed inset-0 z-[80] overflow-y-auto scrollbar-hide bg-bg-card pb-[env(safe-area-inset-bottom)]" role="dialog" aria-modal="true" aria-label="NFC 방문 스탬프 시연">
+      <div className="min-h-full md:flex md:items-center md:justify-center md:p-8">
         <section className="relative min-h-[100svh] w-full overflow-hidden bg-white
-                            md:min-h-0 md:max-w-[430px] md:rounded-[32px] md:shadow-float">
+                            md:min-h-[620px] md:max-w-[1120px] md:grid md:grid-cols-2 md:rounded-[32px] md:shadow-float">
           <button type="button" onClick={onClose} aria-label="NFC 시연 닫기"
-            className="absolute right-3 top-3 z-20 w-11 h-11 rounded-full bg-white/90 text-text-sec
+            className="absolute right-3 top-[calc(0.75rem+env(safe-area-inset-top))] z-20 w-11 h-11 rounded-full bg-white/90 text-text-sec md:right-5 md:top-5
                        flex items-center justify-center shadow-card
                        hover:text-text-pri transition-colors duration-150 motion-reduce:transition-none">
             <X size={20} />
           </button>
 
-          <div className={`bg-primary-soft px-5 pt-6 flex flex-col items-center overflow-hidden
+          <div className={`bg-primary-soft px-5 pt-[calc(1.5rem+env(safe-area-inset-top))] flex flex-col items-center overflow-hidden md:h-auto md:min-h-[620px] md:justify-center md:pt-6
                            ${stage === 'stamp' ? 'h-[330px]' : 'h-[245px]'}`}>
             <img src="/images/logo/logo-wordmark.svg" alt="동해사이"
-              className="w-[138px] h-auto" />
+              className="w-[138px] h-auto md:w-[170px]" />
             <img src="/images/character/muko-main.png" alt="동해사이 캐릭터 무코"
-              className={`mt-2 object-contain object-top ${stage === 'stamp' ? 'w-[260px]' : 'w-[190px]'}`} />
+              className={`mt-2 object-contain object-top md:mt-5 ${stage === 'stamp' ? 'w-[260px] md:w-[390px]' : 'w-[190px] md:w-[300px]'}`} />
           </div>
 
-          {stage === 'stamp'
-            ? <StampResult onNext={() => setStage('next')} />
-            : <NextCourse />}
+          <div className="md:flex md:items-center md:px-10">
+            {stage === 'stamp'
+              ? <StampResult onNext={() => setStage('next')} />
+              : <NextCourse />}
+          </div>
         </section>
       </div>
     </div>

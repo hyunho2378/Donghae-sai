@@ -65,7 +65,7 @@ export default function SourcePanel({ sources = [] }) {
 
       {hidden > 0 && (
         <button type="button" onClick={() => setExpanded((v) => !v)}
-                className="w-full h-10 rounded-xl bg-bg-card hover:bg-bg-mute tabular-nums
+                className="w-full min-h-11 md:min-h-10 rounded-xl bg-bg-card hover:bg-bg-mute tabular-nums
                            font-pretendard font-medium text-[13px] text-text-sec
                            transition-colors duration-150 motion-reduce:transition-none">
           {expanded ? '접기' : `출처 ${sources.length}곳 모두 보기 +${hidden}`}
