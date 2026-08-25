@@ -7,6 +7,7 @@ import RevealOnScroll from '../components/kareum/RevealOnScroll'
 import Eyebrow from '../components/Eyebrow'
 import Description from '../components/Description'
 import { cleanCopy, endSentence, STAY_TYPE_LABEL } from '../lib/format'
+import { BRAND_HEX } from '../lib/designTokens'
 
 // 스팟 갈래. 데이터는 type 한 필드만 쓴다
 const SPOT_LABEL = STAY_TYPE_LABEL
@@ -44,7 +45,7 @@ export default function StoryDetailPage() {
         <meta property="og:image" content={story.cover_image} />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="theme-color" content="#4AB8CD" />
+        <meta name="theme-color" content={BRAND_HEX.primary} />
       </Helmet>
 
       {/* Hero 풀블리드. 높이는 상세 페이지 공통 기준을 따른다 */}
@@ -70,9 +71,7 @@ export default function StoryDetailPage() {
         <div className="absolute bottom-0 left-0 right-0 pb-8 lg:pb-10">
           <div className="container-page">
             <Eyebrow tone="light">{story.category}</Eyebrow>
-            <h1 className="mt-3 font-pretendard font-bold
-                           text-[26px] md:text-[36px] lg:text-[44px]
-                           text-white leading-tight">
+            <h1 className="mt-3 type-detail-title text-white">
               {story.title}
             </h1>
           </div>
@@ -179,9 +178,7 @@ export default function StoryDetailPage() {
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <div>
-                    <h2 className="font-pretendard font-bold
-                                   text-[20px] md:text-[22px] lg:text-[24px]
-                                   text-text-pri leading-tight">
+                    <h2 className="type-section-title text-text-pri">
                       {spot.name}
                     </h2>
                     <span className="mt-1 inline-block font-pretendard font-semibold text-[12px]
@@ -226,9 +223,9 @@ export default function StoryDetailPage() {
                         <dd className="flex-1 font-pretendard font-medium text-[14px] text-text-pri leading-relaxed">
                           <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(spot.address)}`}
                             target="_blank" rel="noopener noreferrer"
-                            className="inline-flex items-start gap-1.5 hover:text-primary
+                            className="inline-flex min-h-11 items-center gap-1.5 hover:text-primary
                                         transition-[color] duration-150 motion-reduce:transition-none">
-                            <MapPin size={15} className="shrink-0 mt-0.5 text-text-meta" />
+                            <MapPin size={16} className="shrink-0 mt-0.5 text-text-meta" />
                             {spot.address}
                           </a>
                         </dd>
@@ -239,7 +236,7 @@ export default function StoryDetailPage() {
                         <dt className="w-14 shrink-0 font-pretendard font-semibold text-[13px] text-text-meta">운영</dt>
                         <dd className="flex-1 font-pretendard font-medium text-[14px] text-text-pri leading-relaxed">
                           <span className="inline-flex items-start gap-1.5">
-                            <Clock size={15} className="shrink-0 mt-0.5 text-text-meta" />
+                            <Clock size={16} className="shrink-0 mt-0.5 text-text-meta" />
                             {hours}
                           </span>
                         </dd>
@@ -258,7 +255,7 @@ export default function StoryDetailPage() {
                                  hover:bg-primary-soft
                                  transition-[background-color,scale] duration-150 ease-out
                                  motion-reduce:transition-none active:scale-[0.96]">
-                      스테이 예약하기
+                      숙소 예약하기
                     </Link>
                   </div>
                 )}
@@ -269,9 +266,7 @@ export default function StoryDetailPage() {
 
         {story.faq?.length > 0 && (
           <div className="mt-14 pt-10 border-t border-border-sub">
-            <h2 className="font-pretendard font-bold
-                           text-[20px] md:text-[22px] lg:text-[24px]
-                           text-text-pri mb-8">
+            <h2 className="type-section-title text-text-pri mb-8">
               자주 묻는 질문
             </h2>
             <div className="space-y-8">
@@ -295,9 +290,7 @@ export default function StoryDetailPage() {
       {related.length > 0 && (
         <div className="mt-14 bg-bg-mute py-12 lg:py-16">
           <div className="container-page">
-            <h2 className="font-pretendard font-bold
-                           text-[20px] md:text-[22px] lg:text-[24px]
-                           text-text-pri mb-6">
+            <h2 className="type-section-title text-text-pri mb-6">
               비슷한 스토리
             </h2>
             <Carousel label="비슷한 스토리"
@@ -312,11 +305,9 @@ export default function StoryDetailPage() {
                       loading="lazy"
                       className="w-full h-full object-cover
                                  transition-transform duration-[600ms] ease-out
-                                 motion-reduce:transition-none group-hover:scale-[1.04]" />
+                                 motion-reduce:transition-none motion-reduce:transform-none group-hover:scale-[1.04]" />
                   </div>
-                  <h3 className="mt-3 font-pretendard font-bold
-                                 text-[16px] md:text-[17px]
-                                 text-text-strong leading-snug line-clamp-2">
+                  <h3 className="mt-3 type-card-title text-text-strong line-clamp-2">
                     {s.title}
                   </h3>
                   <p className="mt-1 font-pretendard font-medium text-[13px] text-text-meta">

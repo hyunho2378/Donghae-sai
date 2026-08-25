@@ -133,9 +133,9 @@ export default function SearchModal({ onClose }) {
           <button
             aria-label="닫기"
             onClick={onClose}
-            className="w-8 h-8 rounded-full inline-flex items-center justify-center
+            className="w-11 h-11 md:w-10 md:h-10 rounded-full inline-flex items-center justify-center
                        hover:bg-bg-card transition-colors duration-150">
-            <X size={18} className="text-text-meta" />
+            <X size={20} className="text-text-meta" />
           </button>
         </div>
 
@@ -152,7 +152,7 @@ export default function SearchModal({ onClose }) {
                   <button
                     key={term}
                     onClick={() => setQ(term)}
-                    className="h-9 px-4 rounded-full
+                    className="min-h-11 md:min-h-10 px-4 rounded-full
                                bg-white border border-border-def
                                font-pretendard font-medium text-[14px] text-text-sec
                                hover:border-primary hover:text-primary

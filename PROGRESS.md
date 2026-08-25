@@ -16,12 +16,147 @@
 ## 현재 상태
 
 ```
-프로젝트: 고운고성 (Goun Goseong) × G-Pass
-현재 PHASE: 인증 + 멤버십 페이지 재설계 완료
-현재 AGENT: G1~G4
-마지막 업데이트: 2026-05-10 / 임시 로그인 + IconGroup 재설계 + MembershipPage 전면 재설계
-컨텍스트 사용률: 작업 완료
+프로젝트: 동해사이 전 사이트 디자인 시스템 감사
+현재 PHASE: 전 사이트 디자인 시스템 감사 및 A-G 수정 완료
+현재 AGENT: Codex
+마지막 업데이트: 2026-08-25 / 147개 조합 최종 회귀 및 빌드 완료
+감사 원본: AUDIT_REPORT.md
 ```
+
+---
+
+## 2026-08-25 전 사이트 디자인 시스템 감사
+
+### 1단계 — 감사 보고서
+
+상태: 완료
+
+- 제품 코드 수정 전에 `AUDIT_REPORT.md` 작성 완료.
+- 20개 페이지와 공용 컴포넌트를 A-G로 정적 검사했다.
+- 브라우저 기준선은 공개·인증 라우트 합계 147개 라우트/뷰포트 조합에서 측정했다.
+- 검사 폭: 320, 390, 768, 1024, 1280, 1536, 1920px.
+- 기준선 전체에서 가로 오버플로는 0건이었다.
+
+### 2단계 A — 타이포 위계
+
+상태: 완료
+
+수정:
+
+- `client/src/index.css:61`에 `type-display`, `type-page-title`, `type-detail-title`, `type-section-title`, `type-card-title` 역할 토큰을 추가했다.
+- 전 페이지의 h1/h2/h3 임의 크기 조합을 역할 토큰으로 교체했다. 홈 히어로는 `KAREUM_MIRROR.md`의 예외 규칙에 따라 유지했다.
+- `AboutPage.jsx`, `JournalDetailPage.jsx`의 인라인 아이브로우를 `Eyebrow`로 교체했다.
+- 읽어야 하는 소개·빈 상태 문구의 `text-text-meta`/`text-text-ter`를 `text-text-sec`로 올렸다.
+- Counter, Carousel, SourcePanel, 가격·개수·날짜·라이트박스 카운터에 `tabular-nums`를 적용했다.
+
+재검증:
+
+- 페이지 h1/h2/h3의 임의 `font-pretendard` 또는 `text-[Npx]` 조합: 0건.
+- `font-light` in `client/src/pages client/src/components`: 0건.
+- 공통 역할 타이포 클래스 사용: 60건.
+- 제목 `text-wrap: balance`, 본문 `text-wrap: pretty`: 전역 규칙 유지 확인.
+- 프로덕션 빌드: 성공, 1,953 modules, CSS 47.51 kB, JS 718.40 kB.
+- 1280px computed h1 — Stays, Packages, StoryList, Membership, Privacy, Checkout 모두 `32px / 700 / 36.8px / -0.64px`.
+- 위 페이지 h1 left 좌표: 모두 64px.
+- 동적 숫자 computed `font-variant-numeric`: `tabular-nums`.
+
+다음: B 디자인 시스템 일관성.
+
+### 2단계 B — 디자인 시스템 일관성
+
+상태: 완료
+
+수정:
+
+- `client/src/lib/designTokens.js`에 동해 블루와 무코 레드 hex 원값을 모으고 페이지는 `BRAND_HEX`를 참조하게 했다.
+- 페이지·컴포넌트의 `rounded-[Npx]`, `rounded-3xl`을 정의된 `rounded-2xl` 이하 토큰으로 통일했다.
+- `StayCard`와 `PackageCarousel`의 장식용 프라이머리 링/보더를 제거하고 정의된 `shadow-card`로 깊이를 표현했다.
+- MyPage 바로가기와 PackageCarousel 카드의 카드 자체 translate/scale 및 hover 강화 그림자를 제거했다.
+- MyPage 이미지의 임의 `drop-shadow-md`를 제거했다.
+- 체크아웃의 외곽 표면 반경을 20px 토큰으로 통일했다. 내부 결제수단 버튼은 독립된 조작 표면으로 유지했다.
+
+재검증:
+
+- pages/components 직접 6자리 hex: 0건.
+- `rounded-[Npx]`, `rounded-3xl`, `drop-shadow*`, `transition-all`: 0건.
+- 임의 `shadow-[...]`/inline box-shadow: 0건.
+- `active:scale`의 0.96 이외 값: 0건.
+- 카드의 hover translate/hover 강화 그림자: 0건. 남은 translate 1건은 별도 부유 표면인 챗봇 FAB다.
+- 프로덕션 빌드: 성공, 1,954 modules, CSS 45.02 kB, JS 717.68 kB.
+- 1280px PackageCarousel 카드 computed: radius 20px, border 0px, transform none, `shadow-card` 값 적용.
+- 1280px Membership 표면 computed: radius 20px, `shadow-depth` 값 적용, theme color `#4AB8CD`.
+- 1280px MyPage 바로가기 computed: radius 20px, transform none, `shadow-depth` 값 적용.
+
+다음: C-D 여백과 레이아웃.
+
+### 2단계 C-D — 여백과 레이아웃
+
+상태: 완료
+
+수정:
+
+- `section-page` 공통 간격을 추가하고 About/Membership의 같은 성격 본문 섹션에 적용했다.
+- Auth, CheckoutComplete, JournalDetail의 페이지 루트를 `container-page` 경유로 통일했다.
+- 헤더 로고·메뉴, 푸터 메뉴, 칩·탭·카운터·모달·액션바·주소 링크의 실제 히트 영역을 모바일 최소 44×44px, 데스크톱 최소 40×40px로 맞췄다.
+- `StayCard`의 Link 내부 Bookmark button 중첩을 제거하고 article 아래 형제 인터랙션으로 분리했다.
+- CheckoutComplete의 모바일 flex 축소로 링크 높이가 텍스트 높이까지 줄던 문제를 `w-full sm:flex-1`로 수정했다.
+
+재검증:
+
+- 21개 라우트 시나리오 × 7개 폭 = 147개 조합 재실측.
+- 320/390/768/1024/1280/1536/1920 전 조합 가로 오버플로: 0건.
+- 모바일 44px, 데스크톱 40px 미만 button/link: 0건.
+- Stays 카드 그리드 실측 컬럼: 320=1, 390=1, 768=2, 1024=3, 1280=3, 1536=4, 1920=4.
+- 컨테이너 h1 left: 320/390=20px, 768=32px, 1024=48px, 1280/1536=64px, 1920=249px.
+- 헤더 세로 중심: 모바일 logo 30px, 데스크톱 logo/menu 모두 40px.
+- 1280px 스크롤 후 sticky: Stay aside top 92/y97, Package tab top80/y84와 aside top92/y96, Checkout summary top92/y97.
+- Stays 전체 높이는 320/390에서 51,205px로 여전히 매우 길다. 148개 데이터의 페이지네이션은 사업 로직/데이터 흐름 변경이라 이번 범위에서 제외했다.
+- 프로덕션 빌드: 성공, 1,954 modules, CSS 45.10 kB, JS 718.20 kB.
+
+다음: E-G 라이팅·모션·아이콘.
+
+### 2단계 E-G — 라이팅·모션·아이콘
+
+상태: 완료
+
+수정:
+
+- 영어 UI 라벨을 한국어로 바꾸고 “저장한 장소·숙소·패스·내 패스”로 용어를 통일했다.
+- 브랜드 소개, 코스 설명, 패스 안내, 결제 안내, 개인정보처리방침을 방문자용 해요체 또는 공식 존댓말로 다듬었다.
+- 데이터 원본은 바꾸지 않고 `cleanCopy`, 상세 요약, 가격 표시 경로에서 “재확인 필요·요금 미정·가격 자료 대기”를 숨기거나 “가격 문의”로 바꿨다.
+- `page-enter`와 loading dot keyframe을 reduced-motion에서 정지시켰다.
+- StoryList 카드에 열 단위 0/100/200ms stagger를 추가했다.
+- hover 확대가 있는 모든 이미지 12곳에 `motion-reduce:transform-none`을 적용했다.
+- 저장·환불 체크·복사·좋아요·싫어요 상태 아이콘을 opacity/scale/blur 교차 전환으로 바꿨다.
+- Lucide 아이콘 크기를 16/20/24/32/48 단계로 통일하고 strokeWidth를 2 중심, 체크 강조 2.5로 정리했다.
+
+재검증:
+
+- 21개 렌더 라우트에서 내부 상태 문구와 금지 영어 라벨: 0건.
+- Lucide width 속성 실측값: 16/20/24/48px만 존재, 허용 밖 크기 0건.
+- StoryList 첫 두 열 computed transition-delay: 0/100/200ms 반복.
+- 저장 아이콘 computed 전환: 150ms, `opacity, transform, filter`; outline 1/scale1/blur0, fill 0/scale0.75/blur1px.
+- 빌드 CSS의 `prefers-reduced-motion: reduce` 규칙에서 page enter/loading 애니메이션 none 및 transform/transition none 확인.
+- `transition-all`: 0건.
+- 프로덕션 빌드: 성공, 1,954 modules, CSS 46.26 kB, JS 720.58 kB.
+
+다음: 7개 뷰포트 전체 최종 회귀.
+
+### 최종 회귀
+
+상태: 완료
+
+- 마지막 제품 코드 변경까지 반영한 뒤 21개 라우트 시나리오 × 7개 폭 = 147개 조합을 새로 측정했다.
+- 320/390/768/1024/1280/1536/1920 각 21건에서 가로 오버플로 0, 최소 히트 영역 위반 0, 깨진 이미지 0.
+- 최종 회귀 중 `JournalDetailPage`의 `cover_image: null`이 빈 img src로 렌더되는 문제를 발견해, 데이터 변경이나 다른 사진 대체 없이 값이 있을 때만 img를 렌더하도록 수정했다.
+- 직접 hex, `font-light`, `transition-all`, 임의 px 반경, `rounded-3xl`, drop-shadow, 허용 밖 Lucide size, 페이지 임의 heading 스케일: 각각 0건.
+- git branch: `main`. 새 브랜치나 커밋을 만들지 않았다.
+- 최종 프로덕션 빌드: 성공, 1,954 modules, CSS 46.23 kB, JS 720.57 kB.
+- Vite의 500 kB 초과 chunk 경고는 남아 있다. 시각 감사 범위 밖의 코드 스플리팅 이슈로 기록만 한다.
+- `/goods`와 일반 사용자 `/admin`은 각각 홈으로 리다이렉트된다. 라우팅/권한 사업 로직은 이번 범위에서 변경하지 않았다.
+- Stays의 148개 전체 렌더로 인한 약 51,205px 모바일 문서 높이는 페이지네이션이라는 데이터 흐름 변경이 필요해 이번 범위에서 변경하지 않았다.
+
+다음: 없음.
 
 ---
 

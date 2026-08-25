@@ -30,19 +30,16 @@ export default function AuthPage() {
   }
 
   return (
-    <div className="page-enter mx-auto w-full
-                    px-5 md:px-8 lg:px-12
-                    max-w-[440px]
+    <div className="page-enter container-page max-w-[440px]
                     py-12 lg:py-20">
       <Helmet>
         <title>로그인 | 동해사이</title>
       </Helmet>
 
-      <h1 className="font-pretendard font-bold
-                     text-[24px] md:text-[28px] text-text-pri tracking-[-0.02em] leading-tight">
+      <h1 className="type-page-title text-text-pri">
         로그인
       </h1>
-      <p className="mt-2 font-pretendard font-normal text-[14px] md:text-[15px] text-text-meta">
+      <p className="mt-2 font-pretendard font-normal text-[14px] md:text-[15px] text-text-sec">
         아이디와 비밀번호로 들어오세요
       </p>
 
@@ -63,7 +60,7 @@ export default function AuthPage() {
       </form>
 
       <p className="mt-6 font-pretendard font-normal text-[12px] text-text-meta text-center leading-relaxed">
-        프로토타입 로그인입니다. 아무 값이나 넣어도 들어갈 수 있어요
+        아이디와 비밀번호를 입력해 동해사이를 둘러보세요
       </p>
     </div>
   )

@@ -9,21 +9,21 @@ export default function Counter({ count = 1, min = 1, max = 10, onChange }) {
         aria-label="감소"
         onClick={dec}
         disabled={count <= min}
-        className="w-9 h-9 rounded-full border border-border-def
+        className="w-11 h-11 md:w-10 md:h-10 rounded-full border border-border-def
                    inline-flex items-center justify-center
                    hover:border-primary
                    disabled:opacity-40 disabled:cursor-not-allowed
                    transition-colors duration-150">
         <Minus size={16} className="text-text-pri" />
       </button>
-      <span className="w-8 text-center font-pretendard font-medium text-[16px] text-text-pri">
+      <span className="w-8 text-center font-pretendard font-medium text-[16px] text-text-pri tabular-nums">
         {count}
       </span>
       <button
         aria-label="증가"
         onClick={inc}
         disabled={count >= max}
-        className="w-9 h-9 rounded-full border border-border-def
+        className="w-11 h-11 md:w-10 md:h-10 rounded-full border border-border-def
                    inline-flex items-center justify-center
                    hover:border-primary
                    disabled:opacity-40 disabled:cursor-not-allowed

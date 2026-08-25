@@ -16,9 +16,7 @@ export default function AdminPage() {
   return (
     <div className="page-enter container-page
                     py-8 lg:py-12">
-      <h1 className="font-pretendard font-bold
-                     text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
-                     text-text-pri tracking-[-0.02em] leading-tight">
+      <h1 className="type-page-title text-text-pri">
         운영 대시보드
       </h1>
       <p className="mt-2 font-pretendard font-normal text-[15px] md:text-[16px] text-text-meta">
@@ -29,17 +27,17 @@ export default function AdminPage() {
         {SUMMARY.map((s) => (
           <div key={s.label} className="shadow-card rounded-xl p-5">
             <p className="font-pretendard font-medium text-[14px] text-text-meta">{s.label}</p>
-            <p className="mt-2 font-pretendard font-bold text-[24px] text-text-pri">{formatPrice(s.value)}</p>
+            <p className="mt-2 font-pretendard font-bold text-[24px] text-text-pri tabular-nums">{formatPrice(s.value)}</p>
           </div>
         ))}
       </section>
 
       <section className="mt-12">
-        <h2 className="font-pretendard font-bold text-[20px] md:text-[22px] lg:text-[24px] text-text-pri tracking-[-0.02em] mb-4">
+        <h2 className="type-section-title text-text-pri mb-4">
           오늘 예약 현황
         </h2>
         <div className="overflow-x-auto shadow-card rounded-xl">
-          <table className="w-full text-left">
+          <table className="w-full text-left tabular-nums">
             <thead>
               <tr className="border-b border-border-sub bg-bg-card">
                 <th className="px-5 py-3 font-pretendard font-medium text-[13px] text-text-meta">거점</th>

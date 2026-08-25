@@ -45,7 +45,7 @@ export default function ChoiceCuration() {
                 <img src={t.image} alt={t.place} loading="lazy"
                      className="w-full h-full object-cover
                                 transition-transform duration-[600ms] ease-out
-                                motion-reduce:transition-none group-hover:scale-[1.04]" />
+                                motion-reduce:transition-none motion-reduce:transform-none group-hover:scale-[1.04]" />
                 {/* 가독성용 오버레이. 전체 어둡게 + 하단 절반 한 번 더(그라데이션 금지라 솔리드 겹침) */}
                 <div className="absolute inset-0 bg-black/45" />
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-black/35" />

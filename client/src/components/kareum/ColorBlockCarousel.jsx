@@ -31,13 +31,11 @@ export default function ColorBlockCarousel({ items = [] }) {
                 <div>
                   <Eyebrow className="flex items-center gap-1.5">
                     <MapPin size={16} strokeWidth={2} className="text-primary" />
-                    {num ? `PROGRAM ${num}` : 'PROGRAM'}
+                    {num ? `프로그램 ${num}` : '프로그램'}
                     {p.region && <span className="text-text-meta">{p.region}</span>}
                   </Eyebrow>
 
-                  <h3 className="mt-4 font-pretendard font-bold
-                                 text-[22px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
-                                 tracking-[-0.02em] leading-tight text-text-pri line-clamp-2">
+                  <h3 className="mt-4 type-page-title text-text-pri line-clamp-2">
                     {title}
                   </h3>
 

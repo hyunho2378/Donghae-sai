@@ -21,10 +21,8 @@ export default function StoryListPage() {
     <div className="page-enter">
       <div className="container-page
                       py-8 lg:py-12">
-        <Eyebrow>donghae story</Eyebrow>
-        <h1 className="mt-3 font-pretendard font-bold
-                       text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
-                       text-text-pri leading-tight">
+        <Eyebrow>동해 이야기</Eyebrow>
+        <h1 className="mt-3 type-page-title text-text-pri">
           동해 스토리
         </h1>
         <p className="mt-2 font-pretendard font-medium text-[15px] md:text-[16px] text-text-sec">
@@ -42,7 +40,7 @@ export default function StoryListPage() {
                             ? 'text-accent border-accent'
                             : 'text-text-meta border-transparent hover:text-text-pri'}`}>
               {t.label}
-              <span className="ml-1.5 font-medium text-[12px] text-text-meta">
+              <span className="ml-1.5 font-medium text-[12px] text-text-meta tabular-nums">
                 {t.key === 'ALL'
                   ? storiesData.length
                   : storiesData.filter((s) => s.category === t.key).length}
@@ -53,8 +51,8 @@ export default function StoryListPage() {
 
         <div className="mt-8 grid gap-x-6 gap-y-10 md:gap-x-8 md:gap-y-12
                         grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {items.map((s) => (
-            <RevealOnScroll key={s.id}>
+          {items.map((s, i) => (
+            <RevealOnScroll key={s.id} delay={(i % 3) * 100}>
               <Link to={`/story/${s.slug}`} className="group block">
                 <article>
                   <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-bg-card">
@@ -64,7 +62,7 @@ export default function StoryListPage() {
                       loading="lazy"
                       className="w-full h-full object-cover
                                  transition-transform duration-[600ms] ease-out
-                                 motion-reduce:transition-none group-hover:scale-[1.04]" />
+                                 motion-reduce:transition-none motion-reduce:transform-none group-hover:scale-[1.04]" />
                     <span className="absolute top-3 left-3
                                      h-[26px] px-2.5
                                      bg-accent text-white
@@ -74,13 +72,10 @@ export default function StoryListPage() {
                     </span>
                   </div>
                   <div className="pt-4">
-                    <p className="font-pretendard font-semibold text-[12px] tracking-[0.08em] text-primary">
+                    <p className="font-pretendard font-semibold text-[12px] tracking-[0.08em] text-primary tabular-nums">
                       {s.spots?.length ? `스팟 ${s.spots.length}곳` : ''}{s.tags?.[0] ? ` ${s.tags[0]}` : ''}
                     </p>
-                    <h3 className="mt-1 font-pretendard font-bold
-                                   text-[17px] md:text-[18px] lg:text-[19px]
-                                   text-text-strong tracking-[-0.02em] leading-snug
-                                   line-clamp-2">
+                    <h3 className="mt-1 type-card-title text-text-strong line-clamp-2">
                       {s.title}
                     </h3>
                     <p className="mt-1 font-pretendard font-normal text-[14px] text-text-sec

@@ -12,7 +12,7 @@ export default function GoodsCard({ name, category, price, price_label, images }
           <img src={image} alt={name}
                className="w-full h-full object-cover
                           transition-transform duration-[600ms] ease-out
-                          motion-reduce:transition-none group-hover:scale-[1.04]" />
+                          motion-reduce:transition-none motion-reduce:transform-none group-hover:scale-[1.04]" />
         ) : (
           <span className="px-3 text-center font-pretendard font-semibold text-[12px] text-text-ter">
             {category || '동해 굿즈'}
@@ -23,7 +23,7 @@ export default function GoodsCard({ name, category, price, price_label, images }
         <span className="font-pretendard font-medium text-[12px] text-text-meta">
           {category}
         </span>
-        <h3 className="mt-1 font-pretendard font-bold text-[15px] text-text-strong line-clamp-2">
+        <h3 className="mt-1 type-card-title text-text-strong line-clamp-2">
           {name}
         </h3>
         <p className="mt-1 font-pretendard font-bold text-[15px] text-text-pri">

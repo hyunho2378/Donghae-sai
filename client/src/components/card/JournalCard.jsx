@@ -14,12 +14,12 @@ export default function JournalCard({
                  loading="lazy"
                  className="w-full h-full object-cover
                             transition-transform duration-[600ms] ease-out
-                            motion-reduce:transition-none group-hover:scale-[1.04]" />
+                            motion-reduce:transition-none motion-reduce:transform-none group-hover:scale-[1.04]" />
           )}
         </div>
         <div className="pt-4">
           <Eyebrow as="span" className="inline-block">{JOURNAL_CATEGORY_LABEL[category]}</Eyebrow>
-          <h3 className="mt-2 font-pretendard font-bold text-[18px] text-text-strong tracking-[-0.02em] line-clamp-2">
+          <h3 className="mt-2 type-card-title text-text-strong line-clamp-2">
             {title}
           </h3>
           <p className="mt-1 font-pretendard font-normal text-[14px] text-text-sec line-clamp-2">

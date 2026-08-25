@@ -17,11 +17,29 @@ const SYNONYMS = [
 ]
 
 const MIN_SCORE = 2
-const FOLLOWUP_MARKER = /아까|방금|앞에서|그중|그곳|거기|첫\s*번째|두\s*번째|세\s*번째|다른\s*곳/
+const FOLLOWUP_MARKER = /아까|방금|앞에서|위에서|위의|앞의|그중|그곳|거기|각각|추천(?:한|해준)|말(?:한|해준)|첫\s*번째|두\s*번째|세\s*번째|다른\s*곳/
 const CONCRETE_TOPIC = /묵호|무릉|추암|망상|천곡|한섬|동해|바다|해변|숙소|숙박|호텔|펜션|맛집|식당|카페|패스|코스|산책|체험|아이|가족|뚜벅이|버스|야간|밤/
 
 function isContextOnlyFollowUp(query) {
   return FOLLOWUP_MARKER.test(query) && !CONCRETE_TOPIC.test(query)
+}
+
+export function isFollowUpQuery(query = '') {
+  return FOLLOWUP_MARKER.test(query)
+}
+
+// "위에서 각각 하나"처럼 현재 문장만으로 검색할 수 없는 질문은 직전 문답을 검색어에 붙인다.
+// 모델에 히스토리를 보내는 것과 별개로 RAG도 같은 대상을 보게 해야 새 자료와 앞선 답변이 충돌하지 않는다.
+export function buildRetrievalQuery(message, history = []) {
+  if (!isFollowUpQuery(message) || !Array.isArray(history)) return message
+
+  const recentContext = history
+    .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+    .slice(-2)
+    .map((m) => m.content.trim())
+    .filter(Boolean)
+
+  return recentContext.length ? `${recentContext.join('\n')}\n${message}` : message
 }
 
 function expandQuery(query) {
@@ -60,6 +78,28 @@ export function searchKnowledge(rawQuery, maxHits = 3) {
     .map(s => s.item)
 }
 
+// 답변에 실제로 이름이 등장한 개별 장소만 출처 카드로 돌려준다.
+// 검색 hit 자체를 그대로 노출하면 묶음 자료는 카드에서 사라지고, 우연히 링크가 있는 한 곳만 남는다.
+export function findMentionedSources(answer, fallbackHits = [], maxSources = 12) {
+  const mentioned = knowledge.filter((item) => {
+    if (!item.link || !item.id.startsWith('sai-')) return false
+    const name = item.keywords?.[0]
+    return typeof name === 'string' && name.length >= 2 && answer.includes(name)
+  })
+
+  // 모델에게 추천 장소명을 굵게 쓰도록 지시하므로, 굵은 이름이 있으면 단순 위치 설명에
+  // 스쳐 나온 지명(예: "묵호항 근처")은 카드에서 제외한다.
+  const emphasized = mentioned.filter((item) => answer.includes(`**${item.keywords[0]}**`))
+  const answerSources = emphasized.length ? emphasized : mentioned
+  const sources = answerSources.length ? answerSources : fallbackHits.filter((item) => item.link)
+  const seen = new Set()
+  return sources.filter((item) => {
+    if (seen.has(item.id)) return false
+    seen.add(item.id)
+    return true
+  }).slice(0, maxSources)
+}
+
 // 말투 규칙. 질문이 바뀌어도 이 블록은 그대로라 프롬프트 앞에 둔다.
 // 앞자리에 두면 Ollama가 프리픽스를 다시 평가하지 않아 첫 토큰이 빨라진다.
 // 발표 문서용 문체 규칙과 챗봇 말투는 별개다. DESIGN.md 톤 항목의 권유형 종결어미를 따른다.
@@ -71,6 +111,12 @@ const RULES = `너는 동해사이 여행 도우미다. 동해로 여행 오는 
 장소만 나열하지 말고 왜 그곳이 좋은지 이유를 한 마디씩 붙인다.
 질문한 사람의 상황에 맞춘다. 가족이라고 하면 아이와 함께 움직이는 상황을, 뚜벅이라고 하면 차 없이 걷고 버스 타는 상황을 기준으로 답한다.
 네가 AI라는 말은 하지 않는다.
+
+대화 이어가기.
+아까 위에서 그중 각각처럼 앞 답변을 가리키는 말은 바로 직전 답변을 기준으로 이해한다.
+각각 하나씩 골라 달라는 요청은 앞 답변의 분류마다 이미 언급한 고유한 장소명 한 곳을 골라 정확히 이름을 쓴다.
+식당을 골라 달라는 질문에 근처 식당 같은 뭉뚱그린 표현이나 소품샵 이름을 대신 쓰지 않는다.
+자료집에 인기 순위 근거가 없으면 가장 인기 있다고 단정하지 말고 자료집에서 추천하는 곳이라고 안내한다.
 
 답변 형식 우선 규칙.
 여러 장소나 항목을 안내할 때는 반드시 하이픈 불릿을 쓰고, 각 항목의 이름은 별표 두 개로 굵게 한다. 이동 순서나 단계는 번호 목록으로 쓴다.
@@ -126,15 +172,30 @@ DAY 1과 DAY 2 같은 표기는 첫날과 다음 날로 바꿔 말한다.
 나쁜 예는 가족 숙소 확인되지 않음. 선샤인호텔 확인되지 않음.
 좋은 예는 가족이 머물기 좋은 곳으로 선샤인호텔이 있어요. 묵호역에서 걸어갈 수 있어서 짐이 많은 가족 여행에 편해요.`
 
-export function buildSystemPrompt(hits, hasHistory = false) {
+function buildFollowUpInstruction(message) {
+  if (!isFollowUpQuery(message)) return ''
+
+  const exactCount = /각각|하나씩|한\s*곳씩|1\s*개씩/.test(message)
+  if (!exactCount) {
+    return `\n\n이번 질문은 앞선 대화의 후속 질문이다. 직전 답변에 나온 고유 장소명을 직접 사용해서 답하고 근처 장소처럼 바꾸어 말하지 않는다.`
+  }
+
+  return `\n\n이번 질문은 직전 답변의 분류마다 한 곳을 고르는 요청이다.
+요청한 분류마다 정확히 한 곳만 골라 - **고유 장소명**: 선택 이유 형식으로 답한다.
+분류명만 굵게 쓰지 말고 선택한 장소명을 굵게 쓴다.
+직전 답변에 없던 장소, 주변의 다른 장소, 추가 추천, 후속 질문은 붙이지 않는다.`
+}
+
+export function buildSystemPrompt(hits, hasHistory = false, message = '') {
   const context = hits.map(h => h.content).join('\n\n')
+  const followUpInstruction = buildFollowUpInstruction(message)
   if (!context) {
     // 앞선 대화가 있으면 이어지는 후속 질문일 수 있다. 거절하지 말고 앞 답변 맥락으로 답한다
     if (hasHistory) {
       return RULES + `
 
 동해 자료집.
-지금 질문에 딱 맞는 새 자료집 항목은 없지만 대화가 이어지는 중이다. 직전 대화에서 언급한 장소나 코스를 최우선으로 참고해 자연스럽게 답한다. 바로 위에서 네가 이미 안내한 곳들을 떠올리고, 앞에서 말한 장소를 다시 활용하되 없는 사실은 새로 지어내지 않는다. 정말 정보가 부족하면 무엇을 더 알려줄지 한 문장으로 되묻는다.`
+지금 질문에 딱 맞는 새 자료집 항목은 없지만 대화가 이어지는 중이다. 직전 대화에서 언급한 장소나 코스를 최우선으로 참고해 자연스럽게 답한다. 바로 위에서 네가 이미 안내한 곳들을 떠올리고, 앞에서 말한 장소를 다시 활용하되 없는 사실은 새로 지어내지 않는다. 정말 정보가 부족하면 무엇을 더 알려줄지 한 문장으로 되묻는다.${followUpInstruction}`
     }
     return RULES + `
 
@@ -146,5 +207,5 @@ export function buildSystemPrompt(hits, hasHistory = false) {
 동해 자료집. 아래 사실만 근거로 삼는다.
 ${context}
 
-위 자료집 문장을 그대로 옮기지 말고 친절한 존댓말 대화체로 다시 말해라. 확인 안 됨이라고 적힌 항목은 답변에서 빼라.`
+위 자료집 문장을 그대로 옮기지 말고 친절한 존댓말 대화체로 다시 말해라. 확인 안 됨이라고 적힌 항목은 답변에서 빼라.${followUpInstruction}`
 }

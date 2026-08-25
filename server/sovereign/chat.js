@@ -1,5 +1,10 @@
 import { Router } from 'express'
-import { searchKnowledge, buildSystemPrompt } from './rag.mjs'
+import {
+  searchKnowledge,
+  buildSystemPrompt,
+  buildRetrievalQuery,
+  findMentionedSources
+} from './rag.mjs'
 import { createByteFallbackAssembler } from './byteFallback.mjs'
 
 const router = Router()
@@ -19,9 +24,10 @@ router.post('/', async (req, res) => {
           .map((m) => ({ role: m.role, content: m.content }))
       : []
 
-    // 자료집 검색은 이번 질문만 기준으로 한다. 대화 맥락은 히스토리로만 보완한다
-    const hits = searchKnowledge(message)
-    const systemPrompt = buildSystemPrompt(hits, safeHistory.length > 0)
+    // 지시어형 후속 질문이면 직전 문답도 RAG 검색에 반영한다.
+    const retrievalQuery = buildRetrievalQuery(message, safeHistory)
+    const hits = searchKnowledge(retrievalQuery, retrievalQuery === message ? 3 : 8)
+    const systemPrompt = buildSystemPrompt(hits, safeHistory.length > 0, message)
 
     const ollamaRes = await fetch(OLLAMA_URL, {
       method: 'POST',
@@ -48,27 +54,30 @@ router.post('/', async (req, res) => {
     res.setHeader('Content-Type', 'application/x-ndjson; charset=utf-8')
     res.setHeader('Cache-Control', 'no-cache')
 
-    // 먼저 sources를 한 줄 보낸다
-    res.write(JSON.stringify({
-      type: 'sources',
-      sources: hits.map(h => h.id),
-      links: Object.fromEntries(hits.filter(h => h.link).map(h => [h.id, h.link]))
-    }) + '\n')
-
     const reader = ollamaRes.body.getReader()
     const decoder = new TextDecoder()
     let buffer = ''
 
     const assembler = createByteFallbackAssembler()
-    const writeToken = (t) => { if (t) res.write(JSON.stringify({ type: 'token', token: t }) + '\n') }
+    let answer = ''
+    const writeToken = (t) => {
+      if (!t) return
+      answer += t
+      res.write(JSON.stringify({ type: 'token', token: t }) + '\n')
+    }
     let sentDone = false
 
     const finishAnswer = () => {
+      if (sentDone) return
       writeToken(assembler.finish())
-      if (!sentDone) {
-        res.write(JSON.stringify({ type: 'done' }) + '\n')
-        sentDone = true
-      }
+      const finalSources = findMentionedSources(answer, hits)
+      res.write(JSON.stringify({
+        type: 'sources',
+        sources: finalSources.map((h) => h.id),
+        links: Object.fromEntries(finalSources.map((h) => [h.id, h.link]))
+      }) + '\n')
+      res.write(JSON.stringify({ type: 'done' }) + '\n')
+      sentDone = true
     }
 
     const processLine = (line) => {

@@ -10,6 +10,7 @@ import Counter from '../components/Counter'
 import DateRangePicker from '../components/DateRangePicker'
 import Carousel from '../components/kareum/Carousel'
 import RevealOnScroll from '../components/kareum/RevealOnScroll'
+import { BRAND_HEX } from '../lib/designTokens'
 import Eyebrow from '../components/Eyebrow'
 import Description from '../components/Description'
 import { formatPrice, STAY_TYPE_LABEL, calcNights, cleanCopy, asList } from '../lib/format'
@@ -40,7 +41,7 @@ function buildInfoRows(stay) {
 
   // 상세 표는 price_detail(전체)을 우선한다. 카드는 price_label(대표)만 쓴다
   const price = stay.price_detail || clean(stay.price_label)
-  rows.push({ label: '요금', value: price ? price.replace(/에서/g, ' ~ ') : '요금 미정' })
+  rows.push({ label: '요금', value: price && !/요금 미정/.test(price) ? price.replace(/에서/g, ' ~ ') : '가격 문의' })
   return rows
 }
 
@@ -109,7 +110,7 @@ export default function StayDetailPage() {
         <meta property="og:image" content={stay.main_image} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="theme-color" content="#4AB8CD" />
+        <meta name="theme-color" content={BRAND_HEX.primary} />
       </Helmet>
 
       {/* Hero 풀블리드. 한 장. 화면을 다 먹지 않게 높이를 낮춘다 */}
@@ -131,9 +132,7 @@ export default function StayDetailPage() {
           {/* 캡션 컨테이너를 본문과 동일한 container-page 로 맞춰 좌측 기준선을 완전히 일치시킨다 */}
           <div className="container-page">
             <Eyebrow tone="light">{stay.region} {STAY_TYPE_LABEL[stay.type]}</Eyebrow>
-            <h1 className="mt-2 font-pretendard font-bold
-                           text-[24px] md:text-[36px] lg:text-[44px] 4xl:text-[52px]
-                           text-white tracking-[-0.02em] leading-tight">
+            <h1 className="mt-2 type-detail-title text-white">
               {stay.name}
             </h1>
           </div>
@@ -159,14 +158,20 @@ export default function StayDetailPage() {
               공유
             </button>
             <button onClick={toggleBookmark}
-              aria-label={isBookmarked ? '북마크 해제' : '저장'}
+              aria-label={isBookmarked ? '저장 해제' : '저장'}
               className="inline-flex items-center gap-1.5 h-11 px-4 rounded-full
                                bg-bg-mute hover:bg-border-sub
                                font-pretendard font-medium text-[14px] text-text-pri
                                transition-[background-color,scale] duration-150 ease-out
                                motion-reduce:transition-none active:scale-[0.96]">
-              <Bookmark size={16} className={isBookmarked ? 'text-primary fill-primary' : 'text-text-meta'}
-                fill={isBookmarked ? 'currentColor' : 'none'} />
+              <span className={`relative block w-4 h-4 ${isBookmarked ? 'text-primary' : 'text-text-meta'}`}>
+                <Bookmark size={16}
+                  className={`absolute inset-0 transition-[opacity,transform,filter] duration-150 motion-reduce:transition-none
+                              ${isBookmarked ? 'opacity-0 scale-75 blur-[1px]' : 'opacity-100 scale-100 blur-0'}`} />
+                <Bookmark size={16} fill="currentColor"
+                  className={`absolute inset-0 transition-[opacity,transform,filter] duration-150 motion-reduce:transition-none
+                              ${isBookmarked ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-75 blur-[1px]'}`} />
+              </span>
               저장
             </button>
           </div>
@@ -174,7 +179,7 @@ export default function StayDetailPage() {
           {/* 소개 */}
           <RevealOnScroll>
             {/* 태그라인이 반점 나열이면 제목으로 세우지 않고 항목으로 편다 */}
-            <h3 className="font-pretendard font-bold text-[22px] md:text-[26px] lg:text-[30px] text-text-pri leading-tight">
+            <h3 className="type-section-title text-text-pri">
               {taglineItems ? '한눈에 보기' : cleanCopy(stay.tagline)}
             </h3>
             {taglineItems && <Description text={stay.tagline} className="mt-4" />}
@@ -188,7 +193,7 @@ export default function StayDetailPage() {
                     <img src={src} alt={`${stay.name} 갤러리 ${i + 2}`}
                       className="w-full h-full object-cover
                                     transition-transform duration-[600ms] ease-out
-                                    motion-reduce:transition-none hover:scale-[1.04]" />
+                                    motion-reduce:transition-none motion-reduce:transform-none hover:scale-[1.04]" />
                   </button>
                 ))}
               </div>
@@ -198,7 +203,7 @@ export default function StayDetailPage() {
           {/* 주요 특징 */}
           {stay.highlights?.length > 0 && (
             <RevealOnScroll>
-              <h3 className="font-pretendard font-bold text-[18px] md:text-[20px] text-text-pri tracking-[-0.02em] mb-4">
+              <h3 className="type-section-title text-text-pri mb-4">
                 주요 특징
               </h3>
               <div className="grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-3">
@@ -216,7 +221,7 @@ export default function StayDetailPage() {
 
           {/* 위치 및 정보 */}
           <RevealOnScroll>
-            <h3 className="font-pretendard font-bold text-[18px] md:text-[20px] text-text-pri tracking-[-0.02em] mb-4">
+            <h3 className="type-section-title text-text-pri mb-4">
               위치 및 정보
             </h3>
 
@@ -231,8 +236,8 @@ export default function StayDetailPage() {
                   <dd className="flex-1 font-pretendard font-normal text-[13px] md:text-[14px] text-text-pri leading-relaxed">
                     {r.map ? (
                       <a href={mapSearchUrl(r.value)} target="_blank" rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 hover:text-primary transition-colors duration-150">
-                        <MapPin size={14} className="shrink-0 text-text-meta" />
+                        className="inline-flex min-h-11 items-center gap-1 hover:text-primary transition-colors duration-150">
+                        <MapPin size={16} className="shrink-0 text-text-meta" />
                         {r.value}
                       </a>
                     ) : r.value}
@@ -253,8 +258,8 @@ export default function StayDetailPage() {
                     referrerPolicy="no-referrer-when-downgrade" />
                 </div>
                 <a href={mapSearchUrl(stay.address)} target="_blank" rel="noopener noreferrer"
-                  className="mt-2 inline-flex items-center gap-1 font-pretendard font-medium text-[13px] text-primary hover:text-primary-hover transition-colors duration-150">
-                  <MapPin size={14} />
+                  className="mt-2 inline-flex min-h-11 items-center gap-1 font-pretendard font-medium text-[13px] text-primary hover:text-primary-hover transition-colors duration-150">
+                  <MapPin size={16} />
                   구글맵에서 열기
                 </a>
               </>
@@ -280,7 +285,7 @@ export default function StayDetailPage() {
           {/* 추천 장소 */}
           {similar.length > 0 && (
             <RevealOnScroll>
-              <h3 className="font-pretendard font-bold text-[20px] md:text-[22px] lg:text-[24px] text-text-pri tracking-[-0.02em] mb-4">
+              <h3 className="type-section-title text-text-pri mb-4">
                 추천 장소
               </h3>
               <Carousel label="추천 장소"
@@ -296,7 +301,7 @@ export default function StayDetailPage() {
         {/* 요금 예약 카드. 숙박에만 있다. 먹거리 체험 볼거리는 정보 표만으로 충분하다 */}
         {isBookable && (
           <aside className="mt-10 lg:mt-0 lg:sticky lg:top-[92px] h-fit
-                          shadow-depth rounded-[32px] p-5 bg-white">
+                          shadow-depth rounded-2xl p-5 bg-white">
             {!isFree ? (
               <>
                 <Eyebrow>쿠폰 적용 할인가</Eyebrow>
@@ -316,7 +321,7 @@ export default function StayDetailPage() {
               <>
                 <Eyebrow>이용 요금</Eyebrow>
                 <p className="mt-2 font-pretendard font-bold text-[24px] text-text-pri">
-                  {clean(stay.price_label) || '요금 미정'}
+                  {clean(stay.price_label) && !/요금 미정/.test(stay.price_label) ? clean(stay.price_label) : '가격 문의'}
                 </p>
               </>
             )}
@@ -382,7 +387,7 @@ export default function StayDetailPage() {
           <button aria-label="닫기" onClick={closeLightbox}
             className="absolute top-5 right-5 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20
                              inline-flex items-center justify-center transition-colors duration-150">
-            <X size={22} className="text-white" />
+            <X size={24} className="text-white" />
           </button>
           {lightboxImages.length > 1 && (
             <>
@@ -399,7 +404,7 @@ export default function StayDetailPage() {
             </>
           )}
           <img src={lightboxImages[lightbox]} alt={stay.name} className="max-w-[90vw] max-h-[85vh] object-contain" />
-          <div className="absolute bottom-5 font-pretendard font-medium text-[14px] text-white">
+          <div className="absolute bottom-5 font-pretendard font-medium text-[14px] text-white tabular-nums">
             {lightbox + 1} / {lightboxImages.length}
           </div>
         </div>
@@ -412,16 +417,16 @@ export default function StayDetailPage() {
           <div className="w-full max-w-[460px] bg-white rounded-2xl p-6 lg:p-8"
             onClick={(e) => e.stopPropagation()}>
             <div className="flex items-start justify-between gap-4">
-              <h3 className="font-pretendard font-bold text-[20px] lg:text-[22px] text-text-pri tracking-[-0.02em]">
+              <h3 className="type-card-title text-text-pri">
                 예약 확인
               </h3>
               <button aria-label="닫기" onClick={() => setModal(false)}
-                className="w-9 h-9 inline-flex items-center justify-center rounded-full hover:bg-bg-card">
-                <X size={18} />
+                className="w-11 h-11 md:w-10 md:h-10 inline-flex items-center justify-center rounded-full hover:bg-bg-card">
+                <X size={20} />
               </button>
             </div>
 
-            <dl className="mt-6 space-y-3 font-pretendard text-[14px]">
+            <dl className="mt-6 space-y-3 font-pretendard text-[14px] tabular-nums">
               <div className="flex justify-between gap-4">
                 <dt className="font-medium text-text-meta">장소</dt>
                 <dd className="font-bold text-text-pri text-right">{stay.name}</dd>

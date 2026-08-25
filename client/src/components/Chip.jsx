@@ -5,7 +5,7 @@ export default function Chip({ label, isSelected = false, onClick, className }) 
     <button
       onClick={onClick}
       className={clsx(
-        'h-10 px-4 rounded-full whitespace-nowrap',
+        'h-11 md:h-10 px-4 rounded-full whitespace-nowrap',
         'font-pretendard font-semibold text-[15px]',
         'transition-colors duration-150',
         isSelected

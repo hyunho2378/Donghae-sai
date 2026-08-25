@@ -16,9 +16,7 @@ export default function CheckoutCompletePage() {
   const price = Number(params.get('price')) || 0
 
   return (
-    <div className="page-enter mx-auto w-full
-                    px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
-                    max-w-[600px]
+    <div className="page-enter container-page max-w-[600px]
                     py-16 lg:py-24">
       <Helmet>
         <title>구매 완료 | 동해사이</title>
@@ -26,16 +24,16 @@ export default function CheckoutCompletePage() {
       </Helmet>
 
       <div className="text-center">
-        <CheckCircle size={56} className="text-primary mx-auto mb-6" />
-        <h1 className="font-pretendard font-bold text-[28px] lg:text-[32px] text-text-pri tracking-[-0.02em]">
+        <CheckCircle size={48} className="text-primary mx-auto mb-6" />
+        <h1 className="type-page-title text-text-pri">
           예약이 완료되었습니다
         </h1>
-        <p className="mt-3 font-pretendard font-normal text-[15px] text-text-meta">
+        <p className="mt-3 font-pretendard font-normal text-[15px] text-text-sec">
           동해에서 만나요
         </p>
       </div>
 
-      <div className="mt-10 shadow-card rounded-xl p-5 lg:p-6 space-y-3 font-pretendard text-[14px]">
+      <div className="mt-10 shadow-card rounded-xl p-5 lg:p-6 space-y-3 font-pretendard text-[14px] tabular-nums">
         <div className="flex justify-between gap-4">
           <span className="font-medium text-text-meta">예약 번호</span>
           <span className="font-bold text-text-pri tracking-[0.04em]">{orderId}</span>
@@ -69,7 +67,7 @@ export default function CheckoutCompletePage() {
       <div className="mt-8 flex flex-col sm:flex-row gap-3">
         <Link
           to="/pass"
-          className="flex-1 h-12 inline-flex items-center justify-center
+          className="w-full sm:flex-1 h-12 inline-flex items-center justify-center
                      bg-text-pri text-white rounded-lg
                      font-pretendard font-medium text-[15px]
                      hover:bg-black transition-colors duration-150">
@@ -77,7 +75,7 @@ export default function CheckoutCompletePage() {
         </Link>
         <button
           onClick={() => navigate('/')}
-          className="flex-1 h-12 inline-flex items-center justify-center
+          className="w-full sm:flex-1 h-12 inline-flex items-center justify-center
                      bg-white text-text-pri border border-border-def rounded-lg
                      font-pretendard font-medium text-[15px]
                      hover:border-text-pri transition-colors duration-150">

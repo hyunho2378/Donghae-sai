@@ -5,15 +5,21 @@ export const formatPrice = (won) => `${Number(won).toLocaleString()}원`
 // 카드용 대표 요금 한 줄. 여러 항목이면 첫 요금 + 부터. 전체는 상세 표에만 노출
 // 천 단위 콤마(3,000)는 유지하고 항목 구분자(콤마+공백, 마침표+공백, 별도)로만 자른다
 export const shortPrice = (label) => {
-  if (!label || label === '확인 안 됨') return null
+  if (!label || /확인 안 됨|요금 미정|가격 자료 대기/.test(label)) return null
   const t = label.trim()
   const parts = t.split(/,\s|\.\s|\s*별도/).map((s) => s.trim()).filter(Boolean)
   if (parts.length <= 1) return t.replace(/\.$/, '')
   return `${parts[0]} 부터`
 }
 
-// 원문 설명 끝에 남은 말줄임과 매달린 반점을 걷어낸다
-export const cleanCopy = (t) => (t || '').replace(/[,\s·]*(\.{2,}|…)\s*$/, '').replace(/\s*,\s*$/, '').trim()
+// 원문 설명에서 제작 상태 문장을 걷어내고, 끝에 남은 말줄임과 매달린 반점을 정리한다
+export const cleanCopy = (t) => (t || '')
+  .split(/(?<=[.!?])\s+/)
+  .filter((sentence) => !/재확인 필요|확인 필요|자료 대기/.test(sentence))
+  .join(' ')
+  .replace(/[,\s·]*(\.{2,}|…)\s*$/, '')
+  .replace(/\s*,\s*$/, '')
+  .trim()
 
 // 반점으로만 이어 붙인 명사 나열이면 읽는 문장이 아니라 항목으로 끊어 준다.
 // 천 단위 구분 반점(1,400)은 자르지 않는다. 문장이 섞여 있으면 그대로 읽게 둔다
@@ -91,9 +97,9 @@ export const PERSONA_LABEL = {
 }
 
 export const JOURNAL_CATEGORY_LABEL = {
-  travel: 'TRAVEL',
-  magazine: 'MAGAZINE',
-  pick: 'PICK'
+  travel: '여행',
+  magazine: '매거진',
+  pick: '추천'
 }
 
 export const GOODS_CATEGORY_LABEL = {

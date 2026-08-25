@@ -5,7 +5,7 @@ const PassCard = forwardRef(function PassCard({ userName, planLabel, validLabel,
     <div
       ref={ref}
       className="relative aspect-[16/10] w-full max-w-[480px]
-                 bg-black text-white rounded-[20px]
+                 bg-black text-white rounded-2xl
                  p-6 lg:p-8
                  overflow-hidden
                  flex flex-col justify-between">

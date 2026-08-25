@@ -19,6 +19,7 @@ export default function NavMenu({ vertical = false, onClick }) {
           onClick={onClick}
           className={({ isActive }) =>
             `font-pretendard font-medium text-[15px] tracking-[-0.01em]
+             min-w-11 min-h-11 lg:min-w-10 lg:min-h-10 inline-flex items-center justify-center
              transition-colors duration-100
              ${isActive ? 'text-primary' : 'text-text-pri hover:text-primary'}`
           }>

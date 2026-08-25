@@ -37,7 +37,7 @@ export default function ImageGallery({ images = [], alt }) {
                   className="absolute top-5 right-5 w-12 h-12 rounded-full
                              bg-white/10 hover:bg-white/20
                              inline-flex items-center justify-center transition-colors duration-150">
-            <X size={22} className="text-white" />
+            <X size={24} className="text-white" />
           </button>
           <button aria-label="이전" onClick={() => go(-1)}
                   className="absolute left-5 w-12 h-12 rounded-full

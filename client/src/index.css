@@ -58,6 +58,41 @@
            px-5 md:px-8 lg:px-12 xl:px-16 3xl:px-24
            max-w-[1400px] 2xl:max-w-[1600px];
   }
+
+  .section-page {
+    @apply py-8 md:py-10 lg:py-12;
+  }
+
+  /* 페이지마다 숫자를 다시 조합하지 않고 같은 역할은 같은 활자 스케일을 쓴다 */
+  .type-display {
+    @apply font-pretendard font-bold
+           text-[32px] md:text-[44px] lg:text-[56px] 4xl:text-[72px]
+           leading-[1.08] tracking-[-0.03em];
+  }
+
+  .type-page-title {
+    @apply font-pretendard font-bold
+           text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
+           leading-[1.15] tracking-[-0.02em];
+  }
+
+  .type-detail-title {
+    @apply font-pretendard font-bold
+           text-[28px] md:text-[36px] lg:text-[44px] 4xl:text-[52px]
+           leading-[1.12] tracking-[-0.025em];
+  }
+
+  .type-section-title {
+    @apply font-pretendard font-bold
+           text-[20px] md:text-[22px] lg:text-[24px] 4xl:text-[28px]
+           leading-[1.2] tracking-[-0.02em];
+  }
+
+  .type-card-title {
+    @apply font-pretendard font-bold
+           text-[17px] md:text-[18px] lg:text-[19px] 4xl:text-[20px]
+           leading-snug tracking-[-0.02em];
+  }
 }
 
 @layer utilities {
@@ -102,6 +137,10 @@
 .skeleton-bar-3 { animation-delay: 0.36s; }
 
 @media (prefers-reduced-motion: reduce) {
+  .page-enter,
+  .animate-loading-dot-1,
+  .animate-loading-dot-2,
+  .animate-loading-dot-3,
   .animate-flow-down,
   .animate-flow-down-late,
   .skeleton-bar { animation: none; }

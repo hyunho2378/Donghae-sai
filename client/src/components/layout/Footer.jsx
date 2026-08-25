@@ -16,13 +16,13 @@ export default function Footer() {
         {/* 한 줄 가로 배치. 세로로 자리를 잡아먹지 않는다 */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex items-center gap-6 flex-wrap">
-            <Link to="/" aria-label="동해사이 홈" className="inline-flex items-center shrink-0">
+            <Link to="/" aria-label="동해사이 홈" className="inline-flex min-h-11 lg:min-h-10 items-center shrink-0">
               <img src="/images/logo/logo-wordmark.svg" alt="동해사이" className="h-6 lg:h-7 w-auto" />
             </Link>
             <nav aria-label="푸터 메뉴" className="flex items-center gap-5 flex-wrap">
               {MENU.map((m) => (
                 <Link key={m.to} to={m.to}
-                  className="inline-flex items-center min-h-11
+                  className="inline-flex items-center justify-center min-w-11 min-h-11 lg:min-w-10 lg:min-h-10
                                  font-pretendard font-semibold text-[14px] text-white/90
                                  hover:text-white
                                  transition-colors duration-100 motion-reduce:transition-none">

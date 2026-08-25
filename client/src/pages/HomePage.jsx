@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { useLocation } from 'react-router-dom'
 import SovereignHero from '../components/SovereignHero'
+import { BRAND_HEX } from '../lib/designTokens'
 
 export default function HomePage() {
   // 로고를 눌러 홈으로 다시 오면 히어로를 초기 상태로 되돌린다
@@ -16,7 +17,7 @@ export default function HomePage() {
         <meta property="og:image" content="/images/regions/mukho.jpg" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="theme-color" content="#4AB8CD" />
+        <meta name="theme-color" content={BRAND_HEX.primary} />
       </Helmet>
       <SovereignHero key={location.key} />
     </div>

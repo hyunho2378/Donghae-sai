@@ -35,7 +35,7 @@ export default function IconGroup() {
           className="h-10 px-3 inline-flex items-center gap-1.5
                      font-pretendard font-medium text-[14px] text-text-pri
                      rounded-lg hover:bg-bg-card transition-colors duration-150">
-          <User size={18} className="text-text-pri" />
+          <User size={20} className="text-text-pri" />
           로그인
         </Link>
       </div>
@@ -83,7 +83,7 @@ export default function IconGroup() {
               to="/pass"
               onClick={() => setOpen(false)}
               className="block px-4 py-2.5 font-pretendard font-medium text-[14px] text-text-pri hover:bg-bg-card">
-              마이 패스
+              내 패스
             </Link>
             <button
               onClick={onLogout}

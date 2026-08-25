@@ -123,7 +123,7 @@ export default function DateRangePicker({
 
       {open && (
         <div className="absolute z-40 mt-2 w-[320px] max-w-[calc(100vw-40px)]
-                        bg-white rounded-[28px] shadow-float p-4">
+                        bg-white rounded-2xl shadow-float p-4">
           {/* 지금 고르는 것이 체크인인지 체크아웃인지 항상 알려준다 */}
           <div className="flex items-center justify-between gap-2 px-1">
             <p className="font-pretendard font-semibold text-[13px] text-primary">
@@ -134,7 +134,7 @@ export default function DateRangePicker({
                                hover:bg-bg-mute
                                transition-[background-color,scale] duration-150 ease-out
                                motion-reduce:transition-none active:scale-[0.96]">
-              <X size={18} className="text-text-meta" />
+              <X size={20} className="text-text-meta" />
             </button>
           </div>
           <div className="h-11 flex items-center justify-between">

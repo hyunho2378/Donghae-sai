@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 // KAREUM_MIRROR 2-3. 진입 등장 래퍼. transform과 opacity만 건드린다
-export default function RevealOnScroll({ children, className = '' }) {
+export default function RevealOnScroll({ children, className = '', delay = 0 }) {
   const ref = useRef(null)
   const [shown, setShown] = useState(false)
 
@@ -25,6 +25,7 @@ export default function RevealOnScroll({ children, className = '' }) {
 
   return (
     <div ref={ref}
+         style={{ transitionDelay: shown && delay ? `${delay}ms` : '0ms' }}
          className={`transition-[opacity,transform] duration-[400ms] ease-out
                      motion-reduce:transition-none
                      ${shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}

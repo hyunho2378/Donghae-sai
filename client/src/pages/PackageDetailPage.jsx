@@ -8,10 +8,17 @@ import Carousel from '../components/kareum/Carousel'
 import RevealOnScroll from '../components/kareum/RevealOnScroll'
 import ScatterIllust from '../components/kareum/ScatterIllust'
 import Eyebrow from '../components/Eyebrow'
+import { BRAND_HEX } from '../lib/designTokens'
 
 const TABS = [
   { key: 'itinerary', label: '일정' }
 ]
+
+const publicNote = (note) => (note || '')
+  .split(/(?<=[.!?])\s+/)
+  .filter((sentence) => !/재확인 필요|확인 필요|자료 대기/.test(sentence))
+  .join(' ')
+  .trim()
 
 export default function PackageDetailPage() {
   const { id } = useParams()
@@ -43,7 +50,7 @@ export default function PackageDetailPage() {
         <meta property="og:image" content={pkg.main_image} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="theme-color" content="#4AB8CD" />
+        <meta name="theme-color" content={BRAND_HEX.primary} />
       </Helmet>
 
       {/* Hero 풀와이드 */}
@@ -75,9 +82,7 @@ export default function PackageDetailPage() {
                 {pkg.tagline}
               </p>
             )}
-            <h1 className="mt-2 font-pretendard font-bold
-                           text-[24px] md:text-[34px] lg:text-[40px] 4xl:text-[46px]
-                           text-white leading-tight">
+            <h1 className="mt-2 type-detail-title text-white">
               {pkg.name}
             </h1>
           </div>
@@ -89,9 +94,7 @@ export default function PackageDetailPage() {
                           pt-6 lg:pt-8">
         <ScatterIllust items={[]} />
         <Eyebrow>{kindLabel}</Eyebrow>
-        <h2 className="mt-3 font-pretendard font-bold
-                       text-[26px] md:text-[34px] lg:text-[40px]
-                       text-text-pri leading-tight">
+        <h2 className="mt-3 type-detail-title text-text-pri">
           {pkg.name}
         </h2>
       </section>
@@ -109,12 +112,12 @@ export default function PackageDetailPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
               {[
                 { label: '기간', value: pkg.duration_label },
-                { label: '타깃', value: pkg.target_persona?.[0] || '미정' },
+                { label: '타깃', value: pkg.target_persona?.[0] || null },
                 isProgram
-                  ? { label: '권역', value: pkg.region || '미정' }
-                  : { label: '이동수단', value: pkg.transport || '미정' },
+                  ? { label: '권역', value: pkg.region || null }
+                  : { label: '이동수단', value: pkg.transport || null },
                 { label: '방문지', value: `${pkg.itinerary.reduce((n, d) => n + d.schedule.length, 0)}곳` }
-              ].map((item) => (
+              ].filter((item) => item.value).map((item) => (
                 <div key={item.label} className="shadow-card rounded-xl p-4 md:p-5">
                   <p className="font-pretendard font-semibold text-[12px] text-text-meta tracking-[0.08em] uppercase">
                     {item.label}
@@ -205,8 +208,7 @@ export default function PackageDetailPage() {
                   { title: '숙소 후보', items: pkg.stay_options }
                 ].filter((g) => g.items?.length > 0).map((g) => (
                   <div key={g.title}>
-                    <h3 className="font-pretendard font-bold text-[17px] md:text-[18px]
-                                   text-text-pri tracking-[-0.02em] mb-4">
+                    <h3 className="type-card-title text-text-pri mb-4">
                       {g.title}
                     </h3>
                     <ul className="grid gap-3 md:grid-cols-3">
@@ -215,9 +217,11 @@ export default function PackageDetailPage() {
                           <p className="font-pretendard font-bold text-[15px] text-text-strong">
                             {o.name}
                           </p>
-                          <p className="mt-1.5 font-pretendard font-normal text-pretty text-[13px] text-text-sec leading-relaxed">
-                            {o.note || '재확인 필요'}
-                          </p>
+                          {publicNote(o.note) && (
+                            <p className="mt-1.5 font-pretendard font-normal text-pretty text-[13px] text-text-sec leading-relaxed">
+                              {publicNote(o.note)}
+                            </p>
+                          )}
                         </li>
                       ))}
                     </ul>
@@ -239,8 +243,7 @@ export default function PackageDetailPage() {
               {/* 5. Gallery 3×2 */}
               {galleryGrid.length > 0 && (
                 <div>
-                  <h3 className="font-pretendard font-bold text-[17px] md:text-[18px]
-                                 text-text-pri tracking-[-0.02em] mb-4">
+                  <h3 className="type-card-title text-text-pri mb-4">
                     {kindLabel} 사진
                   </h3>
                   <div className="grid grid-cols-3 gap-2 md:gap-3">
@@ -250,6 +253,7 @@ export default function PackageDetailPage() {
                         <img src={src} alt={`${pkg.name} ${i + 1}`}
                           className="w-full h-full object-cover
                                         transition-transform duration-[600ms] ease-out
+                                        motion-reduce:transition-none motion-reduce:transform-none
                                         hover:scale-[1.04]" />
                       </button>
                     ))}
@@ -263,9 +267,7 @@ export default function PackageDetailPage() {
           {similar.length > 0 && (
             <RevealOnScroll>
               <section className="mt-16">
-                <h2 className="font-pretendard font-bold
-                             text-[20px] md:text-[22px] lg:text-[24px]
-                             text-text-pri tracking-[-0.02em] mb-4">
+                <h2 className="type-section-title text-text-pri mb-4">
                   비슷한 {kindLabel}
                 </h2>
                 <Carousel label={`비슷한 ${kindLabel}`}
@@ -280,7 +282,7 @@ export default function PackageDetailPage() {
 
         {/* 코스는 판매 상품이 아니다. 패스 안내로 연결한다 */}
         <aside className="mt-8 lg:mt-0 lg:sticky lg:top-[92px] h-fit
-                          shadow-depth rounded-[32px] p-5 bg-white">
+                          shadow-depth rounded-2xl p-5 bg-white">
           <p className="font-pretendard font-bold text-[18px] text-text-pri tracking-[-0.02em]">
             동해사이 패스로 이 {isProgram ? '프로그램을' : '코스를'} 즐긴다
           </p>
@@ -306,7 +308,7 @@ export default function PackageDetailPage() {
           <button aria-label="닫기" onClick={() => setLightbox(null)}
             className="absolute top-5 right-5 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20
                              inline-flex items-center justify-center transition-colors duration-150">
-            <X size={22} className="text-white" />
+            <X size={24} className="text-white" />
           </button>
           {galleryGrid.length > 1 && (
             <>
@@ -326,7 +328,7 @@ export default function PackageDetailPage() {
           )}
           <img src={galleryGrid[lightbox]} alt={`${pkg.name} ${lightbox + 1}`}
             className="max-w-[90vw] max-h-[85vh] object-contain" />
-          <div className="absolute bottom-5 font-pretendard font-medium text-[14px] text-white">
+          <div className="absolute bottom-5 font-pretendard font-medium text-[14px] text-white tabular-nums">
             {lightbox + 1} / {galleryGrid.length}
           </div>
         </div>

@@ -13,15 +13,13 @@ export default function GoodsPage() {
   return (
     <div className="page-enter container-page
                     py-8 lg:py-12">
-      <h1 className="font-pretendard font-bold
-                     text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
-                     text-text-pri tracking-[-0.02em] leading-tight">
+      <h1 className="type-page-title text-text-pri">
         로컬 굿즈
       </h1>
-      <p className="mt-2 font-pretendard font-normal text-[15px] md:text-[16px] text-text-meta">
+      <p className="mt-2 font-pretendard font-normal text-[15px] md:text-[16px] text-text-sec">
         마을의 손과 텃밭에서 온 상품
       </p>
-      <p className="mt-1 font-pretendard font-normal text-[12px] md:text-[13px] text-text-meta">
+      <p className="mt-1 font-pretendard font-normal text-[12px] md:text-[13px] text-text-meta tabular-nums">
         총 {items.length}개 표시 중
       </p>
 

@@ -1,6 +1,7 @@
 import { useParams, Navigate, Link } from 'react-router-dom'
 import journalData from '../data/journal.json'
 import { formatDateLong, JOURNAL_CATEGORY_LABEL } from '../lib/format'
+import Eyebrow from '../components/Eyebrow'
 
 export default function JournalDetailPage() {
   const { id } = useParams()
@@ -14,15 +15,16 @@ export default function JournalDetailPage() {
   return (
     <article className="page-enter">
       <div className="w-full aspect-[21/9] bg-bg-card overflow-hidden">
-        <img src={post.cover_image} alt={post.title} className="w-full h-full object-cover" />
+        {post.cover_image && (
+          <img src={post.cover_image} alt={post.title} className="w-full h-full object-cover" />
+        )}
       </div>
-      <div className="mx-auto w-full max-w-[720px] px-5 md:px-0 py-10 lg:py-16">
-        <span className="font-pretendard font-semibold text-[13px] md:text-[14px] tracking-[0.12em] text-primary uppercase">
+      <div className="container-page py-10 lg:py-16">
+        <div className="mx-auto w-full max-w-[720px]">
+        <Eyebrow>
           {JOURNAL_CATEGORY_LABEL[post.category]}
-        </span>
-        <h1 className="mt-3 font-pretendard font-bold
-                       text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
-                       text-text-pri tracking-[-0.02em] leading-tight">
+        </Eyebrow>
+        <h1 className="mt-3 type-page-title text-text-pri">
           {post.title}
         </h1>
         <p className="mt-2 font-pretendard font-normal text-[16px] md:text-[17px] text-text-sec">
@@ -40,11 +42,12 @@ export default function JournalDetailPage() {
         {next && next.id !== post.id && (
           <div className="mt-16 border-t border-border-sub pt-8">
             <span className="font-pretendard font-medium text-[12px] text-text-meta">다음 글</span>
-            <Link to={`/journal/${next.id}`} className="block mt-2 font-pretendard font-bold text-[18px] text-text-pri hover:text-primary transition-colors duration-100">
+            <Link to={`/journal/${next.id}`} className="mt-2 min-h-11 md:min-h-10 inline-flex items-center font-pretendard font-bold text-[18px] text-text-pri hover:text-primary transition-colors duration-100">
               {next.title}
             </Link>
           </div>
         )}
+        </div>
       </div>
     </article>
   )

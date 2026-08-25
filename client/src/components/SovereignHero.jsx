@@ -252,7 +252,7 @@ export default function SovereignHero() {
                 로그인하면 저장한 장소와 지난 대화를 이어갈 수 있어요
               </span>
               <Link to="/auth"
-                className="font-pretendard font-semibold text-[13px] text-primary-hover
+                className="min-w-11 min-h-11 inline-flex items-center justify-center font-pretendard font-semibold text-[13px] text-primary-hover
                            hover:text-primary transition-colors duration-150">
                 로그인
               </Link>
@@ -264,12 +264,12 @@ export default function SovereignHero() {
             <span aria-hidden="true" className="hidden sm:inline-block w-px h-3 bg-border-def" />
             <span className="flex items-center gap-3">
               <Link to="/privacy"
-                className="font-pretendard font-medium text-[12px] text-text-sec
+                className="min-w-11 min-h-11 inline-flex items-center justify-center font-pretendard font-medium text-[12px] text-text-sec
                                hover:text-text-pri transition-colors duration-150">
                 개인정보처리안내
               </Link>
               <button type="button"
-                className="font-pretendard font-medium text-[12px] text-text-sec
+                className="min-w-11 min-h-11 inline-flex items-center justify-center font-pretendard font-medium text-[12px] text-text-sec
                                  hover:text-text-pri transition-colors duration-150">
                 고객센터
               </button>
@@ -371,7 +371,7 @@ export default function SovereignHero() {
                              bg-white border border-border-def text-text-sec
                              hover:text-primary hover:border-primary
                              transition-colors duration-150 motion-reduce:transition-none">
-                  <ArrowDown size={18} />
+                  <ArrowDown size={20} />
                 </button>
               )}
             </div>

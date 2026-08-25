@@ -17,12 +17,10 @@ export default function JournalPage() {
   return (
     <div className="page-enter container-page
                     py-8 lg:py-12">
-      <h1 className="font-pretendard font-bold
-                     text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
-                     text-text-pri tracking-[-0.02em] leading-tight">
-        JOURNAL
+      <h1 className="type-page-title text-text-pri">
+        저널
       </h1>
-      <p className="mt-2 font-pretendard font-normal text-[15px] md:text-[16px] text-text-meta">
+      <p className="mt-2 font-pretendard font-normal text-[15px] md:text-[16px] text-text-sec">
         호스트 인터뷰, 마을 이야기, 운영팀의 큐레이션
       </p>
 
@@ -31,7 +29,8 @@ export default function JournalPage() {
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`pb-3 font-pretendard font-semibold text-[15px] tracking-[0.02em]
+            className={`min-w-11 min-h-11 px-2 inline-flex items-center justify-center
+                        font-pretendard font-semibold text-[15px] tracking-[0.02em]
                         border-b-2 transition-colors duration-150 whitespace-nowrap
                         ${tab === t.key
                           ? 'text-accent border-accent'

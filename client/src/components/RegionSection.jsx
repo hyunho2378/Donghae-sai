@@ -14,9 +14,7 @@ export default function RegionSection() {
   return (
     <section className="container-page
                         py-12 md:py-18 lg:py-24 4xl:py-32">
-      <h2 className="font-pretendard font-bold
-                     text-[20px] md:text-[22px] lg:text-[24px] 4xl:text-[28px]
-                     tracking-[-0.02em] text-text-pri">
+      <h2 className="type-section-title text-text-pri">
         동해사이 5개 권역
       </h2>
       <p className="mt-2 font-pretendard font-normal
@@ -37,7 +35,7 @@ export default function RegionSection() {
               {/* 사진이 없을 때만 드러나는 폴백. 사진이 덮으므로 보조기기에서는 감춘다 */}
               <span aria-hidden="true"
                     className="select-none font-pretendard font-normal text-[13px] text-text-ter">
-                이미지 자료 대기
+                사진 준비 중
               </span>
               <img
                 src={r.image}
@@ -46,6 +44,7 @@ export default function RegionSection() {
                 onError={(e) => { e.currentTarget.style.visibility = 'hidden' }}
                 className="absolute inset-0 w-full h-full object-cover
                            transition-transform duration-[600ms] ease-out
+                           motion-reduce:transition-none motion-reduce:transform-none
                            group-hover:scale-[1.04]" />
             </div>
             <div className="p-4 lg:p-5">

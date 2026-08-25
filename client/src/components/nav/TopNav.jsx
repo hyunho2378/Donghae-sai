@@ -31,7 +31,7 @@ export default function TopNav() {
                        rounded-full hover:bg-bg-mute
                        transition-[background-color,scale] duration-150 ease-out
                        motion-reduce:transition-none active:scale-[0.96]">
-            <Menu size={22} className="text-text-pri" />
+            <Menu size={24} className="text-text-pri" />
           </button>
         </div>
 
@@ -46,7 +46,7 @@ export default function TopNav() {
                            rounded-full hover:bg-bg-mute
                            transition-[background-color,scale] duration-150 ease-out
                            motion-reduce:transition-none active:scale-[0.96]">
-                <X size={22} className="text-text-pri" />
+                <X size={24} className="text-text-pri" />
               </button>
             </div>
             <div className="px-5 py-6 space-y-6">

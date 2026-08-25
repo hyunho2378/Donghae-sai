@@ -40,14 +40,12 @@ export default function PassPage() {
   return (
     <div className="page-enter container-page
                     py-8 lg:py-12">
-      <Eyebrow>my pass</Eyebrow>
-      <h1 className="mt-3 font-pretendard font-bold
-                     text-[24px] md:text-[28px] lg:text-[32px] 4xl:text-[36px]
-                     text-text-pri leading-tight">
-        마이 패스
+      <Eyebrow>나의 패스</Eyebrow>
+      <h1 className="mt-3 type-page-title text-text-pri">
+        내 패스
       </h1>
       <p className="mt-2 font-pretendard font-medium text-[15px] md:text-[16px] text-text-sec leading-relaxed">
-        권역에서 태그할 때마다 스탬프가 하나씩 쌓이고, 일곱 개를 다 모으면 문어 굿즈를 받는다
+        권역에서 태그할 때마다 스탬프가 하나씩 쌓여요. 일곱 개를 모두 모으면 문어 굿즈를 받아요.
       </p>
 
       <div className="mt-8 grid gap-10 lg:grid-cols-[480px_1fr]">
@@ -71,12 +69,12 @@ export default function PassPage() {
             카드 이미지 저장
           </button>
 
-        <section className="mt-6 bg-white shadow-depth rounded-[32px] p-5">
+        <section className="mt-6 bg-white shadow-depth rounded-2xl p-5">
         <p className="font-pretendard font-bold text-[17px] text-text-pri tracking-[-0.02em]">
           아직 안 모은 권역
         </p>
         <p className="mt-2 font-pretendard font-medium text-[15px] text-text-pri leading-relaxed">
-          {STAMPS.filter((s) => s.kind === 'region' && !done.has(s.id)).map((s) => s.label).join(', ') || '전부 모았다'}
+          {STAMPS.filter((s) => s.kind === 'region' && !done.has(s.id)).map((s) => s.label).join(', ') || '모두 모았어요'}
         </p>
         <Link to="/packages"
           className="mt-5 inline-flex items-center justify-center min-h-11 px-5
@@ -91,7 +89,7 @@ export default function PassPage() {
         <div className="space-y-10">
           <section>
             <div className="flex items-baseline justify-between mb-4">
-              <h2 className="font-pretendard font-bold text-[20px] md:text-[22px] lg:text-[24px] text-text-pri tracking-[-0.02em]">
+              <h2 className="type-section-title text-text-pri">
                 스탬프
               </h2>
               <p className="font-pretendard font-bold text-[16px] text-primary-hover tabular-nums">
@@ -117,7 +115,7 @@ export default function PassPage() {
                                   ${filled
                                     ? 'border-primary bg-primary-soft text-primary-hover'
                                     : 'border-border-def bg-white text-text-ter'}`}>
-                      <Icon size={20} strokeWidth={filled ? 2 : 1.5} />
+                      <Icon size={20} strokeWidth={2} />
                     </div>
                     <p className={`mt-2 font-pretendard text-[12px] md:text-[13px] leading-tight
                                    ${filled ? 'font-medium text-text-pri' : 'font-normal text-text-meta'}`}>
@@ -129,12 +127,12 @@ export default function PassPage() {
             </ul>
 
             <p className="mt-5 font-pretendard font-normal text-[14px] text-text-sec leading-relaxed">
-              권역 다섯 곳과 별빛 콘텐츠를 모으면 완주 스탬프가 열리고, 보상으로 문어 굿즈를 받는다
+              권역 다섯 곳과 별빛 콘텐츠를 모으면 완주 스탬프가 열리고 문어 굿즈를 받아요.
             </p>
           </section>
 
           <section>
-            <h2 className="font-pretendard font-bold text-[20px] md:text-[22px] lg:text-[24px] text-text-pri tracking-[-0.02em] mb-4">
+            <h2 className="type-section-title text-text-pri mb-4">
               방문 기록
             </h2>
             <ul className="divide-y divide-border-sub shadow-card rounded-xl">
@@ -159,7 +157,7 @@ export default function PassPage() {
               })}
             </ul>
             <p className="mt-3 font-pretendard font-normal text-[13px] text-text-meta leading-relaxed">
-              방문 기록은 익명 패스 번호에만 붙는다. 이름과 전화번호는 받지 않는다
+              방문 기록은 익명 패스 번호에만 남아요. 이름과 전화번호는 받지 않아요.
             </p>
           </section>
         </div>

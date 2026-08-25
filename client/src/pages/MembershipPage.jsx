@@ -5,6 +5,7 @@ import { DoorOpen, MapPin, BedDouble, Check, ChevronDown } from 'lucide-react'
 import { useAuthStore } from '../store/useAuthStore'
 import Eyebrow from '../components/Eyebrow'
 import plansData from '../data/membership_plans.json'
+import { BRAND_HEX } from '../lib/designTokens'
 
 // 아래 내용은 전부 자료집 pass 항목 원문 근거다. 원문에 없는 값은 미정으로 둔다
 const TAGS = [
@@ -68,7 +69,7 @@ const PLAN_TONE = {
 }
 
 const SECTION = 'container-page'
-const H2 = 'font-pretendard font-bold text-[22px] md:text-[26px] lg:text-[30px] text-text-pri leading-tight'
+const H2 = 'type-section-title text-text-pri'
 
 export default function MembershipPage() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
@@ -85,7 +86,7 @@ export default function MembershipPage() {
         <title>동해사이 패스 | 동해사이</title>
         <meta name="description" content="스탬프로 완성하는 하룻밤. 1일권 5,000원, 2일권 8,000원, 3일권 10,000원." />
         <meta property="og:title" content="동해사이 패스 | 동해사이" />
-        <meta name="theme-color" content="#4AB8CD" />
+        <meta name="theme-color" content={BRAND_HEX.primary} />
       </Helmet>
 
       {/* 히어로. 무코가 옆에 서서 패스를 안내한다 */}
@@ -94,9 +95,7 @@ export default function MembershipPage() {
           <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
             <div>
               <Eyebrow tone="accent">동해사이 패스</Eyebrow>
-              <h1 className="mt-3 font-pretendard font-bold
-                             text-[26px] md:text-[32px] lg:text-[38px]
-                             text-text-pri leading-tight">
+              <h1 className="mt-3 type-page-title text-text-pri">
                 스탬프로 완성하는 하룻밤
               </h1>
               <p className="mt-2 max-w-[560px] font-pretendard font-medium
@@ -114,7 +113,7 @@ export default function MembershipPage() {
       </section>
 
       {/* 패스 상품. 첫 화면에서 세 장을 한눈에 비교한다 */}
-      <section className={`${SECTION} py-7 md:py-8 lg:py-9`}>
+      <section className={`${SECTION} section-page`}>
         <h2 className={H2}>패스 상품</h2>
         <div className="mt-4 grid gap-4 md:gap-5 grid-cols-1 md:grid-cols-3">
           {plansData.map((plan, i) => {
@@ -124,7 +123,7 @@ export default function MembershipPage() {
               <div key={plan.id}
                 onMouseEnter={() => setHoveredId(plan.id)}
                 onMouseLeave={() => setHoveredId(null)}
-                className={`relative rounded-[32px] p-5 flex flex-col
+                className={`relative rounded-2xl p-5 flex flex-col
                                transition-[background-color,border-color,box-shadow] duration-200 ease-out
                                motion-reduce:transition-none ${tone.card}`}>
                 {plan.recommended && (
@@ -150,7 +149,7 @@ export default function MembershipPage() {
                 <ul className="mt-4 space-y-1.5">
                   {plan.included.map((item, j) => (
                     <li key={j} className="flex items-start gap-2 font-pretendard font-normal text-[14px] text-text-sec">
-                      <Check size={16} strokeWidth={2.5} className={`mt-0.5 shrink-0 ${tone.check}`} />
+                      <Check size={16} strokeWidth={2} className={`mt-0.5 shrink-0 ${tone.check}`} />
                       {item}
                     </li>
                   ))}
@@ -176,7 +175,7 @@ export default function MembershipPage() {
 
       {/* NFC 태그 */}
       <section className="bg-bg-mute">
-        <div className={`${SECTION} py-8 md:py-10 lg:py-12`}>
+        <div className={`${SECTION} section-page`}>
           <h2 className={H2}>3가지 NFC 태그</h2>
           <div className="mt-5 grid gap-4 md:gap-5 grid-cols-1 md:grid-cols-3">
             {TAGS.map(({ Icon, title, desc }) => (
@@ -197,7 +196,7 @@ export default function MembershipPage() {
       </section>
 
       {/* 사용 흐름 */}
-      <section className={`${SECTION} py-8 md:py-10 lg:py-12`}>
+      <section className={`${SECTION} section-page`}>
         <h2 className={H2}>사용 흐름</h2>
         <ol className="mt-5 grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {FLOW.map((step, i) => (
@@ -215,7 +214,7 @@ export default function MembershipPage() {
 
       {/* 스탬프 7단계. 원과 라벨을 한 격자에 정렬한다 */}
       <section className="bg-bg-mute">
-        <div className={`${SECTION} py-8 md:py-10 lg:py-12`}>
+        <div className={`${SECTION} section-page`}>
           <h2 className={H2}>스탬프 일곱 단계</h2>
           <p className="mt-2 font-pretendard font-medium text-[15px] text-text-sec leading-relaxed">
             저녁에 시작해 다음 날 아침에 끝나요. 일곱 개를 모두 모으면 하룻밤이 완성돼요
@@ -238,7 +237,7 @@ export default function MembershipPage() {
       </section>
 
       {/* FAQ */}
-      <section className={`${SECTION} py-8 md:py-10 lg:py-14`}>
+      <section className={`${SECTION} section-page`}>
         <h2 className={H2}>자주 묻는 질문</h2>
         <div className="mt-5 shadow-depth rounded-2xl bg-white overflow-hidden">
           {FAQ.map((item, i) => (

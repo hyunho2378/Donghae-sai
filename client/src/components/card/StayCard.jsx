@@ -9,32 +9,25 @@ export default function StayCard({
 }) {
   const image = main_image || gallery?.[0]
   return (
-    <Link to={`/stays/${id}`} className="group block">
-      <article>
-        <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-bg-mute
-                        ring-1 ring-primary/25 group-hover:ring-primary/50
-                        transition-[box-shadow] duration-150 motion-reduce:transition-none">
+    <article className="relative">
+      <Link to={`/stays/${id}`} className="group block">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-bg-mute shadow-card">
           {image && (
             <img src={image} alt={name}
               loading="lazy"
               className="w-full h-full object-cover
                             transition-transform duration-[600ms] ease-out
-                            motion-reduce:transition-none group-hover:scale-[1.04]" />
+                            motion-reduce:transition-none motion-reduce:transform-none group-hover:scale-[1.04]" />
           )}
           <div className="absolute top-3 left-3 flex gap-2">
             <Badge variant="primary" className="font-semibold">{STAY_TYPE_LABEL[type]}</Badge>
-          </div>
-          <div className="absolute top-3 right-3">
-            <BookmarkButton onImage itemId={id} itemType="stays" />
           </div>
         </div>
         <div className="pt-4">
           <span className="font-pretendard font-semibold text-[12px] md:text-[13px] tracking-[0.08em] text-primary">
             {region}
           </span>
-          <h3 className="mt-1 font-pretendard font-bold
-                         text-[17px] md:text-[18px] lg:text-[19px]
-                         text-text-strong tracking-[-0.02em] line-clamp-2">
+          <h3 className="mt-1 type-card-title text-text-strong line-clamp-2">
             {name}
           </h3>
           {short_description && (
@@ -48,7 +41,10 @@ export default function StayCard({
             </p>
           )}
         </div>
-      </article>
-    </Link>
+      </Link>
+      <div className="absolute top-2.5 right-2.5">
+        <BookmarkButton onImage itemId={id} itemType="stays" />
+      </div>
+    </article>
   )
 }

@@ -8,9 +8,9 @@ import { formatPrice, calcNights } from '../lib/format'
 
 // 동해사이 패스 3종. 자료집 확정 가격
 const PASSES = [
-  { key: '1day', name: '1일권', price: 5000, desc: '하루 동안 제휴처 할인과 스탬프를 쓴다' },
-  { key: '2day', name: '2일권', price: 8000, desc: '저녁부터 다음 날 아침까지 이틀을 잇는다' },
-  { key: '3day', name: '3일권', price: 10000, desc: '사흘에 걸쳐 동해 다섯 권역을 다 돈다' }
+  { key: '1day', name: '1일권', price: 5000, desc: '하루 동안 제휴처 할인과 스탬프를 이용해요.' },
+  { key: '2day', name: '2일권', price: 8000, desc: '저녁부터 다음 날 아침까지 이틀을 이어 가요.' },
+  { key: '3day', name: '3일권', price: 10000, desc: '사흘 동안 동해 다섯 권역을 둘러봐요.' }
 ]
 
 // 결제 수단 8종. 로고 파일은 client/public/images/pay 의 각 svg. 부재 시 텍스트 폴백
@@ -74,7 +74,7 @@ export default function CheckoutPage() {
   const cardSelected = isCard(payMethod)
 
   const canPay = !!selectedPass && !!payMethod && refundAgreed
-  const missing = !selectedPass ? '이용권을 선택하세요'
+  const missing = !selectedPass ? '패스를 선택하세요'
     : !payMethod ? '결제 수단을 선택하세요'
       : !refundAgreed ? '환불 규정에 동의하세요'
         : ''
@@ -98,7 +98,7 @@ export default function CheckoutPage() {
         <meta name="robots" content="noindex" />
       </Helmet>
 
-      <h1 className="font-pretendard font-bold text-[24px] lg:text-[28px] text-text-pri tracking-[-0.02em] mb-8">
+      <h1 className="type-page-title text-text-pri mb-8">
         결제하기
       </h1>
 
@@ -109,7 +109,7 @@ export default function CheckoutPage() {
 
           {/* 이용권 선택 */}
           <section>
-            <h2 className="font-pretendard font-bold text-[16px] text-text-pri mb-4">이용권 선택</h2>
+            <h2 className="type-section-title text-text-pri mb-4">패스 선택</h2>
             <div className="space-y-3">
               {PASSES.map((p) => (
                 <button key={p.key} type="button"
@@ -119,9 +119,9 @@ export default function CheckoutPage() {
                                     ${selectedPass === p.key ? 'ring-2 ring-primary' : 'hover:ring-1 hover:ring-border-def'}`}>
                   <div className="flex items-baseline justify-between gap-3">
                     <p className="font-pretendard font-bold text-[17px] text-text-pri">{p.name}</p>
-                    <p className="font-pretendard font-bold text-[17px] text-primary">{p.price.toLocaleString()}원</p>
+                    <p className="font-pretendard font-bold text-[17px] text-primary tabular-nums">{p.price.toLocaleString()}원</p>
                   </div>
-                  <p className="mt-1 font-pretendard font-normal text-[13px] text-text-meta">{p.desc}</p>
+                  <p className="mt-1 font-pretendard font-normal text-[13px] text-text-sec">{p.desc}</p>
                 </button>
               ))}
             </div>
@@ -129,8 +129,8 @@ export default function CheckoutPage() {
 
           {/* 선택 요약 */}
           <section className="bg-white shadow-depth rounded-2xl p-5">
-            <h2 className="font-pretendard font-bold text-[16px] text-text-pri mb-4">선택 요약</h2>
-            <dl className="space-y-3 font-pretendard text-[14px]">
+            <h2 className="type-section-title text-text-pri mb-4">선택 요약</h2>
+            <dl className="space-y-3 font-pretendard text-[14px] tabular-nums">
               {item && (
                 <div className="flex justify-between gap-4">
                   <dt className="font-medium text-text-meta">예약 항목</dt>
@@ -154,15 +154,15 @@ export default function CheckoutPage() {
                 <dd className="font-medium text-text-pri">{guests}명</dd>
               </div>
               <div className="flex justify-between gap-4 pt-3 border-t border-border-sub">
-                <dt className="font-medium text-text-meta">선택 이용권</dt>
+                <dt className="font-medium text-text-meta">선택 패스</dt>
                 <dd className="font-bold text-text-pri">{pass ? pass.name : '미선택'}</dd>
               </div>
             </dl>
           </section>
 
           {/* 결제 수단 */}
-          <section className="bg-white shadow-depth rounded-[36px] p-5">
-            <h2 className="font-pretendard font-bold text-[16px] text-text-pri mb-4">결제 수단</h2>
+          <section className="bg-white shadow-depth rounded-2xl p-5">
+            <h2 className="type-section-title text-text-pri mb-4">결제 수단</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {PAY_METHODS.map((m) => (
                 <button key={m.key} type="button"
@@ -188,20 +188,20 @@ export default function CheckoutPage() {
             )}
 
             <p className="mt-4 font-pretendard font-normal text-[12px] text-text-meta">
-              프로토타입 화면이라 실제 결제는 일어나지 않는다
+              이 화면에서는 결제 정보가 전송되지 않아요
             </p>
           </section>
         </div>
 
         {/* 우측 스티키 결제 */}
         <div className="mt-6 lg:mt-0">
-          <div className="lg:sticky lg:top-[92px] bg-white shadow-depth rounded-[36px] p-5 space-y-5">
+          <div className="lg:sticky lg:top-[92px] bg-white shadow-depth rounded-2xl p-5 space-y-5">
 
             <div>
-              <h2 className="font-pretendard font-bold text-[16px] text-text-pri mb-3">금액 내역</h2>
-              <dl className="space-y-2 font-pretendard text-[14px]">
+              <h2 className="type-section-title text-text-pri mb-3">금액 내역</h2>
+              <dl className="space-y-2 font-pretendard text-[14px] tabular-nums">
                 <div className="flex justify-between gap-4">
-                  <dt className="font-normal text-text-meta">{pass ? pass.name : '이용권 미선택'}</dt>
+                  <dt className="font-normal text-text-meta">{pass ? pass.name : '패스 미선택'}</dt>
                   <dd className="font-medium text-text-pri">{formatPrice(total)}</dd>
                 </div>
                 <div className="flex justify-between gap-4 pt-3 border-t border-border-sub">
@@ -213,13 +213,13 @@ export default function CheckoutPage() {
 
             <div className="rounded-xl bg-primary-soft px-4 py-3">
               <p className="font-pretendard font-medium text-[13px] text-primary-hover leading-relaxed">
-                패스 하나에 제휴처 할인과 스탬프가 모두 들어 있다
+                패스 하나로 제휴처 할인과 스탬프를 함께 이용할 수 있어요
               </p>
             </div>
 
             <div>
-              <h3 className="font-pretendard font-bold text-[14px] text-text-pri mb-2">취소 및 환불</h3>
-              <p className="font-pretendard font-normal text-[13px] text-text-meta leading-relaxed">
+              <h3 className="type-card-title text-text-pri mb-2">취소 및 환불</h3>
+              <p className="font-pretendard font-normal text-[13px] text-text-sec leading-relaxed">
                 시작 48시간 전까지 취소하면 전액 환불해요. 48시간 이내에는 환불하지 않아요
               </p>
               {/* 체크박스 행 전체가 히트 영역이다. 높이 44px 확보.
@@ -239,7 +239,9 @@ export default function CheckoutPage() {
                                   ${refundAgreed
                       ? 'bg-primary border-primary'
                       : 'bg-white border-border-def'}`}>
-                  {refundAgreed && <Check size={13} className="text-white" strokeWidth={3.5} />}
+                  <Check size={16} strokeWidth={2.5}
+                    className={`text-white transition-[opacity,transform,filter] duration-150 motion-reduce:transition-none
+                                ${refundAgreed ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-75 blur-[1px]'}`} />
                 </span>
                 <span className={`font-pretendard text-[14px]
                                   ${refundAgreed ? 'font-medium text-text-pri' : 'font-normal text-text-sec'}`}>
@@ -254,7 +256,7 @@ export default function CheckoutPage() {
                 disabled={!canPay || processing}
                 className="w-full h-14 rounded-xl
                            bg-text-pri text-white
-                           font-pretendard font-bold text-[16px]
+                           font-pretendard font-bold text-[16px] tabular-nums
                            hover:bg-black transition-colors duration-150
                            disabled:opacity-40 disabled:cursor-not-allowed">
                 {processing ? '처리 중…' : `${formatPrice(total)} 결제하기`}

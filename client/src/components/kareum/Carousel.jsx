@@ -77,7 +77,7 @@ export default function Carousel({
 
       {total > 1 && controls === 'bottom' && (
         <div className="mt-6 flex items-center justify-between">
-          <span className="font-pretendard font-medium text-[14px] text-text-meta tracking-[0.06em]">
+          <span className="font-pretendard font-medium text-[14px] text-text-meta tracking-[0.06em] tabular-nums">
             {String(idx + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
           </span>
           <div className="flex gap-3">

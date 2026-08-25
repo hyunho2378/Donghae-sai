@@ -13,6 +13,7 @@ export default function PackageCard({
             <img src={image} alt={name}
                  className="w-full h-full object-cover
                             transition-transform duration-[600ms] ease-out
+                            motion-reduce:transition-none motion-reduce:transform-none
                             group-hover:scale-[1.04]" />
           )}
           <div className="absolute top-3 left-3">
@@ -20,7 +21,7 @@ export default function PackageCard({
           </div>
         </div>
         <div className="p-5 lg:p-6">
-          <h3 className="font-pretendard font-bold text-[19px] text-text-strong tracking-[-0.02em] line-clamp-2">
+          <h3 className="type-card-title text-text-strong line-clamp-2">
             {name}
           </h3>
           <p className="mt-1 font-pretendard font-semibold text-[14px] text-text-sec">

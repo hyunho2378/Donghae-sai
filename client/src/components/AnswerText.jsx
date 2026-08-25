@@ -178,27 +178,39 @@ function ActionBar({ plain }) {
   }
 
   // 아이콘만. 화면 라벨은 지우고 aria-label/title 로만 뜻을 남긴다
-  const btn = 'inline-flex items-center justify-center w-8 h-8 rounded-full transition-colors duration-150 motion-reduce:transition-none'
+  const btn = 'inline-flex items-center justify-center w-11 h-11 md:w-10 md:h-10 rounded-full transition-colors duration-150 motion-reduce:transition-none'
+  const glyph = 'absolute inset-0 transition-[opacity,transform,filter] duration-150 motion-reduce:transition-none'
+  const on = 'opacity-100 scale-100 blur-0'
+  const off = 'opacity-0 scale-75 blur-[1px]'
 
   return (
     <div className="mt-3 flex items-center gap-1">
       <button type="button" onClick={onCopy} aria-label="복사" title="복사"
               className={`${btn} text-text-meta hover:text-text-pri hover:bg-bg-card`}>
-        {copied ? <Check size={15} className="text-primary" /> : <Copy size={15} />}
+        <span className="relative block w-4 h-4">
+          <Copy size={16} className={`${glyph} ${copied ? off : on}`} />
+          <Check size={16} className={`${glyph} text-primary ${copied ? on : off}`} />
+        </span>
       </button>
       <button type="button" onClick={onShare} aria-label="공유" title="공유"
               className={`${btn} text-text-meta hover:text-text-pri hover:bg-bg-card`}>
-        <Share2 size={15} />
+        <Share2 size={16} />
       </button>
       <button type="button" onClick={() => setVote((v) => (v === 'up' ? null : 'up'))} aria-label="좋아요" title="좋아요"
               aria-pressed={vote === 'up'}
               className={`${btn} ${vote === 'up' ? 'text-primary' : 'text-text-meta hover:text-text-pri hover:bg-bg-card'}`}>
-        <ThumbsUp size={15} fill={vote === 'up' ? 'currentColor' : 'none'} />
+        <span className="relative block w-4 h-4">
+          <ThumbsUp size={16} className={`${glyph} ${vote === 'up' ? off : on}`} />
+          <ThumbsUp size={16} fill="currentColor" className={`${glyph} ${vote === 'up' ? on : off}`} />
+        </span>
       </button>
       <button type="button" onClick={() => setVote((v) => (v === 'down' ? null : 'down'))} aria-label="싫어요" title="싫어요"
               aria-pressed={vote === 'down'}
               className={`${btn} ${vote === 'down' ? 'text-accent' : 'text-text-meta hover:text-text-pri hover:bg-bg-card'}`}>
-        <ThumbsDown size={15} fill={vote === 'down' ? 'currentColor' : 'none'} />
+        <span className="relative block w-4 h-4">
+          <ThumbsDown size={16} className={`${glyph} ${vote === 'down' ? off : on}`} />
+          <ThumbsDown size={16} fill="currentColor" className={`${glyph} ${vote === 'down' ? on : off}`} />
+        </span>
       </button>
     </div>
   )

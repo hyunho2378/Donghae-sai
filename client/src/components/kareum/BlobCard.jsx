@@ -21,7 +21,7 @@ export default function BlobCard({ slug, name, image, text, caption, path, illus
                    preserveAspectRatio="xMidYMid slice"
                    style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
                    className="transition-transform duration-[600ms] ease-out
-                              motion-reduce:transition-none group-hover:scale-[1.04]" />
+                              motion-reduce:transition-none motion-reduce:transform-none group-hover:scale-[1.04]" />
             {/* 곡선 카피 대비 확보. 히어로 위 텍스트와 같은 방식이다 */}
             <path d={path} fill="black" opacity="0.28" />
           </g>

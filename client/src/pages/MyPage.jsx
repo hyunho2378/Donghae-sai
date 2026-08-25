@@ -29,7 +29,7 @@ export default function MyPage() {
       </Helmet>
 
       {/* 프로필 */}
-      <Eyebrow>my page</Eyebrow>
+      <Eyebrow>내 여행</Eyebrow>
       <section className="mt-4 flex items-center gap-4">
         <div className="w-16 h-16 rounded-full bg-primary-soft
                         flex items-center justify-center
@@ -37,7 +37,7 @@ export default function MyPage() {
           {(user?.name || '동').slice(0, 1)}
         </div>
         <div>
-          <h1 className="font-pretendard font-bold text-[22px] md:text-[26px] text-text-pri">
+          <h1 className="type-page-title text-text-pri">
             {user?.name || '동해 여행자'}
           </h1>
           <p className="mt-1 font-pretendard font-semibold text-[14px] text-primary-hover">
@@ -48,10 +48,10 @@ export default function MyPage() {
 
       {/* 내 패스 카드. pass.png를 실물 카드처럼 보여준다 */}
       <section className="mt-8">
-        <div className="relative overflow-hidden rounded-[28px] bg-accent-soft
+        <div className="relative overflow-hidden rounded-2xl bg-accent-soft
                         shadow-float p-6 flex items-center gap-5">
           <img src="/images/pass/pass.png" alt="동해사이 패스 카드"
-            className="w-[96px] h-auto shrink-0 drop-shadow-md" />
+            className="w-[96px] h-auto shrink-0" />
           <div className="min-w-0">
             <p className="font-pretendard font-semibold text-[13px] text-accent tracking-[0.04em]">
               동해사이 패스
@@ -60,7 +60,7 @@ export default function MyPage() {
               {membership === '미구독' ? '아직 패스가 없어요' : `${membership} 이용 중`}
             </p>
             <Link to="/pass"
-              className="mt-3 inline-flex items-center h-9 px-4 rounded-full
+              className="mt-3 inline-flex items-center min-h-11 md:min-h-10 px-4 rounded-full
                              bg-accent text-white
                              font-pretendard font-semibold text-[13px]
                              hover:bg-accent-hover active:scale-[0.96]
@@ -75,20 +75,17 @@ export default function MyPage() {
       <div className="mt-8 grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-3">
         {LINKS.map(({ to, Icon, title, desc }) => (
           <Link key={title} to={to}
-            className="bg-white shadow-depth rounded-2xl p-5
-                           hover:shadow-depth-hover hover:-translate-y-0.5 active:scale-[0.96]
-                           transition-[box-shadow,transform] duration-200 ease-out
-                           motion-reduce:transition-none motion-reduce:hover:translate-y-0">
-            <Icon size={22} strokeWidth={2} className="text-primary-hover" />
+            className="bg-white shadow-depth rounded-2xl p-5">
+            <Icon size={24} strokeWidth={2} className="text-primary-hover" />
             <p className="mt-3 font-pretendard font-bold text-[16px] text-text-pri">{title}</p>
-            <p className="mt-1 font-pretendard font-medium text-[13px] text-text-sec">{desc}</p>
+            <p className="mt-1 font-pretendard font-medium text-[13px] text-text-sec tabular-nums">{desc}</p>
           </Link>
         ))}
       </div>
 
       {/* 저장한 장소 */}
       <section className="mt-12">
-        <h2 className="font-pretendard font-bold text-[20px] md:text-[22px] text-text-pri mb-4">
+        <h2 className="type-section-title text-text-pri mb-4">
           저장한 장소
         </h2>
         {saved.length > 0 ? (
@@ -96,7 +93,7 @@ export default function MyPage() {
             {saved.map((s) => <StayCard key={s.id} {...s} />)}
           </div>
         ) : (
-          <p className="font-pretendard font-normal text-[14px] text-text-meta">
+          <p className="font-pretendard font-normal text-[14px] text-text-sec">
             아직 저장한 장소가 없어요. 마음에 드는 곳을 저장해 보세요
           </p>
         )}
@@ -104,10 +101,10 @@ export default function MyPage() {
 
       {/* 예약 내역 */}
       <section id="reservations" className="mt-12 scroll-mt-24">
-        <h2 className="font-pretendard font-bold text-[20px] md:text-[22px] text-text-pri mb-4">
+        <h2 className="type-section-title text-text-pri mb-4">
           예약 내역
         </h2>
-        <p className="font-pretendard font-normal text-[14px] text-text-meta">
+        <p className="font-pretendard font-normal text-[14px] text-text-sec">
           아직 예약 내역이 없어요
         </p>
       </section>

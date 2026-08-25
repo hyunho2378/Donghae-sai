@@ -47,9 +47,9 @@ export default function SovereignChat() {
             <button
               onClick={() => setOpen(false)}
               aria-label="닫기"
-              className="w-8 h-8 inline-flex items-center justify-center rounded-full
+              className="w-11 h-11 md:w-10 md:h-10 inline-flex items-center justify-center rounded-full
                          hover:bg-bg-card transition-colors duration-150">
-              <X size={18} className="text-text-meta" />
+              <X size={20} className="text-text-meta" />
             </button>
           </div>
 
@@ -114,12 +114,12 @@ export default function SovereignChat() {
                     transition-[box-shadow,transform,background-color] duration-200 ease-out
                     motion-reduce:transition-none motion-reduce:hover:translate-y-0
                     ${open ? 'bg-primary text-white hover:bg-primary-hover' : 'bg-accent-soft'}`}>
-        {open ? <X size={22} /> : (
+        {open ? <X size={24} /> : (
           !mukoErr ? (
             <img src="/images/character/muko-main.png" alt="무코 도우미"
                  onError={() => setMukoErr(true)}
                  className="w-full h-full object-contain p-1" />
-          ) : <MessageCircle size={22} className="text-accent" />
+          ) : <MessageCircle size={24} className="text-accent" />
         )}
       </button>
     </>
