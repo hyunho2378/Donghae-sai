@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { searchKnowledge, buildSystemPrompt } from './rag.mjs'
+import { createByteFallbackAssembler } from './byteFallback.mjs'
 
 const router = Router()
 const OLLAMA_URL = 'http://localhost:11434/api/chat'
@@ -58,29 +59,30 @@ router.post('/', async (req, res) => {
     const decoder = new TextDecoder()
     let buffer = ''
 
-    // gemma 같은 모델은 한글을 바이트 폴백 토큰(<0xEC> 형태)으로 흘리기도 한다.
-    // 이 바이트를 모아 완전한 UTF-8 글자로 조립해야 화면에 <0xEC>가 날것으로 안 뜬다.
-    // 예. <0xEC><0x90><0xAC> → 쐬. 일반 텍스트 토큰은 이 로직을 거치지 않고 그대로 나간다.
-    let pending = [] // 아직 글자를 못 이룬 바이트들
-
-    const flushBytes = (final) => {
-      if (!pending.length) return ''
-      const buf = Buffer.from(pending)
-      if (final) { pending = []; return buf.toString('utf8') }
-      // 뒤에서부터 연속 바이트(10xxxxxx)를 건너뛰어 마지막 글자의 시작을 찾는다
-      let i = buf.length
-      while (i > 0 && (buf[i - 1] & 0xc0) === 0x80) i--
-      let cut = buf.length
-      if (i > 0) {
-        const lead = buf[i - 1]
-        const need = lead >= 0xf0 ? 4 : lead >= 0xe0 ? 3 : lead >= 0xc0 ? 2 : 1
-        cut = (buf.length - (i - 1) >= need) ? buf.length : i - 1 // 마지막 글자가 미완성이면 남긴다
-      }
-      const out = buf.subarray(0, cut).toString('utf8')
-      pending = Array.from(buf.subarray(cut))
-      return out
-    }
+    const assembler = createByteFallbackAssembler()
     const writeToken = (t) => { if (t) res.write(JSON.stringify({ type: 'token', token: t }) + '\n') }
+    let sentDone = false
+
+    const finishAnswer = () => {
+      writeToken(assembler.finish())
+      if (!sentDone) {
+        res.write(JSON.stringify({ type: 'done' }) + '\n')
+        sentDone = true
+      }
+    }
+
+    const processLine = (line) => {
+      const trimmed = line.trim()
+      if (!trimmed) return
+      try {
+        const parsed = JSON.parse(trimmed)
+        const chunk = parsed.message?.content
+        if (chunk) writeToken(assembler.push(chunk))
+        if (parsed.done) finishAnswer()
+      } catch {
+        // 완결됐지만 잘못된 NDJSON 한 줄은 다음 응답을 막지 않고 건너뛴다
+      }
+    }
 
     while (true) {
       const { done, value } = await reader.read()
@@ -91,33 +93,13 @@ router.post('/', async (req, res) => {
       const lines = buffer.split('\n')
       buffer = lines.pop()
 
-      for (const line of lines) {
-        const trimmed = line.trim()
-        if (!trimmed) continue
-        try {
-          const parsed = JSON.parse(trimmed)
-          const chunk = parsed.message?.content
-          if (chunk) {
-            if (/^(?:<0x[0-9a-fA-F]{2}>)+$/.test(chunk)) {
-              // 순수 바이트 폴백 토큰(하나 이상). 바이트만 모으고 완성된 글자만 내보낸다
-              for (const b of chunk.matchAll(/<0x([0-9a-fA-F]{2})>/g)) pending.push(parseInt(b[1], 16))
-              writeToken(flushBytes(false))
-            } else {
-              // 일반 토큰. 남은 바이트를 먼저 비우고 이어 붙인다
-              writeToken(flushBytes(true) + chunk)
-            }
-          }
-          if (parsed.done) {
-            writeToken(flushBytes(true))
-            res.write(JSON.stringify({ type: 'done' }) + '\n')
-          }
-        } catch {
-          // 불완전한 줄은 건너뛴다
-        }
-      }
+      for (const line of lines) processLine(line)
     }
 
-    writeToken(flushBytes(true)) // 남은 바이트가 있으면 마지막에 비운다
+    // TextDecoder 내부에 남은 UTF-8과 개행 없는 마지막 NDJSON 줄까지 EOF에서 처리한다.
+    buffer += decoder.decode()
+    if (buffer.trim()) processLine(buffer)
+    finishAnswer()
     res.end()
   } catch (e) {
     if (!res.headersSent) {

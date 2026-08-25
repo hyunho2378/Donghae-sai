@@ -47,6 +47,8 @@ export function searchKnowledge(rawQuery, maxHits = 3) {
         }
       }
     }
+    // 사용자가 코스를 명시하면 가족 패스처럼 주변 키워드가 많은 항목보다 코스 자료를 우선한다.
+    if (/코스|일정|동선/.test(rawQuery) && item.id.startsWith('course-')) score += 4
     // 권역 요약과 코스처럼 여러 곳을 한 번에 설명하는 항목을 개별 스팟보다 위에 둔다
     return { item, score: score * (item.weight || 1), idx }
   })

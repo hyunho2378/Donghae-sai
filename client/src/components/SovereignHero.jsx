@@ -16,6 +16,8 @@ const SUGGESTIONS = [
 
 // 인트로가 사라지는 시간. 이 뒤에 입력창이 하단으로 내려간다
 const LEAVE_MS = 240
+const COMPLETED_SPACER_MAX = 160
+const COMPLETED_SPACER_RATIO = 0.24
 
 const reduceMotion = () =>
   typeof window !== 'undefined' &&
@@ -104,7 +106,20 @@ export default function SovereignHero() {
     const last = lastMsgRef.current
     if (!opened || !el || !q || !last) { setSpacerH(0); return }
     const contentAfterQ = (last.offsetTop + last.offsetHeight) - q.offsetTop
-    setSpacerH(Math.max(0, el.clientHeight - contentAfterQ))
+    const needed = Math.max(0, el.clientHeight - contentAfterQ)
+    const completedCap = Math.min(COMPLETED_SPACER_MAX, el.clientHeight * COMPLETED_SPACER_RATIO)
+    const nextSpacer = streaming ? needed : Math.min(needed, completedCap)
+    setSpacerH(Math.round(nextSpacer))
+
+    if (streaming) return
+    // 완료 후 스페이서를 줄이면 브라우저가 scrollTop을 자동 clamp할 수 있다.
+    // 새 높이가 반영된 다음 프레임에 질문 앵커와 가능한 최대 스크롤 사이로 다시 맞춘다.
+    const raf = requestAnimationFrame(() => {
+      const target = Math.max(0, q.offsetTop - 24)
+      const maxScroll = Math.max(0, el.scrollHeight - el.clientHeight)
+      el.scrollTo({ top: Math.min(target, maxScroll), behavior: 'auto' })
+    })
+    return () => cancelAnimationFrame(raf)
   }, [messages, opened, streaming])
 
   // 입력이 길어지면 textarea 높이를 내용에 맞춰 늘린다. 최소와 최대는 CSS 가 잡는다

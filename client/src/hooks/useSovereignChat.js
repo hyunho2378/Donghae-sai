@@ -2,6 +2,7 @@ import { useState } from 'react'
 import staysData from '../data/stays.json'
 import packagesData from '../data/packages.json'
 import storiesData from '../data/stories.json'
+import { stripEmoji } from '../lib/stripEmoji'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000'
 
@@ -108,7 +109,7 @@ export function fixJosa(text) {
 
 // 모델이 남긴 마크다운 기호를 지운다. 스트리밍 중 잘린 기호도 같이 처리된다
 export function stripMarkdown(text) {
-  let out = text
+  let out = stripEmoji(text)
     .replace(/^#{1,6}\s*/gm, '')
     // 별표 불릿(* 항목)을 하이픈 불릿(- 항목)으로 통일한다. 렌더러가 목록으로 그린다
     .replace(/^([ \t]*)\*[ \t]+/gm, '$1- ')
@@ -166,6 +167,43 @@ export default function useSovereignChat(initialMessages = []) {
       let buffer = ''
       let gotFirstToken = false
 
+      const processLine = (line) => {
+        const trimmed = line.trim()
+        if (!trimmed) return
+        let parsed
+        try {
+          parsed = JSON.parse(trimmed)
+        } catch {
+          return
+        }
+
+        if (parsed.type === 'sources') {
+          setMessages((prev) => {
+            const next = [...prev]
+            const last = next[next.length - 1]
+            if (last && last.role === 'assistant') {
+              next[next.length - 1] = { ...last, sources: parsed.sources || [], links: parsed.links || {} }
+            }
+            return next
+          })
+        }
+
+        if (parsed.type === 'token' && parsed.token) {
+          if (!gotFirstToken) {
+            gotFirstToken = true
+            setLoading(false)
+          }
+          setMessages((prev) => {
+            const next = [...prev]
+            const last = next[next.length - 1]
+            if (last && last.role === 'assistant') {
+              next[next.length - 1] = { ...last, content: last.content + parsed.token }
+            }
+            return next
+          })
+        }
+      }
+
       while (true) {
         const { done, value } = await reader.read()
         if (done) break
@@ -174,43 +212,12 @@ export default function useSovereignChat(initialMessages = []) {
         const lines = buffer.split('\n')
         buffer = lines.pop()
 
-        for (const line of lines) {
-          const trimmed = line.trim()
-          if (!trimmed) continue
-          let parsed
-          try {
-            parsed = JSON.parse(trimmed)
-          } catch {
-            continue
-          }
-
-          if (parsed.type === 'sources') {
-            setMessages((prev) => {
-              const next = [...prev]
-              const last = next[next.length - 1]
-              if (last && last.role === 'assistant') {
-                next[next.length - 1] = { ...last, sources: parsed.sources || [], links: parsed.links || {} }
-              }
-              return next
-            })
-          }
-
-          if (parsed.type === 'token' && parsed.token) {
-            if (!gotFirstToken) {
-              gotFirstToken = true
-              setLoading(false)
-            }
-            setMessages((prev) => {
-              const next = [...prev]
-              const last = next[next.length - 1]
-              if (last && last.role === 'assistant') {
-                next[next.length - 1] = { ...last, content: last.content + parsed.token }
-              }
-              return next
-            })
-          }
-        }
+        for (const line of lines) processLine(line)
       }
+
+      // TextDecoder 내부와 개행 없는 마지막 NDJSON 줄을 EOF에서 빠뜨리지 않는다.
+      buffer += decoder.decode()
+      if (buffer.trim()) processLine(buffer)
     } catch (e) {
       setMessages((prev) => {
         const next = [...prev]
