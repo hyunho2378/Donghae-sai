@@ -18,10 +18,17 @@ export default function StaysPage() {
   const [region, setRegion] = useState('전체')
 
   const items = useMemo(() => {
-    return staysData.filter((s) => {
+    const filtered = staysData.filter((s) => {
       if (region !== '전체' && s.region !== region) return false
       if (q && !(s.name.includes(q) || s.region.includes(q))) return false
       return true
+    })
+    // 실제 카드에 쓸 사진(main_image 또는 첫 갤러리)이 있는 장소를 먼저 보여 준다.
+    // 같은 그룹 안에서는 원래 데이터 순서를 유지한다.
+    return filtered.sort((a, b) => {
+      const aHasImage = Boolean(a.main_image || a.gallery?.[0])
+      const bHasImage = Boolean(b.main_image || b.gallery?.[0])
+      return Number(bHasImage) - Number(aHasImage)
     })
   }, [region, q])
 
@@ -46,14 +53,7 @@ export default function StaysPage() {
             </h1>
           </RevealOnScroll>
 
-          <h2 className="type-section-title text-text-pri">
-            동해 로컬 자원
-          </h2>
-          <p className="mt-2 font-pretendard font-normal text-[15px] md:text-[16px] text-text-sec tabular-nums">
-            {q ? `검색어 ${q} 에 대한 결과 ${items.length}곳` : '네 갈래로 묶은 동해 로컬 자원'}
-          </p>
-
-          <div className="mt-6 lg:mt-8">
+          <div>
             <p className="font-pretendard font-medium text-[13px] text-text-pri mb-2">지역</p>
             <div className="flex gap-2 overflow-x-auto scrollbar-hide -mx-5 px-5">
               {REGIONS.map((r) => (

@@ -254,7 +254,7 @@ export default function MembershipPage() {
                               ${openFaq === i ? 'rotate-180' : ''}`} />
               </button>
               {openFaq === i && (
-                <p className="px-5 pb-5 font-pretendard font-normal text-[14px] text-text-sec leading-relaxed">
+                <p className="px-5 pt-1.5 pb-5 font-pretendard font-normal text-[14px] text-text-sec leading-relaxed">
                   {item.a}
                 </p>
               )}

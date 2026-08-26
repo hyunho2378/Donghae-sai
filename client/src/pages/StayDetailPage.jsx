@@ -229,11 +229,11 @@ export default function StayDetailPage() {
             <dl className="rounded-2xl bg-bg-card overflow-hidden">
               {infoRows.map((r, i) => (
                 <div key={r.label}
-                  className={`flex gap-4 px-5 py-4 ${i > 0 ? 'border-t border-border-sub' : ''}`}>
-                  <dt className="w-16 md:w-20 shrink-0 font-pretendard font-medium text-[13px] md:text-[14px] text-text-meta">
+                  className={`grid grid-cols-[76px_minmax(0,1fr)] gap-3 px-5 py-4 md:grid-cols-[96px_minmax(0,1fr)] md:gap-5 ${i > 0 ? 'border-t border-border-sub' : ''}`}>
+                  <dt className="font-pretendard font-semibold text-[14px] text-text-sec">
                     {r.label}
                   </dt>
-                  <dd className="flex-1 font-pretendard font-normal text-[13px] md:text-[14px] text-text-pri leading-relaxed">
+                  <dd className="min-w-0 font-pretendard font-medium text-[14px] md:text-[15px] text-text-pri leading-relaxed">
                     {r.map ? (
                       <a href={mapSearchUrl(r.value)} target="_blank" rel="noopener noreferrer"
                         className="inline-flex min-h-11 items-center gap-1 hover:text-primary transition-colors duration-150">

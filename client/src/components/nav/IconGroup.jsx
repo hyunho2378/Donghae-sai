@@ -5,7 +5,7 @@ import { useAuthStore } from '../../store/useAuthStore'
 
 const MEMBERSHIP_LABEL = { basic: '베이직', premium: '프리미엄', family: '패밀리' }
 
-export default function IconGroup() {
+export default function IconGroup({ mobileMenu = false }) {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
   const logout = useAuthStore((s) => s.logout)
   const user = useAuthStore((s) => s.user)
@@ -29,12 +29,13 @@ export default function IconGroup() {
 
   if (!isAuthenticated) {
     return (
-      <div className="flex items-center">
+      <div className={`flex items-center ${mobileMenu ? 'w-full' : ''}`}>
         <Link
           to="/auth"
-          className="min-h-11 lg:h-10 px-3 inline-flex items-center gap-1.5
+          className={`min-h-11 lg:h-10 px-3 inline-flex items-center gap-1.5
                      font-pretendard font-medium text-[14px] text-text-pri
-                     rounded-lg hover:bg-bg-card transition-colors duration-150">
+                     rounded-lg hover:bg-bg-card transition-colors duration-150
+                     ${mobileMenu ? 'w-full px-0' : ''}`}>
           <User size={20} className="text-text-pri" />
           로그인
         </Link>
@@ -52,20 +53,21 @@ export default function IconGroup() {
   }
 
   return (
-    <div className="flex items-center gap-1">
+    <div className={`flex items-center gap-1 ${mobileMenu ? 'w-full' : ''}`}>
       {/* User dropdown */}
-      <div ref={ref} className="relative">
+      <div ref={ref} className={`relative ${mobileMenu ? 'w-full' : ''}`}>
         <button
           aria-label="내 계정"
           onClick={() => setOpen(!open)}
-          className="w-11 h-11 lg:w-10 lg:h-10 inline-flex items-center justify-center
-                     rounded-full hover:bg-bg-card transition-colors duration-150">
+          className={`w-11 h-11 lg:w-10 lg:h-10 inline-flex items-center justify-center
+                     rounded-full hover:bg-bg-card transition-colors duration-150
+                     ${mobileMenu ? 'w-full justify-start gap-2 rounded-lg px-0' : ''}`}>
           <User size={20} className="text-text-pri" />
+          {mobileMenu && <span className="font-pretendard font-medium text-[14px] text-text-pri">마이페이지</span>}
         </button>
         {open && (
-          <div className="absolute right-0 top-12 z-50 min-w-[200px]
-                          bg-white border border-border-def rounded-xl
-                          py-2">
+          <div className={`z-50 min-w-[200px] bg-white border border-border-def rounded-xl py-2
+                          ${mobileMenu ? 'static mt-2 w-full' : 'absolute right-0 top-12'}`}>
             <div className="px-4 py-3 border-b border-border-sub">
               <p className="font-pretendard font-bold text-[14px] text-text-pri">{user?.name}</p>
               <p className="font-pretendard font-normal text-[12px] text-text-meta">{user?.email}</p>

@@ -52,7 +52,7 @@ export default function TopNav() {
             <div className="px-5 py-6 space-y-6">
               <NavMenu vertical onClick={() => setMenuOpen(false)} />
               <div className="pt-6 border-t border-border-sub">
-                <IconGroup />
+                <IconGroup mobileMenu />
               </div>
             </div>
           </div>

@@ -76,27 +76,27 @@ function StampResult({ onNext }) {
 
 function NextCourse() {
   return (
-    <div className="relative -mt-5 rounded-t-[28px] bg-white px-5 pt-6 pb-7 text-center md:mt-0 md:rounded-none md:px-0 md:py-8">
-      <h2 className="font-pretendard font-bold text-[25px] leading-tight tracking-[-0.03em] text-text-pri text-wrap balance">
-        다음 <span className="text-accent">동해</span><span className="text-primary-hover">사이</span>는<br />어디일까요?
+    <div className="relative -mt-5 rounded-t-[28px] bg-white px-4 pt-5 pb-5 text-center md:mt-0 md:rounded-none md:px-0 md:py-8">
+      <h2 className="whitespace-nowrap font-pretendard font-bold text-[20px] leading-tight tracking-[-0.04em] text-text-pri md:text-[25px] md:tracking-[-0.03em]">
+        다음 <span className="text-accent">동해</span><span className="text-primary-hover">사이</span>는 어디일까요?
       </h2>
 
-      <article className="mt-5 overflow-hidden rounded-2xl bg-white shadow-depth text-left">
+      <article className="mt-3 overflow-hidden rounded-2xl bg-white shadow-depth text-left md:mt-5">
         <img src="/images/places/nongol-damgil.jpg" alt="논골담길 골목 풍경"
-          className="w-full aspect-[16/8] object-cover" />
-        <div className="p-4">
+          className="w-full aspect-[16/6] object-cover md:aspect-[16/8]" />
+        <div className="p-3 md:p-4">
           <span className="inline-flex rounded-full bg-primary-soft px-2.5 py-1
                            font-pretendard font-bold text-[11px] text-primary-hover tracking-[0.04em]">
             SEE
           </span>
-          <h3 className="mt-2 font-pretendard font-bold text-[21px] text-text-pri tracking-[-0.02em]">
+          <h3 className="mt-1.5 font-pretendard font-bold text-[20px] text-text-pri tracking-[-0.02em] md:mt-2 md:text-[21px]">
             논골담길
           </h3>
           <p className="mt-1 font-pretendard font-medium text-[13px] text-text-sec tabular-nums">
             도보 8분 · 약 550m
           </p>
 
-          <div className="mt-4 rounded-xl bg-bg-mute px-4 py-4">
+          <div className="mt-3 rounded-xl bg-bg-mute px-3 py-3 md:mt-4 md:px-4 md:py-4">
             <div className="flex items-center">
               <span className="w-3 h-3 rounded-full bg-primary shrink-0" />
               <span className="mx-2 flex-1 border-t-2 border-dashed border-primary" />
@@ -110,11 +110,11 @@ function NextCourse() {
         </div>
       </article>
 
-      <p className="mt-4 font-pretendard font-medium text-[14px] leading-relaxed text-text-sec text-pretty">
+      <p className="hidden md:block mt-4 font-pretendard font-medium text-[14px] leading-relaxed text-text-sec text-pretty">
         해가 지기 전에 골목을 둘러보고 다음 코스로 이어가 보세요
       </p>
       <Link to="/stays/sai-004"
-        className="mt-5 w-full min-h-12 rounded-xl bg-accent text-white
+        className="mt-3 w-full min-h-11 rounded-xl bg-accent text-white md:mt-5 md:min-h-12
                    inline-flex items-center justify-center gap-2
                    font-pretendard font-bold text-[16px]
                    hover:bg-accent-hover active:scale-[0.96]
@@ -123,7 +123,7 @@ function NextCourse() {
         길찾기
       </Link>
       <Link to="/packages"
-        className="mt-2 w-full min-h-11 rounded-xl border border-primary text-primary-hover
+        className="mt-2 w-full min-h-10 rounded-xl border border-primary text-primary-hover md:min-h-11
                    inline-flex items-center justify-center gap-1
                    font-pretendard font-semibold text-[14px]
                    hover:bg-primary-soft transition-colors duration-150 motion-reduce:transition-none">
@@ -156,11 +156,11 @@ export default function NfcStampDemo({ onClose }) {
           </button>
 
           <div className={`bg-primary-soft px-5 pt-[calc(1.5rem+env(safe-area-inset-top))] flex flex-col items-center overflow-hidden md:h-auto md:min-h-[620px] md:justify-center md:pt-6
-                           ${stage === 'stamp' ? 'h-[330px]' : 'h-[245px]'}`}>
+                           ${stage === 'stamp' ? 'h-[330px]' : 'h-[190px]'}`}>
             <img src="/images/logo/logo-wordmark.svg" alt="동해사이"
               className="w-[138px] h-auto md:w-[170px]" />
             <img src="/images/character/muko-main.png" alt="동해사이 캐릭터 무코"
-              className={`mt-2 object-contain object-top md:mt-5 ${stage === 'stamp' ? 'w-[260px] md:w-[390px]' : 'w-[190px] md:w-[300px]'}`} />
+              className={`mt-2 object-contain object-top md:mt-5 ${stage === 'stamp' ? 'w-[260px] md:w-[390px]' : 'w-[145px] md:w-[300px]'}`} />
           </div>
 
           <div className="md:flex md:items-center md:px-10">

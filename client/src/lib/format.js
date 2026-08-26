@@ -21,6 +21,10 @@ export const cleanCopy = (t) => (t || '')
   .replace(/\s*,\s*$/, '')
   .trim()
 
+// 카드의 상호·명칭 보조 문구는 문장이 아니라 라벨로 다룬다.
+// 예: '전통 막국수.'가 아니라 '전통 막국수'
+export const cleanLabel = (t) => cleanCopy(t).replace(/[.。]+$/, '')
+
 // 반점으로만 이어 붙인 명사 나열이면 읽는 문장이 아니라 항목으로 끊어 준다.
 // 천 단위 구분 반점(1,400)은 자르지 않는다. 문장이 섞여 있으면 그대로 읽게 둔다
 export const asList = (t) => {

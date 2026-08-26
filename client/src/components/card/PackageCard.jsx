@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Badge from '../Badge'
+import { cleanLabel } from '../../lib/format'
 export default function PackageCard({
   id, name, badges = [], images, main_image,
   duration_label, short_description
@@ -29,7 +30,7 @@ export default function PackageCard({
           </p>
           {short_description && (
             <p className="mt-3 font-pretendard font-normal text-[14px] text-text-sec leading-relaxed line-clamp-2">
-              {short_description}
+              {cleanLabel(short_description)}
             </p>
           )}
           <span className="mt-4 inline-flex items-center justify-center

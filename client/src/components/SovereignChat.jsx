@@ -8,6 +8,8 @@ export default function SovereignChat() {
   const [open, setOpen] = useState(false)
   const [input, setInput] = useState('')
   const [mukoErr, setMukoErr] = useState(false)
+  const [keyboardOffset, setKeyboardOffset] = useState(0)
+  const [viewportHeight, setViewportHeight] = useState(0)
   // seed 는 질문 전 안내 말풍선. 실제 답변이 아니므로 액션 버튼을 붙이지 않는다
   const { messages, streaming, send } = useSovereignChat([
     { role: 'assistant', content: '동해 여행에 대해 물어보세요.', seed: true }
@@ -19,6 +21,36 @@ export default function SovereignChat() {
       listRef.current.scrollTop = listRef.current.scrollHeight
     }
   }, [messages, open])
+
+  // iOS는 키보드가 열려도 layout viewport 높이를 그대로 둘 수 있다.
+  // Visual Viewport 기준으로 고정 패널을 키보드 위로 옮겨 입력창이 가려지지 않게 한다.
+  useEffect(() => {
+    if (!open) return undefined
+    const viewport = window.visualViewport
+    const updateViewport = () => {
+      const visibleHeight = viewport?.height || window.innerHeight
+      const offset = viewport
+        ? Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop)
+        : 0
+      setViewportHeight(visibleHeight)
+      setKeyboardOffset(offset)
+    }
+    updateViewport()
+    viewport?.addEventListener('resize', updateViewport)
+    viewport?.addEventListener('scroll', updateViewport)
+    window.addEventListener('resize', updateViewport)
+    return () => {
+      viewport?.removeEventListener('resize', updateViewport)
+      viewport?.removeEventListener('scroll', updateViewport)
+      window.removeEventListener('resize', updateViewport)
+    }
+  }, [open])
+
+  const scrollToLatest = () => {
+    requestAnimationFrame(() => {
+      if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight
+    })
+  }
 
   function sendMessage() {
     if (streaming) return
@@ -37,9 +69,13 @@ export default function SovereignChat() {
   return (
     <>
       {open && (
-        <div className="fixed bottom-[calc(6rem+env(safe-area-inset-bottom))] right-5 z-50 w-[340px] max-w-[calc(100vw-40px)]
-                        h-[460px] bg-white rounded-2xl shadow-float
-                        flex flex-col overflow-hidden">
+        <div
+          style={{
+            bottom: `calc(6rem + env(safe-area-inset-bottom) + ${keyboardOffset}px)`,
+            height: `${Math.min(460, Math.max(320, (viewportHeight || 460) - 96))}px`
+          }}
+          className="fixed right-5 z-50 w-[340px] max-w-[calc(100vw-40px)]
+                     bg-white rounded-2xl shadow-float flex flex-col overflow-hidden">
           <div className="h-14 px-5 flex items-center justify-between border-b border-border-sub bg-white">
             <p className="font-pretendard font-bold text-[15px] text-text-pri tracking-[-0.02em]">
               동해사이 도우미
@@ -84,9 +120,13 @@ export default function SovereignChat() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={onKeyDown}
+              onFocus={() => {
+                scrollToLatest()
+                window.setTimeout(scrollToLatest, 250)
+              }}
               placeholder="동해 여행에 대해 물어보세요"
               className="flex-1 h-11 px-3 rounded-lg border border-border-def
-                         font-pretendard font-normal text-[14px] text-text-pri
+                         font-pretendard font-normal text-[16px] md:text-[14px] text-text-pri
                          placeholder:text-text-ter focus:border-primary outline-none
                          transition-colors duration-150" />
             <button
@@ -107,7 +147,8 @@ export default function SovereignChat() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? '동해사이 도우미 닫기' : '동해사이 도우미 열기'}
-        className={`fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] right-5 z-50 w-14 h-14 rounded-full overflow-hidden
+        style={{ bottom: `calc(1.5rem + env(safe-area-inset-bottom) + ${keyboardOffset}px)` }}
+        className={`fixed right-5 z-50 w-14 h-14 rounded-full overflow-hidden
                     flex items-center justify-center
                     shadow-float hover:shadow-float-hover
                     hover:-translate-y-0.5 active:scale-[0.96]

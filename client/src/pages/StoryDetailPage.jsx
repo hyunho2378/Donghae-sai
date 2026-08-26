@@ -218,9 +218,9 @@ export default function StoryDetailPage() {
                 {(spot.address || hours) && (
                   <dl className="mt-5 rounded-2xl bg-bg-mute overflow-hidden">
                     {spot.address && (
-                      <div className="flex gap-4 px-5 py-4">
-                        <dt className="w-14 shrink-0 font-pretendard font-semibold text-[13px] text-text-meta">주소</dt>
-                        <dd className="flex-1 font-pretendard font-medium text-[14px] text-text-pri leading-relaxed">
+                      <div className="grid grid-cols-[76px_minmax(0,1fr)] gap-3 px-5 py-4 md:grid-cols-[96px_minmax(0,1fr)] md:gap-5">
+                        <dt className="font-pretendard font-semibold text-[14px] text-text-sec">주소</dt>
+                        <dd className="min-w-0 font-pretendard font-medium text-[14px] md:text-[15px] text-text-pri leading-relaxed">
                           <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(spot.address)}`}
                             target="_blank" rel="noopener noreferrer"
                             className="inline-flex min-h-11 items-center gap-1.5 hover:text-primary
@@ -232,9 +232,9 @@ export default function StoryDetailPage() {
                       </div>
                     )}
                     {hours && (
-                      <div className={`flex gap-4 px-5 py-4 ${spot.address ? 'border-t border-border-sub' : ''}`}>
-                        <dt className="w-14 shrink-0 font-pretendard font-semibold text-[13px] text-text-meta">운영</dt>
-                        <dd className="flex-1 font-pretendard font-medium text-[14px] text-text-pri leading-relaxed">
+                      <div className={`grid grid-cols-[76px_minmax(0,1fr)] gap-3 px-5 py-4 md:grid-cols-[96px_minmax(0,1fr)] md:gap-5 ${spot.address ? 'border-t border-border-sub' : ''}`}>
+                        <dt className="font-pretendard font-semibold text-[14px] text-text-sec">운영</dt>
+                        <dd className="min-w-0 font-pretendard font-medium text-[14px] md:text-[15px] text-text-pri leading-relaxed">
                           <span className="inline-flex items-start gap-1.5">
                             <Clock size={16} className="shrink-0 mt-0.5 text-text-meta" />
                             {hours}

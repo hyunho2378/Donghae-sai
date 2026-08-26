@@ -21,11 +21,23 @@ export default function Description({ text, className = '', size = 'md' }) {
 
   const t = endSentence(text)
   if (!t) return null
+  // 긴 소개글은 세 문장마다 문단을 나눈다. 데스크톱 한 줄에 과도하게 붙는 것을 막고,
+  // 모바일에서도 문장 중간이 아닌 의미 단위로 호흡을 나눈다.
+  const sentences = t.split(/(?<=[.!?])\s+/).filter(Boolean)
+  const paragraphs = sentences.reduce((groups, sentence, index) => {
+    const groupIndex = Math.floor(index / 3)
+    groups[groupIndex] = [...(groups[groupIndex] || []), sentence]
+    return groups
+  }, [])
   return (
-    <p className={`font-pretendard font-normal text-pretty
-                   ${size === 'lg' ? 'text-[15px] md:text-[16px]' : 'text-[14px] md:text-[15px]'}
-                   text-text-sec leading-relaxed ${className}`}>
-      {t}
-    </p>
+    <div className={`space-y-4 ${className}`}>
+      {paragraphs.map((paragraph, index) => (
+        <p key={index} className={`font-pretendard font-normal text-pretty
+                                   ${size === 'lg' ? 'text-[15px] md:text-[16px]' : 'text-[14px] md:text-[15px]'}
+                                   text-text-sec leading-relaxed`}>
+          {paragraph.join(' ')}
+        </p>
+      ))}
+    </div>
   )
 }

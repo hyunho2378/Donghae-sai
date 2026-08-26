@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Badge from '../Badge'
 import BookmarkButton from '../button/BookmarkButton'
-import { STAY_TYPE_LABEL, shortPrice, cleanCopy } from '../../lib/format'
+import { STAY_TYPE_LABEL, shortPrice, cleanLabel } from '../../lib/format'
 
 export default function StayCard({
   id, name, type, region, main_image, gallery,
@@ -32,7 +32,7 @@ export default function StayCard({
           </h3>
           {short_description && (
             <p className="mt-2 font-pretendard font-normal text-[13px] md:text-[14px] text-text-sec line-clamp-2 leading-relaxed">
-              {cleanCopy(short_description)}
+              {cleanLabel(short_description)}
             </p>
           )}
           {shortPrice(price_label) && (
