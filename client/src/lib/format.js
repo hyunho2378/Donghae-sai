@@ -70,15 +70,13 @@ export const calcNights = (checkIn, checkOut) => {
   return Math.max(0, differenceInCalendarDays(co, ci))
 }
 
-// 동해사이 패스 스탬프 7종. 5권역 + 별빛 + 완주. 패스가격설계_0824.md의 스탬프 적립과 완주 보상 구조
+// 동해사이 패스 스탬프 4종. 판넬 Service Flow 03단계와 같은 카테고리(STAY EAT PLAY SEE)
+// 가게 업종에 따라 네 카테고리 중 하나에 태그되고, 네 카테고리를 모두 모으면 완주 스탬프를 받는다
 export const STAMPS = [
-  { id: 'chuam', label: '추암', kind: 'region', note: '추암 권역에서 NFC 태그' },
-  { id: 'muleung', label: '무릉', kind: 'region', note: '무릉 권역에서 NFC 태그' },
-  { id: 'cheongok', label: '천곡', kind: 'region', note: '천곡 권역에서 NFC 태그' },
-  { id: 'mukho', label: '묵호', kind: 'region', note: '묵호 권역에서 NFC 태그' },
-  { id: 'mangsang', label: '망상', kind: 'region', note: '망상 권역에서 NFC 태그' },
-  { id: 'starlight', label: '별빛', kind: 'starlight', note: '별빛 콘텐츠 이용 시 적립' },
-  { id: 'complete', label: '완주', kind: 'complete', note: '앞의 여섯 개를 모두 모으면 적립' }
+  { id: 'stay', label: 'STAY', kind: 'category', note: '숙소에서 NFC 태그' },
+  { id: 'eat', label: 'EAT', kind: 'category', note: '식당에서 NFC 태그' },
+  { id: 'play', label: 'PLAY', kind: 'category', note: '체험 공간에서 NFC 태그' },
+  { id: 'see', label: 'SEE', kind: 'category', note: '관광지에서 NFC 태그' }
 ]
 
 export const ROLE_LABEL = {

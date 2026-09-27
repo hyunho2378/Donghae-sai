@@ -14,6 +14,7 @@ export default function CheckoutCompletePage() {
   const checkout = params.get('checkout') || ''
   const guests = Number(params.get('guests')) || 1
   const price = Number(params.get('price')) || 0
+  const isPass = type === 'pass'
 
   return (
     <div className="page-enter container-page max-w-[600px]
@@ -26,20 +27,20 @@ export default function CheckoutCompletePage() {
       <div className="text-center">
         <CheckCircle size={48} className="text-primary mx-auto mb-6" />
         <h1 className="type-page-title text-text-pri">
-          예약이 완료되었습니다
+          {isPass ? '패스 구매가 완료되었습니다' : '예약이 완료되었습니다'}
         </h1>
-        <p className="mt-3 font-pretendard font-normal text-[15px] text-text-sec">
-          동해에서 만나요
+        <p className="mt-3 font-pretendard font-normal text-[15px] text-text-sec text-pretty">
+          {isPass ? '가게에 붙은 NFC 스티커에 휴대폰을 대면 바로 쓸 수 있어요' : '동해에서 만나요'}
         </p>
       </div>
 
       <div className="mt-10 shadow-card rounded-xl p-5 lg:p-6 space-y-3 font-pretendard text-[14px] tabular-nums">
         <div className="flex justify-between gap-4">
-          <span className="font-medium text-text-meta">예약 번호</span>
+          <span className="font-medium text-text-meta">{isPass ? '패스 번호' : '예약 번호'}</span>
           <span className="font-bold text-text-pri tracking-[0.04em]">{orderId}</span>
         </div>
         <div className="flex justify-between gap-4">
-          <span className="font-medium text-text-meta">예약 장소</span>
+          <span className="font-medium text-text-meta">{isPass ? '이용권' : '예약 장소'}</span>
           <span className="font-medium text-text-pri text-right">{name}</span>
         </div>
         {type === 'stay' && checkin && (
@@ -68,10 +69,10 @@ export default function CheckoutCompletePage() {
         <Link
           to="/pass"
           className="w-full sm:flex-1 h-12 inline-flex items-center justify-center
-                     bg-text-pri text-white rounded-lg
+                     bg-primary text-white rounded-lg
                      font-pretendard font-medium text-[15px]
-                     hover:bg-black transition-colors duration-150">
-          내 예약 보기
+                     hover:bg-primary-hover transition-colors duration-150">
+          {isPass ? '내 패스 보기' : '내 예약 보기'}
         </Link>
         <button
           onClick={() => navigate('/')}

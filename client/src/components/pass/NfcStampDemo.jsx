@@ -1,18 +1,20 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   ArrowRight,
   BedDouble,
   Binoculars,
   Check,
+  MessageCircle,
   Navigation,
+  Nfc,
   Utensils,
   Waves,
   X
 } from 'lucide-react'
 
 const CATEGORIES = [
-  { label: 'STAY', Icon: BedDouble, active: false },
+  { label: 'STAY', Icon: BedDouble, active: true },
   { label: 'EAT', Icon: Utensils, active: true },
   { label: 'PLAY', Icon: Waves, active: false },
   { label: 'SEE', Icon: Binoculars, active: false }
@@ -39,6 +41,51 @@ function CategoryProgress() {
   )
 }
 
+// 02 NFC 인증. 가게 스티커에 휴대폰을 대는 순간을 보여 준다.
+// 인식 중 → 인증 완료 순서로 바뀌고, hold 가 아니면 스탬프 화면으로 저절로 넘어간다
+function TapVerify({ onDone, hold }) {
+  const [phase, setPhase] = useState('scan')
+
+  useEffect(() => {
+    if (hold) return undefined
+    const t1 = window.setTimeout(() => setPhase('done'), 1800)
+    const t2 = window.setTimeout(() => onDone(), 2900)
+    return () => { window.clearTimeout(t1); window.clearTimeout(t2) }
+  }, [hold, onDone])
+
+  const done = phase === 'done'
+  return (
+    <div className="relative -mt-5 rounded-t-[28px] bg-white px-5 pt-7 pb-8 text-center md:mt-0 md:rounded-none md:px-0 md:py-8">
+      <button type="button" onClick={() => (done ? onDone() : setPhase('done'))}
+        aria-label={done ? '스탬프 화면으로 넘어가기' : 'NFC 인증 완료하기'}
+        className="relative mx-auto w-[148px] h-[148px] flex items-center justify-center">
+        {!done && (
+          <>
+            <span className="absolute inset-0 rounded-full bg-primary-soft animate-ping motion-reduce:animate-none" />
+            <span className="absolute inset-3 rounded-full border-2 border-primary/40" />
+          </>
+        )}
+        <span className={`relative w-[92px] h-[92px] rounded-full flex items-center justify-center text-white shadow-card
+                          transition-colors duration-300 motion-reduce:transition-none ${done ? 'bg-primary' : 'bg-primary-hover'}`}>
+          {done ? <Check size={44} strokeWidth={3} /> : <Nfc size={44} strokeWidth={2.2} />}
+        </span>
+      </button>
+
+      <p className="mt-5 font-pretendard font-bold text-[13px] tracking-[0.08em] text-primary-hover">
+        {done ? 'NFC 인증 완료' : 'NFC 인식 중'}
+      </p>
+      <h2 className="mt-2 font-pretendard font-bold text-[25px] leading-tight tracking-[-0.03em] text-text-pri text-balance">
+        {done
+          ? <><span className="text-primary-hover">거동탕수육</span> 방문을 확인했어요</>
+          : <>가게 스티커에 휴대폰을 대 주세요</>}
+      </h2>
+      <p className="mt-3 font-pretendard font-medium text-[14px] text-text-sec text-pretty">
+        {done ? '할인과 스탬프를 한 번에 적용하고 있어요' : '앱 설치나 검색 없이 휴대폰만 대면 돼요'}
+      </p>
+    </div>
+  )
+}
+
 function StampResult({ onNext }) {
   return (
     <div className="relative -mt-5 rounded-t-[28px] bg-white px-5 pt-6 pb-7 text-center md:mt-0 md:rounded-none md:px-0 md:py-8">
@@ -51,15 +98,20 @@ function StampResult({ onNext }) {
       <p className="mt-2 font-pretendard font-bold text-[16px] text-text-pri">
         <span className="text-primary-hover">거동탕수육</span> 방문 완료
       </p>
+      <p className="mt-2 inline-flex items-center gap-1 rounded-full bg-primary-soft px-3 py-1
+                    font-pretendard font-bold text-[12px] text-primary-hover">
+        <Check size={13} strokeWidth={3} />
+        패스 할인 적용 완료
+      </p>
 
       <CategoryProgress />
 
       <p className="mt-4 inline-flex rounded-full bg-bg-mute px-4 py-2
                     font-pretendard font-bold text-[14px] text-text-pri tabular-nums">
-        현재 <span className="mx-1 text-accent">5 / 7</span> 완료
+        현재 <span className="mx-1 text-accent">2 / 4</span> 완료
       </p>
       <p className="mt-3 font-pretendard font-medium text-[14px] text-text-sec text-pretty">
-        다음 장소를 방문해 새 스탬프를 모아보세요
+        다음 장소를 태그해 새 스탬프를 모아보세요
       </p>
       <button type="button" onClick={onNext}
         className="mt-5 w-full min-h-12 rounded-xl bg-accent text-white
@@ -77,6 +129,11 @@ function StampResult({ onNext }) {
 function NextCourse() {
   return (
     <div className="relative -mt-5 rounded-t-[28px] bg-white px-4 pt-5 pb-5 text-center md:mt-0 md:rounded-none md:px-0 md:py-8">
+      <p className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-primary-soft px-3 py-1
+                    font-pretendard font-bold text-[12px] text-primary-hover">
+        <MessageCircle size={14} strokeWidth={2.4} />
+        AI 챗봇 사이의 추천
+      </p>
       <h2 className="whitespace-nowrap font-pretendard font-bold text-[20px] leading-tight tracking-[-0.04em] text-text-pri md:text-[25px] md:tracking-[-0.03em]">
         다음 <span className="text-accent">동해</span><span className="text-primary-hover">사이</span>는 어디일까요?
       </h2>
@@ -92,8 +149,8 @@ function NextCourse() {
           <h3 className="mt-1.5 font-pretendard font-bold text-[20px] text-text-pri tracking-[-0.02em] md:mt-2 md:text-[21px]">
             논골담길
           </h3>
-          <p className="mt-1 font-pretendard font-medium text-[13px] text-text-sec tabular-nums">
-            도보 8분 · 약 550m
+          <p className="mt-1 font-pretendard font-medium text-[13px] text-text-sec text-pretty">
+            등대오름길과 벽화로 묵호 생활사를 보는 골목
           </p>
 
           <div className="mt-3 rounded-xl bg-bg-mute px-3 py-3 md:mt-4 md:px-4 md:py-4">
@@ -110,8 +167,9 @@ function NextCourse() {
         </div>
       </article>
 
-      <p className="hidden md:block mt-4 font-pretendard font-medium text-[14px] leading-relaxed text-text-sec text-pretty">
-        해가 지기 전에 골목을 둘러보고 다음 코스로 이어가 보세요
+      <p className="mt-3 rounded-2xl rounded-tl-md bg-bg-mute px-4 py-3 text-left
+                    font-pretendard font-medium text-[14px] leading-relaxed text-text-pri text-pretty md:mt-4">
+        식사를 마쳤다면 가까운 논골담길을 걸어 보세요. 해가 지기 전에 골목을 둘러보고 묵호등대까지 이어가기 좋아요.
       </p>
       <Link to="/stays/sai-004"
         className="mt-3 w-full min-h-11 rounded-xl bg-accent text-white md:mt-5 md:min-h-12
@@ -134,8 +192,13 @@ function NextCourse() {
   )
 }
 
-export default function NfcStampDemo({ onClose }) {
-  const [stage, setStage] = useState('stamp')
+const STAGES = ['tap', 'stamp', 'next']
+
+// initialStage 로 시작 화면을 고를 수 있다(스크린샷용 /pass?nfc=next). hold 면 자동으로 넘어가지 않는다
+export default function NfcStampDemo({ onClose, initialStage = 'tap', hold = false }) {
+  const [stage, setStage] = useState(STAGES.includes(initialStage) ? initialStage : 'tap')
+
+  const goStamp = useCallback(() => setStage('stamp'), [])
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow
@@ -156,17 +219,17 @@ export default function NfcStampDemo({ onClose }) {
           </button>
 
           <div className={`bg-primary-soft px-5 pt-[calc(1.5rem+env(safe-area-inset-top))] flex flex-col items-center overflow-hidden md:h-auto md:min-h-[620px] md:justify-center md:pt-6
-                           ${stage === 'stamp' ? 'h-[330px]' : 'h-[190px]'}`}>
+                           ${stage === 'next' ? 'h-[190px]' : 'h-[330px]'}`}>
             <img src="/images/logo/logo-wordmark.svg" alt="동해사이"
               className="w-[138px] h-auto md:w-[170px]" />
             <img src="/images/character/muko-main.png" alt="동해사이 캐릭터 무코"
-              className={`mt-2 object-contain object-top md:mt-5 ${stage === 'stamp' ? 'w-[260px] md:w-[390px]' : 'w-[145px] md:w-[300px]'}`} />
+              className={`mt-2 object-contain object-top md:mt-5 ${stage === 'next' ? 'w-[145px] md:w-[300px]' : 'w-[260px] md:w-[390px]'}`} />
           </div>
 
           <div className="md:flex md:items-center md:px-10">
-            {stage === 'stamp'
-              ? <StampResult onNext={() => setStage('next')} />
-              : <NextCourse />}
+            {stage === 'tap' && <TapVerify hold={hold} onDone={goStamp} />}
+            {stage === 'stamp' && <StampResult onNext={() => setStage('next')} />}
+            {stage === 'next' && <NextCourse />}
           </div>
         </section>
       </div>

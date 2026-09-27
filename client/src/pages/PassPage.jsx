@@ -1,38 +1,46 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { BedDouble, Binoculars, Check, Download, MapPin, Star, Utensils, Waves, Gift } from 'lucide-react'
+import { Link, useSearchParams } from 'react-router-dom'
+import { BedDouble, Binoculars, Check, Download, Nfc, Utensils, Waves } from 'lucide-react'
 import Eyebrow from '../components/Eyebrow'
 import NfcStampDemo from '../components/pass/NfcStampDemo'
 import { STAMPS } from '../lib/format'
 
 // 발표 시연용 가짜 데이터다. NFC 실물 태그와 NeonDB를 연결하기 전까지 이 값을 쓴다
+// STAY EAT PLAY 세 카테고리를 먼저 모았고 SEE만 남은 상황이다
 const DEMO = {
-  collected: ['mukho', 'cheongok', 'mangsang', 'starlight'],
+  collected: ['stay', 'eat', 'play'],
   log: [
-    { stamp: 'mukho', place: '논골담길', at: '2026.08.24 14:20' },
-    { stamp: 'cheongok', place: '천곡황금박쥐동굴', at: '2026.08.24 16:05' },
-    { stamp: 'starlight', place: '한섬 별빛 타임', at: '2026.08.24 20:40' },
-    { stamp: 'mangsang', place: '망상해변', at: '2026.08.25 09:10' }
+    { stamp: 'stay', place: '103LAB 게스트하우스', at: '2026.08.24 14:20' },
+    { stamp: 'play', place: '도째비골 스카이밸리', at: '2026.08.24 16:05' },
+    { stamp: 'eat', place: '거동탕수육', at: '2026.08.24 20:40' }
   ]
 }
 
-const ICON = { region: MapPin, starlight: Star, complete: Gift }
-const CATEGORIES = [
-  { label: 'STAY', Icon: BedDouble, complete: true },
-  { label: 'EAT', Icon: Utensils, complete: true, current: true },
-  { label: 'PLAY', Icon: Waves, complete: true },
-  { label: 'SEE', Icon: Binoculars, complete: true }
-]
+const ICON = { stay: BedDouble, eat: Utensils, play: Waves, see: Binoculars }
+// 카테고리 진행 표는 STAMPS 하나로만 만든다
+function categoryView(done) {
+  return STAMPS.map((s) => ({ label: s.label, Icon: ICON[s.id], complete: done.has(s.id) }))
+}
 
 export default function PassPage() {
-  const [showNfcDemo, setShowNfcDemo] = useState(false)
+  // /pass?nfc=tap|stamp|next 로 들어오면 해당 화면을 바로 연다(발표와 스크린샷용). hold=1 이면 자동 전환을 멈춘다
+  const [params] = useSearchParams()
+  const nfcParam = params.get('nfc')
+  const hold = params.get('hold') === '1'
+  const [showNfcDemo, setShowNfcDemo] = useState(!!nfcParam)
+  const [demoKey, setDemoKey] = useState(0)
   const done = new Set(DEMO.collected)
   const total = STAMPS.length
+  const categories = categoryView(done)
 
+  // 시연용. 패스 화면을 연 뒤 7초가 지나면 가게 스티커를 태그한 상황을 띄운다
   useEffect(() => {
+    if (nfcParam) return undefined
     const timer = window.setTimeout(() => setShowNfcDemo(true), 7000)
     return () => window.clearTimeout(timer)
-  }, [])
+  }, [nfcParam])
+
+  const replayNfc = () => { setDemoKey((k) => k + 1); setShowNfcDemo(true) }
 
   return (
     <div className="page-enter container-page
@@ -42,7 +50,7 @@ export default function PassPage() {
         내 패스
       </h1>
       <p className="mt-2 font-pretendard font-medium text-[15px] md:text-[16px] text-text-sec leading-relaxed">
-        권역에서 태그할 때마다 스탬프가 하나씩 쌓여요. 일곱 개를 모두 모으면 문어 굿즈를 받아요.
+        가게에서 태그할 때마다 스탬프가 하나씩 쌓여요. 네 개를 모두 모으면 무코 굿즈를 받아요.
       </p>
 
       <div className="mt-8 grid gap-6 md:gap-10 lg:grid-cols-[480px_1fr]">
@@ -58,13 +66,22 @@ export default function PassPage() {
             <Download size={16} />
             카드 이미지 저장
           </a>
+          <button type="button" onClick={replayNfc}
+            className="mt-4 ml-2 inline-flex items-center gap-2 min-h-11 px-4
+                       bg-primary text-white
+                       font-pretendard font-bold text-[14px]
+                       rounded-lg hover:bg-primary-hover transition-colors duration-150
+                       motion-reduce:transition-none">
+            <Nfc size={16} />
+            NFC 태그 체험
+          </button>
 
         <section className="mt-6 bg-white shadow-depth rounded-2xl p-5">
         <p className="font-pretendard font-bold text-[17px] text-text-pri tracking-[-0.02em]">
-          아직 안 모은 권역
+          아직 안 찍은 스탬프
         </p>
         <p className="mt-2 font-pretendard font-medium text-[15px] text-text-pri leading-relaxed">
-          {STAMPS.filter((s) => s.kind === 'region' && !done.has(s.id)).map((s) => s.label).join(', ') || '모두 모았어요'}
+          {STAMPS.filter((s) => !done.has(s.id)).map((s) => s.label).join(', ') || '모두 모았어요'}
         </p>
         <Link to="/packages"
           className="mt-5 inline-flex items-center justify-center min-h-11 px-5
@@ -91,15 +108,14 @@ export default function PassPage() {
               머문 곳의 경험을 모아 다음 동해사이로 이어가요
             </p>
 
-            <div className="mt-5 grid grid-cols-4 gap-1" aria-label="여행 카테고리 진행 상황">
-              {CATEGORIES.map(({ label, Icon, complete, current }) => (
-                <div key={label} className={`relative flex flex-col items-center ${current ? 'text-accent' : complete ? 'text-primary-hover' : 'text-text-ter'}`}>
+            <div className="mt-5 grid grid-cols-4 gap-1" aria-label="스탬프 카테고리 진행 상황">
+              {categories.map(({ label, Icon, complete }) => (
+                <div key={label} className={`relative flex flex-col items-center ${complete ? 'text-primary-hover' : 'text-text-ter'}`}>
                   <div className={`relative w-12 h-12 rounded-full border-2 bg-white flex items-center justify-center
-                                   ${current ? 'border-primary text-accent' : complete ? 'border-primary bg-primary-soft' : 'border-border-def'}`}>
+                                   ${complete ? 'border-primary bg-primary-soft' : 'border-border-def'}`}>
                     <Icon size={22} strokeWidth={2.2} />
                     {complete && (
-                      <span className={`absolute -right-1 -top-1 w-5 h-5 rounded-full text-white flex items-center justify-center
-                                        ${current ? 'bg-primary' : 'bg-primary-hover'}`}>
+                      <span className="absolute -right-1 -top-1 w-5 h-5 rounded-full bg-primary-hover text-white flex items-center justify-center">
                         <Check size={13} strokeWidth={3} />
                       </span>
                     )}
@@ -109,43 +125,8 @@ export default function PassPage() {
               ))}
             </div>
 
-            <div className="mt-6 border-t border-border-sub pt-5">
-              <div className="flex items-center justify-between gap-3">
-                <p className="font-pretendard font-bold text-[15px] text-text-pri">지역 스탬프</p>
-                <p className="font-pretendard font-medium text-[13px] text-text-meta tabular-nums">{done.size}곳 완료</p>
-              </div>
-            <ul className="mt-4 grid grid-cols-4 md:grid-cols-7 gap-x-2 gap-y-4 md:gap-4">
-              {STAMPS.map((s) => {
-                const Icon = ICON[s.kind]
-                const filled = done.has(s.id)
-                return (
-                  <li key={s.id} className="flex flex-col items-center text-center">
-                    <div
-                      aria-label={`${s.label} ${filled ? '완료' : '미완료'}`}
-                      className={`relative w-11 h-11 md:w-12 md:h-12 rounded-full border-2
-                                  flex items-center justify-center
-                                  ${filled
-                                    ? 'border-primary bg-primary-soft text-primary-hover'
-                                    : 'border-border-def bg-white text-text-ter'}`}>
-                      <Icon size={20} strokeWidth={2} />
-                      {filled && (
-                        <span className="absolute -right-1 -top-1 w-4 h-4 rounded-full bg-primary text-white flex items-center justify-center">
-                          <Check size={11} strokeWidth={3} />
-                        </span>
-                      )}
-                    </div>
-                    <p className={`mt-2 font-pretendard text-[12px] md:text-[13px] leading-tight
-                                   ${filled ? 'font-medium text-text-pri' : 'font-normal text-text-meta'}`}>
-                      {s.label}
-                    </p>
-                  </li>
-                )
-              })}
-            </ul>
-            </div>
-
             <p className="mt-5 font-pretendard font-medium text-[14px] text-text-sec leading-relaxed text-pretty">
-              권역 다섯 곳과 별빛 콘텐츠를 모으면 완주 스탬프가 열리고 무코 굿즈를 받아요.
+              네 카테고리를 모두 모으면 완주 스탬프가 열리고 무코 굿즈를 받아요.
             </p>
           </section>
 
@@ -180,7 +161,10 @@ export default function PassPage() {
           </section>
         </div>
       </div>
-      {showNfcDemo && <NfcStampDemo onClose={() => setShowNfcDemo(false)} />}
+      {showNfcDemo && (
+        <NfcStampDemo key={demoKey} initialStage={demoKey ? 'tap' : (nfcParam || 'tap')} hold={!demoKey && hold}
+          onClose={() => setShowNfcDemo(false)} />
+      )}
     </div>
   )
 }

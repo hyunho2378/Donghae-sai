@@ -23,7 +23,7 @@ const FLOW = [
   '여정이 끝날 때까지 반복'
 ]
 
-const STAMPS = ['추암', '무릉', '천곡', '묵호', '망상', '별빛', '완주']
+const STAMPS = ['STAY', 'EAT', 'PLAY', 'SEE']
 
 const FAQ = [
   {
@@ -42,7 +42,7 @@ const FAQ = [
     q: '패스가 없어도 태그할 수 있나요?',
     a: '태그하면 코스 소개와 구매 안내가 떠요. 혜택은 잠기지만 방문 기록은 익명으로 남아요.'
   },
-  { q: '스탬프를 다 모으면 어떻게 되나요?', a: '일곱 개를 모두 채우면 무코 굿즈를 비롯한 완주 보상을 받아요.' },
+  { q: '스탬프를 다 모으면 어떻게 되나요?', a: '네 개를 모두 채우면 무코 굿즈를 비롯한 완주 보상을 받아요.' },
   { q: '환불 규정은 어떻게 되나요?', a: '시작 48시간 전까지 취소하면 전액 환불해요. 48시간 이내에는 환불하지 않아요.' }
 ]
 
@@ -215,11 +215,11 @@ export default function MembershipPage() {
       {/* 스탬프 7단계. 원과 라벨을 한 격자에 정렬한다 */}
       <section className="bg-bg-mute">
         <div className={`${SECTION} section-page`}>
-          <h2 className={H2}>스탬프 일곱 단계</h2>
+          <h2 className={H2}>스탬프 네 단계</h2>
           <p className="mt-2 font-pretendard font-medium text-[15px] text-text-sec leading-relaxed">
-            저녁에 시작해 다음 날 아침에 끝나요. 일곱 개를 모두 모으면 하룻밤이 완성돼요
+            가게마다 붙은 NFC 스티커에 태그해 모아요. 네 개를 모두 모으면 하룻밤이 완성돼요
           </p>
-          <ol className="mt-6 grid grid-cols-4 md:grid-cols-7 gap-x-3 gap-y-5">
+          <ol className="mt-6 grid grid-cols-4 gap-x-3 gap-y-5">
             {STAMPS.map((s, i) => (
               <li key={s} className="flex flex-col items-center text-center">
                 <span className="w-12 h-12 inline-flex items-center justify-center rounded-full
