@@ -4,6 +4,7 @@ import { BedDouble, Binoculars, Check, Download, Nfc, Utensils, Waves } from 'lu
 import Eyebrow from '../components/Eyebrow'
 import NfcStampDemo from '../components/pass/NfcStampDemo'
 import { STAMPS } from '../lib/format'
+import { isDemoOn } from '../demo/demoFlag'
 
 // 발표 시연용 가짜 데이터다. NFC 실물 태그와 NeonDB를 연결하기 전까지 이 값을 쓴다
 // STAY EAT PLAY 세 카테고리를 먼저 모았고 SEE만 남은 상황이다
@@ -35,7 +36,7 @@ export default function PassPage() {
 
   // 시연용. 패스 화면을 연 뒤 7초가 지나면 가게 스티커를 태그한 상황을 띄운다
   useEffect(() => {
-    if (nfcParam) return undefined
+    if (nfcParam || isDemoOn()) return undefined
     const timer = window.setTimeout(() => setShowNfcDemo(true), 7000)
     return () => window.clearTimeout(timer)
   }, [nfcParam])

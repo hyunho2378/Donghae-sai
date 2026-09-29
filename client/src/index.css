@@ -145,3 +145,8 @@
   .animate-flow-down-late,
   .skeleton-bar { animation: none; }
 }
+
+
+/* 자동 시연(?demo=1) 전용. 화면 녹화에 실제 마우스 커서가 섞이지 않게 숨긴다 */
+html.dhs-demo, html.dhs-demo * { cursor: none !important; }
+@keyframes dhsCap { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }

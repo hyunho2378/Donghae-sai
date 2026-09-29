@@ -22,6 +22,7 @@ import AdminPage from './pages/AdminPage'
 import CheckoutPage from './pages/CheckoutPage'
 import CheckoutCompletePage from './pages/CheckoutCompletePage'
 import BookmarksPage from './pages/BookmarksPage'
+import DemoDirector from './demo/DemoDirector'
 
 function RequireAuth({ children }) {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
@@ -50,6 +51,7 @@ export default function App() {
     <HelmetProvider>
       <BrowserRouter>
         <ScrollToTop />
+        <DemoDirector />
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
